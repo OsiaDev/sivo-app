@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<paths xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Para imágenes capturadas desde la cámara -->
+    <external-files-path
+        name="images"
+        path="Pictures" />
+
+    <!-- Para almacenamiento interno -->
+    <files-path
+        name="internal_images"
+        path="images/" />
+</paths>

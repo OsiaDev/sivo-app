@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt"
+    android:width="96dp"
+    android:height="96dp"
+    android:viewportWidth="96"
+    android:viewportHeight="96">
+
+    <!-- Background Circle -->
+    <path
+        android:fillColor="@android:color/transparent"
+        android:pathData="M48,48m-40,0a40,40 0,1 1,80 0a40,40 0,1 1,-80 0"
+        android:strokeColor="#E5E7EB"
+        android:strokeWidth="8"
+        android:strokeLineCap="round" />
+
+    <!-- Progress Circle -->
+    <path
+        android:fillColor="@android:color/transparent"
+        android:pathData="M48,8A40,40 0 0,1 88,48"
+        android:strokeColor="@color/main"
+        android:strokeWidth="8"
+        android:strokeLineCap="round">
+        <aapt:attr name="android:animation">
+            <set xmlns:android="http://schemas.android.com/apk/res/android">
+                <objectAnimator
+                    android:duration="1000"
+                    android:propertyName="rotation"
+                    android:repeatCount="infinite"
+                    android:repeatMode="restart"
+                    android:valueFrom="0"
+                    android:valueTo="360"
+                    android:valueType="floatType" />
+            </set>
+        </aapt:attr>
+    </path>
+
+</vector>

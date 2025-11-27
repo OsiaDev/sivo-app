@@ -1,0 +1,160 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Theme.ColjuegosSIVO" parent="Theme.Material3.DayNight.NoActionBar">
+    <!-- Color de la barra de estado -->
+        <item name="android:statusBarColor">@color/app_background</item>
+        <!-- Iconos oscuros en barra de estado para fondo claro -->
+        <item name="android:windowLightStatusBar">true</item>
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/main</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <!-- Secondary brand color. -->
+        <item name="colorOnSecondary">@color/black</item>
+        <!-- Customize your theme here. -->
+    </style>
+
+    <style name="Widget.Coljuegos.TextInputLayout.Outlined" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="android:paddingTop">4dp</item>
+        <item name="android:paddingBottom">4dp</item>
+        <item name="android:textColorHint">@color/input_text_hint</item>
+        <item name="boxBackgroundColor">@color/input_background</item>
+        <item name="boxStrokeColor">@color/text_input_stroke_color</item>
+        <item name="boxBackgroundMode">outline</item>
+        <item name="boxCornerRadiusBottomEnd">@dimen/input_border</item>
+        <item name="boxCornerRadiusBottomStart">@dimen/input_border</item>
+        <item name="boxCornerRadiusTopEnd">@dimen/input_border</item>
+        <item name="boxCornerRadiusTopStart">@dimen/input_border</item>
+        <item name="boxStrokeWidth">1dp</item>
+    </style>
+
+    <!-- Títulos principales -->
+    <style name="TextAppearance.Coljuegos.Title" parent="TextAppearance.MaterialComponents.Headline1">
+        <item name="android:textSize">56sp</item>
+        <item name="android:textColor">@color/title_color</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textAlignment">center</item>
+    </style>
+
+    <!-- Subtítulos -->
+    <style name="TextAppearance.Coljuegos.Subtitle" parent="TextAppearance.MaterialComponents.Subtitle1">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/subtitle_color</item>
+        <item name="android:textAlignment">center</item>
+    </style>
+
+    <!-- Texto de inputs -->
+    <style name="TextAppearance.Coljuegos.InputText" parent="TextAppearance.MaterialComponents.Body1">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/input_text_color</item>
+    </style>
+
+    <style name="LoginScreen.Title" parent="TextAppearance.Coljuegos.Title">
+        <item name="android:layout_marginTop">80dp</item>
+    </style>
+
+    <style name="LoginScreen.Subtitle" parent="TextAppearance.Coljuegos.Subtitle">
+        <item name="android:layout_marginTop">16dp</item>
+    </style>
+
+    <style name="LoginScreen.InputLayout" parent="Widget.Coljuegos.TextInputLayout.Outlined">
+        <item name="android:layout_marginTop">48dp</item>
+    </style>
+
+    <style name="Form.InputLayout" parent="Widget.Coljuegos.TextInputLayout.Outlined">
+        <item name="android:layout_marginTop">0dp</item>
+    </style>
+
+    <!-- Estilo base para botones de la app -->
+    <style name="Widget.Coljuegos.Button" parent="Widget.MaterialComponents.Button">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:padding">10dp</item>
+        <item name="backgroundTint">@color/main</item>
+        <item name="cornerRadius">12dp</item>
+        <item name="iconTint">@android:color/white</item>
+        <item name="strokeWidth">0dp</item>
+    </style>
+
+    <style name="Widget.Coljuegos.Button.Gradient" parent="Widget.Coljuegos.Button">
+        <item name="android:background">@drawable/gradient_login_button</item>
+        <item name="backgroundTint">@null</item>
+    </style>
+
+    <style name="LoginScreen.Button" parent="Widget.Coljuegos.Button.Gradient">
+        <item name="android:layout_marginTop">32dp</item>
+        <item name="android:drawableEnd">@drawable/ic_chevron_right</item>
+        <item name="android:drawablePadding">8dp</item>
+    </style>
+
+    <style name="Widget.Coljuegos.CheckBox" parent="Widget.MaterialComponents.CompoundButton.CheckBox">
+        <item name="boxStrokeWidth">10dp</item>
+        <item name="android:textColor">@color/input_show_pass_color</item>
+        <item name="android:layout_marginTop">16dp</item>
+        <item name="buttonTint">@color/checkbox_tint</item>
+    </style>
+    <!-- Base application theme. -->
+    <style name="Base.Theme.ColjuegosSIVO" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Customize your light theme here. -->
+        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+    </style>
+
+    <style name="Theme.ColjuegosSIVO.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
+        <item name="android:background">@color/app_bar_background</item>
+        <item name="elevation">0dp</item>
+        <item name="colorControlNormal">@color/input_text_color</item>
+    </style>
+
+    <style name="ToolbarTitleStyle" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:fontFamily">sans-serif</item> <!-- Opcional -->
+        <item name="fontFamily">@font/work_sans_regular</item>
+    </style>
+
+    <style name="Theme.ColjuegosSIVO.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="ActaTextStyle">
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="fontFamily">@font/work_sans_regular</item>
+    </style>
+
+    <!-- Extended FloatingActionButton Style -->
+    <style name="Widget.ColjuegosSIVO.ExtendedFloatingActionButton" parent="Widget.Material3.ExtendedFloatingActionButton.Primary">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">bottom|end</item>
+        <item name="android:layout_margin">16dp</item>
+        <item name="android:backgroundTint">@color/fragment_button_back_color</item>
+        <item name="backgroundTint">@color/fragment_button_back_color</item>
+        <item name="android:color">@color/fragment_button_back_color</item>
+        <item name="color">@color/fragment_button_back_color</item>
+        <item name="android:elevation">8dp</item>
+        <item name="android:paddingStart">16dp</item>
+        <item name="android:paddingEnd">24dp</item>
+        <item name="android:textColor">@color/fragment_button_back_color</item>
+        <item name="cornerRadius">28dp</item>
+        <item name="iconPadding">12dp</item>
+        <item name="iconTint">@color/login_icon_color</item>
+        <item name="pressedTranslationZ">12dp</item>
+        <item name="rippleColor">@color/login_icon_color</item>
+    </style>
+
+    <style name="Widget.Coljuegos.MaterialAutoCompleteTextView" parent="Widget.Material3.AutoCompleteTextView.OutlinedBox">
+        <item name="android:layout_height">56dp</item>
+        <item name="android:textColor">@color/input_text_color</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:paddingStart">@dimen/input_horizontal_padding</item>
+        <item name="android:paddingEnd">@dimen/input_horizontal_padding</item>
+        <item name="android:paddingTop">@dimen/input_vertical_padding</item>
+        <item name="android:paddingBottom">@dimen/input_vertical_padding</item>
+
+        <!-- popup -->
+        <item name="android:popupBackground">@drawable/dropdown_background</item>
+        <item name="android:popupElevation">@dimen/dropdown_elevation</item>
+        <item name="android:dropDownWidth">match_parent</item>
+    </style>
+
+
+</resources>

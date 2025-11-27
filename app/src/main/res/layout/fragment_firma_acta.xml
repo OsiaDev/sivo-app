@@ -1,0 +1,644 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/app_background"
+    android:padding="16dp"
+    tools:context=".ui.establecimiento.firma.FirmaActaFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/subtitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:paddingTop="2dp"
+            android:text="@string/firma_acta_subtitle"
+            android:textColor="@color/fragment_subtitle_color"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvFiscalizadorPrincipal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="@string/firma_acta_fiscalizador_principal"
+            android:textColor="@color/fragment_subtitle_color"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/subtitle" />
+
+        <TextView
+            android:id="@+id/nombrePrincipalLabel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="@string/firma_acta_fiscalizador_nombre"
+            android:textColor="@color/text_title_detail"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvFiscalizadorPrincipal" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/nombrePrincipalLayout"
+            style="@style/Form.InputLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:hint="@string/firma_acta_fiscalizador_nombre"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/nombrePrincipalLabel"
+            tools:visibility="visible">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/nombrePrincipalText"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:inputType="text"
+                android:maxLength="100"
+                android:padding="15dp"
+                android:textColor="@color/input_text_color"
+                android:textSize="16sp"
+                />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:id="@+id/ccPrincipalLabel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="@string/firma_acta_fiscalizador_cc"
+            android:textColor="@color/text_title_detail"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/nombrePrincipalLayout" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/ccPrincipalLayout"
+            style="@style/Form.InputLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:hint="@string/firma_acta_fiscalizador_cc"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/ccPrincipalLabel"
+            tools:visibility="visible">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/ccPrincipalText"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:inputType="text"
+                android:maxLength="100"
+                android:padding="15dp"
+                android:textColor="@color/input_text_color"
+                android:textSize="16sp"
+                />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:id="@+id/cargoPrincipalLabel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="@string/firma_acta_fiscalizador_cargo"
+            android:textColor="@color/text_title_detail"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/ccPrincipalLayout" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/cargoPrincipalLayout"
+            style="@style/Form.InputLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:hint="@string/firma_acta_fiscalizador_cargo"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/cargoPrincipalLabel"
+            tools:visibility="visible">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/cargoPrincipalText"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:inputType="text"
+                android:maxLength="100"
+                android:padding="15dp"
+                android:textColor="@color/input_text_color"
+                android:textSize="16sp"
+                />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:id="@+id/firmaPrincipalLabel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="@string/firma_acta_fiscalizador_firma"
+            android:textColor="@color/text_title_detail"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/cargoPrincipalLayout" />
+
+        <LinearLayout
+            android:id="@+id/layoutSignaturePrincipalPreview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/firmaPrincipalLabel">
+
+            <ImageView
+                android:id="@+id/ivSignaturePrincipal"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:contentDescription="@string/firma_acta_fiscalizador_principal_firma"
+                android:scaleType="fitCenter"
+                android:padding="8dp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnEditSignaturePrincipal"
+                style="@style/Widget.Material3.Button.OutlinedButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:paddingVertical="16dp"
+                android:text="@string/firma_acta_fiscalizador_editar_principal_firma"
+                android:textSize="16sp"
+                app:cornerRadius="8dp"
+                app:icon="@drawable/ic_edit"
+                app:iconGravity="textStart"
+                app:iconPadding="12dp"
+                app:strokeColor="@color/login_button_color_init"
+                app:strokeWidth="2dp" />
+
+        </LinearLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnAddSignaturePrincipal"
+            style="@style/Widget.Material3.Button.OutlinedButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:paddingVertical="16dp"
+            android:text="@string/firma_acta_fiscalizador_principal_firma"
+            android:textSize="16sp"
+            app:cornerRadius="8dp"
+            app:icon="@drawable/ic_edit"
+            app:iconGravity="textStart"
+            app:iconPadding="12dp"
+            app:strokeColor="@color/login_button_color_init"
+            app:strokeWidth="2dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layoutSignaturePrincipalPreview" />
+
+        <TextView
+            android:id="@+id/tvFiscalizadorSecundario"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="@string/firma_acta_fiscalizador_secundario"
+            android:textColor="@color/fragment_subtitle_color"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btnAddSignaturePrincipal" />
+
+        <TextView
+            android:id="@+id/nombreSecundarioLabel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="@string/firma_acta_fiscalizador_nombre"
+            android:textColor="@color/text_title_detail"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvFiscalizadorSecundario" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/nombreSecundarioLayout"
+            style="@style/Form.InputLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:hint="@string/firma_acta_fiscalizador_nombre"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/nombreSecundarioLabel"
+            tools:visibility="visible">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/nombreSecundarioText"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:inputType="text"
+                android:maxLength="100"
+                android:padding="15dp"
+                android:textColor="@color/input_text_color"
+                android:textSize="16sp"
+                />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:id="@+id/ccSecundarioLabel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="@string/firma_acta_fiscalizador_cc"
+            android:textColor="@color/text_title_detail"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/nombreSecundarioLayout" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/ccSecundarioLayout"
+            style="@style/Form.InputLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:hint="@string/firma_acta_fiscalizador_cc"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/ccSecundarioLabel"
+            tools:visibility="visible">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/ccSecundarioText"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:inputType="text"
+                android:maxLength="100"
+                android:padding="15dp"
+                android:textColor="@color/input_text_color"
+                android:textSize="16sp"
+                />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:id="@+id/cargoSecundarioLabel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="@string/firma_acta_fiscalizador_cargo"
+            android:textColor="@color/text_title_detail"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/ccSecundarioLayout" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/cargoSecundarioLayout"
+            style="@style/Form.InputLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:hint="@string/firma_acta_fiscalizador_cargo"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/cargoSecundarioLabel"
+            tools:visibility="visible">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/cargoSecundarioText"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:inputType="text"
+                android:maxLength="100"
+                android:padding="15dp"
+                android:textColor="@color/input_text_color"
+                android:textSize="16sp"
+                />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:id="@+id/firmaSecundarioLabel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="@string/firma_acta_fiscalizador_firma"
+            android:textColor="@color/text_title_detail"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/cargoSecundarioLayout" />
+
+        <LinearLayout
+            android:id="@+id/layoutSignatureSecundarioPreview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/firmaSecundarioLabel">
+
+            <ImageView
+                android:id="@+id/ivSignatureSecundario"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:contentDescription="@string/firma_acta_fiscalizador_secundario_firma"
+                android:scaleType="fitCenter"
+                android:padding="8dp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnEditSignatureSecundario"
+                style="@style/Widget.Material3.Button.OutlinedButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:paddingVertical="16dp"
+                android:text="@string/firma_acta_fiscalizador_editar_secundario_firma"
+                android:textSize="16sp"
+                app:cornerRadius="8dp"
+                app:icon="@drawable/ic_edit"
+                app:iconGravity="textStart"
+                app:iconPadding="12dp"
+                app:strokeColor="@color/login_button_color_init"
+                app:strokeWidth="2dp" />
+
+        </LinearLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnAddSignatureSecundario"
+            style="@style/Widget.Material3.Button.OutlinedButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:paddingVertical="16dp"
+            android:text="@string/firma_acta_fiscalizador_secundario_firma"
+            android:textSize="16sp"
+            app:cornerRadius="8dp"
+            app:icon="@drawable/ic_edit"
+            app:iconGravity="textStart"
+            app:iconPadding="12dp"
+            app:strokeColor="@color/login_button_color_init"
+            app:strokeWidth="2dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layoutSignatureSecundarioPreview" />
+
+        <TextView
+            android:id="@+id/tvFiscalizadorOperador"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="@string/firma_acta_operador"
+            android:textColor="@color/fragment_subtitle_color"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btnAddSignatureSecundario" />
+
+        <TextView
+            android:id="@+id/nombreOperadorLabel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="@string/firma_acta_operador_nombre"
+            android:textColor="@color/text_title_detail"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvFiscalizadorOperador" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/nombreOperadorLayout"
+            style="@style/Form.InputLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:hint="@string/firma_acta_operador_nombre"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/nombreOperadorLabel"
+            tools:visibility="visible">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/nombreOperadorText"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:inputType="text"
+                android:maxLength="100"
+                android:padding="15dp"
+                android:textColor="@color/input_text_color"
+                android:textSize="16sp"
+                />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:id="@+id/ccOperadorLabel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="@string/firma_acta_operador_cc"
+            android:textColor="@color/text_title_detail"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/nombreOperadorLayout" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/ccOperadorLayout"
+            style="@style/Form.InputLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:hint="@string/firma_acta_operador_cc"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/ccOperadorLabel"
+            tools:visibility="visible">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/ccOperadorText"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:inputType="text"
+                android:maxLength="100"
+                android:padding="15dp"
+                android:textColor="@color/input_text_color"
+                android:textSize="16sp"
+                />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:id="@+id/cargoOperadorLabel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="@string/firma_acta_operador_cargo"
+            android:textColor="@color/text_title_detail"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/ccOperadorLayout" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/cargoOperadorLayout"
+            style="@style/Form.InputLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:hint="@string/firma_acta_operador_cargo"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/cargoOperadorLabel"
+            tools:visibility="visible">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/cargoOperadorText"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:inputType="text"
+                android:maxLength="100"
+                android:padding="15dp"
+                android:textColor="@color/input_text_color"
+                android:textSize="16sp"
+                />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:id="@+id/firmaOperadorLabel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="@string/firma_acta_operador_firma"
+            android:textColor="@color/text_title_detail"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/cargoOperadorLayout" />
+
+        <LinearLayout
+            android:id="@+id/layoutSignatureOperadorPreview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/firmaOperadorLabel">
+
+            <ImageView
+                android:id="@+id/ivSignatureOperador"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:contentDescription="@string/firma_acta_operador_firma"
+                android:scaleType="fitCenter"
+                android:padding="8dp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnEditSignatureOperador"
+                style="@style/Widget.Material3.Button.OutlinedButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:paddingVertical="16dp"
+                android:text="@string/firma_acta_editar_operador_firma"
+                android:textSize="16sp"
+                app:cornerRadius="8dp"
+                app:icon="@drawable/ic_edit"
+                app:iconGravity="textStart"
+                app:iconPadding="12dp"
+                app:strokeColor="@color/login_button_color_init"
+                app:strokeWidth="2dp" />
+
+        </LinearLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnAddSignatureOperador"
+            style="@style/Widget.Material3.Button.OutlinedButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:paddingVertical="16dp"
+            android:text="@string/firma_acta_add_operador_firma"
+            android:textSize="16sp"
+            app:cornerRadius="8dp"
+            app:icon="@drawable/ic_edit"
+            app:iconGravity="textStart"
+            app:iconPadding="12dp"
+            app:strokeColor="@color/login_button_color_init"
+            app:strokeWidth="2dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layoutSignatureOperadorPreview" />
+
+        <!-- Botones de navegación -->
+        <LinearLayout
+            android:id="@+id/layoutBotones"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:orientation="horizontal"
+            android:weightSum="2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btnAddSignatureOperador">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnAnterior"
+                style="@style/Widget.Material3.Button.OutlinedButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_weight="1"
+                android:paddingVertical="16dp"
+                android:text="@string/verificacion_siplaft_anterior"
+                android:textSize="16sp"
+                app:cornerRadius="8dp"
+                app:strokeColor="@color/login_button_color_init"
+                app:strokeWidth="2dp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnSiguiente"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_weight="1"
+                android:paddingVertical="16dp"
+                android:text="@string/verificacion_siplaft_siguiente"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:backgroundTint="@color/login_button_color_init"
+                app:cornerRadius="8dp"
+                app:elevation="4dp" />
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>

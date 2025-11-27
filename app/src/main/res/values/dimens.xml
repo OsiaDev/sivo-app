@@ -1,0 +1,9 @@
+<resources>
+    <dimen name="input_border">12dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="input_vertical_padding">12dp</dimen>
+    <dimen name="input_horizontal_padding">16dp</dimen>
+    <dimen name="dropdown_corner">12dp</dimen>
+    <dimen name="dropdown_elevation">8dp</dimen>
+    <dimen name="dropdown_item_padding">16dp</dimen>
+</resources>

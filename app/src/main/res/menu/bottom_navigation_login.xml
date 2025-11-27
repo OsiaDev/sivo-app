@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/nav_newsletter"
+        android:icon="@drawable/ic_document"
+        android:title="@string/menu_newsletter" />
+
+    <item
+        android:id="@+id/nav_information"
+        android:icon="@drawable/ic_info"
+        android:title="@string/menu_info" />
+
+    <item
+        android:id="@+id/nav_megaphone"
+        android:icon="@drawable/ic_report"
+        android:title="@string/menu_report" />
+
+    <item
+        android:id="@+id/nav_contact"
+        android:icon="@drawable/ic_phone"
+        android:title="@string/menu_contact" />
+
+</menu>

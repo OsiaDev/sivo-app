@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/app_background"
+    android:padding="16dp"
+    tools:context=".ui.establecimiento.siplaft.VerificacionSiplaftFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/subtitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:paddingTop="2dp"
+            android:text="@string/verificacion_siplaft_subtitle"
+            android:textColor="@color/fragment_subtitle_color"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- Pregunta 1 -->
+        <TextView
+            android:id="@+id/pregunta1Label"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="@string/siplaft_pregunta1"
+            android:textColor="@color/text_title_detail"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/subtitle" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/pregunta1Layout"
+            style="@style/Widget.Coljuegos.TextInputLayout.Outlined"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:hint="@string/seleccione_opcion"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/pregunta1Label"
+            app:endIconMode="dropdown_menu">
+
+            <com.google.android.material.textfield.MaterialAutoCompleteTextView
+                android:id="@+id/pregunta1Spinner"
+                style="@style/Widget.Coljuegos.MaterialAutoCompleteTextView"
+                android:dropDownWidth="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:completionThreshold="1"
+                android:inputType="none"
+                android:padding="15dp"
+                android:textColor="@color/input_text_color"
+                android:textSize="16sp" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- Campo condicional 1: Monto -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/montoLayout"
+            style="@style/Form.InputLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:hint="@string/siplaft_monto_hint"
+            android:visibility="gone"
+            app:prefixText="$"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/pregunta1Layout"
+            tools:visibility="visible">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/montoText"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:inputType="numberDecimal"
+                android:maxLength="100"
+                android:padding="15dp"
+                android:textColor="@color/input_text_color"
+                android:textSize="16sp"
+                />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- Pregunta 2 -->
+        <TextView
+            android:id="@+id/pregunta2Label"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="@string/siplaft_pregunta2"
+            android:textColor="@color/text_title_detail"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/montoLayout" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/pregunta2Layout"
+            style="@style/Widget.Coljuegos.TextInputLayout.Outlined"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:hint="@string/seleccione_opcion"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/pregunta2Label"
+            app:endIconMode="dropdown_menu">
+
+            <com.google.android.material.textfield.MaterialAutoCompleteTextView
+                android:id="@+id/pregunta2Spinner"
+                style="@style/Widget.Coljuegos.MaterialAutoCompleteTextView"
+                android:dropDownWidth="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:completionThreshold="1"
+                android:inputType="none"
+                android:padding="15dp"
+                android:textColor="@color/input_text_color"
+                android:textSize="16sp" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- Campo condicional 2: Señales de alerta -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/senalesAlertaLayout"
+            style="@style/Form.InputLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:hint="@string/siplaft_senales_hint"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/pregunta2Layout"
+            tools:visibility="visible">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/senalesAlertaText"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:inputType="numberDecimal"
+                android:maxLength="100"
+                android:padding="15dp"
+                android:textColor="@color/input_text_color"
+                android:textSize="16sp" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- Pregunta 3 -->
+        <TextView
+            android:id="@+id/pregunta3Label"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="@string/siplaft_pregunta3"
+            android:textColor="@color/text_title_detail"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/senalesAlertaLayout" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/pregunta3Layout"
+            style="@style/Widget.Coljuegos.TextInputLayout.Outlined"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:hint="@string/seleccione_opcion"
+            app:layout_constraintTop_toBottomOf="@id/pregunta3Label"
+            app:endIconMode="dropdown_menu">
+
+            <com.google.android.material.textfield.MaterialAutoCompleteTextView
+                android:id="@+id/pregunta3Spinner"
+                style="@style/Widget.Coljuegos.MaterialAutoCompleteTextView"
+                android:dropDownWidth="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:completionThreshold="1"
+                android:inputType="none"
+                android:padding="15dp"
+                android:textColor="@color/input_text_color"
+                android:textSize="16sp" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- Botones de navegación -->
+        <LinearLayout
+            android:id="@+id/layoutBotones"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:orientation="horizontal"
+            android:weightSum="2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/pregunta3Layout">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnAnterior"
+                style="@style/Widget.Material3.Button.OutlinedButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_weight="1"
+                android:paddingVertical="16dp"
+                android:text="@string/verificacion_siplaft_anterior"
+                android:textSize="16sp"
+                app:cornerRadius="8dp"
+                app:strokeColor="@color/login_button_color_init"
+                app:strokeWidth="2dp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnSiguiente"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_weight="1"
+                android:paddingVertical="16dp"
+                android:text="@string/verificacion_siplaft_siguiente"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:backgroundTint="@color/login_button_color_init"
+                app:cornerRadius="8dp"
+                app:elevation="4dp" />
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>

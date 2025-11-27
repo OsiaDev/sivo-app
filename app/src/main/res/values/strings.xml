@@ -1,0 +1,339 @@
+<resources>
+    <string name="app_name">Coljuegos SIVO</string>
+
+    <!-- LOGIN -->
+    <string name="login_title">Coljuegos</string>
+    <string name="login_subtitle">Tu app para consultar, reportar y estar informado</string>
+    <string name="login_username">Nombre de usuario</string>
+    <string name="login_password">Contraseña</string>
+    <string name="login_show_password">Mostrar contraseña</string>
+    <string name="login_bottom">INICIAR SESIÓN</string>
+
+    <!-- LOGIN MENU -->
+    <string name="menu_newsletter">Boletín</string>
+    <string name="menu_info">Información</string>
+    <string name="menu_report">Denuncie</string>
+    <string name="menu_contact">Contacto</string>
+    <string name="login_success">Bienvenido %1$s</string>
+    <string name="login_error_connection_compare">Error de conexión</string>
+    <string name="login_error_connection">Error de conexión con el servidor</string>
+
+    <!-- HOME FRAGMENT -->
+    <string name="home_title">Home</string>
+    <string name="acta_ver_detalle">Ver detalle</string>
+    <string name="acta_asignacion_title">Actas asignadas a</string>
+    <string name="acta_numero">Acta Nº %1$s</string>
+
+    <!-- ACTA VISITA FRAGMENT -->
+    <string name="acta_visita_title">Acta</string>
+    <string name="acta_visita_subtitle">Acta de visita</string>
+    <string name="acta_visita_establecimiento">Establecimiento</string>
+    <string name="acta_visita_nombre_establecimiento">Nombre</string>
+    <string name="acta_visita_nombre_departamento">Departamento</string>
+    <string name="acta_visita_direccion">Dirección</string>
+    <string name="acta_visita_nombre_municipio">Municipio</string>
+    <string name="acta_visita_codigo_establecimiento">Código de establecimiento</string>
+    <string name="acta_visita_fecha_inventario">Fecha corte inventario</string>
+    <string name="acta_visita_operador">Operador</string>
+    <string name="acta_visita_nombre_operador">Nombre</string>
+    <string name="acta_visita_email_operador">Email</string>
+    <string name="acta_visita_nit_operador">Nit</string>
+    <string name="acta_visita_contrato">Contrato</string>
+    <string name="acta_visita_acta">Acta N°</string>
+    <string name="acta_visita_auto">Auto N°</string>
+    <string name="acta_visita_numero_contrato">N° Contrato</string>
+    <string name="acta_visita_fecha_fin">Fecha fin contrato</string>
+    <string name="acta_visita_ah">AH%1$s</string>
+    <string name="acta_visita_ac">AC%1$s</string>
+    <string name="acta_visita_visita">Visita</string>
+    <string name="acta_visita_fecha_visita">Siendo la fecha</string>
+    <string name="acta_visita_texto_legal_1">Los suscritos funcionales de la Vicepresidencia de operaciones de COLJUEGOS, en uso de las facultades que le conceden los artículos 43 de la Ley 643 de 2001 y los numerales 10 y 11 del artículo 5, numerales 5 y 8 del artículo 17 del Decreto 4142 de 2011, y debidamente comisionados mediante Auto Comisorio número</string>
+    <string name="acta_visita_fecha_auto">Con fecha</string>
+    <string name="acta_visita_texto_legal_2">Se hicieron presentes en el establecimiento donde fuimos atendidos por el señor(a) (*)</string>
+    <string name="acta_visita_texto_legal_3">Mayor de edad, identificado(a) con la cédula de ciudadanía (*)</string>
+    <string name="acta_visita_texto_legal_4">Quien una vez informado sobre los motivos de la diligencia autorizó el ingreso al lugar con la función de ejecutar el control al cumplimiento de las condiciones contractuales\n\nAntes de iniciar la diligencia de control se le comunicó personalemente el contenido del Auto Comisorio.</string>
+    <string name="acta_visita_texto_legal_5">Mayor de edad, identificado(a) con la cédula de ciudadanía (*)</string>
+    <string name="acta_visita_nombre">Nombre</string>
+    <string name="acta_visita_cedula">Identificación</string>
+    <string name="acta_visita_de">De</string>
+    <string name="acta_visita_municipio_cedula">Municipio de expedición</string>
+    <string name="acta_visita_buscar_municipio">Buscar municipio</string>
+    <string name="acta_visita_no_municipios">No se encontraron municipios</string>
+    <string name="acta_visita_capturar_identificacion">Capturar documento de identidad</string>
+    <string name="acta_visita_calidad">En su calidad de</string>
+    <string name="acta_visita_cargo">Cargo</string>
+    <string name="acta_visita_email_representante_title">E-Mail de la persona que atiende</string>
+    <string name="acta_visita_email_representante">E-Mail</string>
+    <string name="acta_visita_siguiente">Siguiente</string>
+    <!-- NUEVOS STRINGS PARA CORREOS DE CONTACTO -->
+    <string name="acta_visita_correos_contacto_title">Correos de contacto</string>
+    <string name="acta_visita_correos_contacto_hint">Ingrese un correo electrónico</string>
+    <string name="acta_visita_agregar_correo">Agregar</string>
+    <string name="acta_visita_correo_vacio">Debe ingresar un correo electrónico</string>
+    <string name="acta_visita_correo_invalido">Correo electrónico inválido</string>
+    <string name="acta_visita_correo_duplicado">Este correo ya fue agregado</string>
+
+    <!-- VERIFICACIÓN CONTRACTUAL FRAGMENT -->
+    <string name="verificacion_contractual_title">Verificación Contractual</string>
+    <string name="verificacion_contractual_subtitle">1. Verificación contractual</string>
+    <string name="verificacion_contractual_pregunta1">1. El aviso de autorización para establecimientos de juegos localizados está de acuerdo a lo estipulado en la resolución 20250007074 de 2025.</string>
+    <string name="verificacion_contractual_pregunta2">2. ¿La dirección corresponde a lo registrado por el operador en Coljuegos?</string>
+    <string name="verificacion_contractual_pregunta3">3. ¿El nombre del establecimiento corresponde al registro por el operador en Coljuegos?</string>
+    <string name="verificacion_contractual_pregunta4">4. ¿Desarrolla dentro del establecimiento actividades diferentes a las autorizadas?</string>
+    <string name="verificacion_contractual_pregunta5">5. ¿Cuenta con los registros de mantenimiento de los elementos de juego que garanticen el adecuado funcionamiento de los mismos?</string>
+    <string name="verificacion_contractual_seleccionar_opcion">Seleccionar opción</string>
+    <string name="verificacion_contractual_direccion">Dirección</string>
+    <string name="verificacion_contractual_nombre">Nombre</string>
+    <string name="verificacion_contractual_tipo_actividad">De ser afirmativa la pregunta anterior indique:</string>
+    <string name="verificacion_contractual_seleccionar_tipo">Seleccionar tipo de actividad</string>
+    <string name="verificacion_contractual_especificar_otros">Especificar cuál</string>
+    <string name="verificacion_contractual_anterior">Anterior</string>
+    <string name="verificacion_contractual_siguiente">Siguiente</string>
+
+    <!-- GALERIA FRAGMENT -->
+    <string name="gallery_title">Galería</string>
+    <string name="camera_permission_required">Se requiere permiso de cámara</string>
+    <string name="storage_permission_required">Se requiere permiso de almacenamiento</string>
+    <string name="choose_photo_source">Seleccionar origen de foto</string>
+    <string name="camera">Cámara</string>
+    <string name="gallery">Galería</string>
+    <string name="cancel">Cancelar</string>
+    <string name="loading">Cargando</string>
+    <string name="galeria_titulo">Galería de imágenes</string>
+    <string name="galeria_subtitulo">Captura y administra las imágenes del acta</string>
+    <string name="galeria_no_imagenes">No hay imágenes capturadas</string>
+    <string name="galeria_tomar_foto">Toma una foto para comenzar</string>
+    <string name="galeria_fragment_acta_visita">Acta de Visita</string>
+    <string name="galeria_fragment_verificacion">Verificación Contractual</string>
+    <string name="galeria_fragment_siplaft">Verificación SIPLAFT</string>
+    <string name="galeria_fragment_inventario">Inventario Reportado</string>
+    <string name="galeria_fragment_identificacion">Documento de Identidad</string>
+
+    <!-- Verificación SIPLAFT -->
+    <string name="verificacion_siplaft_title">Verificación SIPLAFT</string>
+    <string name="verificacion_siplaft_subtitle">2. Verificación SIPLAFT</string>
+    <string name="verificacion_siplaft_subtitle2">(Implementación del sistema de prevención y control de lavado de activos y de la financiación al terrorismo)</string>
+    <string name="siplaft_pregunta1">¿Cuenta con el formato de identificación de clientes para premios y/o transacciones?</string>
+    <string name="siplaft_pregunta2">¿Cuenta con el formato de reporte interno de eventos inusuales?</string>
+    <string name="siplaft_pregunta3">¿Conoce lo dispuesto en el código de conducta?</string>
+    <string name="siplaft_monto_hint">Especifique el monto</string>
+    <string name="siplaft_senales_hint">Especifique las señales de alerta</string>
+    <string name="seleccione_opcion">Seleccione una opción</string>
+    <string name="verificacion_siplaft_anterior">Anterior</string>
+    <string name="verificacion_siplaft_siguiente">Siguiente</string>
+
+    <!-- Inventario -->
+    <string name="inventario_reportado_title">Inventario reportado</string>
+    <string name="inventario_reportado_subtitle">3. Inventario reportado ante coljuegos</string>
+    <string name="inventario_total">Total registros: %1$d</string>
+    <string name="inventario_serial">Serial:</string>
+    <string name="inventario_nuc">NUC:</string>
+    <string name="inventario_marca">Marca:</string>
+    <string name="inventario_online">Online:</string>
+    <string name="inventario_codigo_apuesta">Código apuesta:</string>
+    <string name="inventario_seleccionar">Seleccionar</string>
+    <string name="inventario_vacio">No hay inventario registrado</string>
+    <string name="expandir">Expandir</string>
+    <string name="inventario_reportado_agregar">Agregar</string>
+    <string name="inventario_reportado_anterior">Anterior</string>
+    <string name="inventario_reportado_siguiente">Siguiente</string>
+    <string name="inventario_reportado_editar">Editar</string>
+    <string name="inventario_reportado_eliminar">Eliminar</string>
+    <string name="inventario_registrado_titulo">Inventarios registrados</string>
+    <string name="inventario_registrado_vacio">No hay inventarios registrados</string>
+
+    <!-- INVENTARIO ACTA -->
+    <string name="inventario_acta_title">Inventario</string>
+    <string name="inventario_acta_total">Total registros: %1$d</string>
+    <string name="inventario_acta_busqueda">Buscar marca o serial</string>
+    <string name="inventario_acta_marca">Marca: %1$s</string>
+    <string name="inventario_acta_nuc">Nuc: %1$s</string>
+    <string name="inventario_acta_serial">Serial: %1$s</string>
+    <string name="inventario_acta_codigo">Código: %1$d</string>
+    <string name="inventario_acta_online">Online: %1$s</string>
+    <string name="inventario_acta_codigo_apuesta">Código apuesta: %1$s</string>
+    <string name="inventario_acta_si">Sí</string>
+    <string name="inventario_acta_no">No</string>
+
+    <!-- REGISTRAR INVENTARIO -->
+    <string name="registrar_inventario_title">Registrar</string>
+    <string name="registrar_inventario_subtitle">Registrar Inventario</string>
+    <string name="registrar_inventario_inventario">Inventario</string>
+    <string name="registrar_inventario_marca">Marca</string>
+    <string name="registrar_inventario_serial">Serial</string>
+    <string name="registrar_inventario_placa">Placa</string>
+    <string name="registrar_inventario_codigo_apuesta">Código de apuesta</string>
+    <string name="registrar_inventario_codigo_apuesta_diferente_valor">Ingrese el código de apuesta diferente</string>
+    <string name="registrar_inventario_serial_diferente_valor">Ingrese el serial diferente</string>
+    <string name="registrar_inventario_nuc">Nuc</string>
+    <string name="registrar_inventario_codigo_pregunta_1">Código de apuesta diferente</string>
+    <string name="registrar_inventario_codigo_pregunta_2">Serial</string>
+    <string name="registrar_inventario_codigo_pregunta_3">Descripción del juego</string>
+    <string name="registrar_inventario_codigo_pregunta_4">Plan premios</string>
+    <string name="registrar_inventario_codigo_pregunta_5">Valor premios</string>
+    <string name="registrar_inventario_codigo_pregunta_6">Valor crédito</string>
+    <string name="registrar_inventario_codigo_pregunta_7">Contadores</string>
+    <string name="registrar_inventario_contadores_met">Contadores MET</string>
+    <string name="registrar_inventario_codigo_pregunta_8">Coin in</string>
+    <string name="registrar_inventario_codigo_valor">Valor</string>
+    <string name="registrar_inventario_codigo_pregunta_9">Coin out</string>
+    <string name="registrar_inventario_codigo_pregunta_10">Jackpot</string>
+    <string name="registrar_inventario_contadores_sclm">Contadores SCLM</string>
+    <string name="registrar_inventario_codigo_pregunta_11">Coin in</string>
+    <string name="registrar_inventario_codigo_pregunta_12">Coin out</string>
+    <string name="registrar_inventario_codigo_pregunta_13">Jackpot</string>
+    <string name="registrar_inventario_codigo_pregunta_14">Observaciones</string>
+    <string name="registrar_inventario_btn_cancelar">Cancelar</string>
+    <string name="registrar_inventario_btn_registrar">Registrar</string>
+
+    <string name="zero">$0</string>
+
+    <!-- Sincronización de Maestros -->
+    <string name="maestros_sincronizacion_titulo">Sincronización de Maestros</string>
+    <string name="maestros_sincronizacion_descripcion">Mantén actualizados los catálogos de tipos de apuesta y otros datos maestros</string>
+    <string name="maestros_estado">Estado:</string>
+    <string name="maestros_estado_pendiente">Pendiente de sincronización</string>
+    <string name="maestros_estado_sincronizado">Sincronizado correctamente</string>
+    <string name="maestros_estado_sincronizado_con_cantidad">Sincronizado (%1$d registros)</string>
+    <string name="maestros_ultima_actualizacion">Última actualización:</string>
+    <string name="maestros_nunca_sincronizado">Nunca sincronizado</string>
+    <string name="maestros_sincronizar">Sincronizar ahora</string>
+    <string name="maestros_forzar_actualizacion">Forzar actualización</string>
+    <string name="maestros_sincronizando">Sincronizando maestros</string>
+    <string name="maestros_sincronizando_inicio">Sincronizando catálogos</string>
+    <string name="maestros_sincronizado_exito">Maestros sincronizados correctamente</string>
+    <string name="maestros_error_sincronizacion">Error al sincronizar maestros</string>
+
+    <!-- Fragment Novedad Reportada -->
+    <string name="novedad_reportada_title">Novedades reportadas</string>
+    <string name="novedad_reportada_subtitle">4. Novedades reportadas</string>
+    <string name="novedad_reportada_agregar">Agregar</string>
+    <string name="novedad_reportada_anterior">Anterior</string>
+    <string name="novedad_reportada_siguiente">Siguiente</string>
+    <string name="novedad_reportada_editar">Editar</string>
+    <string name="novedad_reportada_eliminar">Eliminar</string>
+    <string name="novedad_registrada_titulo">Novedades registradas</string>
+    <string name="novedad_registrada_vacio">No hay novedades registradas</string>
+
+    <!-- Fragment Registrar Novedad -->
+    <string name="registrar_novedad_title">Registrar</string>
+    <string name="registrar_novedad_subtitle">Registrar Novedad</string>
+    <string name="registrar_novedad_marca">Marca</string>
+    <string name="registrar_novedad_serial">Serial</string>
+    <string name="registrar_novedad_operando">Operando</string>
+    <string name="registrar_novedad_estado">Estado</string>
+    <string name="registrar_novedad_codigo_apuesta">Código de apuesta</string>
+    <string name="registrar_novedad_nuc">NUC</string>
+    <string name="registrar_novedad_descripcion">Descripción de la novedad</string>
+    <string name="registrar_novedad_descripcion_hint">Describa detalladamente la novedad encontrada</string>
+    <string name="registrar_novedad_tipo">Tipo de novedad</string>
+    <string name="registrar_novedad_credito">Valor crédito</string>
+    <string name="registrar_novedad_observaciones">Observaciones</string>
+    <string name="registrar_novedad_observaciones_hint">Observaciones adicionales (opcional)</string>
+    <string name="registrar_novedad_galeria">Agregar fotos</string>
+    <string name="registrar_novedad_cancelar">Cancelar</string>
+    <string name="registrar_novedad_guardar">Guardar</string>
+    <string name="registrar_novedad_actualizar">Actualizar</string>
+
+    <!-- Fragment Resumen Inventario -->
+    <string name="resumen_inventario_title">Resumen</string>
+    <string name="resumen_inventario_subtitle">Resumen de Inventario</string>
+    <string name="resumen_inventario_estadisticas">Estadísticas del Inventario</string>
+    <string name="resumen_inventario_operando_apagado">Inventarios operando/apagado:</string>
+    <string name="resumen_inventario_no_encontrados">Inventarios no encontrados:</string>
+    <string name="resumen_inventario_novedades_sin_placa">Novedades sin placa:</string>
+    <string name="resumen_inventario_novedades_con_placa">Novedades con placa:</string>
+    <string name="resumen_inventario_total_encontrados">Total inventarios encontrados:</string>
+    <string name="resumen_inventario_codigo_diferente">Código apuesta diferente:</string>
+    <string name="resumen_inventario_anterior">Anterior</string>
+    <string name="resumen_inventario_siguiente">Siguiente</string>
+
+
+    <!-- Firma Acta Fragment -->
+    <string name="firma_acta_title">Firma</string>
+    <string name="firma_acta_subtitle">Firma Acta</string>
+    <string name="firma_acta_fiscalizador_principal">Fiscalizador principal</string>
+    <string name="firma_acta_fiscalizador_nombre">Nombre</string>
+    <string name="firma_acta_fiscalizador_cc">CC</string>
+    <string name="firma_acta_fiscalizador_cargo">Cargo</string>
+    <string name="firma_acta_fiscalizador_firma">Firma</string>
+    <string name="firma_acta_fiscalizador_principal_firma">Firma fiscalizador principal</string>
+    <string name="firma_acta_fiscalizador_editar_principal_firma">Editar firma fiscalizador principal</string>
+    <string name="firma_acta_fiscalizador_secundario">Fiscalizador acompañante</string>
+    <string name="firma_acta_fiscalizador_secundario_firma">Firma fiscalizador acompañante</string>
+    <string name="firma_acta_fiscalizador_editar_secundario_firma">Editar firma fiscalizador acompañante</string>
+    <string name="firma_acta_operador">Operador</string>
+    <string name="firma_acta_operador_firma">Firma</string>
+    <string name="firma_acta_editar_operador_firma">Editar firma operador</string>
+    <string name="firma_acta_operador_nombre">Nombre</string>
+    <string name="firma_acta_operador_cc">CC</string>
+    <string name="firma_acta_operador_cargo">Cargo</string>
+    <string name="firma_acta_add_operador_firma">Firma operador</string>
+
+    <string name="signature_title">Firma</string>
+    <string name="signature_cancel">Cancelar</string>
+    <string name="signature_clear">Limpiar</string>
+    <string name="signature_save">Guardar</string>
+    <string name="signature_instructions">Dibuje su firma</string>
+    <string name="signature_thumbnail_description">Firma</string>
+    <string name="signature_edit">Editar firma</string>
+    <string name="signature_not_available">Firma no disponible</string>
+
+
+    <!-- Resumen Acta Fragment -->
+    <string name="resumen_acta_title">Resumen</string>
+    <string name="resumen_acta_subtitle">Resumen del Acta</string>
+    <string name="resumen_acta_info_header">Información del Acta</string>
+    <string name="resumen_acta_numero">Número de Acta:</string>
+    <string name="resumen_acta_establecimiento">Establecimiento:</string>
+    <string name="resumen_acta_operador">Operador:</string>
+    <string name="resumen_acta_direccion">Dirección:</string>
+    <string name="resumen_acta_estado_header">Estado y Ubicación</string>
+    <string name="resumen_acta_estado">Estado:</string>
+    <string name="resumen_acta_ubicacion">Ubicación:</string>
+    <string name="resumen_acta_obteniendo_ubicacion">Obteniendo ubicación…</string>
+    <string name="resumen_acta_info_message">Al finalizar el acta, se marcará como completa y se enviará automáticamente al servidor cuando haya conexión a internet.</string>
+    <string name="resumen_acta_btn_atras">Atrás</string>
+    <string name="resumen_acta_btn_finalizar">Finalizar Acta</string>
+    <string name="resumen_acta_estado_activo">Activo</string>
+    <string name="resumen_acta_estado_completo">Completo</string>
+    <string name="resumen_acta_estado_sincronizado">Sincronizado</string>
+    <string name="resumen_acta_finalizada_exito">Acta finalizada correctamente</string>
+    <string name="resumen_acta_error_finalizar">Error al finalizar el acta</string>
+    <string name="resumen_acta_sincronizando">Sincronizando con el servidor…</string>
+    <string name="resumen_acta_sincronizado_exito">Acta sincronizada correctamente</string>
+    <string name="resumen_acta_error_sincronizacion">Error al sincronizar. Se reintentará automáticamente.</string>
+    <string name="resumen_acta_permiso_ubicacion_denegado">Permiso de ubicación denegado</string>
+
+    <!-- Sincronización automática -->
+    <string name="sincronizacion_programada">Se sincronizará automáticamente cuando haya internet</string>
+    <string name="sincronizacion_en_segundo_plano">Sincronizando en segundo plano…</string>
+    <string name="actas_pendientes_sincronizacion">Actas pendientes de sincronización</string>
+    <string name="actas_pendientes_count">%1$d acta(s) pendiente(s)</string>
+
+
+    <string-array name="si_no_na_options">
+        <item>Si</item>
+        <item>No</item>
+        <item>NA</item>
+    </string-array>
+
+    <string-array name="actividades_options">
+        <item>Bar</item>
+        <item>Billares</item>
+        <item>Tienda</item>
+        <item>Otros</item>
+    </string-array>
+
+    <string-array name="operando_options">
+        <item>Operando</item>
+        <item>Apagado</item>
+    </string-array>
+
+    <string-array name="estado_options">
+        <item>Operando</item>
+        <item>Apagado</item>
+        <item>No encontrado</item>
+    </string-array>
+
+</resources>

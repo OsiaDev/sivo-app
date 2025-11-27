@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+
+    <!-- Línea horizontal -->
+    <path
+        android:fillColor="@android:color/transparent"
+        android:strokeColor="#FF020202"
+        android:strokeWidth="1.91"
+        android:pathData="M10.09,13.89 L13.91,13.89" />
+
+    <!-- Línea vertical con codo -->
+    <path
+        android:fillColor="@android:color/transparent"
+        android:strokeColor="#FF020202"
+        android:strokeWidth="1.91"
+        android:pathData="M10.09,8.16 L12,8.16 L12,13.89" />
+
+    <!-- Contorno principal -->
+    <path
+        android:fillColor="@android:color/transparent"
+        android:strokeColor="#FF020202"
+        android:strokeWidth="1.91"
+        android:pathData="M1.5,5.3
+            v9.54
+            c0,2.11 1.71,3.82 3.82,3.82
+            h1.91
+            v2.86
+            L13,18.66
+            h5.73
+            c2.11,0 3.82,-1.71 3.82,-3.82
+            V5.3
+            c0,-2.11 -1.71,-3.82 -3.82,-3.82
+            H5.32
+            C3.21,1.48 1.5,3.19 1.5,5.3Z" />
+
+    <!-- Línea superior corta -->
+    <path
+        android:fillColor="@android:color/transparent"
+        android:strokeColor="#FF020202"
+        android:strokeWidth="1.91"
+        android:pathData="M11.05,5.3 L12.95,5.3" />
+</vector>

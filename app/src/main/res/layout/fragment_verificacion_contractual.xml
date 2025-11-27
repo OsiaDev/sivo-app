@@ -1,0 +1,386 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/app_background"
+    android:padding="16dp"
+    tools:context=".ui.establecimiento.verificacion.VerificacionContractualFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/subtitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:paddingTop="2dp"
+            android:text="@string/verificacion_contractual_subtitle"
+            android:textColor="@color/fragment_subtitle_color"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- Pregunta 1: Aviso de autorización -->
+        <TextView
+            android:id="@+id/pregunta1Title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="@string/verificacion_contractual_pregunta1"
+            android:textColor="@color/text_title_detail"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/subtitle" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/layoutPregunta1"
+            style="@style/Widget.Coljuegos.TextInputLayout.Outlined"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:hint="@string/verificacion_contractual_seleccionar_opcion"
+            app:endIconMode="dropdown_menu"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/pregunta1Title">
+
+            <com.google.android.material.textfield.MaterialAutoCompleteTextView
+                android:id="@+id/pregunta1Spinner"
+                style="@style/Widget.Coljuegos.MaterialAutoCompleteTextView"
+                android:dropDownWidth="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:completionThreshold="1"
+                android:inputType="none"
+                android:padding="15dp"
+                android:textColor="@color/input_text_color"
+                android:textSize="16sp" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- Pregunta 2: Dirección corresponde -->
+        <TextView
+            android:id="@+id/pregunta2Title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="@string/verificacion_contractual_pregunta2"
+            android:textColor="@color/text_title_detail"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layoutPregunta1" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/layoutPregunta2"
+            style="@style/Widget.Coljuegos.TextInputLayout.Outlined"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:hint="@string/verificacion_contractual_seleccionar_opcion"
+            app:endIconMode="dropdown_menu"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/pregunta2Title">
+
+            <com.google.android.material.textfield.MaterialAutoCompleteTextView
+                android:id="@+id/pregunta2Spinner"
+                style="@style/Widget.Coljuegos.MaterialAutoCompleteTextView"
+                android:dropDownWidth="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:completionThreshold="1"
+                android:inputType="none"
+                android:padding="15dp"
+                android:textColor="@color/input_text_color"
+                android:textSize="16sp" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/otraDireccionLayout"
+            style="@style/Form.InputLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:hint="@string/verificacion_contractual_direccion"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layoutPregunta2"
+            tools:visibility="visible">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/otraDireccionText"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:inputType="text"
+                android:maxLength="100"
+                android:padding="15dp"
+                android:textColor="@color/input_text_color"
+                android:textSize="16sp" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- Pregunta 3: Nombre del establecimiento -->
+        <TextView
+            android:id="@+id/pregunta3Title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="@string/verificacion_contractual_pregunta3"
+            android:textColor="@color/text_title_detail"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/otraDireccionLayout" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/layoutPregunta3"
+            style="@style/Widget.Coljuegos.TextInputLayout.Outlined"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:hint="@string/verificacion_contractual_seleccionar_opcion"
+            app:endIconMode="dropdown_menu"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/pregunta3Title">
+
+            <com.google.android.material.textfield.MaterialAutoCompleteTextView
+                android:id="@+id/pregunta3Spinner"
+                style="@style/Widget.Coljuegos.MaterialAutoCompleteTextView"
+                android:dropDownWidth="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:completionThreshold="1"
+                android:inputType="none"
+                android:padding="15dp"
+                android:textColor="@color/input_text_color"
+                android:textSize="16sp" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/otroNombreLayout"
+            style="@style/Form.InputLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:hint="@string/verificacion_contractual_nombre"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layoutPregunta3"
+            tools:visibility="visible">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/otroNombreText"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:inputType="text"
+                android:maxLength="100"
+                android:padding="15dp"
+                android:textColor="@color/input_text_color"
+                android:textSize="16sp" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- Pregunta 4: Desarrolla actividades diferentes -->
+        <TextView
+            android:id="@+id/pregunta4Title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="@string/verificacion_contractual_pregunta4"
+            android:textColor="@color/text_title_detail"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/otroNombreLayout" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/layoutPregunta4"
+            style="@style/Widget.Coljuegos.TextInputLayout.Outlined"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:hint="@string/verificacion_contractual_seleccionar_opcion"
+            app:endIconMode="dropdown_menu"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/pregunta4Title">
+
+            <com.google.android.material.textfield.MaterialAutoCompleteTextView
+                android:id="@+id/pregunta4Spinner"
+                style="@style/Widget.Coljuegos.MaterialAutoCompleteTextView"
+                android:dropDownWidth="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:completionThreshold="1"
+                android:inputType="none"
+                android:padding="15dp"
+                android:textColor="@color/input_text_color"
+                android:textSize="16sp" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- Sección condicional para actividades diferentes -->
+        <LinearLayout
+            android:id="@+id/layoutActividadesDiferentes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:orientation="vertical"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layoutPregunta4">
+
+            <TextView
+                android:id="@+id/tipoActividadTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/verificacion_contractual_tipo_actividad"
+                android:textColor="@color/text_title_detail"
+                android:textSize="14sp" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/layoutTipoActividad"
+                style="@style/Widget.Coljuegos.TextInputLayout.Outlined"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:hint="@string/verificacion_contractual_seleccionar_tipo"
+                app:endIconMode="dropdown_menu">
+
+                <com.google.android.material.textfield.MaterialAutoCompleteTextView
+                    android:id="@+id/tipoActividadSpinner"
+                    style="@style/Widget.Coljuegos.MaterialAutoCompleteTextView"
+                    android:dropDownWidth="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:completionThreshold="1"
+                    android:inputType="none"
+                    android:padding="15dp"
+                    android:textColor="@color/input_text_color"
+                    android:textSize="16sp" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!-- Campo de texto para "Otros" -->
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/layoutOtrosActividad"
+                style="@style/Form.InputLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:hint="@string/verificacion_contractual_especificar_otros"
+                android:visibility="gone">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/otrosActividadText"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:inputType="text"
+                    android:maxLength="100"
+                    android:padding="15dp"
+                    android:textColor="@color/input_text_color"
+                    android:textSize="16sp" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+        </LinearLayout>
+
+        <!-- Pregunta 5: Registros de mantenimiento -->
+        <TextView
+            android:id="@+id/pregunta5Title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="@string/verificacion_contractual_pregunta5"
+            android:textColor="@color/text_title_detail"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layoutActividadesDiferentes" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/layoutPregunta5"
+            style="@style/Widget.Coljuegos.TextInputLayout.Outlined"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:hint="@string/verificacion_contractual_seleccionar_opcion"
+            app:endIconMode="dropdown_menu"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/pregunta5Title">
+
+            <com.google.android.material.textfield.MaterialAutoCompleteTextView
+                android:id="@+id/pregunta5Spinner"
+                style="@style/Widget.Coljuegos.MaterialAutoCompleteTextView"
+                android:dropDownWidth="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:completionThreshold="1"
+                android:inputType="none"
+                android:padding="15dp"
+                android:textColor="@color/input_text_color"
+                android:textSize="16sp" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- Botones de navegación -->
+        <LinearLayout
+            android:id="@+id/layoutBotones"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:orientation="horizontal"
+            android:weightSum="2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layoutPregunta5">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnAnterior"
+                style="@style/Widget.Material3.Button.OutlinedButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_weight="1"
+                android:paddingVertical="16dp"
+                android:text="@string/verificacion_contractual_anterior"
+                android:textSize="16sp"
+                app:cornerRadius="8dp"
+                app:strokeColor="@color/login_button_color_init"
+                app:strokeWidth="2dp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnSiguiente"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_weight="1"
+                android:paddingVertical="16dp"
+                android:text="@string/verificacion_contractual_siguiente"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:backgroundTint="@color/login_button_color_init"
+                app:cornerRadius="8dp"
+                app:elevation="4dp" />
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>

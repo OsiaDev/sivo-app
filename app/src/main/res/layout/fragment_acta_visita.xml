@@ -1,0 +1,1050 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/app_background"
+    android:padding="16dp"
+    tools:context=".ui.establecimiento.acta.ActaVisitaFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_anchor="@+id/constraintLayout"
+        app:layout_anchorGravity="center">
+
+        <TextView
+            android:id="@+id/subtitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:paddingTop="2dp"
+            android:text="@string/acta_visita_subtitle"
+            android:textColor="@color/fragment_subtitle_color"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/operador"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/acta_visita_operador"
+            android:textColor="@color/fragment_subtitle_color"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/subtitle" />
+
+        <LinearLayout
+            android:id="@+id/layoutNombreOpeTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/operador">
+
+            <TextView
+                android:id="@+id/nombreOpeTitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/acta_visita_nombre_operador"
+                android:textColor="@color/text_title_detail"
+                android:textSize="12sp"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/nitOpeTitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/acta_visita_nit_operador"
+                android:textColor="@color/text_title_detail"
+                android:textSize="12sp"
+                app:layout_constraintStart_toStartOf="parent" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layoutNombreOpe"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="0dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layoutNombreOpeTitle">
+
+            <TextView
+                android:id="@+id/nombreOpe"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="@color/text_detail"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:text="PUERTO BELEN S.A.S." />
+
+            <TextView
+                android:id="@+id/nitOpe"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="@color/text_detail"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:text="10000" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layoutEmailOpeTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layoutNombreOpe">
+
+            <TextView
+                android:id="@+id/emailOpeTitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/acta_visita_email_operador"
+                android:textColor="@color/text_title_detail"
+                android:textSize="12sp"
+                app:layout_constraintStart_toStartOf="parent" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layoutEmailOpe"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="0dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layoutEmailOpeTitle">
+
+            <TextView
+                android:id="@+id/emailOpe"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="@color/text_detail"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:text="email@email.com" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/contrato"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:text="@string/acta_visita_contrato"
+            android:textColor="@color/fragment_subtitle_color"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layoutEmailOpe" />
+
+        <LinearLayout
+            android:id="@+id/layoutActaTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/contrato">
+
+            <TextView
+                android:id="@+id/actaTitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/acta_visita_acta"
+                android:textColor="@color/text_title_detail"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/autoTitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/acta_visita_auto"
+                android:textColor="@color/text_title_detail"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="parent" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layoutActa"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="0dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layoutActaTitle">
+
+            <TextView
+                android:id="@+id/acta"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="@color/text_detail"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:text="AH24000888" />
+
+            <TextView
+                android:id="@+id/auto"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="@color/text_detail"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:text="AC24000888" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layoutContratoTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layoutActa">
+
+            <TextView
+                android:id="@+id/contratoTitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/acta_visita_numero_contrato"
+                android:textColor="@color/text_title_detail"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/fechaFinTitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/acta_visita_fecha_fin"
+                android:textColor="@color/text_title_detail"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="parent" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layoutContrato"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="0dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layoutContratoTitle">
+
+            <TextView
+                android:id="@+id/numContrato"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="@color/text_detail"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:text="C2134" />
+
+            <TextView
+                android:id="@+id/fechaFin"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="@color/text_detail"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:text="24 Jun 2026" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/establecimiento"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:text="@string/acta_visita_establecimiento"
+            android:textColor="@color/fragment_subtitle_color"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layoutContrato" />
+
+        <LinearLayout
+            android:id="@+id/layoutNombreTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/establecimiento">
+
+            <TextView
+                android:id="@+id/nombreTitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/acta_visita_nombre_establecimiento"
+                android:textColor="@color/text_title_detail"
+                android:textSize="12sp"
+                app:layout_constraintStart_toStartOf="parent" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layoutNombreEst"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="0dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layoutNombreTitle">
+
+            <TextView
+                android:id="@+id/nombreEst"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="@color/text_detail"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:text="BINGO LAS VEGAS BARRANQUILLA" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layoutRegionTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layoutNombreEst">
+
+            <TextView
+                android:id="@+id/departamentoEstTitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/acta_visita_nombre_departamento"
+                android:textColor="@color/text_title_detail"
+                android:textSize="12sp"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/municipioEstTitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/acta_visita_nombre_municipio"
+                android:textColor="@color/text_title_detail"
+                android:textSize="12sp"
+                app:layout_constraintStart_toStartOf="parent" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layoutRegion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="0dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layoutRegionTitle">
+
+            <TextView
+                android:id="@+id/departamentoEst"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="@color/text_detail"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:text="Bolivar" />
+
+            <TextView
+                android:id="@+id/municipioEst"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="@color/text_detail"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:text="Cartagena" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layoutCodigoEstTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layoutRegion">
+
+            <TextView
+                android:id="@+id/codigoEstTitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/acta_visita_codigo_establecimiento"
+                android:textColor="@color/text_title_detail"
+                android:textSize="12sp"
+                app:layout_constraintStart_toStartOf="parent" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layoutCodigoEst"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="0dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layoutCodigoEstTitle">
+
+            <TextView
+                android:id="@+id/codigoEst"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="@color/text_detail"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:text="0154" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layoutDireccionTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layoutCodigoEst">
+
+            <TextView
+                android:id="@+id/direccionEstTitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/acta_visita_direccion"
+                android:textColor="@color/text_title_detail"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="parent" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layoutDireccion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="0dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layoutDireccionTitle">
+
+            <TextView
+                android:id="@+id/direccionEst"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="@color/text_detail"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:text="CR 18   60  59" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layoutFechaInventarioTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layoutDireccion">
+
+            <TextView
+                android:id="@+id/fechaEstTitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/acta_visita_fecha_inventario"
+                android:textColor="@color/text_title_detail"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="parent" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layoutFechaInventario"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="0dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layoutFechaInventarioTitle">
+
+            <TextView
+                android:id="@+id/fechaEst"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="@color/text_detail"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:text="24 Jun 2025 1:00 PM" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/visita"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:text="@string/acta_visita_visita"
+            android:textColor="@color/fragment_subtitle_color"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layoutFechaInventario" />
+
+        <LinearLayout
+            android:id="@+id/layoutFechaVisitaTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/visita">
+
+            <TextView
+                android:id="@+id/fechaVisitaTitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/acta_visita_fecha_visita"
+                android:textColor="@color/text_title_detail"
+                android:textSize="12sp"
+                app:layout_constraintStart_toStartOf="parent" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layoutFechaVisita"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="0dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layoutFechaVisitaTitle">
+
+            <TextView
+                android:id="@+id/fechaVisita"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="@color/text_detail"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:text="24 Jun 2025 1:00 PM" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layoutTextoLegal1Title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layoutFechaVisita">
+
+            <TextView
+                android:id="@+id/textoLegal1Title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:maxLines="2"
+                android:ellipsize="end"
+                android:text="@string/acta_visita_texto_legal_1"
+                android:textColor="@color/text_title_detail"
+                android:textSize="12sp"
+                app:layout_constraintStart_toStartOf="parent" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layoutAutoComisorio"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="0dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layoutTextoLegal1Title">
+
+            <TextView
+                android:id="@+id/autoComisorio"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="@color/text_detail"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:text="24000888" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layoutFechaAutoComisorioTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layoutAutoComisorio">
+
+            <TextView
+                android:id="@+id/fechaAutoComisorioTitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/acta_visita_fecha_auto"
+                android:textColor="@color/text_title_detail"
+                android:textSize="12sp"
+                app:layout_constraintStart_toStartOf="parent" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layoutFechaAutoComisorio"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="0dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layoutFechaAutoComisorioTitle">
+
+            <TextView
+                android:id="@+id/fechaAutoComisorio"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="@color/text_detail"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:text="24 Jun 2025" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layoutTextoLegal2Title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layoutFechaAutoComisorio">
+
+            <TextView
+                android:id="@+id/layoutTextoLegal2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/acta_visita_texto_legal_2"
+                android:textColor="@color/text_title_detail"
+                android:textSize="12sp"
+                app:layout_constraintStart_toStartOf="parent" />
+
+        </LinearLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/layoutNombrePresente"
+            style="@style/Form.InputLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/acta_visita_nombre"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layoutTextoLegal2Title">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/nombrePresente"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:drawablePadding="12dp"
+                android:inputType="text"
+                android:padding="15dp"
+                android:textColor="@color/input_text_color"
+                android:textSize="16sp" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <LinearLayout
+            android:id="@+id/layoutTextoLegal3Title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layoutNombrePresente">
+
+            <TextView
+                android:id="@+id/textoLegal3Title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/acta_visita_texto_legal_3"
+                android:textColor="@color/text_title_detail"
+                android:textSize="12sp"
+                app:layout_constraintStart_toStartOf="parent" />
+
+        </LinearLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/layoutCedulaPresente"
+            style="@style/Form.InputLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/acta_visita_cedula"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layoutTextoLegal3Title">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/cedulaPresente"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:drawablePadding="12dp"
+                android:inputType="text"
+                android:padding="15dp"
+                android:textColor="@color/input_text_color"
+                android:textSize="16sp" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <LinearLayout
+            android:id="@+id/layoutDeTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layoutCedulaPresente">
+
+            <TextView
+                android:id="@+id/deTitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/acta_visita_de"
+                android:textColor="@color/text_title_detail"
+                android:textSize="12sp"
+                app:layout_constraintStart_toStartOf="parent" />
+
+        </LinearLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/layoutMunicipioExpedicion"
+            style="@style/Widget.Coljuegos.TextInputLayout.Outlined"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="0dp"
+            android:hint="@string/acta_visita_municipio_cedula"
+            app:endIconMode="dropdown_menu"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layoutDeTitle">
+
+            <com.google.android.material.textfield.MaterialAutoCompleteTextView
+                android:id="@+id/municipioExpedicion"
+                style="@style/Widget.Coljuegos.MaterialAutoCompleteTextView"
+                android:dropDownWidth="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:completionThreshold="1"
+                android:drawablePadding="12dp"
+                android:inputType="text"
+                android:padding="15dp"
+                android:textColor="@color/input_text_color"
+                android:textSize="16sp" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- Botón para capturar foto de identificación -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnCapturarIdentificacion"
+            style="@style/Widget.Material3.Button.OutlinedButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:paddingVertical="16dp"
+            android:text="@string/acta_visita_capturar_identificacion"
+            android:textSize="16sp"
+            app:cornerRadius="8dp"
+            app:icon="@drawable/ic_camara"
+            app:iconGravity="textStart"
+            app:iconPadding="12dp"
+            app:strokeColor="@color/login_button_color_init"
+            app:strokeWidth="2dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layoutMunicipioExpedicion" />
+
+        <LinearLayout
+            android:id="@+id/layoutCalidadTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btnCapturarIdentificacion">
+
+            <TextView
+                android:id="@+id/calidadTitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/acta_visita_calidad"
+                android:textColor="@color/text_title_detail"
+                android:textSize="12sp"
+                app:layout_constraintStart_toStartOf="parent" />
+
+        </LinearLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/layoutCalidad"
+            style="@style/Form.InputLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/acta_visita_cargo"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layoutCalidadTitle">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/calidad"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:drawablePadding="12dp"
+                android:inputType="text"
+                android:padding="15dp"
+                android:textColor="@color/input_text_color"
+                android:textSize="16sp" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <LinearLayout
+            android:id="@+id/layoutEmailTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layoutCalidad">
+
+            <TextView
+                android:id="@+id/emailTitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/acta_visita_email_representante_title"
+                android:textColor="@color/text_title_detail"
+                android:textSize="12sp"
+                app:layout_constraintStart_toStartOf="parent" />
+
+        </LinearLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/layoutEmail"
+            style="@style/Form.InputLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/acta_visita_email_representante"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layoutEmailTitle">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/email"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:drawablePadding="12dp"
+                android:inputType="text"
+                android:padding="15dp"
+                android:textColor="@color/input_text_color"
+                android:textSize="16sp" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- NUEVO CAMPO PARA CORREOS DE CONTACTO CON CHIPGROUP -->
+        <LinearLayout
+            android:id="@+id/layoutCorreosContactoTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layoutEmail">
+
+            <TextView
+                android:id="@+id/correosContactoTitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/acta_visita_correos_contacto_title"
+                android:textColor="@color/text_title_detail"
+                android:textSize="12sp"
+                app:layout_constraintStart_toStartOf="parent" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layoutCorreosContactoInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layoutCorreosContactoTitle">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/layoutNuevoCorreo"
+                style="@style/Form.InputLayout"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginEnd="8dp"
+                android:hint="@string/acta_visita_correos_contacto_hint">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/nuevoCorreoInput"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:drawablePadding="12dp"
+                    android:inputType="textEmailAddress"
+                    android:padding="15dp"
+                    android:textColor="@color/input_text_color"
+                    android:textSize="16sp"
+                    android:imeOptions="actionDone" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnAgregarCorreo"
+                android:layout_width="wrap_content"
+                android:layout_height="56dp"
+                android:text="@string/acta_visita_agregar_correo"
+                android:textSize="14sp"
+                app:backgroundTint="@color/login_button_color_init"
+                app:cornerRadius="8dp" />
+
+        </LinearLayout>
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/chipGroupCorreos"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            app:chipSpacing="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layoutCorreosContactoInput" />
+
+        <LinearLayout
+            android:id="@+id/layoutTextoLegal4Title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/chipGroupCorreos">
+
+            <TextView
+                android:id="@+id/textoLegal4Title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/acta_visita_texto_legal_4"
+                android:textColor="@color/text_title_detail"
+                android:textSize="12sp"
+                app:layout_constraintStart_toStartOf="parent" />
+
+        </LinearLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_enviar_material"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:text="@string/acta_visita_siguiente"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:paddingVertical="16dp"
+            app:backgroundTint="@color/login_button_color_init"
+            app:cornerRadius="8dp"
+            app:elevation="4dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layoutTextoLegal4Title"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>
