@@ -180,9 +180,12 @@ class ActasRepository @Inject constructor(
         try {
             emit(NetworkResult.Loading())
 
+            println("DEBUG: Iniciando refresh desde backend")
+
             // Obtener sesión actual
             val currentSession = sessionManager.getCurrentSession()
             if (currentSession == null) {
+                println("DEBUG: No hay sesión activa")
                 emit(NetworkResult.Error("No hay sesión activa"))
                 return@flow
             }
@@ -190,29 +193,41 @@ class ActasRepository @Inject constructor(
             // Obtener token de autorización
             val authHeader = sessionManager.getAuthorizationHeader()
             if (authHeader == null) {
+                println("DEBUG: No hay token de autorización")
                 emit(NetworkResult.Error("No hay token de autorización"))
                 return@flow
             }
 
+            println("DEBUG: Haciendo llamada al backend...")
+
             // Obtener datos del servidor
             val response = apiService.getActasByUserId(authHeader)
 
+            println("DEBUG: Respuesta recibida - código: ${response.code()}, exitosa: ${response.isSuccessful}")
+
             if (response.isSuccessful) {
                 response.body()?.let { actaResponse ->
+                    println("DEBUG: Procesando ${actaResponse.actas.size} actas")
                     // Procesar y actualizar datos
                     updateActasWithStateManagement(actaResponse, currentSession.uuidSession)
 
                     // Emitir los datos actualizados
                     val updatedActas = actaDao.getActiveActasBySession(currentSession.uuidSession)
+                    println("DEBUG: Emitiendo ${updatedActas.size} actas actualizadas")
                     emit(NetworkResult.Success(updatedActas))
                 } ?: run {
+                    println("DEBUG: Response body es null")
                     emit(NetworkResult.Error("Respuesta vacía del servidor"))
                 }
             } else {
-                emit(NetworkResult.Error("Error al obtener actas: ${response.code()}"))
+                println("DEBUG: Error en respuesta: ${response.code()} - ${response.message()}")
+                emit(NetworkResult.Error("Error ${response.code()}: ${response.message()}"))
             }
+
         } catch (e: Exception) {
-            emit(NetworkResult.Error("Error de conexión: ${e.localizedMessage}"))
+            println("DEBUG: Excepción capturada: ${e.message}")
+            e.printStackTrace()
+            emit(NetworkResult.Error("Error de conexión: ${e.message}"))
         }
     }
 

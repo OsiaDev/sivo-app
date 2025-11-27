@@ -107,6 +107,14 @@ class HomeViewModel @Inject constructor(
                     }
                 }
             }
+        }.invokeOnCompletion { throwable ->
+            // Asegurar que isRefreshing se desactive incluso si hay una excepción no capturada
+            if (_uiState.value.isRefreshing) {
+                _uiState.value = _uiState.value.copy(
+                    isRefreshing = false,
+                    errorMessage = throwable?.message ?: "Error inesperado al actualizar"
+                )
+            }
         }
     }
 
