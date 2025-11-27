@@ -62,7 +62,9 @@ class ActasRepository @Inject constructor(
                         // Emitir los datos actualizados
                         val updatedActas = actaDao.getActiveActasBySession(currentSession.uuidSession)
                         emit(NetworkResult.Success(updatedActas))
-                    } ?: emit(NetworkResult.Error("Respuesta vacía del servidor"))
+                    } ?: run {
+                        emit(NetworkResult.Error("Respuesta vacía del servidor"))
+                    }
                 } else {
                     // Si hay datos locales, los mantenemos aunque falle la actualización
                     if (localActas.isNotEmpty()) {
@@ -89,87 +91,6 @@ class ActasRepository @Inject constructor(
                 emit(NetworkResult.Error("Error de conexión: ${e.message}"))
             }
         }
-    }
-
-    private suspend fun updateActasWithStateManagement(
-        actaResponse: ActaResponseDTO,
-        sessionId: UUID
-    ) {
-        val currentTime = LocalDateTime.now()
-
-        // Obtener números de acta que vienen del servidor
-        val serverNumActas = actaResponse.actas.mapNotNull { it.numActa }.toSet()
-
-        // Obtener números de acta que ya existen en la base de datos para esta sesión
-        val existingNumActas = actaDao.getNumActasBySession(sessionId).toSet()
-
-        // Marcar como inactivas las actas que no vienen en el servidor
-        val actasToDeactivate = existingNumActas - serverNumActas
-        if (actasToDeactivate.isNotEmpty()) {
-            actaDao.updateActasState(
-                actasToDeactivate.toList(),
-                ActaStateEnum.INACTIVE,
-                currentTime
-            )
-
-            // Eliminar funcionarios e inventarios de actas inactivas
-            funcionarioDao.deleteFuncionariosByNumActas(actasToDeactivate.toList())
-            inventarioDao.deleteInventariosByNumActas(actasToDeactivate.toList())
-        }
-
-        // Procesar actas del servidor
-        val actasToInsert = mutableListOf<ActaEntity>()
-        val funcionariosToInsert = mutableListOf<FuncionarioEntity>()
-        val inventariosToInsert = mutableListOf<InventarioEntity>()
-
-        actaResponse.actas.forEach { actaDTO ->
-            try {
-                val actaEntity = mapActaToEntity(actaDTO, sessionId, currentTime)
-                actasToInsert.add(actaEntity)
-
-                // Eliminar funcionarios e inventarios existentes para esta acta
-                val existingActa = actaDao.getActaByNumActa(actaDTO.numActa ?: 0)
-                existingActa?.let {
-                    funcionarioDao.deleteFuncionariosByActa(it.uuidActa)
-                    inventarioDao.deleteInventariosByActa(it.uuidActa)
-                }
-
-                // Mapear funcionarios
-                actaDTO.funcionarios?.forEach { funcionarioDTO ->
-                    funcionariosToInsert.add(
-                        mapFuncionarioToEntity(funcionarioDTO, actaEntity.uuidActa)
-                    )
-                }
-
-                // Mapear inventarios
-                actaDTO.inventarios?.forEach { inventarioDTO ->
-                    inventariosToInsert.add(
-                        mapInventarioToEntity(inventarioDTO, actaEntity.uuidActa)
-                    )
-                }
-
-            } catch (e: Exception) {
-                // Log error pero continúa con las otras actas
-                println("Error mapeando acta ${actaDTO.numActa}: ${e.message}")
-            }
-        }
-
-        // Insertar todas las actas actualizadas
-        if (actasToInsert.isNotEmpty()) {
-            actaDao.insertAll(actasToInsert)
-        }
-
-        // Insertar funcionarios e inventarios
-        if (funcionariosToInsert.isNotEmpty()) {
-            funcionarioDao.insertAll(funcionariosToInsert)
-        }
-        if (inventariosToInsert.isNotEmpty()) {
-            inventarioDao.insertAll(inventariosToInsert)
-        }
-
-        // Limpiar actas inactivas antiguas (opcional - más de 30 días)
-        val cutoffDate = currentTime.minusDays(30)
-        actaDao.deleteOldInactiveActas(cutoffDate)
     }
 
     /**
@@ -231,6 +152,160 @@ class ActasRepository @Inject constructor(
         }
     }
 
+    /**
+     * Actualiza actas con gestión de estado, preservando relaciones de foreign key
+     * IMPORTANTE: Actualiza en lugar de reemplazar para mantener integridad referencial
+     */
+    private suspend fun updateActasWithStateManagement(
+        actaResponse: ActaResponseDTO,
+        sessionId: UUID
+    ) {
+        val currentTime = LocalDateTime.now()
+
+        println("DEBUG: Actualizando actas con gestión de estado")
+
+        // Obtener números de acta que vienen del servidor
+        val serverNumActas = actaResponse.actas.mapNotNull { it.numActa }.toSet()
+        println("DEBUG: Actas del servidor: $serverNumActas")
+
+        // Obtener números de acta que ya existen en la base de datos para esta sesión
+        val existingNumActas = actaDao.getNumActasBySession(sessionId).toSet()
+        println("DEBUG: Actas existentes localmente: $existingNumActas")
+
+        // Marcar como inactivas las actas que no vienen en el servidor (pero NO las eliminar)
+        val actasToDeactivate = existingNumActas - serverNumActas
+        if (actasToDeactivate.isNotEmpty()) {
+            println("DEBUG: Marcando como inactivas: $actasToDeactivate")
+            actaDao.updateActasState(
+                actasToDeactivate.toList(),
+                ActaStateEnum.INACTIVE,
+                currentTime
+            )
+
+            // IMPORTANTE: NO eliminar funcionarios e inventarios de actas inactivas
+            // Solo actualizar su estado para mantener integridad referencial
+        }
+
+        // Procesar actas del servidor
+        val funcionariosToInsert = mutableListOf<FuncionarioEntity>()
+        val inventariosToInsert = mutableListOf<InventarioEntity>()
+
+        actaResponse.actas.forEach { actaDTO ->
+            try {
+                val numActa = actaDTO.numActa ?: 0
+                println("DEBUG: Procesando acta #$numActa")
+
+                // Verificar si el acta ya existe
+                val existingActa = actaDao.getActaByNumActa(numActa)
+
+                if (existingActa != null) {
+                    println("DEBUG: Acta #$numActa existe, actualizando...")
+
+                    // Actualizar acta existente preservando el UUID y las relaciones
+                    val actaActualizada = existingActa.copy(
+                        numAucActa = actaDTO.numAuc ?: existingActa.numAucActa,
+                        fechaVisitaAucActa = try {
+                            LocalDate.parse(actaDTO.fechaVisitaAuc)
+                        } catch (_: Exception) {
+                            existingActa.fechaVisitaAucActa
+                        },
+                        numContratoActa = actaDTO.numContrato ?: existingActa.numContratoActa,
+                        nitActa = actaDTO.nit ?: existingActa.nitActa,
+                        estCodigoActa = actaDTO.estCodigo?.toInt() ?: existingActa.estCodigoActa,
+                        conCodigoActa = actaDTO.conCodigo?.toInt() ?: existingActa.conCodigoActa,
+                        nombreOperadorActa = actaDTO.nombreOperador ?: existingActa.nombreOperadorActa,
+                        fechaFinContratoActa = try {
+                            LocalDate.parse(actaDTO.fechaFinContrato)
+                        } catch (_: Exception) {
+                            existingActa.fechaFinContratoActa
+                        },
+                        emailActa = actaDTO.email ?: existingActa.emailActa,
+                        tipoVisitaActa = actaDTO.tipoVisita ?: existingActa.tipoVisitaActa,
+                        fechaCorteInventarioActa = try {
+                            LocalDateTime.parse(actaDTO.fechaCorteInventario)
+                        } catch (_: Exception) {
+                            existingActa.fechaCorteInventarioActa
+                        },
+                        direccionActa = actaDTO.direccion?.direccion ?: existingActa.direccionActa,
+                        establecimientoActa = actaDTO.direccion?.establecimiento ?: existingActa.establecimientoActa,
+                        estCodigoInternoActa = actaDTO.direccion?.estCodigo ?: existingActa.estCodigoInternoActa,
+                        ciudadActa = actaDTO.direccion?.ciudad ?: existingActa.ciudadActa,
+                        departamentoActa = actaDTO.direccion?.departamento ?: existingActa.departamentoActa,
+                        latitudActa = actaDTO.direccion?.latitud ?: existingActa.latitudActa,
+                        longitudActa = actaDTO.direccion?.longitud ?: existingActa.longitudActa,
+                        // Preservar estado local si no está sincronizado
+                        stateActa = if (existingActa.stateActa in listOf(
+                                ActaStateEnum.COMPLETE,
+                                ActaStateEnum.SINCRONIZADO
+                            )) {
+                            existingActa.stateActa
+                        } else {
+                            ActaStateEnum.ACTIVE
+                        },
+                        lastUpdatedActa = currentTime
+                    )
+
+                    actaDao.update(actaActualizada)
+
+                    // Actualizar solo funcionarios e inventarios del backend
+                    // Eliminar los anteriores del backend y agregar los nuevos
+                    funcionarioDao.deleteFuncionariosByActa(existingActa.uuidActa)
+                    inventarioDao.deleteInventariosByActa(existingActa.uuidActa)
+
+                    // Mapear funcionarios usando el UUID existente
+                    actaDTO.funcionarios?.forEach { funcionarioDTO ->
+                        funcionariosToInsert.add(
+                            mapFuncionarioToEntity(funcionarioDTO, existingActa.uuidActa)
+                        )
+                    }
+
+                    // Mapear inventarios usando el UUID existente
+                    actaDTO.inventarios?.forEach { inventarioDTO ->
+                        inventariosToInsert.add(
+                            mapInventarioToEntity(inventarioDTO, existingActa.uuidActa)
+                        )
+                    }
+                } else {
+                    println("DEBUG: Acta #$numActa es nueva, insertando...")
+
+                    // Crear nueva acta
+                    val actaEntity = mapActaToEntity(actaDTO, sessionId, currentTime)
+                    actaDao.insert(actaEntity)
+
+                    // Mapear funcionarios
+                    actaDTO.funcionarios?.forEach { funcionarioDTO ->
+                        funcionariosToInsert.add(
+                            mapFuncionarioToEntity(funcionarioDTO, actaEntity.uuidActa)
+                        )
+                    }
+
+                    // Mapear inventarios
+                    actaDTO.inventarios?.forEach { inventarioDTO ->
+                        inventariosToInsert.add(
+                            mapInventarioToEntity(inventarioDTO, actaEntity.uuidActa)
+                        )
+                    }
+                }
+
+            } catch (e: Exception) {
+                println("ERROR: Error mapeando acta ${actaDTO.numActa}: ${e.message}")
+                e.printStackTrace()
+            }
+        }
+
+        // Insertar funcionarios e inventarios
+        if (funcionariosToInsert.isNotEmpty()) {
+            println("DEBUG: Insertando ${funcionariosToInsert.size} funcionarios")
+            funcionarioDao.insertAll(funcionariosToInsert)
+        }
+        if (inventariosToInsert.isNotEmpty()) {
+            println("DEBUG: Insertando ${inventariosToInsert.size} inventarios")
+            inventarioDao.insertAll(inventariosToInsert)
+        }
+
+        println("DEBUG: Sincronización de actas completada")
+    }
+
     private fun mapActaToEntity(
         actaDTO: com.coljuegos.sivo.data.remote.model.ActaDTO,
         sessionId: UUID,
@@ -264,10 +339,10 @@ class ActasRepository @Inject constructor(
 
     private fun mapFuncionarioToEntity(
         funcionarioDTO: com.coljuegos.sivo.data.remote.model.FuncionarioDTO,
-        actaId: UUID
+        actaUuid: UUID
     ): FuncionarioEntity {
         return FuncionarioEntity(
-            uuidActa = actaId,
+            uuidActa = actaUuid,
             idUsuarioFuncionario = funcionarioDTO.idUsuario ?: "",
             nombreFuncionario = funcionarioDTO.nombre ?: "",
             cargoFuncionario = funcionarioDTO.cargo ?: "",
@@ -278,10 +353,10 @@ class ActasRepository @Inject constructor(
 
     private fun mapInventarioToEntity(
         inventarioDTO: com.coljuegos.sivo.data.remote.model.InventarioDTO,
-        actaId: UUID
+        actaUuid: UUID
     ): InventarioEntity {
         return InventarioEntity(
-            uuidActa = actaId,
+            uuidActa = actaUuid,
             nombreMarcaInventario = inventarioDTO.nombreMarca ?: "",
             metSerialInventario = inventarioDTO.metSerial ?: "",
             insCodigoInventario = inventarioDTO.insCodigo ?: "",
@@ -295,6 +370,8 @@ class ActasRepository @Inject constructor(
             estCodigoInventario = inventarioDTO.estCodigo?.toInt() ?: 0
         )
     }
+
+    // Métodos públicos utilizados por ViewModels
 
     suspend fun getActaByUuid(actaUuid: UUID): ActaEntity? {
         return try {
@@ -319,6 +396,5 @@ class ActasRepository @Inject constructor(
             emptyList()
         }
     }
-
 
 }
