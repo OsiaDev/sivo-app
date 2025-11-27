@@ -172,6 +172,50 @@ class ActasRepository @Inject constructor(
         actaDao.deleteOldInactiveActas(cutoffDate)
     }
 
+    /**
+     * Método para refrescar actas desde el backend (pull-to-refresh)
+     * Siempre consulta al backend y actualiza la base de datos local
+     */
+    fun refreshActasFromBackend(): Flow<NetworkResult<List<ActaEntity>>> = flow {
+        try {
+            emit(NetworkResult.Loading())
+
+            // Obtener sesión actual
+            val currentSession = sessionManager.getCurrentSession()
+            if (currentSession == null) {
+                emit(NetworkResult.Error("No hay sesión activa"))
+                return@flow
+            }
+
+            // Obtener token de autorización
+            val authHeader = sessionManager.getAuthorizationHeader()
+            if (authHeader == null) {
+                emit(NetworkResult.Error("No hay token de autorización"))
+                return@flow
+            }
+
+            // Obtener datos del servidor
+            val response = apiService.getActasByUserId(authHeader)
+
+            if (response.isSuccessful) {
+                response.body()?.let { actaResponse ->
+                    // Procesar y actualizar datos
+                    updateActasWithStateManagement(actaResponse, currentSession.uuidSession)
+
+                    // Emitir los datos actualizados
+                    val updatedActas = actaDao.getActiveActasBySession(currentSession.uuidSession)
+                    emit(NetworkResult.Success(updatedActas))
+                } ?: run {
+                    emit(NetworkResult.Error("Respuesta vacía del servidor"))
+                }
+            } else {
+                emit(NetworkResult.Error("Error al obtener actas: ${response.code()}"))
+            }
+        } catch (e: Exception) {
+            emit(NetworkResult.Error("Error de conexión: ${e.localizedMessage}"))
+        }
+    }
+
     private fun mapActaToEntity(
         actaDTO: com.coljuegos.sivo.data.remote.model.ActaDTO,
         sessionId: UUID,

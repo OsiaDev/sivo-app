@@ -76,6 +76,40 @@ class HomeViewModel @Inject constructor(
         }
     }
 
+    /**
+     * Método llamado cuando el usuario desliza hacia abajo (pull-to-refresh)
+     * Fuerza la recarga de actas desde el backend y actualiza la base de datos local
+     */
+    fun refreshActasFromBackend() {
+        viewModelScope.launch {
+            _uiState.value = _uiState.value.copy(isRefreshing = true, errorMessage = null)
+
+            actasRepository.refreshActasFromBackend().collect { result ->
+                when (result) {
+                    is NetworkResult.Loading -> {
+                        // Mantener isRefreshing = true
+                    }
+
+                    is NetworkResult.Success -> {
+                        _uiState.value = _uiState.value.copy(
+                            isRefreshing = false,
+                            actas = result.data ?: emptyList(),
+                            successMessage = "Actas actualizadas correctamente",
+                            errorMessage = null
+                        )
+                    }
+
+                    is NetworkResult.Error -> {
+                        _uiState.value = _uiState.value.copy(
+                            isRefreshing = false,
+                            errorMessage = result.message ?: "Error al actualizar actas"
+                        )
+                    }
+                }
+            }
+        }
+    }
+
     fun refreshActas() {
         _uiState.value = _uiState.value.copy(isRefreshing = true)
         loadActas()

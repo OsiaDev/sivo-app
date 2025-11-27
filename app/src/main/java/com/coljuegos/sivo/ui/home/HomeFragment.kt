@@ -38,6 +38,7 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        setupSwipeRefresh()
         setupRecyclerView()
         observeViewModel()
     }
@@ -57,6 +58,20 @@ class HomeFragment : Fragment() {
         }
     }
 
+    private fun setupSwipeRefresh() {
+        binding.swipeRefreshLayout.setOnRefreshListener {
+            viewModel.refreshActasFromBackend()
+        }
+
+        // Personalizar colores del indicador de refresh
+        binding.swipeRefreshLayout.setColorSchemeResources(
+            android.R.color.holo_blue_bright,
+            android.R.color.holo_green_light,
+            android.R.color.holo_orange_light,
+            android.R.color.holo_red_light
+        )
+    }
+
     private fun observeViewModel() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.uiState.collect { uiState ->
@@ -66,6 +81,9 @@ class HomeFragment : Fragment() {
     }
 
     private fun updateUI(uiState: HomeUiState) {
+        // Detener animación de refresh
+        binding.swipeRefreshLayout.isRefreshing = uiState.isRefreshing
+
         // Actualizar nombre del usuario
         binding.tvFullName.text = uiState.userFullName ?: "Usuario"
 

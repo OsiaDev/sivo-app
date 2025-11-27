@@ -7,5 +7,6 @@ data class HomeUiState(
     val userFullName: String? = null,
     val actas: List<ActaEntity> = emptyList(),
     val errorMessage: String? = null,
+    val successMessage: String? = null,
     val isRefreshing: Boolean = false
 )
