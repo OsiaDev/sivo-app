@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
+import android.widget.ScrollView
 import androidx.core.view.isVisible
 import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
@@ -116,13 +117,84 @@ class VerificacionSiplaftFragment : Fragment() {
         }
 
         binding.btnSiguiente.setOnClickListener {
-            val currentState = viewModel.uiState.value
-            currentState.actaUuid?.let { acta ->
-                val action = VerificacionSiplaftFragmentDirections
-                    .actionVerificacionSiplaftFragmentToInventarioFragment(acta)
-                findNavController().navigate(action)
+            if (validateRequiredFields()) {
+                val currentState = viewModel.uiState.value
+                currentState.actaUuid?.let { acta ->
+                    val action = VerificacionSiplaftFragmentDirections
+                        .actionVerificacionSiplaftFragmentToInventarioFragment(acta)
+                    findNavController().navigate(action)
+                }
             }
         }
+    }
+
+    private fun validateRequiredFields(): Boolean {
+        val currentState = viewModel.uiState.value
+
+        // Limpiar errores previos
+        binding.pregunta1Layout.error = null
+        binding.montoLayout.error = null
+        binding.pregunta2Layout.error = null
+        binding.senalesAlertaLayout.error = null
+        binding.pregunta3Layout.error = null
+
+        var isValid = true
+        var firstErrorField: View? = null
+
+        // Validar pregunta 1: Cuenta con formato de identificación
+        if (currentState.cuentaFormatoIdentificacion.isBlank()) {
+            binding.pregunta1Layout.error = getString(R.string.verificacion_siplaft_validacion_pregunta1)
+            isValid = false
+            if (firstErrorField == null) firstErrorField = binding.pregunta1Layout
+        }
+
+        // Si muestra el campo de monto, validar que esté lleno
+        if (currentState.mostrarCampoMonto && currentState.montoIdentificacion.isBlank()) {
+            binding.montoLayout.error = getString(R.string.verificacion_siplaft_validacion_monto)
+            isValid = false
+            if (firstErrorField == null) firstErrorField = binding.montoLayout
+        }
+
+        // Validar pregunta 2: Cuenta con formato de reporte interno
+        if (currentState.cuentaFormatoReporteInterno.isBlank()) {
+            binding.pregunta2Layout.error = getString(R.string.verificacion_siplaft_validacion_pregunta2)
+            isValid = false
+            if (firstErrorField == null) firstErrorField = binding.pregunta2Layout
+        }
+
+        // Si muestra el campo de señales de alerta, validar que esté lleno
+        if (currentState.mostrarCampoSenales && currentState.senalesAlerta.isBlank()) {
+            binding.senalesAlertaLayout.error = getString(R.string.verificacion_siplaft_validacion_senales)
+            isValid = false
+            if (firstErrorField == null) firstErrorField = binding.senalesAlertaLayout
+        }
+
+        // Validar pregunta 3: Conoce código de conducta
+        if (currentState.conoceCodigoConducta.isBlank()) {
+            binding.pregunta3Layout.error = getString(R.string.verificacion_siplaft_validacion_pregunta3)
+            isValid = false
+            if (firstErrorField == null) firstErrorField = binding.pregunta3Layout
+        }
+
+        // Si hay errores, mostrar mensaje y hacer scroll al primer campo con error
+        if (!isValid) {
+            Snackbar.make(
+                binding.root,
+                getString(R.string.verificacion_siplaft_validacion_campos_incompletos),
+                Snackbar.LENGTH_LONG
+            ).show()
+
+            // Hacer scroll al primer campo con error
+            firstErrorField?.let { field ->
+                binding.root.post {
+                    val scrollView = binding.root.parent as? ScrollView
+                    scrollView?.smoothScrollTo(0, field.top)
+                    field.requestFocus()
+                }
+            }
+        }
+
+        return isValid
     }
 
     private fun observeViewModel() {

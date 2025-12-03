@@ -146,6 +146,14 @@
     <string name="seleccione_opcion">Seleccione una opción</string>
     <string name="verificacion_siplaft_anterior">Anterior</string>
     <string name="verificacion_siplaft_siguiente">Siguiente</string>
+    <!-- VALIDACIÓN VERIFICACIÓN SIPLAFT -->
+    <string name="verificacion_siplaft_validacion_pregunta1">Debe seleccionar si cuenta con formato de identificación</string>
+    <string name="verificacion_siplaft_validacion_monto">Debe especificar el monto</string>
+    <string name="verificacion_siplaft_validacion_pregunta2">Debe seleccionar si cuenta con formato de reporte interno</string>
+    <string name="verificacion_siplaft_validacion_senales">Debe especificar las señales de alerta</string>
+    <string name="verificacion_siplaft_validacion_pregunta3">Debe seleccionar si conoce el código de conducta</string>
+    <string name="verificacion_siplaft_validacion_campos_incompletos">Por favor complete todos los campos visibles antes de continuar</string>
+
 
     <!-- Inventario -->
     <string name="inventario_reportado_title">Inventario reportado</string>
