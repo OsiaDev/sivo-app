@@ -151,7 +151,7 @@
                 android:id="@+id/senalesAlertaText"
                 android:layout_width="match_parent"
                 android:layout_height="56dp"
-                android:inputType="numberDecimal"
+                android:inputType="text"
                 android:maxLength="100"
                 android:padding="15dp"
                 android:textColor="@color/input_text_color"

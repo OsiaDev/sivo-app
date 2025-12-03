@@ -103,6 +103,17 @@
     <string name="verificacion_contractual_especificar_otros">Especificar cuál</string>
     <string name="verificacion_contractual_anterior">Anterior</string>
     <string name="verificacion_contractual_siguiente">Siguiente</string>
+    <!-- VALIDACIÓN VERIFICACIÓN CONTRACTUAL -->
+    <string name="verificacion_contractual_validacion_aviso">Debe seleccionar una opción para el aviso de autorización</string>
+    <string name="verificacion_contractual_validacion_direccion">Debe seleccionar si la dirección corresponde</string>
+    <string name="verificacion_contractual_validacion_otra_direccion">Debe ingresar la dirección correcta</string>
+    <string name="verificacion_contractual_validacion_nombre">Debe seleccionar si el nombre del establecimiento corresponde</string>
+    <string name="verificacion_contractual_validacion_otro_nombre">Debe ingresar el nombre correcto del establecimiento</string>
+    <string name="verificacion_contractual_validacion_actividades">Debe seleccionar si desarrolla actividades diferentes</string>
+    <string name="verificacion_contractual_validacion_tipo_actividad">Debe seleccionar el tipo de actividad</string>
+    <string name="verificacion_contractual_validacion_especificacion">Debe especificar el tipo de actividad</string>
+    <string name="verificacion_contractual_validacion_registros">Debe seleccionar si cuenta con registros de mantenimiento</string>
+    <string name="verificacion_contractual_validacion_campos_incompletos">Por favor complete todos los campos visibles antes de continuar</string>
 
     <!-- GALERIA FRAGMENT -->
     <string name="gallery_title">Galería</string>

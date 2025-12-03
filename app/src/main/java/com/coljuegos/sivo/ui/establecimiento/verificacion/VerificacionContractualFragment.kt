@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
+import android.widget.ScrollView
 import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -144,13 +145,120 @@ class VerificacionContractualFragment : Fragment() {
 
         binding.btnSiguiente.setOnClickListener {
             // Navegaría al siguiente fragment (Verificación cumplimiento siplaft)
-            val currentState = viewModel.uiState.value
-            currentState.actaUuid?.let { acta ->
-                val action = VerificacionContractualFragmentDirections
-                    .actionVerificacionContractualFragmentToVerificacionSiplaftFragment(acta)
-                findNavController().navigate(action)
+            if (validateRequiredFields()) {
+                val currentState = viewModel.uiState.value
+                currentState.actaUuid?.let { acta ->
+                    val action = VerificacionContractualFragmentDirections
+                        .actionVerificacionContractualFragmentToVerificacionSiplaftFragment(acta)
+                    findNavController().navigate(action)
+                }
+            }
+
+        }
+    }
+
+    private fun validateRequiredFields(): Boolean {
+        val currentState = viewModel.uiState.value
+
+        // Limpiar errores previos
+        binding.layoutPregunta1.error = null
+        binding.layoutPregunta2.error = null
+        binding.otraDireccionLayout.error = null
+        binding.layoutPregunta3.error = null
+        binding.otroNombreLayout.error = null
+        binding.layoutPregunta4.error = null
+        binding.layoutTipoActividad.error = null
+        binding.layoutOtrosActividad.error = null
+        binding.layoutPregunta5.error = null
+
+        var isValid = true
+        var firstErrorField: View? = null
+
+        // Validar campo obligatorio: Aviso de autorización
+        if (currentState.avisoAutorizacion.isBlank()) {
+            binding.layoutPregunta1.error = getString(R.string.verificacion_contractual_validacion_aviso)
+            isValid = false
+            if (firstErrorField == null) firstErrorField = binding.layoutPregunta1
+        }
+
+        // Validar campo obligatorio: Dirección corresponde
+        if (currentState.direccionCorresponde.isBlank()) {
+            binding.layoutPregunta2.error = getString(R.string.verificacion_contractual_validacion_direccion)
+            isValid = false
+            if (firstErrorField == null) firstErrorField = binding.layoutPregunta2
+        }
+
+        // Si la dirección NO corresponde, validar que se haya ingresado la dirección correcta
+        if (currentState.mostrarCampoOtraDireccion && currentState.otraDireccion.isBlank()) {
+            binding.otraDireccionLayout.error = getString(R.string.verificacion_contractual_validacion_otra_direccion)
+            isValid = false
+            if (firstErrorField == null) firstErrorField = binding.otraDireccionLayout
+        }
+
+        // Validar campo obligatorio: Nombre establecimiento corresponde
+        if (currentState.nombreEstablecimientoCorresponde.isBlank()) {
+            binding.layoutPregunta3.error = getString(R.string.verificacion_contractual_validacion_nombre)
+            isValid = false
+            if (firstErrorField == null) firstErrorField = binding.layoutPregunta3
+        }
+
+        // Si el nombre NO corresponde, validar que se haya ingresado el nombre correcto
+        if (currentState.mostrarCampoOtroNombre && currentState.otroNombre.isBlank()) {
+            binding.otroNombreLayout.error = getString(R.string.verificacion_contractual_validacion_otro_nombre)
+            isValid = false
+            if (firstErrorField == null) firstErrorField = binding.otroNombreLayout
+        }
+
+        // Validar campo obligatorio: Desarrolla actividades diferentes
+        if (currentState.desarrollaActividadesDiferentes.isBlank()) {
+            binding.layoutPregunta4.error = getString(R.string.verificacion_contractual_validacion_actividades)
+            isValid = false
+            if (firstErrorField == null) firstErrorField = binding.layoutPregunta4
+        }
+
+        // Si desarrolla actividades diferentes, validar campos relacionados
+        if (currentState.mostrarSeccionActividadesDiferentes) {
+            // Debe seleccionar el tipo de actividad
+            if (currentState.tipoActividad.isBlank()) {
+                binding.layoutTipoActividad.error = getString(R.string.verificacion_contractual_validacion_tipo_actividad)
+                isValid = false
+                if (firstErrorField == null) firstErrorField = binding.layoutTipoActividad
+            }
+
+            // Si es "Otros", debe especificar
+            if (currentState.mostrarCampoOtros && currentState.especificacionOtros.isBlank()) {
+                binding.layoutOtrosActividad.error = getString(R.string.verificacion_contractual_validacion_especificacion)
+                isValid = false
+                if (firstErrorField == null) firstErrorField = binding.layoutOtrosActividad
             }
         }
+
+        // Validar campo obligatorio: Cuenta con registros de mantenimiento
+        if (currentState.cuentaRegistrosMantenimiento.isBlank()) {
+            binding.layoutPregunta5.error = getString(R.string.verificacion_contractual_validacion_registros)
+            isValid = false
+            if (firstErrorField == null) firstErrorField = binding.layoutPregunta5
+        }
+
+        // Si hay errores, mostrar mensaje y hacer scroll al primer campo con error
+        if (!isValid) {
+            Snackbar.make(
+                binding.root,
+                getString(R.string.verificacion_contractual_validacion_campos_incompletos),
+                Snackbar.LENGTH_LONG
+            ).show()
+
+            // Hacer scroll al primer campo con error
+            firstErrorField?.let { field ->
+                binding.root.post {
+                    val scrollView = binding.root.parent as? ScrollView
+                    scrollView?.smoothScrollTo(0, field.top)
+                    field.requestFocus()
+                }
+            }
+        }
+
+        return isValid
     }
 
     private fun setupInputBindings() {

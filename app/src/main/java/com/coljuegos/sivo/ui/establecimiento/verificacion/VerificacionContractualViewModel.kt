@@ -209,4 +209,58 @@ class VerificacionContractualViewModel @Inject constructor(
         loadVerificacionContractual()
     }
 
+    fun validateForm(): Boolean {
+        val currentState = _uiState.value
+
+        // Validar campo obligatorio: Aviso de autorización
+        if (currentState.avisoAutorizacion.isBlank()) {
+            return false
+        }
+
+        // Validar campo obligatorio: Dirección corresponde
+        if (currentState.direccionCorresponde.isBlank()) {
+            return false
+        }
+
+        // Si la dirección NO corresponde, validar que se haya ingresado la dirección correcta
+        if (currentState.mostrarCampoOtraDireccion && currentState.otraDireccion.isBlank()) {
+            return false
+        }
+
+        // Validar campo obligatorio: Nombre establecimiento corresponde
+        if (currentState.nombreEstablecimientoCorresponde.isBlank()) {
+            return false
+        }
+
+        // Si el nombre NO corresponde, validar que se haya ingresado el nombre correcto
+        if (currentState.mostrarCampoOtroNombre && currentState.otroNombre.isBlank()) {
+            return false
+        }
+
+        // Validar campo obligatorio: Desarrolla actividades diferentes
+        if (currentState.desarrollaActividadesDiferentes.isBlank()) {
+            return false
+        }
+
+        // Si desarrolla actividades diferentes, validar campos relacionados
+        if (currentState.mostrarSeccionActividadesDiferentes) {
+            // Debe seleccionar el tipo de actividad
+            if (currentState.tipoActividad.isBlank()) {
+                return false
+            }
+
+            // Si es "Otros", debe especificar
+            if (currentState.mostrarCampoOtros && currentState.especificacionOtros.isBlank()) {
+                return false
+            }
+        }
+
+        // Validar campo obligatorio: Cuenta con registros de mantenimiento
+        if (currentState.cuentaRegistrosMantenimiento.isBlank()) {
+            return false
+        }
+
+        return true
+    }
+
 }
