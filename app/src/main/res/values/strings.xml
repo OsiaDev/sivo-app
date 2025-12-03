@@ -18,6 +18,12 @@
     <string name="login_error_connection_compare">Error de conexión</string>
     <string name="login_error_connection">Error de conexión con el servidor</string>
 
+    <string name="action_camera">Cámara</string>
+    <string name="action_logout">Cerrar sesión</string>
+    <string name="logout_confirm_title">Cerrar sesión</string>
+    <string name="logout_confirm_message">¿Está seguro que desea cerrar sesión? Los datos locales se mantendrán en el dispositivo.</string>
+    <string name="logout_success">Sesión cerrada exitosamente</string>
+
     <!-- HOME FRAGMENT -->
     <string name="home_title">Home</string>
     <string name="acta_ver_detalle">Ver detalle</string>

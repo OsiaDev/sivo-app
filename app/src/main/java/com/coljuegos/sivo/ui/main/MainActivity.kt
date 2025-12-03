@@ -15,6 +15,7 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import com.coljuegos.sivo.R
 import com.coljuegos.sivo.databinding.ActivityMainBinding
 import com.coljuegos.sivo.ui.login.LoginActivity
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -55,7 +56,10 @@ class MainActivity : AppCompatActivity() {
             else -> true
         }
 
+        val showLogout = currentDestination?.id == R.id.homeFragment
+
         menu?.findItem(R.id.action_camera)?.isVisible = showCamera
+        menu?.findItem(R.id.action_logout)?.isVisible = showLogout
 
         return true
     }
@@ -65,6 +69,10 @@ class MainActivity : AppCompatActivity() {
             R.id.action_camera -> {
                 val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment_content_main)
                 navHostFragment?.childFragmentManager?.setFragmentResult("camera_action", Bundle())
+                true
+            }
+            R.id.action_logout -> {
+                showLogoutConfirmationDialog()
                 true
             }
             else -> super.onOptionsItemSelected(item)
@@ -93,6 +101,17 @@ class MainActivity : AppCompatActivity() {
         val navController = findNavController(R.id.nav_host_fragment_content_main)
         return navController.navigateUp(appBarConfiguration)
                 || super.onSupportNavigateUp()
+    }
+
+    private fun showLogoutConfirmationDialog() {
+        MaterialAlertDialogBuilder(this)
+            .setTitle(R.string.logout_confirm_title)
+            .setMessage(R.string.logout_confirm_message)
+            .setPositiveButton("Cerrar sesión") { _, _ ->
+                performLogout()
+            }
+            .setNegativeButton("Cancelar", null)
+            .show()
     }
 
     private fun performLogout() {
