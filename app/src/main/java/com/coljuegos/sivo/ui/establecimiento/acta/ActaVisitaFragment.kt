@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ScrollView
 import androidx.core.widget.doOnTextChanged
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -84,12 +85,87 @@ class ActaVisitaFragment : Fragment() {
 
     private fun navigateVerificacion() {
         binding.btnEnviarMaterial.setOnClickListener {
-            val currentState = viewModel.uiState.value
-            currentState.acta?.let { acta ->
-                val action = ActaVisitaFragmentDirections.actionActaVisitaFragmentToVerificacionContractualFragment(acta.uuidActa)
-                findNavController().navigate(action)
+            if (validateRequiredFields()) {
+                val currentState = viewModel.uiState.value
+                currentState.acta?.let { acta ->
+                    val action = ActaVisitaFragmentDirections.actionActaVisitaFragmentToVerificacionContractualFragment(acta.uuidActa)
+                    findNavController().navigate(action)
+                }
             }
         }
+    }
+
+    private fun validateRequiredFields(): Boolean {
+        val currentState = viewModel.uiState.value
+
+        // Limpiar errores previos
+        binding.layoutNombrePresente.error = null
+        binding.layoutCedulaPresente.error = null
+        binding.layoutMunicipioExpedicion.error = null
+        binding.layoutCalidad.error = null
+        binding.layoutEmail.error = null
+
+        var isValid = true
+        var firstErrorField: View? = null
+
+        // Validar nombre
+        if (currentState.nombrePresente.isBlank()) {
+            binding.layoutNombrePresente.error = getString(R.string.acta_visita_validacion_nombre)
+            isValid = false
+            if (firstErrorField == null) firstErrorField = binding.layoutNombrePresente
+        }
+
+        // Validar cédula
+        if (currentState.cedulaPresente.isBlank()) {
+            binding.layoutCedulaPresente.error = getString(R.string.acta_visita_validacion_cedula)
+            isValid = false
+            if (firstErrorField == null) firstErrorField = binding.layoutCedulaPresente
+        }
+
+        // Validar municipio
+        if (currentState.selectedMunicipio == null) {
+            binding.layoutMunicipioExpedicion.error = getString(R.string.acta_visita_validacion_municipio)
+            isValid = false
+            if (firstErrorField == null) firstErrorField = binding.layoutMunicipioExpedicion
+        }
+
+        // Validar cargo/calidad
+        if (currentState.cargoPresente.isBlank()) {
+            binding.layoutCalidad.error = getString(R.string.acta_visita_validacion_cargo)
+            isValid = false
+            if (firstErrorField == null) firstErrorField = binding.layoutCalidad
+        }
+
+        // Validar email
+        if (currentState.emailPresente.isBlank()) {
+            binding.layoutEmail.error = getString(R.string.acta_visita_validacion_email)
+            isValid = false
+            if (firstErrorField == null) firstErrorField = binding.layoutEmail
+        } else if (!android.util.Patterns.EMAIL_ADDRESS.matcher(currentState.emailPresente).matches()) {
+            binding.layoutEmail.error = getString(R.string.acta_visita_correo_invalido)
+            isValid = false
+            if (firstErrorField == null) firstErrorField = binding.layoutEmail
+        }
+
+        // Si hay errores, mostrar mensaje y hacer scroll al primer campo con error
+        if (!isValid) {
+            Snackbar.make(
+                binding.root,
+                getString(R.string.acta_visita_validacion_campos_incompletos),
+                Snackbar.LENGTH_LONG
+            ).show()
+
+            // Hacer scroll al primer campo con error
+            firstErrorField?.let { field ->
+                binding.root.post {
+                    val scrollView = binding.root.parent as? ScrollView
+                    scrollView?.smoothScrollTo(0, field.top)
+                    field.requestFocus()
+                }
+            }
+        }
+
+        return isValid
     }
 
     private fun navigateToGallery() {

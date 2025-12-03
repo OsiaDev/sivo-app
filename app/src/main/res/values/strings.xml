@@ -79,6 +79,14 @@
     <string name="acta_visita_correo_invalido">Correo electrónico inválido</string>
     <string name="acta_visita_correo_duplicado">Este correo ya fue agregado</string>
 
+    <!-- VALIDACIÓN DE CAMPOS OBLIGATORIOS -->
+    <string name="acta_visita_validacion_nombre">Debe ingresar el nombre de la persona presente</string>
+    <string name="acta_visita_validacion_cedula">Debe ingresar la identificación</string>
+    <string name="acta_visita_validacion_municipio">Debe seleccionar el municipio de expedición</string>
+    <string name="acta_visita_validacion_cargo">Debe ingresar el cargo</string>
+    <string name="acta_visita_validacion_email">Debe ingresar el email de la persona que atiende</string>
+    <string name="acta_visita_validacion_campos_incompletos">Por favor complete todos los campos obligatorios</string>
+
     <!-- VERIFICACIÓN CONTRACTUAL FRAGMENT -->
     <string name="verificacion_contractual_title">Verificación Contractual</string>
     <string name="verificacion_contractual_subtitle">1. Verificación contractual</string>
