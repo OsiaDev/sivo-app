@@ -13,7 +13,6 @@ import com.coljuegos.sivo.databinding.FragmentHomeBinding
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
-import kotlin.getValue
 
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
@@ -41,6 +40,13 @@ class HomeFragment : Fragment() {
         setupSwipeRefresh()
         setupRecyclerView()
         observeViewModel()
+        setupFragmentResultListener()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        // Refrescar la lista cada vez que volvemos a este fragment
+        viewModel.refreshActas()
     }
 
     private fun setupRecyclerView() {
@@ -52,9 +58,6 @@ class HomeFragment : Fragment() {
         binding.recyclerViewLoans.apply {
             adapter = actaAdapter
             layoutManager = LinearLayoutManager(requireContext())
-
-            // Opcional: agregar separadores entre items si es necesario
-            // addItemDecoration(DividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL))
         }
     }
 
@@ -70,6 +73,29 @@ class HomeFragment : Fragment() {
             android.R.color.holo_orange_light,
             android.R.color.holo_red_light
         )
+    }
+
+    /**
+     * Escucha cuando se finaliza un acta para refrescar la lista
+     */
+    private fun setupFragmentResultListener() {
+        parentFragmentManager.setFragmentResultListener(
+            "request_refresh_actas",
+            viewLifecycleOwner
+        ) { _, bundle ->
+            val shouldRefresh = bundle.getBoolean("should_refresh", false)
+            if (shouldRefresh) {
+                // Refrescar desde la base de datos local primero (rápido)
+                viewModel.refreshActas()
+
+                // Mostrar mensaje de confirmación
+                Snackbar.make(
+                    binding.root,
+                    "Acta actualizada correctamente",
+                    Snackbar.LENGTH_SHORT
+                ).show()
+            }
+        }
     }
 
     private fun observeViewModel() {
@@ -90,42 +116,16 @@ class HomeFragment : Fragment() {
         // Actualizar lista de actas
         actaAdapter.submitList(uiState.actas)
 
-        // Mostrar/ocultar loading
-        // Si tienes un loading indicator, puedes manejarlo aquí
-        // binding.progressBar.visibility = if (uiState.isLoading) View.VISIBLE else View.GONE
-
-        // Mostrar errores
-        uiState.errorMessage?.let { errorMessage ->
-            showError(errorMessage)
+        // Mostrar mensaje de error si existe
+        uiState.errorMessage?.let { errorMsg ->
+            Snackbar.make(binding.root, errorMsg, Snackbar.LENGTH_LONG).show()
             viewModel.clearError()
         }
 
-        // Manejar estado vacío
-        if (!uiState.isLoading && uiState.actas.isEmpty() && uiState.errorMessage == null) {
-            showEmptyState()
-        } else {
-            hideEmptyState()
+        // Mostrar mensaje de éxito si existe
+        uiState.successMessage?.let { successMsg ->
+            Snackbar.make(binding.root, successMsg, Snackbar.LENGTH_SHORT).show()
         }
-    }
-
-    private fun showError(message: String) {
-        Snackbar.make(binding.root, message, Snackbar.LENGTH_LONG)
-            .setAction("Reintentar") {
-                viewModel.refreshActas()
-            }
-            .show()
-    }
-
-    private fun showEmptyState() {
-        // Aquí puedes mostrar un mensaje cuando no hay actas
-        // Por ejemplo, cambiar la visibilidad de un TextView o mostrar una imagen
-        binding.recyclerViewLoans.visibility = View.GONE
-        // binding.emptyStateView.visibility = View.VISIBLE
-    }
-
-    private fun hideEmptyState() {
-        binding.recyclerViewLoans.visibility = View.VISIBLE
-        // binding.emptyStateView.visibility = View.GONE
     }
 
     override fun onDestroyView() {

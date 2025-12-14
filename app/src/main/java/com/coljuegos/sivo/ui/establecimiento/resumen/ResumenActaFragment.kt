@@ -25,7 +25,6 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
-import java.time.format.DateTimeFormatter
 
 @AndroidEntryPoint
 class ResumenActaFragment : Fragment() {
@@ -147,13 +146,30 @@ class ResumenActaFragment : Fragment() {
             Snackbar.make(binding.root, message, Snackbar.LENGTH_SHORT).show()
             viewModel.clearMessages()
 
-            // Si está sincronizado, volver atrás automáticamente después de un momento
-            if (uiState.estadoActa == ActaStateEnum.SINCRONIZADO) {
+            // Si está sincronizado o completo, navegar a Home y actualizar lista
+            if (uiState.estadoActa == ActaStateEnum.SINCRONIZADO ||
+                uiState.estadoActa == ActaStateEnum.COMPLETE) {
                 binding.root.postDelayed({
-                    findNavController().navigateUp()
-                }, 2000)
+                    navegarAHome()
+                }, 1500)
             }
         }
+    }
+
+    /**
+     * Navega al HomeFragment y notifica que debe refrescar la lista de actas
+     */
+    private fun navegarAHome() {
+        // Limpiar toda la pila de navegación hasta Home y notificar refresh
+        parentFragmentManager.setFragmentResult(
+            "request_refresh_actas",
+            Bundle().apply {
+                putBoolean("should_refresh", true)
+            }
+        )
+
+        // Navegar a Home limpiando la pila
+        findNavController().popBackStack(R.id.homeFragment, false)
     }
 
     private fun solicitarUbicacion() {
@@ -204,7 +220,7 @@ class ResumenActaFragment : Fragment() {
                 // Si falla, intentar obtener la última ubicación conocida
                 obtenerUltimaUbicacionConocida()
             }
-        } catch (e: SecurityException) {
+        } catch (_: SecurityException) {
             Snackbar.make(
                 binding.root,
                 R.string.resumen_acta_permiso_ubicacion_denegado,
@@ -223,7 +239,7 @@ class ResumenActaFragment : Fragment() {
                     )
                 }
             }
-        } catch (e: SecurityException) {
+        } catch (_: SecurityException) {
             // Ignorar si no tenemos permisos
         }
     }
@@ -231,7 +247,8 @@ class ResumenActaFragment : Fragment() {
     private fun mostrarDialogoConfirmacion() {
         MaterialAlertDialogBuilder(requireContext())
             .setTitle("Finalizar Acta")
-            .setMessage("¿Está seguro que desea finalizar el acta? Esta acción marcará el acta como completa y se intentará sincronizar con el servidor.")
+            .setMessage("¿Está seguro que desea finalizar el acta? " +
+                    "Esta acción marcará el acta como completa y se intentará sincronizar con el servidor.")
             .setPositiveButton("Finalizar") { _, _ ->
                 finalizarActa()
             }
