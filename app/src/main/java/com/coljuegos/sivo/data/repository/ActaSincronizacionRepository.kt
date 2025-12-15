@@ -13,6 +13,7 @@ import com.coljuegos.sivo.data.entity.VerificacionContractualEntity
 import com.coljuegos.sivo.data.entity.VerificacionSiplaftEntity
 import com.coljuegos.sivo.data.remote.api.ApiService
 import com.coljuegos.sivo.data.remote.model.*
+import com.coljuegos.sivo.utils.ImageCompressionUtils
 import com.coljuegos.sivo.utils.NetworkResult
 import com.coljuegos.sivo.utils.SessionManager
 import kotlinx.coroutines.flow.Flow
@@ -220,8 +221,9 @@ class ActaSincronizacionRepository @Inject constructor(
             val file = File(entity.rutaImagen)
             if (!file.exists()) return null
 
-            val imageBytes = file.readBytes()
-            val imagenBase64 = Base64.encodeToString(imageBytes, Base64.NO_WRAP)
+            // Comprimir con ZLIB + PNG sin pérdida para el backend
+            val imagenBase64 = ImageCompressionUtils.compressImageFileToBase64Zlib(file)
+                ?: return null
 
             ImagenDTO(
                 nombreImagen = entity.nombreImagen,
