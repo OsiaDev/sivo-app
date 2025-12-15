@@ -16,6 +16,7 @@ import com.coljuegos.sivo.data.remote.model.*
 import com.coljuegos.sivo.utils.ImageCompressionUtils
 import com.coljuegos.sivo.utils.NetworkResult
 import com.coljuegos.sivo.utils.SessionManager
+import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import java.io.File
@@ -92,6 +93,8 @@ class ActaSincronizacionRepository @Inject constructor(
                 emit(NetworkResult.Error(errorMsg))
             }
 
+        } catch (e: CancellationException) {
+            throw e  // Re-lanzar excepciones de cancelación
         } catch (e: Exception) {
             emit(NetworkResult.Error("Error de conexión: ${e.message}"))
         }

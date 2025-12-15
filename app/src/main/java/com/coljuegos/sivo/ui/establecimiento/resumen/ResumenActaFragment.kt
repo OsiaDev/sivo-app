@@ -145,14 +145,13 @@ class ResumenActaFragment : Fragment() {
         uiState.successMessage?.let { message ->
             Snackbar.make(binding.root, message, Snackbar.LENGTH_SHORT).show()
             viewModel.clearMessages()
+        }
 
-            // Si está sincronizado o completo, navegar a Home y actualizar lista
-            if (uiState.estadoActa == ActaStateEnum.SINCRONIZADO ||
-                uiState.estadoActa == ActaStateEnum.COMPLETE) {
-                binding.root.postDelayed({
-                    navegarAHome()
-                }, 1500)
-            }
+        // Navegar solo cuando la bandera lo indique
+        if (uiState.debeNavegarAlHome && !uiState.isLoading && !uiState.isSincronizando) {
+            binding.root.postDelayed({
+                navegarAHome()
+            }, 1500)
         }
     }
 

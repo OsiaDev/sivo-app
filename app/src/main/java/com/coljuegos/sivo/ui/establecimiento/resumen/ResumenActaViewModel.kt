@@ -81,14 +81,15 @@ class ResumenActaViewModel @Inject constructor(
                     }
 
                     // Intentar sincronizar automáticamente si hay internet
-                    if (networkConnectivityObserver.isNetworkAvailable()) {  // CAMBIAR AQUÍ
+                    if (networkConnectivityObserver.isNetworkAvailable()) {
                         sincronizarActa(actaUuid)
                     } else {
-                        // Sin internet, programar sincronización automática
+                        // Sin internet, programar sincronización automática y marcar para navegar
                         actaSincronizacionWorkManager.ejecutarSincronizacionInmediata()
                         _uiState.update {
                             it.copy(
-                                successMessage = "Acta finalizada. Se sincronizará automáticamente cuando haya internet."
+                                successMessage = "Acta finalizada. Se sincronizará automáticamente cuando haya internet.",
+                                debeNavegarAlHome = true
                             )
                         }
                     }
@@ -128,19 +129,21 @@ class ResumenActaViewModel @Inject constructor(
                             it.copy(
                                 isSincronizando = false,
                                 estadoActa = ActaStateEnum.SINCRONIZADO,
-                                successMessage = result.data
+                                successMessage = result.data,
+                                debeNavegarAlHome = true
                             )
                         }
                     }
 
                     is NetworkResult.Error -> {
-                        // Si falla la sincronización, programar para más tarde
+                        // Si falla la sincronización, programar para más tarde Y NAVEGAR AL HOME
                         actaSincronizacionWorkManager.programarSincronizacionPeriodica()
 
                         _uiState.update {
                             it.copy(
                                 isSincronizando = false,
-                                errorMessage = "No se pudo sincronizar. Se reintentará automáticamente."
+                                errorMessage = "No se pudo sincronizar. Se reintentará automáticamente.",
+                                debeNavegarAlHome = true  // AGREGAR ESTA LÍNEA
                             )
                         }
                     }
@@ -161,7 +164,8 @@ class ResumenActaViewModel @Inject constructor(
         _uiState.update {
             it.copy(
                 errorMessage = null,
-                successMessage = null
+                successMessage = null,
+                debeNavegarAlHome = false
             )
         }
     }

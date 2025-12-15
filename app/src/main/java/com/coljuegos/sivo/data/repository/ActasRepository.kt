@@ -199,71 +199,66 @@ class ActasRepository @Inject constructor(
                 val existingActa = actaDao.getActaByNumActa(numActa)
 
                 if (existingActa != null) {
-                    println("DEBUG: Acta #$numActa existe, actualizando...")
+                    println("DEBUG: Acta #$numActa ya existe, verificando si debe actualizarse...")
 
-                    // Actualizar acta existente preservando el UUID y las relaciones
-                    val actaActualizada = existingActa.copy(
-                        numAucActa = actaDTO.numAuc ?: existingActa.numAucActa,
-                        fechaVisitaAucActa = try {
-                            LocalDate.parse(actaDTO.fechaVisitaAuc)
-                        } catch (_: Exception) {
-                            existingActa.fechaVisitaAucActa
-                        },
-                        numContratoActa = actaDTO.numContrato ?: existingActa.numContratoActa,
-                        nitActa = actaDTO.nit ?: existingActa.nitActa,
-                        estCodigoActa = actaDTO.estCodigo?.toInt() ?: existingActa.estCodigoActa,
-                        conCodigoActa = actaDTO.conCodigo?.toInt() ?: existingActa.conCodigoActa,
-                        nombreOperadorActa = actaDTO.nombreOperador ?: existingActa.nombreOperadorActa,
-                        fechaFinContratoActa = try {
-                            LocalDate.parse(actaDTO.fechaFinContrato)
-                        } catch (_: Exception) {
-                            existingActa.fechaFinContratoActa
-                        },
-                        emailActa = actaDTO.email ?: existingActa.emailActa,
-                        tipoVisitaActa = actaDTO.tipoVisita ?: existingActa.tipoVisitaActa,
-                        fechaCorteInventarioActa = try {
-                            LocalDateTime.parse(actaDTO.fechaCorteInventario)
-                        } catch (_: Exception) {
-                            existingActa.fechaCorteInventarioActa
-                        },
-                        direccionActa = actaDTO.direccion?.direccion ?: existingActa.direccionActa,
-                        establecimientoActa = actaDTO.direccion?.establecimiento ?: existingActa.establecimientoActa,
-                        estCodigoInternoActa = actaDTO.direccion?.estCodigo ?: existingActa.estCodigoInternoActa,
-                        ciudadActa = actaDTO.direccion?.ciudad ?: existingActa.ciudadActa,
-                        departamentoActa = actaDTO.direccion?.departamento ?: existingActa.departamentoActa,
-                        latitudActa = actaDTO.direccion?.latitud ?: existingActa.latitudActa,
-                        longitudActa = actaDTO.direccion?.longitud ?: existingActa.longitudActa,
-                        // Preservar estado local si no está sincronizado
-                        stateActa = if (existingActa.stateActa in listOf(
-                                ActaStateEnum.COMPLETE,
-                                ActaStateEnum.SINCRONIZADO
-                            )) {
-                            existingActa.stateActa
-                        } else {
-                            ActaStateEnum.ACTIVE
-                        },
-                        lastUpdatedActa = currentTime
-                    )
+                    // SOLO actualizar actas en estado ACTIVE
+                    if (existingActa.stateActa == ActaStateEnum.ACTIVE) {
+                        println("DEBUG: Acta #$numActa está en estado ACTIVE, actualizando información del backend...")
 
-                    actaDao.update(actaActualizada)
-
-                    // Actualizar solo funcionarios e inventarios del backend
-                    // Eliminar los anteriores del backend y agregar los nuevos
-                    funcionarioDao.deleteFuncionariosByActa(existingActa.uuidActa)
-                    inventarioDao.deleteInventariosByActa(existingActa.uuidActa)
-
-                    // Mapear funcionarios usando el UUID existente
-                    actaDTO.funcionarios?.forEach { funcionarioDTO ->
-                        funcionariosToInsert.add(
-                            mapFuncionarioToEntity(funcionarioDTO, existingActa.uuidActa)
+                        val actaActualizada = existingActa.copy(
+                            numAucActa = actaDTO.numAuc ?: existingActa.numAucActa,
+                            fechaVisitaAucActa = try {
+                                LocalDate.parse(actaDTO.fechaVisitaAuc)
+                            } catch (_: Exception) {
+                                existingActa.fechaVisitaAucActa
+                            },
+                            numContratoActa = actaDTO.numContrato ?: existingActa.numContratoActa,
+                            nitActa = actaDTO.nit ?: existingActa.nitActa,
+                            estCodigoActa = actaDTO.estCodigo?.toInt() ?: existingActa.estCodigoActa,
+                            conCodigoActa = actaDTO.conCodigo?.toInt() ?: existingActa.conCodigoActa,
+                            nombreOperadorActa = actaDTO.nombreOperador ?: existingActa.nombreOperadorActa,
+                            fechaFinContratoActa = try {
+                                LocalDate.parse(actaDTO.fechaFinContrato)
+                            } catch (_: Exception) {
+                                existingActa.fechaFinContratoActa
+                            },
+                            emailActa = actaDTO.email ?: existingActa.emailActa,
+                            tipoVisitaActa = actaDTO.tipoVisita ?: existingActa.tipoVisitaActa,
+                            fechaCorteInventarioActa = try {
+                                LocalDateTime.parse(actaDTO.fechaCorteInventario)
+                            } catch (_: Exception) {
+                                existingActa.fechaCorteInventarioActa
+                            },
+                            direccionActa = actaDTO.direccion?.direccion ?: existingActa.direccionActa,
+                            establecimientoActa = actaDTO.direccion?.establecimiento ?: existingActa.establecimientoActa,
+                            estCodigoInternoActa = actaDTO.direccion?.estCodigo ?: existingActa.estCodigoInternoActa,
+                            ciudadActa = actaDTO.direccion?.ciudad ?: existingActa.ciudadActa,
+                            departamentoActa = actaDTO.direccion?.departamento ?: existingActa.departamentoActa,
+                            latitudActa = actaDTO.direccion?.latitud ?: existingActa.latitudActa,
+                            longitudActa = actaDTO.direccion?.longitud ?: existingActa.longitudActa,
+                            stateActa = ActaStateEnum.ACTIVE,
+                            lastUpdatedActa = currentTime
                         )
-                    }
 
-                    // Mapear inventarios usando el UUID existente
-                    actaDTO.inventarios?.forEach { inventarioDTO ->
-                        inventariosToInsert.add(
-                            mapInventarioToEntity(inventarioDTO, existingActa.uuidActa)
-                        )
+                        actaDao.update(actaActualizada)
+
+                        funcionarioDao.deleteFuncionariosByActa(existingActa.uuidActa)
+                        inventarioDao.deleteInventariosByActa(existingActa.uuidActa)
+
+                        actaDTO.funcionarios?.forEach { funcionarioDTO ->
+                            funcionariosToInsert.add(
+                                mapFuncionarioToEntity(funcionarioDTO, existingActa.uuidActa)
+                            )
+                        }
+
+                        actaDTO.inventarios?.forEach { inventarioDTO ->
+                            inventariosToInsert.add(
+                                mapInventarioToEntity(inventarioDTO, existingActa.uuidActa)
+                            )
+                        }
+                    } else {
+                        println("DEBUG: Acta #$numActa está en estado ${existingActa.stateActa}, NO se actualiza desde el backend")
+                        // Preservar completamente el acta
                     }
                 } else {
                     println("DEBUG: Acta #$numActa es nueva, insertando...")
