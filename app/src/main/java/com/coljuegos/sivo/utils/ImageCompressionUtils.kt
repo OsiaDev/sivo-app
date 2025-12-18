@@ -40,6 +40,21 @@ object ImageCompressionUtils {
     }
 
     /**
+     * Convierte Bitmap a PNG sin pérdida, comprime con ZLIB y codifica en Base64
+     * Compatible con el método base64ZlibToImage del backend
+     * Útil para firmas digitales que ya están en memoria como Bitmap
+     */
+    fun compressBitmapToBase64Zlib(bitmap: Bitmap): String {
+        // Convertir a PNG sin pérdida
+        val pngStream = ByteArrayOutputStream()
+        bitmap.compress(Bitmap.CompressFormat.PNG, 100, pngStream)
+        val pngBytes = pngStream.toByteArray()
+
+        // Comprimir con ZLIB y codificar Base64
+        return compressBytesToBase64Zlib(pngBytes)
+    }
+
+    /**
      * Comprime bytes con ZLIB y codifica en Base64
      */
     private fun compressBytesToBase64Zlib(bytes: ByteArray): String {

@@ -1,5 +1,6 @@
 package com.coljuegos.sivo.data.repository
 
+import android.graphics.BitmapFactory
 import android.util.Base64
 import com.coljuegos.sivo.data.dao.*
 import com.coljuegos.sivo.data.entity.ActaEntity
@@ -105,8 +106,8 @@ class ActaSincronizacionRepository @Inject constructor(
         val actaVisita = actaVisitaDao.getActaVisitaByActaId(acta.uuidActa)
         val verificacionContractual = verificacionContractualDao.getVerificacionContractualByActaId(acta.uuidActa)
         val verificacionSiplaft = verificacionSiplaftDao.getVerificacionSiplaftByActaId(acta.uuidActa)
-        val inventariosRegistrados = inventarioRegistradoDao.getInventariosRegistradosByActaList(acta.uuidActa)  // CAMBIAR A getInventariosRegistradosByActaList
-        val novedadesRegistradas = novedadRegistradaDao.getNovedadesRegistradasByActaList(acta.uuidActa)  // CAMBIAR AQUÍ
+        val inventariosRegistrados = inventarioRegistradoDao.getInventariosRegistradosByActaList(acta.uuidActa)
+        val novedadesRegistradas = novedadRegistradaDao.getNovedadesRegistradasByActaList(acta.uuidActa)
         val firmaActa = firmaActaDao.getFirmaActaByActaUuidSuspend(acta.uuidActa)
         val imagenes = imagenDao.getImagenesByActa(acta.uuidActa)
 
@@ -207,16 +208,39 @@ class ActaSincronizacionRepository @Inject constructor(
             nombreFiscalizadorPrincipal = entity.nombreFiscalizadorPrincipal,
             ccFiscalizadorPrincipal = entity.ccFiscalizadorPrincipal,
             cargoFiscalizadorPrincipal = entity.cargoFiscalizadorPrincipal,
-            firmaFiscalizadorPrincipal = entity.firmaFiscalizadorPrincipal,
+            firmaFiscalizadorPrincipal = entity.firmaFiscalizadorPrincipal?.let { compressFirmaBase64(it) },
             nombreFiscalizadorSecundario = entity.nombreFiscalizadorSecundario,
             ccFiscalizadorSecundario = entity.ccFiscalizadorSecundario,
             cargoFiscalizadorSecundario = entity.cargoFiscalizadorSecundario,
-            firmaFiscalizadorSecundario = entity.firmaFiscalizadorSecundario,
+            firmaFiscalizadorSecundario = entity.firmaFiscalizadorSecundario?.let { compressFirmaBase64(it) },
             nombreOperador = entity.nombreOperador,
             ccOperador = entity.ccOperador,
             cargoOperador = entity.cargoOperador,
-            firmaOperador = entity.firmaOperador
+            firmaOperador = entity.firmaOperador?.let { compressFirmaBase64(it) }
         )
+    }
+
+    /**
+     * Comprime una firma almacenada como Base64 simple a Base64 con ZLIB
+     * Las firmas en BD están en Base64 PNG sin comprimir
+     * Esta función las convierte al formato esperado por el backend
+     */
+    private fun compressFirmaBase64(base64Simple: String): String {
+        return try {
+            // Decodificar Base64 a bytes
+            val imageBytes = Base64.decode(base64Simple, Base64.DEFAULT)
+
+            // Convertir bytes a Bitmap
+            val bitmap = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.size)
+                ?: return base64Simple // Si falla, devolver original
+
+            // Comprimir con ZLIB usando el nuevo método
+            ImageCompressionUtils.compressBitmapToBase64Zlib(bitmap)
+
+        } catch (e: Exception) {
+            // Si hay error, devolver el Base64 original
+            base64Simple
+        }
     }
 
     private fun mapImagenToDTO(entity: ImagenEntity): ImagenDTO? {
