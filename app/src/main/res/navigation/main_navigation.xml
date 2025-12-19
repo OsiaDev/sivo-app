@@ -264,8 +264,12 @@
             app:argType="java.util.UUID" />
 
         <action
-            android:id="@+id/action_resumenInventarioFragment_to_resumenActaFragment"
-            app:destination="@id/resumenActaFragment" />
+            android:id="@+id/action_resumenInventarioFragment_to_firmaActaFragment"
+            app:destination="@id/firmaActaFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
 
     </fragment>
 
@@ -282,6 +286,14 @@
         <action
             android:id="@+id/action_firmaActaFragment_to_signatureFragment"
             app:destination="@id/signatureFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+
+        <action
+            android:id="@+id/action_firmaActaFragment_to_resumenActaFragment"
+            app:destination="@id/resumenActaFragment"
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"

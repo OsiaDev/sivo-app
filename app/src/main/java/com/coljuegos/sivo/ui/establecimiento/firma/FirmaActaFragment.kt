@@ -185,8 +185,9 @@ class FirmaActaFragment : Fragment() {
                         Snackbar.LENGTH_SHORT
                     ).show()
 
-                    // Navegar al siguiente fragment o finalizar
-                    findNavController().navigateUp()
+                    val action = FirmaActaFragmentDirections
+                        .actionFirmaActaFragmentToResumenActaFragment(args.actaUuid)
+                    findNavController().navigate(action)
                 },
                 onError = { message ->
                     Snackbar.make(
