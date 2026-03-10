@@ -146,6 +146,7 @@
     <string name="seleccione_opcion">Seleccione una opción</string>
     <string name="verificacion_siplaft_anterior">Anterior</string>
     <string name="verificacion_siplaft_siguiente">Siguiente</string>
+
     <!-- VALIDACIÓN VERIFICACIÓN SIPLAFT -->
     <string name="verificacion_siplaft_validacion_pregunta1">Debe seleccionar si cuenta con formato de identificación</string>
     <string name="verificacion_siplaft_validacion_monto">Debe especificar el monto</string>
@@ -154,10 +155,23 @@
     <string name="verificacion_siplaft_validacion_pregunta3">Debe seleccionar si conoce el código de conducta</string>
     <string name="verificacion_siplaft_validacion_campos_incompletos">Por favor complete todos los campos visibles antes de continuar</string>
 
+    <!-- Verificación Juego Responsable -->
+    <string name="verificacion_juego_responsable_title">Verificación Juego Responsable</string>
+    <string name="juego_responsable_subtitle">3. Verificación juego responsable</string>
+    <string name="juego_responsable_pregunta1">¿Cuenta con el test de identificación de factores de riesgo?</string>
+    <string name="juego_responsable_pregunta2">¿Existen visibles las piezas publicitarias de Juego Responsable?</string>
+    <string name="juego_responsable_pregunta3">¿Cuenta con el programa de Juego Responsable?</string>
+    <string name="juego_responsable_anterior">Anterior</string>
+    <string name="juego_responsable_siguiente">Siguiente</string>
+    <string name="juego_responsable_validacion_pregunta1">Debe seleccionar una opción para el test de riesgos</string>
+    <string name="juego_responsable_validacion_pregunta2">Debe seleccionar si existen piezas publicitarias</string>
+    <string name="juego_responsable_validacion_pregunta3">Debe seleccionar si cuenta con el programa</string>
+    <string name="juego_responsable_validacion_campos_incompletos">Por favor complete todos los campos antes de continuar</string>
+
 
     <!-- Inventario -->
     <string name="inventario_reportado_title">Inventario reportado</string>
-    <string name="inventario_reportado_subtitle">3. Inventario reportado ante coljuegos</string>
+    <string name="inventario_reportado_subtitle">4. Inventario reportado ante coljuegos</string>
     <string name="inventario_total">Total registros: %1$d</string>
     <string name="inventario_serial">Serial:</string>
     <string name="inventario_nuc">NUC:</string>
@@ -239,7 +253,7 @@
 
     <!-- Fragment Novedad Reportada -->
     <string name="novedad_reportada_title">Novedades reportadas</string>
-    <string name="novedad_reportada_subtitle">4. Novedades reportadas</string>
+    <string name="novedad_reportada_subtitle">5. Novedades reportadas</string>
     <string name="novedad_reportada_agregar">Agregar</string>
     <string name="novedad_reportada_anterior">Anterior</string>
     <string name="novedad_reportada_siguiente">Siguiente</string>

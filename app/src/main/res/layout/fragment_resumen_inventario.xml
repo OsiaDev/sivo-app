@@ -204,8 +204,7 @@
                         android:layout_height="wrap_content"
                         android:textColor="@android:color/holo_green_dark"
                         android:textSize="20sp"
-                        android:textStyle="bold"
-                        tools:text="16" />
+                        android:textStyle="bold" />
                 </LinearLayout>
 
                 <!-- Divider -->
