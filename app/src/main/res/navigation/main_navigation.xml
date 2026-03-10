@@ -96,7 +96,35 @@
             app:popExitAnim="@anim/slide_out_right" />
 
         <action
-            android:id="@+id/action_verificacionSiplaftFragment_to_inventarioFragment"
+            android:id="@+id/action_verificacionSiplaftFragment_to_verificacionJuegoResponsableFragment"
+            app:destination="@id/verificacionJuegoResponsableFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/verificacionJuegoResponsableFragment"
+        android:name="com.coljuegos.sivo.ui.establecimiento.juegoresponsable.VerificacionJuegoResponsableFragment"
+        android:label="@string/verificacion_juego_responsable_title"
+        tools:layout="@layout/fragment_verificacion_juego_responsable">
+
+        <argument
+            android:name="actaUuid"
+            app:argType="java.util.UUID" />
+
+        <action
+            android:id="@+id/action_verificacionJuegoResponsableFragment_to_galleryFragment"
+            app:destination="@id/galleryFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+
+        <action
+            android:id="@+id/action_verificacionJuegoResponsableFragmentToInventarioFragment"
             app:destination="@id/inventarioFragment"
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left"

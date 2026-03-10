@@ -62,7 +62,7 @@ class VerificacionSiplaftFragment : Fragment() {
         super.onResume()
         // Registrar listener cuando el fragment es visible
         parentFragmentManager.setFragmentResultListener("camera_action", viewLifecycleOwner) { _, _ ->
-            Log.d("ActaVisitaFragment", "Recibido evento de cámara")
+            Log.d("VerificacionSiplaftFragment", "Recibido evento de cámara")
             navigateToGallery()
         }
     }
@@ -121,7 +121,7 @@ class VerificacionSiplaftFragment : Fragment() {
                 val currentState = viewModel.uiState.value
                 currentState.actaUuid?.let { acta ->
                     val action = VerificacionSiplaftFragmentDirections
-                        .actionVerificacionSiplaftFragmentToInventarioFragment(acta)
+                        .actionVerificacionSiplaftFragmentToVerificacionJuegoResponsableFragment(acta)
                     findNavController().navigate(action)
                 }
             }
@@ -261,7 +261,7 @@ class VerificacionSiplaftFragment : Fragment() {
     private fun navigateToGallery() {
         val currentState = viewModel.uiState.value
         currentState.actaUuid?.let { acta ->
-            val action = VerificacionSiplaftFragmentDirections.actionVerificacionSiplaftFragmentToGalleryFragment(acta)
+            val action = VerificacionSiplaftFragmentDirections.actionVerificacionSiplaftFragmentToGalleryFragment(acta, "verificacion_siplaft")
             findNavController().navigate(action)
         }
     }
