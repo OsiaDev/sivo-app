@@ -12,6 +12,7 @@ import com.coljuegos.sivo.data.entity.InventarioRegistradoEntity
 import com.coljuegos.sivo.data.entity.NovedadRegistradaEntity
 import com.coljuegos.sivo.data.entity.VerificacionContractualEntity
 import com.coljuegos.sivo.data.entity.VerificacionSiplaftEntity
+import com.coljuegos.sivo.data.entity.VerificacionJuegoResponsableEntity
 import com.coljuegos.sivo.data.remote.api.ApiService
 import com.coljuegos.sivo.data.remote.model.*
 import com.coljuegos.sivo.utils.ImageCompressionUtils
@@ -30,6 +31,7 @@ class ActaSincronizacionRepository @Inject constructor(
     private val actaVisitaDao: ActaVisitaDao,
     private val verificacionContractualDao: VerificacionContractualDao,
     private val verificacionSiplaftDao: VerificacionSiplaftDao,
+    private val verificacionJuegoResponsableDao: VerificacionJuegoResponsableDao,
     private val inventarioRegistradoDao: InventarioRegistradoDao,
     private val inventarioDao: InventarioDao,
     private val novedadRegistradaDao: NovedadRegistradaDao,
@@ -106,6 +108,7 @@ class ActaSincronizacionRepository @Inject constructor(
         val actaVisita = actaVisitaDao.getActaVisitaByActaId(acta.uuidActa)
         val verificacionContractual = verificacionContractualDao.getVerificacionContractualByActaId(acta.uuidActa)
         val verificacionSiplaft = verificacionSiplaftDao.getVerificacionSiplaftByActaId(acta.uuidActa)
+        val verificacionJuegoResponsable = verificacionJuegoResponsableDao.getVerificacionByActaId(acta.uuidActa)
         val inventariosRegistrados = inventarioRegistradoDao.getInventariosRegistradosByActaList(acta.uuidActa)
         val novedadesRegistradas = novedadRegistradaDao.getNovedadesRegistradasByActaList(acta.uuidActa)
         val firmaActa = firmaActaDao.getFirmaActaByActaUuidSuspend(acta.uuidActa)
@@ -118,6 +121,7 @@ class ActaSincronizacionRepository @Inject constructor(
             actaVisita = actaVisita?.let { mapActaVisitaToDTO(it) },
             verificacionContractual = verificacionContractual?.let { mapVerificacionContractualToDTO(it) },
             verificacionSiplaft = verificacionSiplaft?.let { mapVerificacionSiplaftToDTO(it) },
+            verificacionJuegoResponsable = verificacionJuegoResponsable?.let { mapVerificacionJuegoResponsableToDTO(it) },
             inventariosRegistrados = inventariosRegistrados.mapNotNull  { mapInventarioRegistradoToDTO(it) },
             novedadesRegistradas = novedadesRegistradas.map { mapNovedadRegistradaToDTO(it) },
             firmaActa = firmaActa?.let { mapFirmaActaToDTO(it) },
@@ -162,6 +166,14 @@ class ActaSincronizacionRepository @Inject constructor(
             cuentaFormatoReporteInterno = entity.cuentaFormatoReporteInterno,
             senalesAlerta = entity.senalesAlerta,
             conoceCodigoConducta = entity.conoceCodigoConducta
+        )
+    }
+
+    private fun mapVerificacionJuegoResponsableToDTO(entity: VerificacionJuegoResponsableEntity): VerificacionJuegoResponsableDTO {
+        return VerificacionJuegoResponsableDTO(
+            cuentaTestIdentificacionRiesgos = entity.cuentaTestIdentificacionRiesgos,
+            existenPiezasPublicitarias = entity.existenPiezasPublicitarias,
+            cuentaProgramaJuegoResponsable = entity.cuentaProgramaJuegoResponsable
         )
     }
 

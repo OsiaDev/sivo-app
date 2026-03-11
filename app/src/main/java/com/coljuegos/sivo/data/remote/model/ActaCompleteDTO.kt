@@ -21,6 +21,9 @@ data class ActaCompleteDTO(
     @SerializedName("verificacionSiplaft")
     val verificacionSiplaft: VerificacionSiplaftDTO?,
 
+    @SerializedName("verificacionJuegoResponsable")
+    val verificacionJuegoResponsable: VerificacionJuegoResponsableDTO?,
+
     @SerializedName("inventariosRegistrados")
     val inventariosRegistrados: List<InventarioRegistradoDTO>?,
 
