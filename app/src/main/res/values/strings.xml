@@ -219,6 +219,8 @@
     <string name="registrar_inventario_codigo_pregunta_4">Plan premios</string>
     <string name="registrar_inventario_codigo_pregunta_5">Valor premios</string>
     <string name="registrar_inventario_codigo_pregunta_6">Valor crédito</string>
+    <string name="registrar_inventario_codigo_interno_met">Número interno de la MET - Operador</string>
+    <string name="registrar_inventario_capturar_maquina">Capturar fotos de maquina</string>
     <string name="registrar_inventario_codigo_pregunta_7">Contadores</string>
     <string name="registrar_inventario_contadores_met">Contadores MET</string>
     <string name="registrar_inventario_codigo_pregunta_8">Coin in</string>
@@ -234,6 +236,7 @@
     <string name="registrar_inventario_btn_registrar">Registrar</string>
 
     <string name="zero">$0</string>
+    <string name="zero_int">0</string>
 
     <!-- Sincronización de Maestros -->
     <string name="maestros_sincronizacion_titulo">Sincronización de Maestros</string>

@@ -81,6 +81,7 @@ class RegistrarInventarioViewModel @Inject constructor(
         coinOutSclm: String?,
         jackpotSclm: String?,
         observaciones: String?,
+        numeroInternoMetOperador: String?,
         estado: String
     ) {
         viewModelScope.launch {
@@ -107,6 +108,7 @@ class RegistrarInventarioViewModel @Inject constructor(
                     coinOutSclm = coinOutSclm,
                     jackpotSclm = jackpotSclm,
                     observaciones = observaciones,
+                    numeroInternoMetOperador = numeroInternoMetOperador?.takeIf { it.isNotBlank() },
                     estado = EstadoInventarioEnum.fromString(estado)
                 )
 

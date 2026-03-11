@@ -58,5 +58,6 @@ data class InventarioRegistradoEntity(
 
     // Observaciones
     val observaciones: String? = null,
+    val numeroInternoMetOperador: String? = null,
     val estado: EstadoInventarioEnum = EstadoInventarioEnum.OPERANDO
 )
