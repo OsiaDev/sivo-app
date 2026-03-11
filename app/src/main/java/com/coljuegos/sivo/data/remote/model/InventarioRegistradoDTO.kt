@@ -65,5 +65,9 @@ data class InventarioRegistradoDTO(
     val jackpotSclm: String?,
 
     @SerializedName("observaciones")
-    val observaciones: String?
+    val observaciones: String?,
+
+    @SerializedName("numeroInternoMetOperador")
+    val numeroInternoMetOperador: String?
+
 )

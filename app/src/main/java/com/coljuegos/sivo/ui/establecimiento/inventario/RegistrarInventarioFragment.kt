@@ -318,6 +318,7 @@ class RegistrarInventarioFragment : Fragment() {
             binding.jackpotSclmEditText.setText(registro.jackpotSclm ?: "")
 
             binding.observacionesEditText.setText(registro.observaciones ?: "")
+            binding.numeroInternoMetOperadorEditText.setText(registro.numeroInternoMetOperador ?: "")
             // Cargar estado
             binding.estadoSpinner.setText(EstadoInventarioEnum.toString(registro.estado), false)
 
@@ -380,6 +381,7 @@ class RegistrarInventarioFragment : Fragment() {
                 coinOutSclm = null,
                 jackpotSclm = null,
                 observaciones = observaciones,
+                numeroInternoMetOperador = null,
                 estado = estadoSeleccionado
             )
             return
@@ -416,6 +418,8 @@ class RegistrarInventarioFragment : Fragment() {
 
         val observaciones = binding.observacionesEditText.text?.toString()?.trim()
 
+        val numeroInternoMetOperador = binding.numeroInternoMetOperadorEditText.text?.toString()?.trim()
+
         // Guardar en el ViewModel
         viewModel.guardarInventario(
             codigoApuestaDiferente = codigoApuestaDiferente,
@@ -434,6 +438,7 @@ class RegistrarInventarioFragment : Fragment() {
             coinOutSclm = coinOutSclm,
             jackpotSclm = jackpotSclm,
             observaciones = observaciones,
+            numeroInternoMetOperador = numeroInternoMetOperador,
             estado = estadoSeleccionado
         )
     }
