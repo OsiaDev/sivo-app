@@ -201,7 +201,8 @@ class ActaSincronizacionRepository @Inject constructor(
             coinInSclm = entity.coinInSclm,
             coinOutSclm = entity.coinOutSclm,
             jackpotSclm = entity.jackpotSclm,
-            observaciones = entity.observaciones
+            observaciones = entity.observaciones,
+            numeroInternoMetOperador = entity.numeroInternoMetOperador
         )
     }
 
