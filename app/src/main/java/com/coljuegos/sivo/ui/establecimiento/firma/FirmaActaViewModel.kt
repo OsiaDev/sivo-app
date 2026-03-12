@@ -7,7 +7,9 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.coljuegos.sivo.data.dao.FirmaActaDao
+import com.coljuegos.sivo.data.dao.FuncionarioDao
 import com.coljuegos.sivo.data.entity.FirmaActaEntity
+import com.coljuegos.sivo.utils.SessionManager
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -21,6 +23,8 @@ import javax.inject.Inject
 @HiltViewModel
 class FirmaActaViewModel @Inject constructor(
     private val firmaActaDao: FirmaActaDao,
+    private val funcionarioDao: FuncionarioDao,
+    private val sessionManager: SessionManager,
     savedStateHandle: SavedStateHandle
 ) : ViewModel() {
 
@@ -75,7 +79,7 @@ class FirmaActaViewModel @Inject constructor(
                         _firmaSecundarioBitmap.value = _uiState.value.firmaFiscalizadorSecundario
                         _firmaOperadorBitmap.value = _uiState.value.firmaOperador
                     } else {
-                        _uiState.update { it.copy(isLoading = false) }
+                        preRellenarDesdeFuncionarios()
                     }
                 }
             } catch (e: Exception) {
@@ -85,6 +89,39 @@ class FirmaActaViewModel @Inject constructor(
                         errorMessage = "Error al cargar las firmas: ${e.message}"
                     )
                 }
+            }
+        }
+    }
+
+    private fun preRellenarDesdeFuncionarios() {
+        viewModelScope.launch {
+            try {
+                val session = sessionManager.getCurrentSession()
+                val funcionarios = funcionarioDao.getFuncionariosByActa(actaUuid)
+
+                // Principal: el funcionario cuyo idUsuario coincide con el usuario logueado
+                val principal = funcionarios.find { it.idUsuarioFuncionario == session?.idUserSession }
+
+                // Secundario: el primero que NO sea el principal
+                val secundario = funcionarios.firstOrNull { it.idUsuarioFuncionario != session?.idUserSession }
+
+                _uiState.update {
+                    it.copy(
+                        isLoading = false,
+                        nombreFiscalizadorPrincipal = principal?.nombreFuncionario ?: "",
+                        ccFiscalizadorPrincipal = principal?.identificacionFuncionario ?: "",
+                        cargoFiscalizadorPrincipal = principal?.cargoFuncionario ?: "",
+                        nombreFiscalizadorSecundario = secundario?.nombreFuncionario ?: "",
+                        ccFiscalizadorSecundario = secundario?.identificacionFuncionario ?: "",
+                        cargoFiscalizadorSecundario = secundario?.cargoFuncionario ?: ""
+                    )
+                }
+
+                // Persistir inmediatamente para que doOnTextChanged no lo sobreescriba con vacío
+                saveFirmaActaData()
+
+            } catch (_: Exception) {
+                _uiState.update { it.copy(isLoading = false) }
             }
         }
     }

@@ -38,6 +38,7 @@ class ActaSincronizacionRepository @Inject constructor(
     private val firmaActaDao: FirmaActaDao,
     private val imagenDao: ImagenDao,
     private val municipioDao: MunicipioDao,
+    private val resumenInventarioDao: ResumenInventarioDao,
     private val actaApiService: ApiService,
     private val sessionManager: SessionManager
 ) {
@@ -113,6 +114,7 @@ class ActaSincronizacionRepository @Inject constructor(
         val novedadesRegistradas = novedadRegistradaDao.getNovedadesRegistradasByActaList(acta.uuidActa)
         val firmaActa = firmaActaDao.getFirmaActaByActaUuidSuspend(acta.uuidActa)
         val imagenes = imagenDao.getImagenesByActa(acta.uuidActa)
+        val resumenInventario = resumenInventarioDao.getResumenByActaId(acta.uuidActa)
 
         return ActaCompleteDTO(
             numActa = acta.numActa,
@@ -125,7 +127,8 @@ class ActaSincronizacionRepository @Inject constructor(
             inventariosRegistrados = inventariosRegistrados.mapNotNull  { mapInventarioRegistradoToDTO(it) },
             novedadesRegistradas = novedadesRegistradas.map { mapNovedadRegistradaToDTO(it) },
             firmaActa = firmaActa?.let { mapFirmaActaToDTO(it) },
-            imagenes = imagenes.mapNotNull { mapImagenToDTO(it) }
+            imagenes = imagenes.mapNotNull { mapImagenToDTO(it) },
+            resumenInventario = resumenInventario?.let { ResumenInventarioDTO(notasResumen = it.notasResumen) }
         )
     }
 
