@@ -15,5 +15,7 @@ data class InventarioReportadoUiState(
     val isLoading: Boolean = false,
     val errorMessage: String? = null,
     val inventariosRegistrados: List<InventarioConRegistro> = emptyList(),
+    val filteredInventarios: List<InventarioConRegistro> = emptyList(),
+    val searchQuery: String = "",
     val totalInventariosRegistrados: Int = 0
 )

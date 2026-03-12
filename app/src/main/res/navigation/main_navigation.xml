@@ -217,6 +217,14 @@
             app:nullable="true"
             android:defaultValue="@null" />
 
+        <action
+            android:id="@+id/action_registrarInventarioFragment_to_galleryFragment"
+            app:destination="@id/galleryFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+
     </fragment>
 
     <fragment
@@ -284,7 +292,7 @@
     <fragment
         android:id="@+id/resumenInventarioFragment"
         android:name="com.coljuegos.sivo.ui.establecimiento.resumeninventario.ResumenInventarioFragment"
-        android:label="@string/novedad_reportada_title"
+        android:label="@string/resumen_inventario_title"
         tools:layout="@layout/fragment_inventario_reportado">
 
         <argument
