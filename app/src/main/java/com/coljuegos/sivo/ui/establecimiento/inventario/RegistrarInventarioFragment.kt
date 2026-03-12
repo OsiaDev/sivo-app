@@ -99,6 +99,14 @@ class RegistrarInventarioFragment : Fragment() {
         binding.btnRegistrar.setOnClickListener {
             guardarInventario()
         }
+        binding.btnCapturarMaquina.setOnClickListener {
+            val action = RegistrarInventarioFragmentDirections
+                .actionRegistrarInventarioFragmentToGalleryFragment(
+                    actaUuid = args.actaUuid,
+                    fragmentOrigen = "maquina_${args.inventarioUuid}"
+                )
+            findNavController().navigate(action)
+        }
     }
 
     private fun setupCheckboxListeners() {

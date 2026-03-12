@@ -10,5 +10,7 @@ data class ResumenInventarioUiState(
     val novedadesSinPlaca: Int = 0,           // (3) Novedades sin placa
     val novedadesConPlaca: Int = 0,           // (4) Novedades con placa (total - sin placa)
     val totalInventariosEncontrados: Int = 0, // (5) Fórmula: 1 - 2 + 3 + 4
-    val codigoApuestaDiferente: Int = 0       // (6) Inventarios con código diferente
+    val codigoApuestaDiferente: Int = 0,       // (6) Inventarios con código diferente
+    val notas: String = "",
+    val guardadoExitoso: Boolean = false
 )

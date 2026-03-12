@@ -48,6 +48,7 @@ class InventarioReportadoViewModel @Inject constructor(
                         it.copy(
                             isLoading = false,
                             inventariosRegistrados = soloRegistrados,
+                            filteredInventarios = soloRegistrados,
                             totalInventariosRegistrados = soloRegistrados.size,
                             errorMessage = null
                         )
@@ -84,6 +85,32 @@ class InventarioReportadoViewModel @Inject constructor(
                         errorMessage = "Error al eliminar inventario: ${e.message}"
                     )
                 }
+            }
+        }
+    }
+
+    fun filterInventario(query: String) {
+        val currentState = _uiState.value
+
+        if (query.isEmpty()) {
+            _uiState.update {
+                it.copy(
+                    filteredInventarios = currentState.inventariosRegistrados,
+                    searchQuery = query
+                )
+            }
+        } else {
+            val filtered = currentState.inventariosRegistrados.filter { inventarioConRegistro ->
+                val inv = inventarioConRegistro.inventario
+                inv.nombreMarcaInventario.contains(query, ignoreCase = true) ||
+                        inv.metSerialInventario.contains(query, ignoreCase = true) ||
+                        inv.nucInventario.contains(query, ignoreCase = true)
+            }
+            _uiState.update {
+                it.copy(
+                    filteredInventarios = filtered,
+                    searchQuery = query
+                )
             }
         }
     }

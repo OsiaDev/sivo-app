@@ -1,12 +1,13 @@
 package com.coljuegos.sivo.ui.establecimiento.resumeninventario
 
-import android.graphics.Bitmap
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.coljuegos.sivo.data.dao.InventarioRegistradoDao
 import com.coljuegos.sivo.data.dao.NovedadRegistradaDao
+import com.coljuegos.sivo.data.dao.ResumenInventarioDao
 import com.coljuegos.sivo.data.entity.EstadoInventarioEnum
+import com.coljuegos.sivo.data.entity.ResumenInventarioEntity
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -20,6 +21,7 @@ import javax.inject.Inject
 class ResumenInventarioViewModel @Inject constructor(
     private val inventarioRegistradoDao: InventarioRegistradoDao,
     private val novedadRegistradaDao: NovedadRegistradaDao,
+    private val resumenInventarioDao: ResumenInventarioDao,
     savedStateHandle: SavedStateHandle
 ) : ViewModel() {
 
@@ -28,12 +30,10 @@ class ResumenInventarioViewModel @Inject constructor(
     private val _uiState = MutableStateFlow(ResumenInventarioUiState())
     val uiState: StateFlow<ResumenInventarioUiState> = _uiState.asStateFlow()
 
-    // Firma
-    private val _signatureBitmap = MutableStateFlow<Bitmap?>(null)
-    val signatureBitmap: StateFlow<Bitmap?> = _signatureBitmap.asStateFlow()
 
     init {
         calcularEstadisticas()
+        cargarNotas()
     }
 
     private fun calcularEstadisticas() {
@@ -95,6 +95,31 @@ class ResumenInventarioViewModel @Inject constructor(
                         errorMessage = "Error al calcular estadísticas: ${e.message}"
                     )
                 }
+            }
+        }
+    }
+
+    private fun cargarNotas() {
+        viewModelScope.launch {
+            val resumen = resumenInventarioDao.getResumenByActaId(actaUuid)
+            _uiState.update { it.copy(notas = resumen?.notasResumen ?: "") }
+        }
+    }
+
+    fun guardarNotas(notas: String) {
+        viewModelScope.launch {
+            try {
+                val existing = resumenInventarioDao.getResumenByActaId(actaUuid)
+                if (existing != null) {
+                    resumenInventarioDao.update(existing.copy(notasResumen = notas))
+                } else {
+                    resumenInventarioDao.insert(
+                        ResumenInventarioEntity(uuidActa = actaUuid, notasResumen = notas)
+                    )
+                }
+                _uiState.update { it.copy(notas = notas, guardadoExitoso = true) }
+            } catch (e: Exception) {
+                _uiState.update { it.copy(errorMessage = "Error al guardar notas: ${e.message}") }
             }
         }
     }
