@@ -52,7 +52,10 @@ class MainActivity : AppCompatActivity() {
         val currentDestination = navController.currentDestination
 
         val showCamera = when (currentDestination?.id) {
-            R.id.homeFragment, R.id.galleryFragment -> false
+            R.id.homeFragment, R.id.galleryFragment,
+            R.id.registrarInventarioFragment, R.id.inventarioActaFragment,
+            R.id.inventarioFragment -> false
+
             else -> true
         }
 
@@ -67,14 +70,17 @@ class MainActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.action_camera -> {
-                val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment_content_main)
+                val navHostFragment =
+                    supportFragmentManager.findFragmentById(R.id.nav_host_fragment_content_main)
                 navHostFragment?.childFragmentManager?.setFragmentResult("camera_action", Bundle())
                 true
             }
+
             R.id.action_logout -> {
                 showLogoutConfirmationDialog()
                 true
             }
+
             else -> super.onOptionsItemSelected(item)
         }
     }

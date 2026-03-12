@@ -100,10 +100,13 @@ class RegistrarInventarioFragment : Fragment() {
             guardarInventario()
         }
         binding.btnCapturarMaquina.setOnClickListener {
+            val serial = viewModel.uiState.value.inventario?.metSerialInventario
+                ?.replace(" ", "_")
+                ?: args.inventarioUuid.toString()
             val action = RegistrarInventarioFragmentDirections
                 .actionRegistrarInventarioFragmentToGalleryFragment(
                     actaUuid = args.actaUuid,
-                    fragmentOrigen = "maquina_${args.inventarioUuid}"
+                    fragmentOrigen = "maquina_$serial"
                 )
             findNavController().navigate(action)
         }
