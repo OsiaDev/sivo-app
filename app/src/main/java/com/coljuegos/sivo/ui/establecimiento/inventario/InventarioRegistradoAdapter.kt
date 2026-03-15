@@ -40,6 +40,27 @@ class InventarioRegistradoAdapter(
                 val tieneContadores = item.registro?.contadoresVerificado == true
                 contadoresValue.text = "Contadores: ${if (tieneContadores) "Si" else "No"}"
 
+                // Aplicar color de fondo y borde según el estado de contadores y sus valores
+                val rootCard = binding.root as com.google.android.material.card.MaterialCardView
+                if (tieneContadores) {
+                    val coinIn = item.registro?.coinInMet
+                    val coinOut = item.registro?.coinOutMet
+                    val jackpot = item.registro?.jackpotMet
+                    
+                    if (coinIn.isNullOrEmpty() || coinOut.isNullOrEmpty() || jackpot.isNullOrEmpty()) {
+                        val colorIncompleto = android.graphics.Color.parseColor("#FDECEA")
+                        rootCard.setCardBackgroundColor(colorIncompleto)
+                        rootCard.strokeColor = colorIncompleto
+                    } else {
+                        val colorCompleto = android.graphics.Color.parseColor("#E6F4EA")
+                        rootCard.setCardBackgroundColor(colorCompleto)
+                        rootCard.strokeColor = colorCompleto
+                    }
+                } else {
+                    rootCard.setCardBackgroundColor(androidx.core.content.ContextCompat.getColor(binding.root.context, com.coljuegos.sivo.R.color.acta_background))
+                    rootCard.strokeColor = androidx.core.content.ContextCompat.getColor(binding.root.context, com.coljuegos.sivo.R.color.white)
+                }
+
                 // Configurar botón editar
                 btnEditar.setOnClickListener {
                     onEditClick(item)
