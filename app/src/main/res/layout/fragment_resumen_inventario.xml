@@ -257,7 +257,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/registrar_inventario_codigo_pregunta_14"
+                android:text="@string/resumen_inventario_observaciones_coljuegos"
                 android:textColor="@color/text_title_detail"
                 android:textSize="12sp"
                 app:layout_constraintStart_toStartOf="parent" />
