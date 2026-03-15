@@ -43,7 +43,7 @@ object DatabaseModule {
                     `existenPiezasPublicitarias` TEXT,
                     `cuentaProgramaJuegoResponsable` TEXT,
                     PRIMARY KEY(`uuidVerificacionJuegoResponsable`),
-                    FOREIGN KEY(`uuidActa`) REFERENCES `acta`(`uuidActa`) ON UPDATE NO ACTION ON DELETE CASCADE
+                    FOREIGN KEY(`uuidActa`) REFERENCES `actas`(`uuidActa`) ON UPDATE NO ACTION ON DELETE CASCADE
                 )
             """.trimIndent())
             db.execSQL("CREATE INDEX IF NOT EXISTS `index_verificacion_juego_responsable_uuidVerificacionJuegoResponsable` ON `verificacion_juego_responsable` (`uuidVerificacionJuegoResponsable`)")
@@ -59,7 +59,7 @@ object DatabaseModule {
                     `uuidActa` TEXT NOT NULL,
                     `notasResumen` TEXT NOT NULL,
                     PRIMARY KEY(`uuidResumen`),
-                    FOREIGN KEY(`uuidActa`) REFERENCES `acta`(`uuidActa`) ON UPDATE NO ACTION ON DELETE CASCADE
+                    FOREIGN KEY(`uuidActa`) REFERENCES `actas`(`uuidActa`) ON UPDATE NO ACTION ON DELETE CASCADE
                 )
             """.trimIndent())
             db.execSQL("CREATE UNIQUE INDEX IF NOT EXISTS `index_resumen_inventario_uuidActa` ON `resumen_inventario` (`uuidActa`)")
