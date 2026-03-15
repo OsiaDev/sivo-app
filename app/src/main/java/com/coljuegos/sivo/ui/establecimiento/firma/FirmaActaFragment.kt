@@ -56,6 +56,10 @@ class FirmaActaFragment : Fragment() {
     override fun onResume() {
         super.onResume()
 
+        parentFragmentManager.setFragmentResultListener("camera_action", viewLifecycleOwner) { _, _ ->
+            navigateToGallery()
+        }
+
         // Configurar listener para el resultado de SignatureFragment
         setFragmentResultListener("signature_request") { _, bundle ->
             val signatureSaved = bundle.getBoolean("signature_saved", false)
@@ -70,6 +74,7 @@ class FirmaActaFragment : Fragment() {
 
     override fun onPause() {
         super.onPause()
+        parentFragmentManager.clearFragmentResultListener("camera_action")
         // Remover el listener cuando el fragment no está visible
         setFragmentResultListener("signature_request") { _, _ -> }
     }
@@ -205,6 +210,12 @@ class FirmaActaFragment : Fragment() {
         signatureViewModel.setSignatureType(signatureType.ordinal)
 
         val action = FirmaActaFragmentDirections.actionFirmaActaFragmentToSignatureFragment()
+        findNavController().navigate(action)
+    }
+
+    private fun navigateToGallery() {
+        val action = FirmaActaFragmentDirections
+            .actionFirmaActaFragmentToGalleryFragment(args.actaUuid, "firma_acta")
         findNavController().navigate(action)
     }
 
