@@ -33,9 +33,12 @@ class InventarioRegistradoAdapter(
             with(binding) {
                 val inventario = item.inventario
 
-                // Mostrar marca y serial
+                // Mostrar marca, serial y contadores
                 marcaValue.text = "Marca: ${inventario.nombreMarcaInventario}"
                 serialValue.text = "Serial: ${inventario.metSerialInventario}"
+                
+                val tieneContadores = item.registro?.contadoresVerificado == true
+                contadoresValue.text = "Contadores: ${if (tieneContadores) "Si" else "No"}"
 
                 // Configurar botón editar
                 btnEditar.setOnClickListener {
