@@ -60,7 +60,7 @@ import com.coljuegos.sivo.utils.LocalDateTimeConverter
         NovedadRegistradaEntity::class,
         FirmaActaEntity::class,
         ResumenInventarioEntity::class
-    ], version = 6, exportSchema = false
+    ], version = 7, exportSchema = false
 )
 @TypeConverters(
     BigDecimalConverter::class,

@@ -102,7 +102,12 @@ class ResumenInventarioViewModel @Inject constructor(
     private fun cargarNotas() {
         viewModelScope.launch {
             val resumen = resumenInventarioDao.getResumenByActaId(actaUuid)
-            _uiState.update { it.copy(notas = resumen?.notasResumen ?: "") }
+            _uiState.update { 
+                it.copy(
+                    notas = resumen?.notasResumen ?: "",
+                    observacionesOperador = resumen?.observacionesOperador ?: ""
+                ) 
+            }
         }
     }
 
@@ -120,6 +125,24 @@ class ResumenInventarioViewModel @Inject constructor(
                 _uiState.update { it.copy(notas = notas, guardadoExitoso = true) }
             } catch (e: Exception) {
                 _uiState.update { it.copy(errorMessage = "Error al guardar notas: ${e.message}") }
+            }
+        }
+    }
+
+    fun guardarObservacionesOperador(observacionesOperador: String) {
+        viewModelScope.launch {
+            try {
+                val existing = resumenInventarioDao.getResumenByActaId(actaUuid)
+                if (existing != null) {
+                    resumenInventarioDao.update(existing.copy(observacionesOperador = observacionesOperador))
+                } else {
+                    resumenInventarioDao.insert(
+                        ResumenInventarioEntity(uuidActa = actaUuid, observacionesOperador = observacionesOperador)
+                    )
+                }
+                _uiState.update { it.copy(observacionesOperador = observacionesOperador, guardadoExitoso = true) }
+            } catch (e: Exception) {
+                _uiState.update { it.copy(errorMessage = "Error al guardar observaciones del operador: ${e.message}") }
             }
         }
     }

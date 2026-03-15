@@ -128,7 +128,12 @@ class ActaSincronizacionRepository @Inject constructor(
             novedadesRegistradas = novedadesRegistradas.map { mapNovedadRegistradaToDTO(it) },
             firmaActa = firmaActa?.let { mapFirmaActaToDTO(it) },
             imagenes = imagenes.mapNotNull { mapImagenToDTO(it) },
-            resumenInventario = resumenInventario?.let { ResumenInventarioDTO(notasResumen = it.notasResumen) }
+            resumenInventario = resumenInventario?.let { 
+                ResumenInventarioDTO(
+                    notasResumen = it.notasResumen,
+                    observacionesOperador = it.observacionesOperador
+                ) 
+            }
         )
     }
 

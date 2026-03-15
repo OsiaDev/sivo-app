@@ -26,16 +26,26 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
+import androidx.room.migration.Migration
+import androidx.sqlite.db.SupportSQLiteDatabase
+
 @Module
 @InstallIn(SingletonComponent::class)
 object DatabaseModule {
+
+    private val MIGRATION_6_7 = object : Migration(6, 7) {
+        override fun migrate(db: SupportSQLiteDatabase) {
+            db.execSQL("ALTER TABLE resumen_inventario ADD COLUMN observacionesOperador TEXT")
+        }
+    }
 
     @Provides
     @Singleton
     fun provideAppDatabase(@ApplicationContext context: Context): SivoDatabase {
         return Room.databaseBuilder(
             context, SivoDatabase::class.java, "sivo_database"
-        ).fallbackToDestructiveMigration(false)
+        ).addMigrations(MIGRATION_6_7)
+         .fallbackToDestructiveMigration(false)
             .build()
     }
 

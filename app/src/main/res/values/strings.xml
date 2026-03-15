@@ -297,6 +297,8 @@
     <string name="resumen_inventario_total_encontrados">Total inventarios encontrados:</string>
     <string name="resumen_inventario_codigo_diferente">Código apuesta diferente:</string>
     <string name="resumen_inventario_observaciones_coljuegos">Observaciones y/o hallazgos de los trabajadores oficiales y/o contratistas de Coljuegos</string>
+    <string name="resumen_inventario_observaciones_operador">Observaciones del operador</string>
+    <string name="resumen_inventario_observaciones_operador_hint">Escriba las observaciones del operador aquí (opcional)</string>
     <string name="resumen_inventario_anterior">Anterior</string>
     <string name="resumen_inventario_siguiente">Siguiente</string>
 

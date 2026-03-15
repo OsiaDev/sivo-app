@@ -280,7 +280,54 @@
                 android:layout_height="wrap_content"
                 android:drawablePadding="12dp"
                 android:inputType="textMultiLine"
-                android:lines="3"
+                android:lines="5"
+                android:padding="15dp"
+                android:textColor="@color/input_text_color"
+                android:textSize="16sp" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- Título Observaciones Operador -->
+        <LinearLayout
+            android:id="@+id/layoutTextoObservacionOperadorTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/observacionesInputLayout">
+
+            <TextView
+                android:id="@+id/observacionOperadorTitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/resumen_inventario_observaciones_operador"
+                android:textColor="@color/text_title_detail"
+                android:textSize="12sp"
+                app:layout_constraintStart_toStartOf="parent" />
+
+        </LinearLayout>
+
+        <!-- Input Observaciones Operador -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/observacionesOperadorInputLayout"
+            style="@style/Form.InputLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/registrar_inventario_codigo_valor"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layoutTextoObservacionOperadorTitle">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/observacionesOperadorEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawablePadding="12dp"
+                android:inputType="textMultiLine"
+                android:lines="5"
                 android:padding="15dp"
                 android:textColor="@color/input_text_color"
                 android:textSize="16sp" />
@@ -297,7 +344,7 @@
             android:weightSum="2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/observacionesInputLayout">
+            app:layout_constraintTop_toBottomOf="@id/observacionesOperadorInputLayout">
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnAnterior"

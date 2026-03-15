@@ -20,5 +20,6 @@ data class ResumenInventarioEntity(
     @PrimaryKey
     val uuidResumen: UUID = UUID.randomUUID(),
     val uuidActa: UUID,
-    val notasResumen: String = ""
+    val notasResumen: String = "",
+    val observacionesOperador: String? = null
 )

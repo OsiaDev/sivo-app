@@ -5,6 +5,9 @@ import com.google.gson.annotations.SerializedName
 data class ResumenInventarioDTO(
 
     @SerializedName("notasResumen")
-    val notasResumen: String?
+    val notasResumen: String?,
+
+    @SerializedName("observacionesOperador")
+    val observacionesOperador: String?
 
 )
