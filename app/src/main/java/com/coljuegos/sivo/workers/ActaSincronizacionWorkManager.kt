@@ -51,6 +51,11 @@ class ActaSincronizacionWorkManager @Inject constructor(
 
         val sincronizacionRequest = OneTimeWorkRequestBuilder<ActaSincronizacionWorker>()
             .setConstraints(constraints)
+            .setBackoffCriteria(
+                BackoffPolicy.EXPONENTIAL,
+                WorkRequest.MIN_BACKOFF_MILLIS,
+                TimeUnit.MILLISECONDS
+            )
             .build()
 
         workManager.enqueueUniqueWork(
