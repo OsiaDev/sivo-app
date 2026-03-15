@@ -48,11 +48,20 @@ class ResumenInventarioFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-
+        parentFragmentManager.setFragmentResultListener("camera_action", viewLifecycleOwner) { _, _ ->
+            navigateToGallery()
+        }
     }
 
     override fun onPause() {
         super.onPause()
+        parentFragmentManager.clearFragmentResultListener("camera_action")
+    }
+
+    private fun navigateToGallery() {
+        val action = ResumenInventarioFragmentDirections
+            .actionResumenInventarioFragmentToGalleryFragment(args.actaUuid, "resumen_inventario")
+        findNavController().navigate(action)
     }
 
     private fun setupObservers() {
