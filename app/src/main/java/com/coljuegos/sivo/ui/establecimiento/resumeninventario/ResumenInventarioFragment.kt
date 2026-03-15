@@ -82,11 +82,26 @@ class ResumenInventarioFragment : Fragment() {
             Snackbar.make(binding.root, errorMsg, Snackbar.LENGTH_LONG).show()
             viewModel.clearError()
         }
+
+        if (binding.observacionesEditText.text.toString() != state.notas) {
+            binding.observacionesEditText.setText(state.notas)
+        }
+
+        if (binding.observacionesOperadorEditText.text.toString() != state.observacionesOperador) {
+            binding.observacionesOperadorEditText.setText(state.observacionesOperador)
+        }
     }
 
     private fun setupListeners() {
         binding.observacionesEditText.doOnTextChanged { text, _, _, _ ->
-            viewModel.guardarNotas(text?.toString() ?: "")
+            if (binding.observacionesEditText.hasFocus()) {
+                viewModel.guardarNotas(text?.toString() ?: "")
+            }
+        }
+        binding.observacionesOperadorEditText.doOnTextChanged { text, _, _, _ ->
+            if (binding.observacionesOperadorEditText.hasFocus()) {
+                viewModel.guardarObservacionesOperador(text?.toString() ?: "")
+            }
         }
         binding.btnAnterior.setOnClickListener {
             findNavController().navigateUp()

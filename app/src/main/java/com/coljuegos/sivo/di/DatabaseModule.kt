@@ -12,6 +12,7 @@ import com.coljuegos.sivo.data.dao.InventarioDao
 import com.coljuegos.sivo.data.dao.InventarioRegistradoDao
 import com.coljuegos.sivo.data.dao.MunicipioDao
 import com.coljuegos.sivo.data.dao.NovedadRegistradaDao
+import com.coljuegos.sivo.data.dao.ResumenInventarioDao
 import com.coljuegos.sivo.data.dao.SessionDao
 import com.coljuegos.sivo.data.dao.TipoApuestaDao
 import com.coljuegos.sivo.data.dao.VerificacionContractualDao
@@ -25,16 +26,59 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
+import androidx.room.migration.Migration
+import androidx.sqlite.db.SupportSQLiteDatabase
+
 @Module
 @InstallIn(SingletonComponent::class)
 object DatabaseModule {
+
+    private val MIGRATION_4_5 = object : Migration(4, 5) {
+        override fun migrate(db: SupportSQLiteDatabase) {
+            db.execSQL("""
+                CREATE TABLE IF NOT EXISTS `verificacion_juego_responsable` (
+                    `uuidVerificacionJuegoResponsable` TEXT NOT NULL,
+                    `uuidActa` TEXT NOT NULL,
+                    `cuentaTestIdentificacionRiesgos` TEXT,
+                    `existenPiezasPublicitarias` TEXT,
+                    `cuentaProgramaJuegoResponsable` TEXT,
+                    PRIMARY KEY(`uuidVerificacionJuegoResponsable`),
+                    FOREIGN KEY(`uuidActa`) REFERENCES `acta`(`uuidActa`) ON UPDATE NO ACTION ON DELETE CASCADE
+                )
+            """.trimIndent())
+            db.execSQL("CREATE INDEX IF NOT EXISTS `index_verificacion_juego_responsable_uuidVerificacionJuegoResponsable` ON `verificacion_juego_responsable` (`uuidVerificacionJuegoResponsable`)")
+            db.execSQL("CREATE UNIQUE INDEX IF NOT EXISTS `index_verificacion_juego_responsable_uuidActa` ON `verificacion_juego_responsable` (`uuidActa`)")
+        }
+    }
+
+    private val MIGRATION_5_6 = object : Migration(5, 6) {
+        override fun migrate(db: SupportSQLiteDatabase) {
+            db.execSQL("""
+                CREATE TABLE IF NOT EXISTS `resumen_inventario` (
+                    `uuidResumen` TEXT NOT NULL,
+                    `uuidActa` TEXT NOT NULL,
+                    `notasResumen` TEXT NOT NULL,
+                    PRIMARY KEY(`uuidResumen`),
+                    FOREIGN KEY(`uuidActa`) REFERENCES `acta`(`uuidActa`) ON UPDATE NO ACTION ON DELETE CASCADE
+                )
+            """.trimIndent())
+            db.execSQL("CREATE UNIQUE INDEX IF NOT EXISTS `index_resumen_inventario_uuidActa` ON `resumen_inventario` (`uuidActa`)")
+        }
+    }
+
+    private val MIGRATION_6_7 = object : Migration(6, 7) {
+        override fun migrate(db: SupportSQLiteDatabase) {
+            db.execSQL("ALTER TABLE resumen_inventario ADD COLUMN observacionesOperador TEXT")
+        }
+    }
 
     @Provides
     @Singleton
     fun provideAppDatabase(@ApplicationContext context: Context): SivoDatabase {
         return Room.databaseBuilder(
             context, SivoDatabase::class.java, "sivo_database"
-        ).fallbackToDestructiveMigration(false)
+        ).addMigrations(MIGRATION_4_5, MIGRATION_5_6, MIGRATION_6_7)
+         .fallbackToDestructiveMigration(false)
             .build()
     }
 
@@ -82,5 +126,8 @@ object DatabaseModule {
 
     @Provides
     fun provideFirmaActaDao(database: SivoDatabase): FirmaActaDao = database.firmaActaDao()
+
+    @Provides
+    fun provideResumenInventarioDao(database: SivoDatabase): ResumenInventarioDao = database.resumenInventarioDao()
 
 }

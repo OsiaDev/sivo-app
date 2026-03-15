@@ -87,7 +87,12 @@ class GaleriaFragment : BaseCameraFragment() {
             "verificacion_siplaft" -> getString(R.string.galeria_fragment_siplaft)
             "inventario_reportado" -> getString(R.string.galeria_fragment_inventario)
             "foto_identificacion" -> getString(R.string.galeria_fragment_identificacion)
-            else -> getString(R.string.galeria_titulo)
+            "verificacion_responsable" -> getString(R.string.galeria_fragment_responsables)
+            else -> if (args.fragmentOrigen.startsWith("maquina_")) {
+                args.fragmentOrigen
+            } else {
+                getString(R.string.galeria_titulo)
+            }
         }
     }
 

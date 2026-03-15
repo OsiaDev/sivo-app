@@ -44,12 +44,22 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:gravity="end"
                 android:lines="1"
                 android:textColor="@color/acta_text_title"
                 android:textSize="14sp"
                 android:textStyle="bold"
                 tools:text="Serial: 123456789" />
+
+            <TextView
+                android:id="@+id/contadoresValue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:lines="1"
+                android:textColor="@color/acta_text_title"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                tools:text="Contadores: Si" />
 
         </LinearLayout>
 

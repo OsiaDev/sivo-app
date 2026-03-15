@@ -171,9 +171,9 @@ class InventarioReportadoFragment : Fragment() {
 
     private fun showDeleteConfirmationDialog(inventarioRegistradoUuid: UUID) {
         MaterialAlertDialogBuilder(requireContext())
-            .setTitle("Eliminar inventario")
-            .setMessage("¿Está seguro que desea eliminar este inventario registrado?")
-            .setPositiveButton("Eliminar") { _, _ ->
+            .setTitle("Retirar revisión")
+            .setMessage("¿Está seguro que desea retirar la revisión de este inventario?")
+            .setPositiveButton("Retirar") { _, _ ->
                 viewModel.eliminarInventarioRegistrado(inventarioRegistradoUuid)
             }
             .setNegativeButton("Cancelar", null)

@@ -41,8 +41,10 @@ class InventarioReportadoViewModel @Inject constructor(
                         )
                     }
 
-                    // Filtrar solo los que están registrados
-                    val soloRegistrados = inventariosConRegistro.filter { it.registro != null }
+                    // Filtrar solo los que están registrados y organizarlos: contadores true primero
+                    val soloRegistrados = inventariosConRegistro
+                        .filter { it.registro != null }
+                        .sortedByDescending { it.registro?.contadoresVerificado == true }
 
                     _uiState.update {
                         it.copy(

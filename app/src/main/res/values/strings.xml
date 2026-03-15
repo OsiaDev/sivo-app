@@ -133,6 +133,7 @@
     <string name="galeria_fragment_siplaft">Verificación SIPLAFT</string>
     <string name="galeria_fragment_inventario">Inventario Reportado</string>
     <string name="galeria_fragment_identificacion">Documento de Identidad</string>
+    <string name="galeria_fragment_responsables">Juegos Responsables</string>
 
     <!-- Verificación SIPLAFT -->
     <string name="verificacion_siplaft_title">Verificación SIPLAFT</string>
@@ -156,7 +157,7 @@
     <string name="verificacion_siplaft_validacion_campos_incompletos">Por favor complete todos los campos visibles antes de continuar</string>
 
     <!-- Verificación Juego Responsable -->
-    <string name="verificacion_juego_responsable_title">Verificación Juego Responsable</string>
+    <string name="verificacion_juego_responsable_title">Juego Responsable</string>
     <string name="juego_responsable_subtitle">3. Verificación juego responsable</string>
     <string name="juego_responsable_pregunta1">¿Cuenta con el test de identificación de factores de riesgo?</string>
     <string name="juego_responsable_pregunta2">¿Existen visibles las piezas publicitarias de Juego Responsable?</string>
@@ -295,6 +296,9 @@
     <string name="resumen_inventario_novedades_con_placa">Novedades con placa:</string>
     <string name="resumen_inventario_total_encontrados">Total inventarios encontrados:</string>
     <string name="resumen_inventario_codigo_diferente">Código apuesta diferente:</string>
+    <string name="resumen_inventario_observaciones_coljuegos">Observaciones y/o hallazgos de los trabajadores oficiales y/o contratistas de Coljuegos</string>
+    <string name="resumen_inventario_observaciones_operador">Observaciones del operador</string>
+    <string name="resumen_inventario_observaciones_operador_hint">Escriba las observaciones del operador aquí (opcional)</string>
     <string name="resumen_inventario_anterior">Anterior</string>
     <string name="resumen_inventario_siguiente">Siguiente</string>
 
