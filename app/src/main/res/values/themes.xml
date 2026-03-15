@@ -120,6 +120,14 @@
         <item name="fontFamily">@font/work_sans_regular</item>
     </style>
 
+    <style name="CustomTabTextAppearance" parent="TextAppearance.Design.Tab">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="fontFamily">@font/work_sans_regular</item>
+    </style>
+
     <!-- Extended FloatingActionButton Style -->
     <style name="Widget.ColjuegosSIVO.ExtendedFloatingActionButton" parent="Widget.Material3.ExtendedFloatingActionButton.Primary">
         <item name="android:layout_width">wrap_content</item>

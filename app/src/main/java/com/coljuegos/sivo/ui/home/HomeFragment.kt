@@ -11,6 +11,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.coljuegos.sivo.databinding.FragmentHomeBinding
 import com.google.android.material.snackbar.Snackbar
+import com.google.android.material.tabs.TabLayoutMediator
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -23,7 +24,7 @@ class HomeFragment : Fragment() {
 
     private val viewModel: HomeViewModel by viewModels()
 
-    private lateinit var actaAdapter: ActaAdapter
+    private lateinit var pagerAdapter: ActasPagerAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -50,15 +51,27 @@ class HomeFragment : Fragment() {
     }
 
     private fun setupRecyclerView() {
-        actaAdapter = ActaAdapter { acta ->
-            val action = HomeFragmentDirections.actionHomeFragmentToActaVisitaFragment(acta.uuidActa)
-            findNavController().navigate(action)
-        }
+        pagerAdapter = ActasPagerAdapter(
+            onActaPendienteClick = { acta ->
+                val action = HomeFragmentDirections.actionHomeFragmentToActaVisitaFragment(acta.uuidActa)
+                findNavController().navigate(action)
+            },
+            onActaCompletadaClick = { acta ->
+                // Or wherever completed actas should navigate, maybe a read-only view or ResumenActaFragment
+                val action = HomeFragmentDirections.actionHomeFragmentToResumenActaFragment(acta.uuidActa)
+                findNavController().navigate(action)
+            }
+        )
 
-        binding.recyclerViewLoans.apply {
-            adapter = actaAdapter
-            layoutManager = LinearLayoutManager(requireContext())
-        }
+        binding.viewPager2.adapter = pagerAdapter
+
+        TabLayoutMediator(binding.tabLayout, binding.viewPager2) { tab, position ->
+            tab.text = when (position) {
+                0 -> "Pendientes"
+                1 -> "Completadas"
+                else -> ""
+            }
+        }.attach()
     }
 
     private fun setupSwipeRefresh() {
@@ -113,8 +126,9 @@ class HomeFragment : Fragment() {
         // Actualizar nombre del usuario
         binding.tvFullName.text = uiState.userFullName ?: "Usuario"
 
-        // Actualizar lista de actas
-        actaAdapter.submitList(uiState.actas)
+        // Actualizar listas de actas
+        pagerAdapter.submitPendientes(uiState.pendientes)
+        pagerAdapter.submitCompletadas(uiState.completadas)
 
         // Mostrar mensaje de error si existe
         uiState.errorMessage?.let { errorMsg ->
