@@ -33,6 +33,39 @@ import androidx.sqlite.db.SupportSQLiteDatabase
 @InstallIn(SingletonComponent::class)
 object DatabaseModule {
 
+    private val MIGRATION_4_5 = object : Migration(4, 5) {
+        override fun migrate(db: SupportSQLiteDatabase) {
+            db.execSQL("""
+                CREATE TABLE IF NOT EXISTS `verificacion_juego_responsable` (
+                    `uuidVerificacionJuegoResponsable` TEXT NOT NULL,
+                    `uuidActa` TEXT NOT NULL,
+                    `cuentaTestIdentificacionRiesgos` TEXT,
+                    `existenPiezasPublicitarias` TEXT,
+                    `cuentaProgramaJuegoResponsable` TEXT,
+                    PRIMARY KEY(`uuidVerificacionJuegoResponsable`),
+                    FOREIGN KEY(`uuidActa`) REFERENCES `acta`(`uuidActa`) ON UPDATE NO ACTION ON DELETE CASCADE
+                )
+            """.trimIndent())
+            db.execSQL("CREATE INDEX IF NOT EXISTS `index_verificacion_juego_responsable_uuidVerificacionJuegoResponsable` ON `verificacion_juego_responsable` (`uuidVerificacionJuegoResponsable`)")
+            db.execSQL("CREATE UNIQUE INDEX IF NOT EXISTS `index_verificacion_juego_responsable_uuidActa` ON `verificacion_juego_responsable` (`uuidActa`)")
+        }
+    }
+
+    private val MIGRATION_5_6 = object : Migration(5, 6) {
+        override fun migrate(db: SupportSQLiteDatabase) {
+            db.execSQL("""
+                CREATE TABLE IF NOT EXISTS `resumen_inventario` (
+                    `uuidResumen` TEXT NOT NULL,
+                    `uuidActa` TEXT NOT NULL,
+                    `notasResumen` TEXT NOT NULL,
+                    PRIMARY KEY(`uuidResumen`),
+                    FOREIGN KEY(`uuidActa`) REFERENCES `acta`(`uuidActa`) ON UPDATE NO ACTION ON DELETE CASCADE
+                )
+            """.trimIndent())
+            db.execSQL("CREATE UNIQUE INDEX IF NOT EXISTS `index_resumen_inventario_uuidActa` ON `resumen_inventario` (`uuidActa`)")
+        }
+    }
+
     private val MIGRATION_6_7 = object : Migration(6, 7) {
         override fun migrate(db: SupportSQLiteDatabase) {
             db.execSQL("ALTER TABLE resumen_inventario ADD COLUMN observacionesOperador TEXT")
@@ -44,7 +77,7 @@ object DatabaseModule {
     fun provideAppDatabase(@ApplicationContext context: Context): SivoDatabase {
         return Room.databaseBuilder(
             context, SivoDatabase::class.java, "sivo_database"
-        ).addMigrations(MIGRATION_6_7)
+        ).addMigrations(MIGRATION_4_5, MIGRATION_5_6, MIGRATION_6_7)
          .fallbackToDestructiveMigration(false)
             .build()
     }
