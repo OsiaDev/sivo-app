@@ -2,6 +2,7 @@ package com.coljuegos.sivo.data.repository
 
 import com.coljuegos.sivo.data.dao.ActaDao
 import com.coljuegos.sivo.data.dao.FuncionarioDao
+import com.coljuegos.sivo.data.dao.ImagenDao
 import com.coljuegos.sivo.data.dao.InventarioDao
 import com.coljuegos.sivo.data.entity.ActaEntity
 import com.coljuegos.sivo.data.entity.ActaStateEnum
@@ -11,6 +12,7 @@ import com.coljuegos.sivo.data.remote.api.ApiService
 import com.coljuegos.sivo.data.remote.model.ActaResponseDTO
 import com.coljuegos.sivo.utils.NetworkResult
 import com.coljuegos.sivo.utils.SessionManager
+import com.coljuegos.sivo.ui.home.ActaCompletadaUiModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import java.time.LocalDate
@@ -25,6 +27,7 @@ class ActasRepository @Inject constructor(
     private val actaDao: ActaDao,
     private val funcionarioDao: FuncionarioDao,
     private val inventarioDao: InventarioDao,
+    private val imagenDao: ImagenDao,
     private val sessionManager: SessionManager
 ) {
 
@@ -93,7 +96,7 @@ class ActasRepository @Inject constructor(
         }
     }
 
-    fun getCompletedActasByCurrentUser(): Flow<NetworkResult<List<ActaEntity>>> = flow {
+    fun getCompletedActasByCurrentUser(): Flow<NetworkResult<List<ActaCompletadaUiModel>>> = flow {
         try {
             emit(NetworkResult.Loading())
 
@@ -109,8 +112,21 @@ class ActasRepository @Inject constructor(
                 it.stateActa == ActaStateEnum.COMPLETE || 
                 it.stateActa == ActaStateEnum.SINCRONIZADO
             }
+
+            val uiModels = completedActas.map { acta ->
+                val hasPendingImages = if (acta.stateActa == ActaStateEnum.SINCRONIZADO) {
+                    imagenDao.getUnsynchronizedImagenesCountByActa(acta.uuidActa) > 0
+                } else {
+                    true
+                }
+
+                ActaCompletadaUiModel(
+                    acta = acta,
+                    todoSincronizado = acta.stateActa == ActaStateEnum.SINCRONIZADO && !hasPendingImages
+                )
+            }
             
-            emit(NetworkResult.Success(completedActas))
+            emit(NetworkResult.Success(uiModels))
         } catch (e: Exception) {
             emit(NetworkResult.Error("Error recuperando actas completadas: ${e.message}"))
         }

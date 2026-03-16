@@ -6,6 +6,7 @@ import com.coljuegos.sivo.data.remote.model.ActaSincronizacionResponse
 import com.coljuegos.sivo.data.remote.model.LoginRequestDTO
 import com.coljuegos.sivo.data.remote.model.LoginResponseDTO
 import com.coljuegos.sivo.data.remote.model.MaestrosResponseDTO
+import com.coljuegos.sivo.data.remote.model.UploadImagenActaDTO
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET

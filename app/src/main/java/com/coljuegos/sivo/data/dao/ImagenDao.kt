@@ -48,4 +48,7 @@ interface ImagenDao {
     @Query("SELECT COUNT(*) FROM imagenes WHERE uuidActa = :uuidActa")
     suspend fun getImagenesCountByActa(uuidActa: UUID): Int
 
+    @Query("SELECT COUNT(*) FROM imagenes WHERE uuidActa = :uuidActa AND isSincronizada = 0")
+    suspend fun getUnsynchronizedImagenesCountByActa(uuidActa: UUID): Int
+
 }
