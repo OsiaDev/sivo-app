@@ -41,6 +41,11 @@ class ResumenSincronizacionFragment : Fragment() {
     }
 
     private fun setupCardListeners() {
+        binding.cardActa.setOnClickListener {
+            val action = ResumenSincronizacionFragmentDirections
+                .actionResumenSincronizacionToActaVisita(args.actaUuid)
+            findNavController().navigate(action)
+        }
         binding.cardSincronizadas.setOnClickListener {
             navigateToGaleria("CARGADAS")
         }

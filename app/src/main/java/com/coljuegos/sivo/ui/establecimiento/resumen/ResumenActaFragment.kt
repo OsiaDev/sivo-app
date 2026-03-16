@@ -106,7 +106,12 @@ class ResumenActaFragment : Fragment() {
         }
 
         binding.btnFinalizar.setOnClickListener {
-            mostrarDialogoConfirmacion()
+            val currentState = viewModel.uiState.value
+            if (currentState.estadoActa == ActaStateEnum.COMPLETE) {
+                viewModel.reintentarSincronizacion()
+            } else {
+                mostrarDialogoConfirmacion()
+            }
         }
     }
 
@@ -149,8 +154,8 @@ class ResumenActaFragment : Fragment() {
             binding.ubicacionText.text = getString(R.string.resumen_acta_obteniendo_ubicacion)
         }
 
-        // Deshabilitar botón finalizar si ya está completo o sincronizado
-        binding.btnFinalizar.isEnabled = uiState.estadoActa == ActaStateEnum.ACTIVE &&
+        // Deshabilitar botón finalizar si ya está sincronizado
+        binding.btnFinalizar.isEnabled = (uiState.estadoActa == ActaStateEnum.ACTIVE || uiState.estadoActa == ActaStateEnum.COMPLETE) &&
                 !uiState.isLoading &&
                 !uiState.isSincronizando
 
