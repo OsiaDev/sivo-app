@@ -31,4 +31,10 @@ interface ApiService {
         @Body actaCompleteDTO: ActaCompleteDTO
     ): Response<ActaSincronizacionResponse>
 
+    @POST("acta/uploadImage")
+    suspend fun uploadImage(
+        @Header("Authorization") authorization: String,
+        @Body uploadImagenActaDTO: UploadImagenActaDTO
+    ): Response<ActaSincronizacionResponse>
+
 }

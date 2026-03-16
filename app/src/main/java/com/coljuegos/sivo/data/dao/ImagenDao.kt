@@ -21,6 +21,9 @@ interface ImagenDao {
     @Query("SELECT * FROM imagenes WHERE uuidActa = :uuidActa ORDER BY fechaCaptura DESC")
     suspend fun getImagenesByActa(uuidActa: UUID): List<ImagenEntity>
 
+    @Query("SELECT * FROM imagenes WHERE isSincronizada = 0 ORDER BY fechaCaptura ASC")
+    suspend fun getImagenesNoSincronizadas(): List<ImagenEntity>
+
     @Query("SELECT * FROM imagenes WHERE uuidActa = :uuidActa ORDER BY fechaCaptura DESC")
     fun getImagenesByActaFlow(uuidActa: UUID): Flow<List<ImagenEntity>>
 
@@ -38,6 +41,9 @@ interface ImagenDao {
 
     @Query("DELETE FROM imagenes WHERE uuidActa = :uuidActa")
     suspend fun deleteImagenesByActa(uuidActa: UUID)
+
+    @Query("UPDATE imagenes SET isSincronizada = 1 WHERE uuidImagen = :uuidImagen")
+    suspend fun marcarComoSincronizada(uuidImagen: UUID)
 
     @Query("SELECT COUNT(*) FROM imagenes WHERE uuidActa = :uuidActa")
     suspend fun getImagenesCountByActa(uuidActa: UUID): Int
