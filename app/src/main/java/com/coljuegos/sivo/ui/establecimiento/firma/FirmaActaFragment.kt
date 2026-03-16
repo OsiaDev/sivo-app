@@ -1,5 +1,6 @@
 package com.coljuegos.sivo.ui.establecimiento.firma
 
+import android.content.pm.ActivityInfo
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -55,6 +56,8 @@ class FirmaActaFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
+
+        activity?.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED
 
         parentFragmentManager.setFragmentResultListener("camera_action", viewLifecycleOwner) { _, _ ->
             navigateToGallery()
@@ -207,6 +210,8 @@ class FirmaActaFragment : Fragment() {
 
     private fun navigateToSignatureFragment(signatureType: SignatureType) {
         // Guardar el tipo de firma en el ViewModel compartido
+        activity?.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_LOCKED
+
         signatureViewModel.setSignatureType(signatureType.ordinal)
 
         val action = FirmaActaFragmentDirections.actionFirmaActaFragmentToSignatureFragment()
