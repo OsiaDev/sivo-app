@@ -36,7 +36,29 @@ class ResumenSincronizacionFragment : Fragment() {
 
         viewModel.cargarDatos(args.actaUuid)
 
+        setupCardListeners()
         observeViewModel()
+    }
+
+    private fun setupCardListeners() {
+        binding.cardSincronizadas.setOnClickListener {
+            navigateToGaleria("CARGADAS")
+        }
+        binding.cardPendientes.setOnClickListener {
+            navigateToGaleria("PENDIENTES")
+        }
+        binding.cardErrores.setOnClickListener {
+            navigateToGaleria("ERRORES")
+        }
+    }
+
+    private fun navigateToGaleria(filtro: String) {
+        val action = ResumenSincronizacionFragmentDirections
+            .actionResumenSincronizacionFragmentToGaleriaImagenesFragment(
+                args.actaUuid.toString(),
+                filtro
+            )
+        findNavController().navigate(action)
     }
 
     private fun observeViewModel() {

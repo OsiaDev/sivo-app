@@ -60,6 +60,18 @@ interface ImagenDao {
     @Query("SELECT COUNT(*) FROM imagenes WHERE uuidActa = :uuidActa AND isSincronizada = 0 AND ultimoError IS NULL")
     suspend fun getPendingImagenesCountByActa(uuidActa: UUID): Int
 
+    @Query("SELECT * FROM imagenes WHERE uuidActa = :uuidActa AND isSincronizada = 0 AND ultimoError IS NULL ORDER BY fechaCaptura DESC")
+    fun getPendingImagenesByActaFlow(uuidActa: UUID): Flow<List<ImagenEntity>>
+
+    @Query("SELECT * FROM imagenes WHERE uuidActa = :uuidActa AND isSincronizada = 1 ORDER BY fechaCaptura DESC")
+    fun getSynchronizedImagenesByActaFlow(uuidActa: UUID): Flow<List<ImagenEntity>>
+
+    @Query("SELECT * FROM imagenes WHERE uuidActa = :uuidActa AND isSincronizada = 0 AND ultimoError IS NOT NULL ORDER BY fechaCaptura DESC")
+    fun getFailedImagenesByActaFlow(uuidActa: UUID): Flow<List<ImagenEntity>>
+
+    @Query("UPDATE imagenes SET ultimoError = NULL WHERE uuidActa = :uuidActa AND isSincronizada = 0")
+    suspend fun clearErrorsByActa(uuidActa: UUID)
+
     @Query("UPDATE imagenes SET ultimoError = :error WHERE uuidImagen = :uuidImagen")
     suspend fun setError(uuidImagen: UUID, error: String?)
 

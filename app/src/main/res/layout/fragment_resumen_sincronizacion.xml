@@ -78,6 +78,7 @@
 
             <!-- Card Sincronizadas -->
             <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardSincronizadas"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="16dp"
@@ -134,6 +135,7 @@
 
             <!-- Card Pendientes -->
             <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardPendientes"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="16dp"
@@ -190,6 +192,7 @@
 
             <!-- Card Errores -->
             <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardErrores"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="16dp"
