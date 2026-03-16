@@ -6,6 +6,7 @@ import android.util.Base64
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.coljuegos.sivo.data.dao.ActaVisitaDao
 import com.coljuegos.sivo.data.dao.FirmaActaDao
 import com.coljuegos.sivo.data.dao.FuncionarioDao
 import com.coljuegos.sivo.data.entity.FirmaActaEntity
@@ -24,6 +25,7 @@ import javax.inject.Inject
 class FirmaActaViewModel @Inject constructor(
     private val firmaActaDao: FirmaActaDao,
     private val funcionarioDao: FuncionarioDao,
+    private val actaVisitaDao: ActaVisitaDao,
     private val sessionManager: SessionManager,
     savedStateHandle: SavedStateHandle
 ) : ViewModel() {
@@ -54,6 +56,20 @@ class FirmaActaViewModel @Inject constructor(
             try {
                 firmaActaDao.getFirmaActaByActaUuid(actaUuid).collect { firmaActa ->
                     if (firmaActa != null) {
+                        var opNombre = firmaActa.nombreOperador ?: ""
+                        var opCc = firmaActa.ccOperador ?: ""
+                        var opCargo = firmaActa.cargoOperador ?: ""
+                        
+                        // Si ya existe registro de firma, pero el operador esta vacio, intentamos precargarlo
+                        if (opNombre.isBlank() && opCc.isBlank()) {
+                            val actaVisita = actaVisitaDao.getActaVisitaByActaId(actaUuid)
+                            if (actaVisita != null) {
+                                opNombre = actaVisita.nombrePresente ?: ""
+                                opCc = actaVisita.identificacionPresente ?: ""
+                                opCargo = actaVisita.cargoPresente ?: ""
+                            }
+                        }
+
                         _uiState.update {
                             it.copy(
                                 isLoading = false,
@@ -67,9 +83,9 @@ class FirmaActaViewModel @Inject constructor(
                                 cargoFiscalizadorSecundario = firmaActa.cargoFiscalizadorSecundario ?: "",
                                 firmaFiscalizadorSecundario = firmaActa.firmaFiscalizadorSecundario?.let { base64ToBitmap(it) },
 
-                                nombreOperador = firmaActa.nombreOperador ?: "",
-                                ccOperador = firmaActa.ccOperador ?: "",
-                                cargoOperador = firmaActa.cargoOperador ?: "",
+                                nombreOperador = opNombre,
+                                ccOperador = opCc,
+                                cargoOperador = opCargo,
                                 firmaOperador = firmaActa.firmaOperador?.let { base64ToBitmap(it) }
                             )
                         }
@@ -98,6 +114,7 @@ class FirmaActaViewModel @Inject constructor(
             try {
                 val session = sessionManager.getCurrentSession()
                 val funcionarios = funcionarioDao.getFuncionariosByActa(actaUuid)
+                val actaVisita = actaVisitaDao.getActaVisitaByActaId(actaUuid)
 
                 // Principal: el funcionario cuyo idUsuario coincide con el usuario logueado
                 val principal = funcionarios.find { it.idUsuarioFuncionario == session?.idUserSession }
@@ -113,7 +130,11 @@ class FirmaActaViewModel @Inject constructor(
                         cargoFiscalizadorPrincipal = principal?.cargoFuncionario ?: "",
                         nombreFiscalizadorSecundario = secundario?.nombreFuncionario ?: "",
                         ccFiscalizadorSecundario = secundario?.identificacionFuncionario ?: "",
-                        cargoFiscalizadorSecundario = secundario?.cargoFuncionario ?: ""
+                        cargoFiscalizadorSecundario = secundario?.cargoFuncionario ?: "",
+                        // Precargando la informacion del operador (Atendido Por)
+                        nombreOperador = actaVisita?.nombrePresente ?: "",
+                        ccOperador = actaVisita?.identificacionPresente ?: "",
+                        cargoOperador = actaVisita?.cargoPresente ?: ""
                     )
                 }
 
