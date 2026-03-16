@@ -27,6 +27,24 @@
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right" />
 
+        <action
+            android:id="@+id/action_homeFragment_to_resumenSincronizacionFragment"
+            app:destination="@id/resumenSincronizacionFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/resumenSincronizacionFragment"
+        android:name="com.coljuegos.sivo.ui.home.ResumenSincronizacionFragment"
+        android:label="Resumen de Sincronización"
+        tools:layout="@layout/fragment_resumen_sincronizacion">
+        <argument
+            android:name="actaUuid"
+            app:argType="java.util.UUID" />
     </fragment>
 
     <fragment

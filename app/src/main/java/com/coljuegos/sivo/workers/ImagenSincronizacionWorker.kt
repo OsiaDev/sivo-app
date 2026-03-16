@@ -73,7 +73,10 @@ class ImagenSincronizacionWorker @AssistedInject constructor(
                 val response = apiService.uploadImage(authHeader, uploadDTO)
                 if (response.isSuccessful && response.body()?.success == true) {
                     imagenDao.marcarComoSincronizada(imagenEntity.uuidImagen)
+                    imagenDao.setError(imagenEntity.uuidImagen, null) // Clear error on success
                 } else {
+                    val errorMsg = response.errorBody()?.string() ?: response.message() ?: "Error desconocido"
+                    imagenDao.setError(imagenEntity.uuidImagen, errorMsg)
                     allSuccessful = false
                 }
             }
@@ -81,6 +84,7 @@ class ImagenSincronizacionWorker @AssistedInject constructor(
             if (allSuccessful) Result.success() else Result.retry()
 
         } catch (e: Exception) {
+            // We should probably log the error here and update the DB if we have a specific image in context
             Result.retry()
         }
     }
