@@ -54,7 +54,7 @@ class MainActivity : AppCompatActivity() {
         val showCamera = when (currentDestination?.id) {
             R.id.homeFragment, R.id.galleryFragment,
             R.id.registrarInventarioFragment, R.id.inventarioActaFragment,
-            R.id.inventarioFragment -> false
+            R.id.inventarioFragment, R.id.resumenSincronizacionFragment -> false
 
             else -> true
         }
