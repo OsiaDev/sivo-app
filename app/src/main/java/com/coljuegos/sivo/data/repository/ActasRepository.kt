@@ -93,6 +93,29 @@ class ActasRepository @Inject constructor(
         }
     }
 
+    fun getCompletedActasByCurrentUser(): Flow<NetworkResult<List<ActaEntity>>> = flow {
+        try {
+            emit(NetworkResult.Loading())
+
+            val currentSession = sessionManager.getCurrentSession()
+            if (currentSession == null) {
+                emit(NetworkResult.Error("No hay sesión activa"))
+                return@flow
+            }
+
+            // Fetch completed/synced actas (anything that's not ACTIVE or INACTIVE)
+            val allLocalActas = actaDao.getActasBySession(currentSession.uuidSession)
+            val completedActas = allLocalActas.filter { 
+                it.stateActa == ActaStateEnum.COMPLETE || 
+                it.stateActa == ActaStateEnum.SINCRONIZADO
+            }
+            
+            emit(NetworkResult.Success(completedActas))
+        } catch (e: Exception) {
+            emit(NetworkResult.Error("Error recuperando actas completadas: ${e.message}"))
+        }
+    }
+
     /**
      * Método para refrescar actas desde el backend (pull-to-refresh)
      * Siempre consulta al backend y actualiza la base de datos local

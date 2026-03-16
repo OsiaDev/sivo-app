@@ -44,11 +44,11 @@ class SignatureFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        requireActivity().requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
+        activity?.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
     }
 
     override fun onPause() {
-        requireActivity().requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED
+        activity?.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED
         super.onPause()
     }
 
@@ -122,10 +122,15 @@ class SignatureFragment : Fragment() {
     }
 
     private fun loadExistingSignature() {
-        // Esperar a que el SignatureView tenga dimensiones antes de cargar la firma
-        binding.signatureView.post {
-            viewModel.signatureBitmap.value?.let { bitmap ->
-                binding.signatureView.setSignatureBitmap(bitmap)
+        // Aseguramos el bitmap y la vista en el scope actual (attached)
+        val bitmapToLoad = viewModel.signatureBitmap.value
+        if (bitmapToLoad != null) {
+            val signatureViewSafe = binding.signatureView
+            // Esperar a que el SignatureView tenga dimensiones
+            signatureViewSafe.post {
+                if (isAdded) {
+                    signatureViewSafe.setSignatureBitmap(bitmapToLoad)
+                }
             }
         }
     }

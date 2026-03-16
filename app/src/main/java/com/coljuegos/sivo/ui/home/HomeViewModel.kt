@@ -46,29 +46,38 @@ class HomeViewModel @Inject constructor(
 
     fun loadActas() {
         viewModelScope.launch {
-            actasRepository.getActasByCurrentUser().collect { result ->
-                when (result) {
-                    is NetworkResult.Loading -> {
-                        _uiState.value = _uiState.value.copy(
-                            isLoading = true,
-                            errorMessage = null
-                        )
-                    }
+            _uiState.value = _uiState.value.copy(
+                isLoading = true,
+                errorMessage = null
+            )
 
-                    is NetworkResult.Success -> {
-                        _uiState.value = _uiState.value.copy(
-                            isLoading = false,
-                            actas = result.data ?: emptyList(),
-                            errorMessage = null,
-                            isRefreshing = false
-                        )
+            launch {
+                actasRepository.getActasByCurrentUser().collect { result ->
+                    when (result) {
+                        is NetworkResult.Success -> {
+                            _uiState.value = _uiState.value.copy(
+                                isLoading = false,
+                                pendientes = result.data ?: emptyList(),
+                                isRefreshing = false
+                            )
+                        }
+                        is NetworkResult.Error -> {
+                            _uiState.value = _uiState.value.copy(
+                                isLoading = false,
+                                errorMessage = result.message,
+                                isRefreshing = false
+                            )
+                        }
+                        else -> {}
                     }
+                }
+            }
 
-                    is NetworkResult.Error -> {
+            launch {
+                actasRepository.getCompletedActasByCurrentUser().collect { result ->
+                    if (result is NetworkResult.Success) {
                         _uiState.value = _uiState.value.copy(
-                            isLoading = false,
-                            errorMessage = result.message,
-                            isRefreshing = false
+                            completadas = result.data ?: emptyList()
                         )
                     }
                 }
@@ -89,10 +98,11 @@ class HomeViewModel @Inject constructor(
                     is NetworkResult.Success -> {
                         _uiState.value = _uiState.value.copy(
                             isRefreshing = false,
-                            actas = result.data ?: emptyList(),
+                            pendientes = result.data ?: emptyList(),
                             successMessage = "Actas actualizadas correctamente",
                             errorMessage = null
                         )
+                        loadActas() // Recargar completadas locales
                     }
 
                     is NetworkResult.Error -> {

@@ -82,6 +82,24 @@ class ResumenActaFragment : Fragment() {
         solicitarUbicacion()
     }
 
+    override fun onResume() {
+        super.onResume()
+        parentFragmentManager.setFragmentResultListener("camera_action", viewLifecycleOwner) { _, _ ->
+            navigateToGallery()
+        }
+    }
+
+    override fun onPause() {
+        super.onPause()
+        parentFragmentManager.clearFragmentResultListener("camera_action")
+    }
+
+    private fun navigateToGallery() {
+        val action = ResumenActaFragmentDirections
+            .actionResumenActaFragmentToGalleryFragment(args.actaUuid, "resumen_acta")
+        findNavController().navigate(action)
+    }
+
     private fun setupListeners() {
         binding.btnAtras.setOnClickListener {
             findNavController().navigateUp()
