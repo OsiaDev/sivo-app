@@ -7,7 +7,7 @@ data class HomeUiState(
     val isRefreshing: Boolean = false,
     val userFullName: String? = null,
     val pendientes: List<ActaEntity> = emptyList(),
-    val completadas: List<ActaEntity> = emptyList(),
+    val completadas: List<ActaCompletadaUiModel> = emptyList(),
     val errorMessage: String? = null,
     val successMessage: String? = null
 )

@@ -62,4 +62,7 @@ interface ActaDao {
     @Query("SELECT * FROM actas WHERE stateActa = :state ORDER BY lastUpdatedActa DESC")
     fun getActasByStateFlow(state: ActaStateEnum): Flow<List<ActaEntity>>
 
+    @Query("UPDATE actas SET uuidSession = :newSessionId WHERE uuidSession IN (:oldSessionIds)")
+    suspend fun reparentActas(oldSessionIds: List<UUID>, newSessionId: UUID)
+
 }

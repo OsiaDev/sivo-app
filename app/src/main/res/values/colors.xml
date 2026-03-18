@@ -29,4 +29,6 @@
     <color name="text_detail">#212529</color>
     <color name="red">#C62828</color>
     <color name="blue">#0D3A68</color>
+    <color name="salmon">#FF8A80</color>
+    <color name="pending_orange">#F59E0B</color>
 </resources>

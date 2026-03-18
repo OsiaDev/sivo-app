@@ -57,8 +57,7 @@ class HomeFragment : Fragment() {
                 findNavController().navigate(action)
             },
             onActaCompletadaClick = { acta ->
-                // Or wherever completed actas should navigate, maybe a read-only view or ResumenActaFragment
-                val action = HomeFragmentDirections.actionHomeFragmentToResumenActaFragment(acta.uuidActa)
+                val action = HomeFragmentDirections.actionHomeFragmentToResumenSincronizacionFragment(acta.uuidActa)
                 findNavController().navigate(action)
             }
         )

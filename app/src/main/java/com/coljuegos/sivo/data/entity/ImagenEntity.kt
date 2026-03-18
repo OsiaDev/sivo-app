@@ -30,5 +30,7 @@ data class ImagenEntity(
     val fechaCaptura: LocalDateTime = LocalDateTime.now(),
     val descripcion: String? = null,
     val tamanoBytesImagen: Long = 0L,
-    val fragmentOrigen: String? = null
+    val fragmentOrigen: String? = null,
+    val isSincronizada: Boolean = false,
+    val ultimoError: String? = null
 )

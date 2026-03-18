@@ -32,4 +32,7 @@ interface SessionDao {
     @Query("SELECT COUNT(*) > 0 FROM sessions WHERE isAuthSession = 1 AND expirationSession > :currentTime")
     suspend fun hasValidSession(currentTime: LocalDateTime): Boolean
 
+    @Query("SELECT * FROM sessions WHERE idUserSession = :userId")
+    suspend fun getSessionsByUserId(userId: String): List<SessionEntity>
+
 }

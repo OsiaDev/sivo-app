@@ -27,6 +27,54 @@
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right" />
 
+        <action
+            android:id="@+id/action_homeFragment_to_resumenSincronizacionFragment"
+            app:destination="@id/resumenSincronizacionFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/resumenSincronizacionFragment"
+        android:name="com.coljuegos.sivo.ui.home.ResumenSincronizacionFragment"
+        android:label="Resumen de Sincronización"
+        tools:layout="@layout/fragment_resumen_sincronizacion">
+        <action
+            android:id="@+id/action_resumenSincronizacionFragment_to_galeriaImagenesFragment"
+            app:destination="@id/galeriaImagenesFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+
+        <action
+            android:id="@+id/action_resumenSincronizacion_to_actaVisita"
+            app:destination="@id/actaVisitaFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+
+        <argument
+            android:name="actaUuid"
+            app:argType="java.util.UUID" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/galeriaImagenesFragment"
+        android:name="com.coljuegos.sivo.ui.home.GaleriaImagenesFragment"
+        android:label="Galería de Imágenes"
+        tools:layout="@layout/fragment_galeria_imagenes">
+        <argument
+            android:name="actaUuid"
+            app:argType="string" />
+        <argument
+            android:name="filtroEstado"
+            app:argType="string" />
     </fragment>
 
     <fragment

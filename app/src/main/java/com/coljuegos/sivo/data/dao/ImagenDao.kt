@@ -21,6 +21,9 @@ interface ImagenDao {
     @Query("SELECT * FROM imagenes WHERE uuidActa = :uuidActa ORDER BY fechaCaptura DESC")
     suspend fun getImagenesByActa(uuidActa: UUID): List<ImagenEntity>
 
+    @Query("SELECT * FROM imagenes WHERE isSincronizada = 0 ORDER BY fechaCaptura ASC")
+    suspend fun getImagenesNoSincronizadas(): List<ImagenEntity>
+
     @Query("SELECT * FROM imagenes WHERE uuidActa = :uuidActa ORDER BY fechaCaptura DESC")
     fun getImagenesByActaFlow(uuidActa: UUID): Flow<List<ImagenEntity>>
 
@@ -39,7 +42,37 @@ interface ImagenDao {
     @Query("DELETE FROM imagenes WHERE uuidActa = :uuidActa")
     suspend fun deleteImagenesByActa(uuidActa: UUID)
 
+    @Query("UPDATE imagenes SET isSincronizada = 1 WHERE uuidImagen = :uuidImagen")
+    suspend fun marcarComoSincronizada(uuidImagen: UUID)
+
     @Query("SELECT COUNT(*) FROM imagenes WHERE uuidActa = :uuidActa")
     suspend fun getImagenesCountByActa(uuidActa: UUID): Int
+
+    @Query("SELECT COUNT(*) FROM imagenes WHERE uuidActa = :uuidActa AND isSincronizada = 0")
+    suspend fun getUnsynchronizedImagenesCountByActa(uuidActa: UUID): Int
+
+    @Query("SELECT COUNT(*) FROM imagenes WHERE uuidActa = :uuidActa AND isSincronizada = 1")
+    suspend fun getSynchronizedImagenesCountByActa(uuidActa: UUID): Int
+
+    @Query("SELECT COUNT(*) FROM imagenes WHERE uuidActa = :uuidActa AND isSincronizada = 0 AND ultimoError IS NOT NULL")
+    suspend fun getFailedImagenesCountByActa(uuidActa: UUID): Int
+
+    @Query("SELECT COUNT(*) FROM imagenes WHERE uuidActa = :uuidActa AND isSincronizada = 0 AND ultimoError IS NULL")
+    suspend fun getPendingImagenesCountByActa(uuidActa: UUID): Int
+
+    @Query("SELECT * FROM imagenes WHERE uuidActa = :uuidActa AND isSincronizada = 0 AND ultimoError IS NULL ORDER BY fechaCaptura DESC")
+    fun getPendingImagenesByActaFlow(uuidActa: UUID): Flow<List<ImagenEntity>>
+
+    @Query("SELECT * FROM imagenes WHERE uuidActa = :uuidActa AND isSincronizada = 1 ORDER BY fechaCaptura DESC")
+    fun getSynchronizedImagenesByActaFlow(uuidActa: UUID): Flow<List<ImagenEntity>>
+
+    @Query("SELECT * FROM imagenes WHERE uuidActa = :uuidActa AND isSincronizada = 0 AND ultimoError IS NOT NULL ORDER BY fechaCaptura DESC")
+    fun getFailedImagenesByActaFlow(uuidActa: UUID): Flow<List<ImagenEntity>>
+
+    @Query("UPDATE imagenes SET ultimoError = NULL WHERE uuidActa = :uuidActa AND isSincronizada = 0")
+    suspend fun clearErrorsByActa(uuidActa: UUID)
+
+    @Query("UPDATE imagenes SET ultimoError = :error WHERE uuidImagen = :uuidImagen")
+    suspend fun setError(uuidImagen: UUID, error: String?)
 
 }

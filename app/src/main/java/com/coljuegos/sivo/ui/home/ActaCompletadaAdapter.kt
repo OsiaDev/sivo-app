@@ -14,7 +14,7 @@ import java.time.format.FormatStyle
 
 class ActaCompletadaAdapter(
     private val onActaClick: (ActaEntity) -> Unit
-) : ListAdapter<ActaEntity, ActaCompletadaAdapter.ActaViewHolder>(ActaDiffCallback()) {
+) : ListAdapter<ActaCompletadaUiModel, ActaCompletadaAdapter.ActaViewHolder>(ActaDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ActaViewHolder {
         val binding = ItemActaCompletadaBinding.inflate(
@@ -37,12 +37,13 @@ class ActaCompletadaAdapter(
             binding.root.setOnClickListener {
                 val position = adapterPosition
                 if (position != RecyclerView.NO_POSITION) {
-                    onActaClick(getItem(position))
+                    onActaClick(getItem(position).acta)
                 }
             }
         }
 
-        fun bind(acta: ActaEntity) {
+        fun bind(uiModel: ActaCompletadaUiModel) {
+            val acta = uiModel.acta
             with(binding) {
                 val context = binding.root.context
                 
@@ -65,6 +66,13 @@ class ActaCompletadaAdapter(
                     ActaStateEnum.COMPLETE -> "Completada"
                     ActaStateEnum.SINCRONIZADO -> "Sincronizada"
                     else -> "Finalizada"
+                }
+
+                // Check verde solo si todo está sincronizado
+                ivCheck.visibility = if (uiModel.todoSincronizado) {
+                    android.view.View.VISIBLE
+                } else {
+                    android.view.View.INVISIBLE
                 }
             }
         }
@@ -92,12 +100,12 @@ class ActaCompletadaAdapter(
         }
     }
 
-    class ActaDiffCallback : DiffUtil.ItemCallback<ActaEntity>() {
-        override fun areItemsTheSame(oldItem: ActaEntity, newItem: ActaEntity): Boolean {
-            return oldItem.uuidActa == newItem.uuidActa
+    class ActaDiffCallback : DiffUtil.ItemCallback<ActaCompletadaUiModel>() {
+        override fun areItemsTheSame(oldItem: ActaCompletadaUiModel, newItem: ActaCompletadaUiModel): Boolean {
+            return oldItem.acta.uuidActa == newItem.acta.uuidActa
         }
 
-        override fun areContentsTheSame(oldItem: ActaEntity, newItem: ActaEntity): Boolean {
+        override fun areContentsTheSame(oldItem: ActaCompletadaUiModel, newItem: ActaCompletadaUiModel): Boolean {
             return oldItem == newItem
         }
     }

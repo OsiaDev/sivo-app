@@ -18,6 +18,7 @@ import com.coljuegos.sivo.data.remote.model.*
 import com.coljuegos.sivo.utils.ImageCompressionUtils
 import com.coljuegos.sivo.utils.NetworkResult
 import com.coljuegos.sivo.utils.SessionManager
+import com.coljuegos.sivo.workers.ImagenSincronizacionWorkManager
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -40,7 +41,8 @@ class ActaSincronizacionRepository @Inject constructor(
     private val municipioDao: MunicipioDao,
     private val resumenInventarioDao: ResumenInventarioDao,
     private val actaApiService: ApiService,
-    private val sessionManager: SessionManager
+    private val sessionManager: SessionManager,
+    private val imagenSincronizacionWorkManager: ImagenSincronizacionWorkManager
 ) {
 
     suspend fun marcarActaComoCompleta(actaUuid: UUID, latitud: Double, longitud: Double): NetworkResult<ActaEntity> {
@@ -91,6 +93,9 @@ class ActaSincronizacionRepository @Inject constructor(
                 )
                 actaDao.update(actaSincronizada)
 
+                // Disparar sincronización de imágenes
+                imagenSincronizacionWorkManager.ejecutarSincronizacionInmediata()
+
                 emit(NetworkResult.Success("Acta sincronizada correctamente"))
             } else {
                 val errorMsg = response.body()?.message ?: "Error desconocido del servidor"
@@ -113,7 +118,6 @@ class ActaSincronizacionRepository @Inject constructor(
         val inventariosRegistrados = inventarioRegistradoDao.getInventariosRegistradosByActaList(acta.uuidActa)
         val novedadesRegistradas = novedadRegistradaDao.getNovedadesRegistradasByActaList(acta.uuidActa)
         val firmaActa = firmaActaDao.getFirmaActaByActaUuidSuspend(acta.uuidActa)
-        val imagenes = imagenDao.getImagenesByActa(acta.uuidActa)
         val resumenInventario = resumenInventarioDao.getResumenByActaId(acta.uuidActa)
 
         return ActaCompleteDTO(
@@ -127,7 +131,6 @@ class ActaSincronizacionRepository @Inject constructor(
             inventariosRegistrados = inventariosRegistrados.mapNotNull  { mapInventarioRegistradoToDTO(it) },
             novedadesRegistradas = novedadesRegistradas.map { mapNovedadRegistradaToDTO(it) },
             firmaActa = firmaActa?.let { mapFirmaActaToDTO(it) },
-            imagenes = imagenes.mapNotNull { mapImagenToDTO(it) },
             resumenInventario = resumenInventario?.let { 
                 ResumenInventarioDTO(
                     notasResumen = it.notasResumen,
@@ -269,26 +272,6 @@ class ActaSincronizacionRepository @Inject constructor(
         } catch (e: Exception) {
             // Si hay error, devolver el Base64 original
             base64Simple
-        }
-    }
-
-    private fun mapImagenToDTO(entity: ImagenEntity): ImagenDTO? {
-        return try {
-            val file = File(entity.rutaImagen)
-            if (!file.exists()) return null
-
-            // Comprimir con ZLIB + PNG sin pérdida para el backend
-            val imagenBase64 = ImageCompressionUtils.compressImageFileToBase64Zlib(file)
-                ?: return null
-
-            ImagenDTO(
-                nombreImagen = entity.nombreImagen,
-                imagenBase64 = imagenBase64,
-                descripcion = entity.descripcion,
-                fragmentOrigen = entity.fragmentOrigen
-            )
-        } catch (_: Exception) {
-            null
         }
     }
 

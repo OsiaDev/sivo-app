@@ -2,6 +2,7 @@ package com.coljuegos.sivo.data.repository
 
 import com.coljuegos.sivo.data.dao.ActaDao
 import com.coljuegos.sivo.data.dao.FuncionarioDao
+import com.coljuegos.sivo.data.dao.ImagenDao
 import com.coljuegos.sivo.data.dao.InventarioDao
 import com.coljuegos.sivo.data.entity.ActaEntity
 import com.coljuegos.sivo.data.entity.ActaStateEnum
@@ -11,6 +12,7 @@ import com.coljuegos.sivo.data.remote.api.ApiService
 import com.coljuegos.sivo.data.remote.model.ActaResponseDTO
 import com.coljuegos.sivo.utils.NetworkResult
 import com.coljuegos.sivo.utils.SessionManager
+import com.coljuegos.sivo.ui.home.ActaCompletadaUiModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import java.time.LocalDate
@@ -25,7 +27,9 @@ class ActasRepository @Inject constructor(
     private val actaDao: ActaDao,
     private val funcionarioDao: FuncionarioDao,
     private val inventarioDao: InventarioDao,
-    private val sessionManager: SessionManager
+    private val imagenDao: ImagenDao,
+    private val sessionManager: SessionManager,
+    private val sessionDao: com.coljuegos.sivo.data.dao.SessionDao
 ) {
 
     fun getActasByCurrentUser(): Flow<NetworkResult<List<ActaEntity>>> = flow {
@@ -38,6 +42,9 @@ class ActasRepository @Inject constructor(
                 emit(NetworkResult.Error("No hay sesión activa"))
                 return@flow
             }
+
+            // Migrar actas de sesiones anteriores del mismo usuario
+            migrateActasToCurrentSession(currentSession)
 
             // Primero obtener datos locales activos
             val localActas = actaDao.getActiveActasBySession(currentSession.uuidSession)
@@ -93,7 +100,7 @@ class ActasRepository @Inject constructor(
         }
     }
 
-    fun getCompletedActasByCurrentUser(): Flow<NetworkResult<List<ActaEntity>>> = flow {
+    fun getCompletedActasByCurrentUser(): Flow<NetworkResult<List<ActaCompletadaUiModel>>> = flow {
         try {
             emit(NetworkResult.Loading())
 
@@ -103,14 +110,30 @@ class ActasRepository @Inject constructor(
                 return@flow
             }
 
+            // Migrar actas de sesiones anteriores del mismo usuario
+            migrateActasToCurrentSession(currentSession)
+
             // Fetch completed/synced actas (anything that's not ACTIVE or INACTIVE)
             val allLocalActas = actaDao.getActasBySession(currentSession.uuidSession)
             val completedActas = allLocalActas.filter { 
                 it.stateActa == ActaStateEnum.COMPLETE || 
                 it.stateActa == ActaStateEnum.SINCRONIZADO
             }
+
+            val uiModels = completedActas.map { acta ->
+                val hasPendingImages = if (acta.stateActa == ActaStateEnum.SINCRONIZADO) {
+                    imagenDao.getUnsynchronizedImagenesCountByActa(acta.uuidActa) > 0
+                } else {
+                    true
+                }
+
+                ActaCompletadaUiModel(
+                    acta = acta,
+                    todoSincronizado = acta.stateActa == ActaStateEnum.SINCRONIZADO && !hasPendingImages
+                )
+            }
             
-            emit(NetworkResult.Success(completedActas))
+            emit(NetworkResult.Success(uiModels))
         } catch (e: Exception) {
             emit(NetworkResult.Error("Error recuperando actas completadas: ${e.message}"))
         }
@@ -204,9 +227,6 @@ class ActasRepository @Inject constructor(
                 ActaStateEnum.INACTIVE,
                 currentTime
             )
-
-            // IMPORTANTE: NO eliminar funcionarios e inventarios de actas inactivas
-            // Solo actualizar su estado para mantener integridad referencial
         }
 
         // Procesar actas del servidor
@@ -281,7 +301,6 @@ class ActasRepository @Inject constructor(
                         }
                     } else {
                         println("DEBUG: Acta #$numActa está en estado ${existingActa.stateActa}, NO se actualiza desde el backend")
-                        // Preservar completamente el acta
                     }
                 } else {
                     println("DEBUG: Acta #$numActa es nueva, insertando...")
@@ -412,6 +431,32 @@ class ActasRepository @Inject constructor(
             inventarioDao.getInventariosByActa(actaUuid)
         } catch (_: Exception) {
             emptyList()
+        }
+    }
+
+    /**
+     * Busca sesiones antiguas del mismo usuario y migra sus actas a la sesión actual.
+     */
+    private suspend fun migrateActasToCurrentSession(currentSession: com.coljuegos.sivo.data.entity.SessionEntity) {
+        try {
+            val userId = currentSession.idUserSession
+            val currentSessionId = currentSession.uuidSession
+            
+            // Obtener todas las sesiones de este usuario
+            val allUserSessions = sessionDao.getSessionsByUserId(userId)
+            
+            // Filtrar las sesiones que no son la actual
+            val oldSessionIds = allUserSessions
+                .map { it.uuidSession }
+                .filter { it != currentSessionId }
+            
+            if (oldSessionIds.isNotEmpty()) {
+                println("DEBUG: Migrando actas de sesiones antiguas: $oldSessionIds a la sesión actual: $currentSessionId")
+                actaDao.reparentActas(oldSessionIds, currentSessionId)
+            }
+        } catch (e: Exception) {
+            println("ERROR: Fallo al migrar actas entre sesiones: ${e.message}")
+            e.printStackTrace()
         }
     }
 

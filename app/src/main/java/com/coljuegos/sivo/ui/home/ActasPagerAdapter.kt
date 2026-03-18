@@ -19,7 +19,7 @@ class ActasPagerAdapter(
         pendientesAdapter.submitList(actas)
     }
 
-    fun submitCompletadas(actas: List<ActaEntity>) {
+    fun submitCompletadas(actas: List<ActaCompletadaUiModel>) {
         completadasAdapter.submitList(actas)
     }
 
