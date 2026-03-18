@@ -84,12 +84,20 @@ object DatabaseModule {
         }
     }
 
+    private val MIGRATION_9_10 = object : Migration(9, 10) {
+        override fun migrate(db: SupportSQLiteDatabase) {
+            db.execSQL("ALTER TABLE novedades_registradas ADD COLUMN descripcionJuego INTEGER NOT NULL DEFAULT 1")
+            db.execSQL("ALTER TABLE novedades_registradas ADD COLUMN planPremios INTEGER NOT NULL DEFAULT 1")
+            db.execSQL("ALTER TABLE novedades_registradas ADD COLUMN valorPremios INTEGER NOT NULL DEFAULT 1")
+        }
+    }
+
     @Provides
     @Singleton
     fun provideAppDatabase(@ApplicationContext context: Context): SivoDatabase {
         return Room.databaseBuilder(
             context, SivoDatabase::class.java, "sivo_database"
-        ).addMigrations(MIGRATION_4_5, MIGRATION_5_6, MIGRATION_6_7, MIGRATION_7_8, MIGRATION_8_9)
+        ).addMigrations(MIGRATION_4_5, MIGRATION_5_6, MIGRATION_6_7, MIGRATION_7_8, MIGRATION_8_9, MIGRATION_9_10)
          .fallbackToDestructiveMigration(false)
             .build()
     }

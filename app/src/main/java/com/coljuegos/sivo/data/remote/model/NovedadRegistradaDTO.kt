@@ -15,6 +15,15 @@ data class NovedadRegistradaDTO(
     @SerializedName("tienePlaca")
     val tienePlaca: Boolean,
 
+    @SerializedName("descripcionJuego")
+    val descripcionJuego: Boolean? = true,
+
+    @SerializedName("planPremios")
+    val planPremios: Boolean? = true,
+
+    @SerializedName("valorPremios")
+    val valorPremios: Boolean? = true,
+
     @SerializedName("operando")
     val operando: String,
 

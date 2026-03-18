@@ -117,6 +117,9 @@ class RegistrarNovedadFragment : Fragment() {
         state.novedadRegistrada?.let { novedad ->
             // NUEVO: Configurar checkbox de tiene placa
             binding.valorTienePlacaCheckbox.isChecked = novedad.tienePlaca
+            binding.descripcionJuegoCheckbox.isChecked = novedad.descripcionJuego
+            binding.planPremiosCheckbox.isChecked = novedad.planPremios
+            binding.valorPremiosCheckbox.isChecked = novedad.valorPremios
             binding.valorSerialEditText.setText(novedad.serial)
             binding.valorMarcaEditText.setText(novedad.marca)
             binding.valorCodigoApuestaEditText.setText(novedad.codigoApuesta)
@@ -193,6 +196,9 @@ class RegistrarNovedadFragment : Fragment() {
 
     private fun guardarNovedad() {
         val tienePlaca = binding.valorTienePlacaCheckbox.isChecked
+        val descripcionJuego = binding.descripcionJuegoCheckbox.isChecked
+        val planPremios = binding.planPremiosCheckbox.isChecked
+        val valorPremios = binding.valorPremiosCheckbox.isChecked
         val serial = binding.valorSerialEditText.text?.toString() ?: ""
         val marca = binding.valorMarcaEditText.text?.toString() ?: ""
         val codigoApuesta = binding.valorCodigoApuestaEditText.text?.toString() ?: ""
@@ -248,6 +254,9 @@ class RegistrarNovedadFragment : Fragment() {
             codigoApuesta = codigoApuesta,
             operando = operando,
             tienePlaca = tienePlaca,
+            descripcionJuego = descripcionJuego,
+            planPremios = planPremios,
+            valorPremios = valorPremios,
             valorCredito = valorCredito,
             coinInMet = coinInMet,
             coinOutMet = coinOutMet,
