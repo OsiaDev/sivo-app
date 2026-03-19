@@ -214,16 +214,37 @@ class ActasRepository @Inject constructor(
         val serverNumActas = actaResponse.actas.mapNotNull { it.numActa }.toSet()
         println("DEBUG: Actas del servidor: $serverNumActas")
 
-        // Obtener números de acta que ya existen en la base de datos para esta sesión
-        val existingNumActas = actaDao.getNumActasBySession(sessionId).toSet()
+        // Obtener actas que ya existen en la base de datos para esta sesión
+        val existingActas = actaDao.getActasBySession(sessionId)
+        val existingNumActas = existingActas.map { it.numActa }.toSet()
         println("DEBUG: Actas existentes localmente: $existingNumActas")
 
         // Marcar como inactivas las actas que no vienen en el servidor (pero NO las eliminar)
-        val actasToDeactivate = existingNumActas - serverNumActas
+        val actasToDeactivate = mutableListOf<Int>()
+        for (acta in existingActas) {
+            if (acta.numActa !in serverNumActas) {
+                // Si el acta requiere sincronización, NO la inactivamos
+                val keepActa = when (acta.stateActa) {
+                    ActaStateEnum.COMPLETE -> true // Pendiente de sincronizar datos
+                    ActaStateEnum.SINCRONIZADO -> {
+                        // Pendiente de sincronizar fotos
+                        imagenDao.getUnsynchronizedImagenesCountByActa(acta.uuidActa) > 0
+                    }
+                    else -> false // INIT, ACTIVE, INACTIVE no se conservan si no vienen del servidor
+                }
+
+                if (!keepActa && acta.stateActa != ActaStateEnum.INACTIVE) {
+                    actasToDeactivate.add(acta.numActa)
+                } else if (keepActa) {
+                    println("DEBUG: Acta #${acta.numActa} no viene del servidor pero NO se inactiva por tener tareas de sincronización pendientes. Estado: ${acta.stateActa}")
+                }
+            }
+        }
+
         if (actasToDeactivate.isNotEmpty()) {
             println("DEBUG: Marcando como inactivas: $actasToDeactivate")
             actaDao.updateActasState(
-                actasToDeactivate.toList(),
+                actasToDeactivate,
                 ActaStateEnum.INACTIVE,
                 currentTime
             )
