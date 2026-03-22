@@ -318,6 +318,11 @@ class RegistrarNovedadFragment : Fragment() {
         binding.btnCapturarMaquina.isEnabled = !tienePlaca || serialDigitado.isNotBlank()
     }
 
+    override fun onResume() {
+        super.onResume()
+        binding.operandoSpinner.setAdapter(adapterOperando)
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null

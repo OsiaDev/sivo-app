@@ -225,6 +225,7 @@ class ActaSincronizacionRepository @Inject constructor(
             tienePlaca = entity.tienePlaca,
             operando = entity.operando,
             valorCredito = entity.valorCredito,
+            numeroInternoMet = entity.numeroInternoMet,
             coinInMet = entity.coinInMet,
             coinOutMet = entity.coinOutMet,
             jackpotMet = entity.jackpotMet,

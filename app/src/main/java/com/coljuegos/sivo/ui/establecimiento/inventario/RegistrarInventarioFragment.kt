@@ -454,6 +454,11 @@ class RegistrarInventarioFragment : Fragment() {
         )
     }
 
+    override fun onResume() {
+        super.onResume()
+        binding.estadoSpinner.setAdapter(adapterEstado)
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null

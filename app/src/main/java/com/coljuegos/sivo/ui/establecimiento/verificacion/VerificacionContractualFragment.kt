@@ -64,6 +64,18 @@ class VerificacionContractualFragment : Fragment() {
             Log.d("ActaVisitaFragment", "Recibido evento de cámara")
             navigateToGallery()
         }
+        val opcionesSiNoNa = resources.getStringArray(R.array.si_no_na_options)
+        adapterSiNoNa = ArrayAdapter(
+            requireContext(),
+            R.layout.item_dropdown,
+            opcionesSiNoNa
+        )
+        binding.pregunta1Spinner.setAdapter(adapterSiNoNa)
+        binding.pregunta2Spinner.setAdapter(adapterSiNoNa)
+        binding.pregunta3Spinner.setAdapter(adapterSiNoNa)
+        binding.pregunta4Spinner.setAdapter(adapterSiNoNa)
+        binding.pregunta5Spinner.setAdapter(adapterSiNoNa)
+        binding.tipoActividadSpinner.setAdapter(adapterTipoActividad)
     }
 
     override fun onPause() {

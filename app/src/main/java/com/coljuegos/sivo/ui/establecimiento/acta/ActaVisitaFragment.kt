@@ -67,6 +67,9 @@ class ActaVisitaFragment : Fragment() {
             Log.d("ActaVisitaFragment", "Recibido evento de cámara")
             navigateToGallery()
         }
+        if (::municipioAdapter.isInitialized) {
+            binding.municipioExpedicion.setAdapter(municipioAdapter)
+        }
     }
 
     override fun onPause() {
