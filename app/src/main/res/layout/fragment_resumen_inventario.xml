@@ -289,53 +289,83 @@
                         tools:text="1" />
                 </LinearLayout>
 
+                <!-- 8. Inventarios sin serial o no verificados -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingVertical="8dp">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/resumen_inventario_sin_serial"
+                        android:textColor="@color/text_detail"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/tvInventariosSinSerial"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="#9C27B0"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        tools:text="1" />
+                </LinearLayout>
+
+                <!-- 9. Inventarios sin plan de premios -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingVertical="8dp">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/resumen_inventario_sin_plan_premios"
+                        android:textColor="@color/text_detail"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/tvInventariosSinPlanPremios"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="#9C27B0"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        tools:text="1" />
+                </LinearLayout>
+
+                <!-- 10. Inventarios sin valor de premios -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingVertical="8dp">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/resumen_inventario_sin_valor_premios"
+                        android:textColor="@color/text_detail"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/tvInventariosSinValorPremios"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="#9C27B0"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        tools:text="1" />
+                </LinearLayout>
+
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
-
-        <LinearLayout
-            android:id="@+id/layoutTextoObservacionTitle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:orientation="horizontal"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/cardEstadisticas">
-
-            <TextView
-                android:id="@+id/observacionTitle"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/resumen_inventario_observaciones_coljuegos"
-                android:textColor="@color/text_title_detail"
-                android:textSize="12sp"
-                app:layout_constraintStart_toStartOf="parent" />
-
-        </LinearLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/observacionesInputLayout"
-            style="@style/Form.InputLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/registrar_inventario_codigo_valor"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/layoutTextoObservacionTitle">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/observacionesEditText"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:drawablePadding="12dp"
-                android:inputType="textMultiLine"
-                android:lines="5"
-                android:padding="15dp"
-                android:textColor="@color/input_text_color"
-                android:textSize="16sp" />
-
-        </com.google.android.material.textfield.TextInputLayout>
 
         <!-- Título Observaciones Operador -->
         <LinearLayout
@@ -346,7 +376,7 @@
             android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/observacionesInputLayout">
+            app:layout_constraintTop_toBottomOf="@id/cardEstadisticas">
 
             <TextView
                 android:id="@+id/observacionOperadorTitle"
@@ -384,6 +414,51 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
+        <LinearLayout
+            android:id="@+id/layoutTextoObservacionTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/observacionesOperadorInputLayout">
+
+            <TextView
+                android:id="@+id/observacionTitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/resumen_inventario_observaciones_coljuegos"
+                android:textColor="@color/text_title_detail"
+                android:textSize="12sp"
+                app:layout_constraintStart_toStartOf="parent" />
+
+        </LinearLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/observacionesInputLayout"
+            style="@style/Form.InputLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/registrar_inventario_codigo_valor"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layoutTextoObservacionTitle">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/observacionesEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawablePadding="12dp"
+                android:inputType="textMultiLine"
+                android:lines="5"
+                android:padding="15dp"
+                android:textColor="@color/input_text_color"
+                android:textSize="16sp" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
         <!-- Botones de acción -->
         <LinearLayout
             android:id="@+id/layoutBotones"
@@ -394,7 +469,7 @@
             android:weightSum="2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/observacionesOperadorInputLayout">
+            app:layout_constraintTop_toBottomOf="@id/observacionesInputLayout">
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnAnterior"

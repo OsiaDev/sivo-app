@@ -13,6 +13,9 @@ data class ResumenInventarioUiState(
     val totalInventariosEncontrados: Int = 0, // (5) Fórmula: 1 + 3 + 4
     val codigoApuestaDiferente: Int = 0,       // (6) Inventarios con código diferente
     val inventariosSinDescripcionJuego: Int = 0, // (7) Inventarios sin descripción de juego
+    val inventariosSinSerial: Int = 0,
+    val inventariosSinPlanPremios: Int = 0,
+    val inventariosSinValorPremios: Int = 0,
     val notas: String = "",
     val observacionesOperador: String = "",
     val guardadoExitoso: Boolean = false

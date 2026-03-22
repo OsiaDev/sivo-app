@@ -83,6 +83,21 @@ class ResumenInventarioViewModel @Inject constructor(
                         (it.estado == EstadoInventarioEnum.OPERANDO || it.estado == EstadoInventarioEnum.APAGADO) && !it.descripcionJuego
                     }
 
+                    // 8. Inventarios sin serial o no verificados
+                    val inventariosSinSerial = inventariosRegistrados.count {
+                        (it.estado == EstadoInventarioEnum.OPERANDO || it.estado == EstadoInventarioEnum.APAGADO) && !it.serialVerificado
+                    }
+
+                    // 9. Inventarios sin plan de premios
+                    val inventariosSinPlanPremios = inventariosRegistrados.count {
+                        (it.estado == EstadoInventarioEnum.OPERANDO || it.estado == EstadoInventarioEnum.APAGADO) && !it.planPremios
+                    }
+
+                    // 10. Inventarios sin valor de premios
+                    val inventariosSinValorPremios = inventariosRegistrados.count {
+                        (it.estado == EstadoInventarioEnum.OPERANDO || it.estado == EstadoInventarioEnum.APAGADO) && !it.valorPremios
+                    }
+
                     _uiState.update {
                         it.copy(
                             isLoading = false,
@@ -94,6 +109,9 @@ class ResumenInventarioViewModel @Inject constructor(
                             totalInventariosEncontrados = totalInventariosEncontrados,
                             codigoApuestaDiferente = codigoApuestaDiferente,
                             inventariosSinDescripcionJuego = inventariosSinDescripcionJuego,
+                            inventariosSinSerial = inventariosSinSerial,
+                            inventariosSinPlanPremios = inventariosSinPlanPremios,
+                            inventariosSinValorPremios = inventariosSinValorPremios,
                             errorMessage = null
                         )
                     }

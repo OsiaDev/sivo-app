@@ -299,6 +299,9 @@
     <string name="resumen_inventario_total_encontrados">Total inventarios encontrados:</string>
     <string name="resumen_inventario_codigo_diferente">Código apuesta diferente:</string>
     <string name="resumen_inventario_sin_descripcion">Sin descripción de juego:</string>
+    <string name="resumen_inventario_sin_serial">Sin serial o no verificado:</string>
+    <string name="resumen_inventario_sin_plan_premios">Sin plan de premios:</string>
+    <string name="resumen_inventario_sin_valor_premios">Sin valor premios:</string>
     <string name="resumen_inventario_observaciones_coljuegos">Observaciones y/o hallazgos de los trabajadores oficiales y/o contratistas de Coljuegos</string>
     <string name="resumen_inventario_observaciones_operador">Observaciones del operador</string>
     <string name="resumen_inventario_observaciones_operador_hint">Escriba las observaciones del operador aquí (opcional)</string>

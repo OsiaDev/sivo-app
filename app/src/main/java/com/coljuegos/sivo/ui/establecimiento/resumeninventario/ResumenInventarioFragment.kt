@@ -87,6 +87,9 @@ class ResumenInventarioFragment : Fragment() {
         binding.tvTotalInventariosEncontrados.text = state.totalInventariosEncontrados.toString()
         binding.tvCodigoApuestaDiferente.text = state.codigoApuestaDiferente.toString()
         binding.tvInventariosSinDescripcionJuego.text = state.inventariosSinDescripcionJuego.toString()
+        binding.tvInventariosSinSerial.text = state.inventariosSinSerial.toString()
+        binding.tvInventariosSinPlanPremios.text = state.inventariosSinPlanPremios.toString()
+        binding.tvInventariosSinValorPremios.text = state.inventariosSinValorPremios.toString()
 
         // Mostrar error si existe
         state.errorMessage?.let { errorMsg ->
