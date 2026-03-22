@@ -29,8 +29,29 @@ class VerificacionSiplaftFragment : Fragment() {
 
     private val viewModel: VerificacionSiplaftViewModel by viewModels()
 
-    // Adapters para los spinners
-    private lateinit var adapterSiNoNa: ArrayAdapter<String>
+    // Eliminada la variable adapterSiNoNa
+    
+    // Factory method para Adapter de Si/No/N/A
+    private fun getAdapterSiNoNa(): ArrayAdapter<String> {
+        val opcionesSiNoNa = resources.getStringArray(R.array.si_no_na_options)
+        return object : ArrayAdapter<String>(
+            requireContext(),
+            R.layout.item_dropdown,
+            opcionesSiNoNa
+        ) {
+            override fun getFilter(): android.widget.Filter {
+                return object : android.widget.Filter() {
+                    override fun performFiltering(constraint: CharSequence?) = FilterResults().apply {
+                        values = opcionesSiNoNa
+                        count = opcionesSiNoNa.size
+                    }
+                    override fun publishResults(constraint: CharSequence?, results: FilterResults?) {
+                        notifyDataSetChanged()
+                    }
+                }
+            }
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -65,37 +86,29 @@ class VerificacionSiplaftFragment : Fragment() {
             Log.d("VerificacionSiplaftFragment", "Recibido evento de cámara")
             navigateToGallery()
         }
+        binding.pregunta1Spinner.setAdapter(getAdapterSiNoNa())
+        binding.pregunta2Spinner.setAdapter(getAdapterSiNoNa())
+        binding.pregunta3Spinner.setAdapter(getAdapterSiNoNa())
     }
 
     private fun setupAdapters() {
-        // Adapter para Si/No/NA
-        val opcionesSiNoNa = resources.getStringArray(R.array.si_no_na_options)
-        adapterSiNoNa = ArrayAdapter(
-            requireContext(),
-            R.layout.item_dropdown,
-            opcionesSiNoNa
-        )
+        // La asignación inicial ya no se hace aquí.
     }
 
     private fun setupSpinners() {
-        // Configurar adaptadores para los AutoCompleteTextView
-        binding.pregunta1Spinner.setAdapter(adapterSiNoNa)
-        binding.pregunta2Spinner.setAdapter(adapterSiNoNa)
-        binding.pregunta3Spinner.setAdapter(adapterSiNoNa)
-
         // Listeners para actualizar el ViewModel
-        binding.pregunta1Spinner.setOnItemClickListener { _, _, position, _ ->
-            val selectedValue = adapterSiNoNa.getItem(position) ?: ""
+        binding.pregunta1Spinner.setOnItemClickListener { parent, _, position, _ ->
+            val selectedValue = parent.adapter.getItem(position) as? String ?: ""
             viewModel.updateCuentaFormatoIdentificacion(selectedValue)
         }
 
-        binding.pregunta2Spinner.setOnItemClickListener { _, _, position, _ ->
-            val selectedValue = adapterSiNoNa.getItem(position) ?: ""
+        binding.pregunta2Spinner.setOnItemClickListener { parent, _, position, _ ->
+            val selectedValue = parent.adapter.getItem(position) as? String ?: ""
             viewModel.updateCuentaFormatoReporteInterno(selectedValue)
         }
 
-        binding.pregunta3Spinner.setOnItemClickListener { _, _, position, _ ->
-            val selectedValue = adapterSiNoNa.getItem(position) ?: ""
+        binding.pregunta3Spinner.setOnItemClickListener { parent, _, position, _ ->
+            val selectedValue = parent.adapter.getItem(position) as? String ?: ""
             viewModel.updateConoceCodigoConducta(selectedValue)
         }
     }

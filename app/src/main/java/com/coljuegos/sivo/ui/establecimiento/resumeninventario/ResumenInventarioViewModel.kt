@@ -47,10 +47,14 @@ class ResumenInventarioViewModel @Inject constructor(
                     // Obtener novedades registradas
                     val novedadesRegistradas = novedadRegistradaDao.getNovedadesRegistradasByActaList(actaUuid)
 
-                    // 1. Inventarios registrados operando o apagado
-                    val inventariosOperandoApagado = inventariosRegistrados.count {
-                        it.estado == EstadoInventarioEnum.OPERANDO ||
-                                it.estado == EstadoInventarioEnum.APAGADO
+                    // 1. Inventarios registrados operando
+                    val inventariosOperando = inventariosRegistrados.count {
+                        it.estado == EstadoInventarioEnum.OPERANDO
+                    }
+
+                    // 1.1 Inventarios registrados apagados
+                    val inventariosApagados = inventariosRegistrados.count {
+                        it.estado == EstadoInventarioEnum.APAGADO
                     }
 
                     // 2. Inventarios no encontrados
@@ -64,9 +68,8 @@ class ResumenInventarioViewModel @Inject constructor(
                     // 4. Novedades con placa (total novedades - sin placa)
                     val novedadesConPlaca = novedadesRegistradas.size - novedadesSinPlaca
 
-                    // 5. Total inventarios encontrados: (1 - 2 + 3 + 4)
-                    val totalInventariosEncontrados = inventariosOperandoApagado -
-                            inventariosNoEncontrados +
+                    // 5. Total inventarios encontrados: (1 + 1.1 + 3 + 4)
+                    val totalInventariosEncontrados = inventariosOperando + inventariosApagados +
                             novedadesSinPlaca +
                             novedadesConPlaca
 
@@ -75,15 +78,22 @@ class ResumenInventarioViewModel @Inject constructor(
                         it.codigoApuestaDiferente
                     }
 
+                    // 7. Inventarios sin descripción de juego (sólo operando/apagado)
+                    val inventariosSinDescripcionJuego = inventariosRegistrados.count {
+                        (it.estado == EstadoInventarioEnum.OPERANDO || it.estado == EstadoInventarioEnum.APAGADO) && !it.descripcionJuego
+                    }
+
                     _uiState.update {
                         it.copy(
                             isLoading = false,
-                            inventariosOperandoApagado = inventariosOperandoApagado,
+                            inventariosOperando = inventariosOperando,
+                            inventariosApagados = inventariosApagados,
                             inventariosNoEncontrados = inventariosNoEncontrados,
                             novedadesSinPlaca = novedadesSinPlaca,
                             novedadesConPlaca = novedadesConPlaca,
                             totalInventariosEncontrados = totalInventariosEncontrados,
                             codigoApuestaDiferente = codigoApuestaDiferente,
+                            inventariosSinDescripcionJuego = inventariosSinDescripcionJuego,
                             errorMessage = null
                         )
                     }

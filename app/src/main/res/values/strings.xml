@@ -277,6 +277,7 @@
     <string name="registrar_novedad_nuc">NUC</string>
     <string name="registrar_novedad_descripcion">Descripción de la novedad</string>
     <string name="registrar_novedad_descripcion_hint">Describa detalladamente la novedad encontrada</string>
+    <string name="registrar_novedad_capturar_maquina">Capturar fotos de maquina</string>
     <string name="registrar_novedad_tipo">Tipo de novedad</string>
     <string name="registrar_novedad_credito">Valor crédito</string>
     <string name="registrar_novedad_observaciones">Observaciones</string>
@@ -290,12 +291,14 @@
     <string name="resumen_inventario_title">Resumen</string>
     <string name="resumen_inventario_subtitle">Resumen de Inventario</string>
     <string name="resumen_inventario_estadisticas">Estadísticas del Inventario</string>
-    <string name="resumen_inventario_operando_apagado">Inventarios operando/apagado:</string>
+    <string name="resumen_inventario_operando">Inventarios operando:</string>
+    <string name="resumen_inventario_apagados">Inventarios apagados:</string>
     <string name="resumen_inventario_no_encontrados">Inventarios no encontrados:</string>
     <string name="resumen_inventario_novedades_sin_placa">Novedades sin placa:</string>
     <string name="resumen_inventario_novedades_con_placa">Novedades con placa:</string>
     <string name="resumen_inventario_total_encontrados">Total inventarios encontrados:</string>
     <string name="resumen_inventario_codigo_diferente">Código apuesta diferente:</string>
+    <string name="resumen_inventario_sin_descripcion">Sin descripción de juego:</string>
     <string name="resumen_inventario_observaciones_coljuegos">Observaciones y/o hallazgos de los trabajadores oficiales y/o contratistas de Coljuegos</string>
     <string name="resumen_inventario_observaciones_operador">Observaciones del operador</string>
     <string name="resumen_inventario_observaciones_operador_hint">Escriba las observaciones del operador aquí (opcional)</string>

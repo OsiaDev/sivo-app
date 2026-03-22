@@ -31,10 +31,14 @@ data class NovedadRegistradaEntity(
     val marca: String,
     val codigoApuesta: String,
     val tienePlaca: Boolean = true,
+    val descripcionJuego: Boolean = true,
+    val planPremios: Boolean = true,
+    val valorPremios: Boolean = true,
 
     // Estado operativo
     val operando: String, // "Operando" o "Apagado"
     val valorCredito: String? = null,
+    val numeroInternoMet: String? = null,
 
     // Contadores MET
     val coinInMet: String? = null,

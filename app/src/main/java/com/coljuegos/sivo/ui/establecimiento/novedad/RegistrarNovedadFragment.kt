@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import androidx.core.view.isVisible
+import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -13,6 +14,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.coljuegos.sivo.R
 import com.coljuegos.sivo.databinding.FragmentRegistrarNovedadBinding
+import com.coljuegos.sivo.ui.establecimiento.novedad.RegistrarNovedadFragmentDirections
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
@@ -64,6 +66,9 @@ class RegistrarNovedadFragment : Fragment() {
     }
 
     private fun setupVisibilityListeners() {
+        // Estado inicial del botón de fotografía
+        actualizarEstadoBotonFotografia()
+
         // Mostrar/ocultar campo de serial según checkbox de tiene placa
         binding.valorTienePlacaCheckbox.setOnCheckedChangeListener { _, isChecked ->
             binding.layoutSerialTitle.isVisible = isChecked
@@ -74,6 +79,13 @@ class RegistrarNovedadFragment : Fragment() {
                 binding.valorSerialEditText.setText("")
                 binding.valorSerialInputLayout.error = null
             }
+            
+            actualizarEstadoBotonFotografia()
+        }
+
+        // Monitorear cambios en el texto del serial
+        binding.valorSerialEditText.doAfterTextChanged {
+            actualizarEstadoBotonFotografia()
         }
 
         // Mostrar/ocultar secciones de contadores según el estado
@@ -99,6 +111,19 @@ class RegistrarNovedadFragment : Fragment() {
         binding.btnRegistrar.setOnClickListener {
             guardarNovedad()
         }
+
+        binding.btnCapturarMaquina.setOnClickListener {
+            val serialStr = binding.valorSerialEditText.text?.toString()?.takeIf { it.isNotBlank() }
+            val serial = serialStr?.replace(" ", "_")
+                ?: viewModel.uiState.value.novedadRegistrada?.serial?.replace(" ", "_")
+                ?: "sin_serial"
+            val action = RegistrarNovedadFragmentDirections
+                .actionRegistrarNovedadFragmentToGalleryFragment(
+                    actaUuid = args.actaUuid,
+                    fragmentOrigen = "maquina_$serial"
+                )
+            findNavController().navigate(action)
+        }
     }
 
     private fun observeViewModel() {
@@ -117,12 +142,17 @@ class RegistrarNovedadFragment : Fragment() {
         state.novedadRegistrada?.let { novedad ->
             // NUEVO: Configurar checkbox de tiene placa
             binding.valorTienePlacaCheckbox.isChecked = novedad.tienePlaca
+            binding.descripcionJuegoCheckbox.isChecked = novedad.descripcionJuego
+            binding.planPremiosCheckbox.isChecked = novedad.planPremios
+            binding.valorPremiosCheckbox.isChecked = novedad.valorPremios
             binding.valorSerialEditText.setText(novedad.serial)
             binding.valorMarcaEditText.setText(novedad.marca)
             binding.valorCodigoApuestaEditText.setText(novedad.codigoApuesta)
             binding.operandoSpinner.setText(novedad.operando, false)
             // Valor de crédito
             binding.valorCreditoEditText.setText(novedad.valorCredito ?: "")
+            // Numero interno MET
+            binding.numeroInternoMetOperadorEditText.setText(novedad.numeroInternoMet ?: "")
 
             // Contadores MET
             binding.coinInMetEditText.setText(novedad.coinInMet ?: "")
@@ -193,12 +223,16 @@ class RegistrarNovedadFragment : Fragment() {
 
     private fun guardarNovedad() {
         val tienePlaca = binding.valorTienePlacaCheckbox.isChecked
+        val descripcionJuego = binding.descripcionJuegoCheckbox.isChecked
+        val planPremios = binding.planPremiosCheckbox.isChecked
+        val valorPremios = binding.valorPremiosCheckbox.isChecked
         val serial = binding.valorSerialEditText.text?.toString() ?: ""
         val marca = binding.valorMarcaEditText.text?.toString() ?: ""
         val codigoApuesta = binding.valorCodigoApuestaEditText.text?.toString() ?: ""
         val operando = binding.operandoSpinner.text?.toString() ?: ""
 
         val valorCredito = binding.valorCreditoEditText.text?.toString()
+        val numeroInternoMet = binding.numeroInternoMetOperadorEditText.text?.toString()
 
         // Contadores MET (solo si está operando)
         val coinInMet = binding.coinInMetEditText.text?.toString()
@@ -248,7 +282,11 @@ class RegistrarNovedadFragment : Fragment() {
             codigoApuesta = codigoApuesta,
             operando = operando,
             tienePlaca = tienePlaca,
+            descripcionJuego = descripcionJuego,
+            planPremios = planPremios,
+            valorPremios = valorPremios,
             valorCredito = valorCredito,
+            numeroInternoMet = numeroInternoMet,
             coinInMet = coinInMet,
             coinOutMet = coinOutMet,
             jackpotMet = jackpotMet,
@@ -270,6 +308,19 @@ class RegistrarNovedadFragment : Fragment() {
                 dialog.dismiss()
             }
             .show()
+    }
+
+    private fun actualizarEstadoBotonFotografia() {
+        val tienePlaca = binding.valorTienePlacaCheckbox.isChecked
+        val serialDigitado = binding.valorSerialEditText.text?.toString() ?: ""
+        
+        // Habilitar si la máquina no tiene placa, o si tiene placa y se ingresó el serial
+        binding.btnCapturarMaquina.isEnabled = !tienePlaca || serialDigitado.isNotBlank()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        binding.operandoSpinner.setAdapter(adapterOperando)
     }
 
     override fun onDestroyView() {

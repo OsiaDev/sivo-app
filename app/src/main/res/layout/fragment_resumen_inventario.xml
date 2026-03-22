@@ -75,7 +75,7 @@
                     android:layout_marginBottom="16dp"
                     android:background="?android:attr/listDivider" />
 
-                <!-- 1. Inventarios registrados operando/apagado -->
+                <!-- 1. Inventarios registrados operando -->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -86,18 +86,43 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="@string/resumen_inventario_operando_apagado"
+                        android:text="@string/resumen_inventario_operando"
                         android:textColor="@color/text_detail"
                         android:textSize="16sp" />
 
                     <TextView
-                        android:id="@+id/tvInventariosOperandoApagado"
+                        android:id="@+id/tvInventariosOperando"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="@color/fragment_subtitle_color"
                         android:textSize="18sp"
                         android:textStyle="bold"
                         tools:text="10" />
+                </LinearLayout>
+
+                <!-- 1.1 Inventarios apagados -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingVertical="8dp">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/resumen_inventario_apagados"
+                        android:textColor="@color/text_detail"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/tvInventariosApagados"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/fragment_subtitle_color"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        tools:text="5" />
                 </LinearLayout>
 
                 <!-- 2. Inventarios no encontrados -->
@@ -237,6 +262,31 @@
                         android:textSize="18sp"
                         android:textStyle="bold"
                         tools:text="4" />
+                </LinearLayout>
+
+                <!-- 7. Inventarios sin descripción de juego -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingVertical="8dp">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/resumen_inventario_sin_descripcion"
+                        android:textColor="@color/text_detail"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/tvInventariosSinDescripcionJuego"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="#9C27B0"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        tools:text="1" />
                 </LinearLayout>
 
             </LinearLayout>

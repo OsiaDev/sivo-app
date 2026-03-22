@@ -55,6 +55,9 @@ class VerificacionJuegoResponsableFragment : Fragment() {
             Log.d("VerificacionJuegoResponsableFragment", "Recibido evento de cámara")
             navigateToGallery()
         }
+        binding.pregunta1Spinner.setAdapter(adapterSiNoNa)
+        binding.pregunta2Spinner.setAdapter(adapterSiNoNa)
+        binding.pregunta3Spinner.setAdapter(adapterSiNoNa)
     }
 
     private fun setupAdapters() {

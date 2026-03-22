@@ -47,7 +47,14 @@ class InventarioRegistradoAdapter(
                     val coinOut = item.registro?.coinOutMet
                     val jackpot = item.registro?.jackpotMet
                     
-                    if (coinIn.isNullOrEmpty() || coinOut.isNullOrEmpty() || jackpot.isNullOrEmpty()) {
+                    val coinInSclm = item.registro?.coinInSclm
+                    val coinOutSclm = item.registro?.coinOutSclm
+                    val jackpotSclm = item.registro?.jackpotSclm
+                    
+                    val metIncompleto = coinIn.isNullOrEmpty() || coinOut.isNullOrEmpty() || jackpot.isNullOrEmpty()
+                    val sclmIncompleto = coinInSclm.isNullOrEmpty() || coinOutSclm.isNullOrEmpty() || jackpotSclm.isNullOrEmpty()
+                    
+                    if (metIncompleto || sclmIncompleto) {
                         val colorIncompleto = android.graphics.Color.parseColor("#FDECEA")
                         rootCard.setCardBackgroundColor(colorIncompleto)
                         rootCard.strokeColor = colorIncompleto
