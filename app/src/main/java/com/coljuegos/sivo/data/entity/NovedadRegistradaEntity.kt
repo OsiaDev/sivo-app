@@ -38,6 +38,7 @@ data class NovedadRegistradaEntity(
     // Estado operativo
     val operando: String, // "Operando" o "Apagado"
     val valorCredito: String? = null,
+    val numeroInternoMet: String? = null,
 
     // Contadores MET
     val coinInMet: String? = null,

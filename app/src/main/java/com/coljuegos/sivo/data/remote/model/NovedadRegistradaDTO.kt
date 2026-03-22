@@ -30,6 +30,9 @@ data class NovedadRegistradaDTO(
     @SerializedName("valorCredito")
     val valorCredito: String?,
 
+    @SerializedName("numeroInternoMet")
+    val numeroInternoMet: String?,
+
     @SerializedName("coinInMet")
     val coinInMet: String?,
 

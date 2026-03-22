@@ -151,6 +151,8 @@ class RegistrarNovedadFragment : Fragment() {
             binding.operandoSpinner.setText(novedad.operando, false)
             // Valor de crédito
             binding.valorCreditoEditText.setText(novedad.valorCredito ?: "")
+            // Numero interno MET
+            binding.numeroInternoMetOperadorEditText.setText(novedad.numeroInternoMet ?: "")
 
             // Contadores MET
             binding.coinInMetEditText.setText(novedad.coinInMet ?: "")
@@ -230,6 +232,7 @@ class RegistrarNovedadFragment : Fragment() {
         val operando = binding.operandoSpinner.text?.toString() ?: ""
 
         val valorCredito = binding.valorCreditoEditText.text?.toString()
+        val numeroInternoMet = binding.numeroInternoMetOperadorEditText.text?.toString()
 
         // Contadores MET (solo si está operando)
         val coinInMet = binding.coinInMetEditText.text?.toString()
@@ -283,6 +286,7 @@ class RegistrarNovedadFragment : Fragment() {
             planPremios = planPremios,
             valorPremios = valorPremios,
             valorCredito = valorCredito,
+            numeroInternoMet = numeroInternoMet,
             coinInMet = coinInMet,
             coinOutMet = coinOutMet,
             jackpotMet = jackpotMet,
