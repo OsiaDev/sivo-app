@@ -79,12 +79,14 @@ class ResumenInventarioFragment : Fragment() {
         binding.progressBar.isVisible = state.isLoading
 
         // Actualizar estadísticas
-        binding.tvInventariosOperandoApagado.text = state.inventariosOperandoApagado.toString()
+        binding.tvInventariosOperando.text = state.inventariosOperando.toString()
+        binding.tvInventariosApagados.text = state.inventariosApagados.toString()
         binding.tvInventariosNoEncontrados.text = state.inventariosNoEncontrados.toString()
         binding.tvNovedadesSinPlaca.text = state.novedadesSinPlaca.toString()
         binding.tvNovedadesConPlaca.text = state.novedadesConPlaca.toString()
         binding.tvTotalInventariosEncontrados.text = state.totalInventariosEncontrados.toString()
         binding.tvCodigoApuestaDiferente.text = state.codigoApuestaDiferente.toString()
+        binding.tvInventariosSinDescripcionJuego.text = state.inventariosSinDescripcionJuego.toString()
 
         // Mostrar error si existe
         state.errorMessage?.let { errorMsg ->
