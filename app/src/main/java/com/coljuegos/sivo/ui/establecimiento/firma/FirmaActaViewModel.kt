@@ -17,6 +17,8 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import kotlinx.coroutines.Dispatchers
 import java.io.ByteArrayOutputStream
 import java.util.UUID
 import javax.inject.Inject
@@ -62,12 +64,22 @@ class FirmaActaViewModel @Inject constructor(
                         
                         // Si ya existe registro de firma, pero el operador esta vacio, intentamos precargarlo
                         if (opNombre.isBlank() && opCc.isBlank()) {
-                            val actaVisita = actaVisitaDao.getActaVisitaByActaId(actaUuid)
+                            val actaVisita = withContext(Dispatchers.IO) { actaVisitaDao.getActaVisitaByActaId(actaUuid) }
                             if (actaVisita != null) {
                                 opNombre = actaVisita.nombrePresente ?: ""
                                 opCc = actaVisita.identificacionPresente ?: ""
                                 opCargo = actaVisita.cargoPresente ?: ""
                             }
+                        }
+
+                        val principalBitmap = withContext(Dispatchers.IO) {
+                            firmaActa.firmaFiscalizadorPrincipal?.let { base64ToBitmap(it) }
+                        }
+                        val secundarioBitmap = withContext(Dispatchers.IO) {
+                            firmaActa.firmaFiscalizadorSecundario?.let { base64ToBitmap(it) }
+                        }
+                        val operadorBitmap = withContext(Dispatchers.IO) {
+                            firmaActa.firmaOperador?.let { base64ToBitmap(it) }
                         }
 
                         _uiState.update {
@@ -76,17 +88,17 @@ class FirmaActaViewModel @Inject constructor(
                                 nombreFiscalizadorPrincipal = firmaActa.nombreFiscalizadorPrincipal ?: "",
                                 ccFiscalizadorPrincipal = firmaActa.ccFiscalizadorPrincipal ?: "",
                                 cargoFiscalizadorPrincipal = firmaActa.cargoFiscalizadorPrincipal ?: "",
-                                firmaFiscalizadorPrincipal = firmaActa.firmaFiscalizadorPrincipal?.let { base64ToBitmap(it) },
+                                firmaFiscalizadorPrincipal = principalBitmap,
 
                                 nombreFiscalizadorSecundario = firmaActa.nombreFiscalizadorSecundario ?: "",
                                 ccFiscalizadorSecundario = firmaActa.ccFiscalizadorSecundario ?: "",
                                 cargoFiscalizadorSecundario = firmaActa.cargoFiscalizadorSecundario ?: "",
-                                firmaFiscalizadorSecundario = firmaActa.firmaFiscalizadorSecundario?.let { base64ToBitmap(it) },
+                                firmaFiscalizadorSecundario = secundarioBitmap,
 
                                 nombreOperador = opNombre,
                                 ccOperador = opCc,
                                 cargoOperador = opCargo,
-                                firmaOperador = firmaActa.firmaOperador?.let { base64ToBitmap(it) }
+                                firmaOperador = operadorBitmap
                             )
                         }
 
@@ -113,8 +125,8 @@ class FirmaActaViewModel @Inject constructor(
         viewModelScope.launch {
             try {
                 val session = sessionManager.getCurrentSession()
-                val funcionarios = funcionarioDao.getFuncionariosByActa(actaUuid)
-                val actaVisita = actaVisitaDao.getActaVisitaByActaId(actaUuid)
+                val funcionarios = withContext(Dispatchers.IO) { funcionarioDao.getFuncionariosByActa(actaUuid) }
+                val actaVisita = withContext(Dispatchers.IO) { actaVisitaDao.getActaVisitaByActaId(actaUuid) }
 
                 // Principal: el funcionario cuyo idUsuario coincide con el usuario logueado
                 val principal = funcionarios.find { it.idUsuarioFuncionario == session?.idUserSession }
@@ -199,42 +211,46 @@ class FirmaActaViewModel @Inject constructor(
                 val currentState = _uiState.value
 
                 // Buscar si ya existe un registro
-                val existingFirmaActa = firmaActaDao.getFirmaActaByActaUuidSuspend(actaUuid)
+                val existingFirmaActa = withContext(Dispatchers.IO) { firmaActaDao.getFirmaActaByActaUuidSuspend(actaUuid) }
+
+                val base64Principal = withContext(Dispatchers.IO) { currentState.firmaFiscalizadorPrincipal?.let { bitmapToBase64(it) } }
+                val base64Secundario = withContext(Dispatchers.IO) { currentState.firmaFiscalizadorSecundario?.let { bitmapToBase64(it) } }
+                val base64Operador = withContext(Dispatchers.IO) { currentState.firmaOperador?.let { bitmapToBase64(it) } }
 
                 val firmaActaToSave = existingFirmaActa?.copy(
                     nombreFiscalizadorPrincipal = currentState.nombreFiscalizadorPrincipal.takeIf { it.isNotBlank() },
                     ccFiscalizadorPrincipal = currentState.ccFiscalizadorPrincipal.takeIf { it.isNotBlank() },
                     cargoFiscalizadorPrincipal = currentState.cargoFiscalizadorPrincipal.takeIf { it.isNotBlank() },
-                    firmaFiscalizadorPrincipal = currentState.firmaFiscalizadorPrincipal?.let { bitmapToBase64(it) },
+                    firmaFiscalizadorPrincipal = base64Principal,
 
                     nombreFiscalizadorSecundario = currentState.nombreFiscalizadorSecundario.takeIf { it.isNotBlank() },
                     ccFiscalizadorSecundario = currentState.ccFiscalizadorSecundario.takeIf { it.isNotBlank() },
                     cargoFiscalizadorSecundario = currentState.cargoFiscalizadorSecundario.takeIf { it.isNotBlank() },
-                    firmaFiscalizadorSecundario = currentState.firmaFiscalizadorSecundario?.let { bitmapToBase64(it) },
+                    firmaFiscalizadorSecundario = base64Secundario,
 
                     nombreOperador = currentState.nombreOperador.takeIf { it.isNotBlank() },
                     ccOperador = currentState.ccOperador.takeIf { it.isNotBlank() },
                     cargoOperador = currentState.cargoOperador.takeIf { it.isNotBlank() },
-                    firmaOperador = currentState.firmaOperador?.let { bitmapToBase64(it) }
+                    firmaOperador = base64Operador
                 ) ?: FirmaActaEntity(
                     uuidActa = actaUuid,
                     nombreFiscalizadorPrincipal = currentState.nombreFiscalizadorPrincipal.takeIf { it.isNotBlank() },
                     ccFiscalizadorPrincipal = currentState.ccFiscalizadorPrincipal.takeIf { it.isNotBlank() },
                     cargoFiscalizadorPrincipal = currentState.cargoFiscalizadorPrincipal.takeIf { it.isNotBlank() },
-                    firmaFiscalizadorPrincipal = currentState.firmaFiscalizadorPrincipal?.let { bitmapToBase64(it) },
+                    firmaFiscalizadorPrincipal = base64Principal,
 
                     nombreFiscalizadorSecundario = currentState.nombreFiscalizadorSecundario.takeIf { it.isNotBlank() },
                     ccFiscalizadorSecundario = currentState.ccFiscalizadorSecundario.takeIf { it.isNotBlank() },
                     cargoFiscalizadorSecundario = currentState.cargoFiscalizadorSecundario.takeIf { it.isNotBlank() },
-                    firmaFiscalizadorSecundario = currentState.firmaFiscalizadorSecundario?.let { bitmapToBase64(it) },
+                    firmaFiscalizadorSecundario = base64Secundario,
 
                     nombreOperador = currentState.nombreOperador.takeIf { it.isNotBlank() },
                     ccOperador = currentState.ccOperador.takeIf { it.isNotBlank() },
                     cargoOperador = currentState.cargoOperador.takeIf { it.isNotBlank() },
-                    firmaOperador = currentState.firmaOperador?.let { bitmapToBase64(it) }
+                    firmaOperador = base64Operador
                 )
 
-                firmaActaDao.insertFirmaActa(firmaActaToSave)
+                withContext(Dispatchers.IO) { firmaActaDao.insertFirmaActa(firmaActaToSave) }
             } catch (e: Exception) {
                 // Error silencioso, no interrumpir la escritura del usuario
             }
@@ -277,25 +293,29 @@ class FirmaActaViewModel @Inject constructor(
                 }
 
                 // Convertir bitmaps a Base64
+                val base64Principal = withContext(Dispatchers.IO) { currentState.firmaFiscalizadorPrincipal?.let { bitmapToBase64(it) } }
+                val base64Secundario = withContext(Dispatchers.IO) { currentState.firmaFiscalizadorSecundario?.let { bitmapToBase64(it) } }
+                val base64Operador = withContext(Dispatchers.IO) { currentState.firmaOperador?.let { bitmapToBase64(it) } }
+
                 val firmaActa = FirmaActaEntity(
                     uuidActa = actaUuid,
                     nombreFiscalizadorPrincipal = currentState.nombreFiscalizadorPrincipal,
                     ccFiscalizadorPrincipal = currentState.ccFiscalizadorPrincipal,
                     cargoFiscalizadorPrincipal = currentState.cargoFiscalizadorPrincipal,
-                    firmaFiscalizadorPrincipal = currentState.firmaFiscalizadorPrincipal?.let { bitmapToBase64(it) },
+                    firmaFiscalizadorPrincipal = base64Principal,
 
                     nombreFiscalizadorSecundario = currentState.nombreFiscalizadorSecundario.takeIf { it.isNotBlank() },
                     ccFiscalizadorSecundario = currentState.ccFiscalizadorSecundario.takeIf { it.isNotBlank() },
                     cargoFiscalizadorSecundario = currentState.cargoFiscalizadorSecundario.takeIf { it.isNotBlank() },
-                    firmaFiscalizadorSecundario = currentState.firmaFiscalizadorSecundario?.let { bitmapToBase64(it) },
+                    firmaFiscalizadorSecundario = base64Secundario,
 
                     nombreOperador = currentState.nombreOperador.takeIf { it.isNotBlank() },
                     ccOperador = currentState.ccOperador.takeIf { it.isNotBlank() },
                     cargoOperador = currentState.cargoOperador.takeIf { it.isNotBlank() },
-                    firmaOperador = currentState.firmaOperador?.let { bitmapToBase64(it) }
+                    firmaOperador = base64Operador
                 )
 
-                firmaActaDao.insertFirmaActa(firmaActa)
+                withContext(Dispatchers.IO) { firmaActaDao.insertFirmaActa(firmaActa) }
 
                 _uiState.update { it.copy(isLoading = false, isSaved = true) }
                 onSuccess()
