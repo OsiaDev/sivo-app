@@ -449,6 +449,26 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
+        <!-- Botón para capturar foto de identificación -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnCapturarMaquina"
+            style="@style/Widget.Material3.Button.OutlinedButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:paddingVertical="16dp"
+            android:text="@string/registrar_novedad_capturar_maquina"
+            android:textSize="16sp"
+            app:cornerRadius="8dp"
+            app:icon="@drawable/ic_camara"
+            app:iconGravity="textStart"
+            app:iconPadding="12dp"
+            app:strokeColor="@color/login_button_color_init"
+            app:strokeWidth="2dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/operandoLayout" />
+
         <!-- SECCIÓN DE CONTADORES MET (OCULTA POR DEFECTO) -->
         <TextView
             android:id="@+id/contadoresMetTitle"
@@ -461,7 +481,7 @@
             android:textStyle="bold"
             android:visibility="gone"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/operandoLayout"
+            app:layout_constraintTop_toBottomOf="@id/btnCapturarMaquina"
             tools:visibility="visible" />
 
         <LinearLayout

@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import androidx.core.view.isVisible
+import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -13,6 +14,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.coljuegos.sivo.R
 import com.coljuegos.sivo.databinding.FragmentRegistrarNovedadBinding
+import com.coljuegos.sivo.ui.establecimiento.novedad.RegistrarNovedadFragmentDirections
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
@@ -64,6 +66,9 @@ class RegistrarNovedadFragment : Fragment() {
     }
 
     private fun setupVisibilityListeners() {
+        // Estado inicial del botón de fotografía
+        actualizarEstadoBotonFotografia()
+
         // Mostrar/ocultar campo de serial según checkbox de tiene placa
         binding.valorTienePlacaCheckbox.setOnCheckedChangeListener { _, isChecked ->
             binding.layoutSerialTitle.isVisible = isChecked
@@ -74,6 +79,13 @@ class RegistrarNovedadFragment : Fragment() {
                 binding.valorSerialEditText.setText("")
                 binding.valorSerialInputLayout.error = null
             }
+            
+            actualizarEstadoBotonFotografia()
+        }
+
+        // Monitorear cambios en el texto del serial
+        binding.valorSerialEditText.doAfterTextChanged {
+            actualizarEstadoBotonFotografia()
         }
 
         // Mostrar/ocultar secciones de contadores según el estado
@@ -98,6 +110,19 @@ class RegistrarNovedadFragment : Fragment() {
         // Botón Registrar (se mostrará como "Actualizar" en modo edición)
         binding.btnRegistrar.setOnClickListener {
             guardarNovedad()
+        }
+
+        binding.btnCapturarMaquina.setOnClickListener {
+            val serialStr = binding.valorSerialEditText.text?.toString()?.takeIf { it.isNotBlank() }
+            val serial = serialStr?.replace(" ", "_")
+                ?: viewModel.uiState.value.novedadRegistrada?.serial?.replace(" ", "_")
+                ?: "sin_serial"
+            val action = RegistrarNovedadFragmentDirections
+                .actionRegistrarNovedadFragmentToGalleryFragment(
+                    actaUuid = args.actaUuid,
+                    fragmentOrigen = "maquina_$serial"
+                )
+            findNavController().navigate(action)
         }
     }
 
@@ -279,6 +304,14 @@ class RegistrarNovedadFragment : Fragment() {
                 dialog.dismiss()
             }
             .show()
+    }
+
+    private fun actualizarEstadoBotonFotografia() {
+        val tienePlaca = binding.valorTienePlacaCheckbox.isChecked
+        val serialDigitado = binding.valorSerialEditText.text?.toString() ?: ""
+        
+        // Habilitar si la máquina no tiene placa, o si tiene placa y se ingresó el serial
+        binding.btnCapturarMaquina.isEnabled = !tienePlaca || serialDigitado.isNotBlank()
     }
 
     override fun onDestroyView() {

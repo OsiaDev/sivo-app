@@ -277,6 +277,7 @@
     <string name="registrar_novedad_nuc">NUC</string>
     <string name="registrar_novedad_descripcion">Descripción de la novedad</string>
     <string name="registrar_novedad_descripcion_hint">Describa detalladamente la novedad encontrada</string>
+    <string name="registrar_novedad_capturar_maquina">Capturar fotos de maquina</string>
     <string name="registrar_novedad_tipo">Tipo de novedad</string>
     <string name="registrar_novedad_credito">Valor crédito</string>
     <string name="registrar_novedad_observaciones">Observaciones</string>
