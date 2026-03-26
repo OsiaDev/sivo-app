@@ -106,6 +106,18 @@ class ActaVisitaViewModel @Inject constructor(
                         correosContacto = correosList,  // NUEVO
                         selectedMunicipio = selectedMunicipio
                     )
+                } else {
+                    // Cargar correos de los funcionarios por defecto si es la primera vez
+                    val funcionarios = actasRepository.getFuncionariosByActa(actaUuid)
+                    val correosFuncionarios = funcionarios
+                        .map { it.emailFuncionario }
+                        .filter { it.isNotBlank() }
+                        .distinct()
+                    
+                    if (correosFuncionarios.isNotEmpty()) {
+                        _uiState.value = _uiState.value.copy(correosContacto = correosFuncionarios)
+                        saveActaVisita()
+                    }
                 }
             } catch (_: Exception) {
                 // Error silencioso, continúa con valores por defecto

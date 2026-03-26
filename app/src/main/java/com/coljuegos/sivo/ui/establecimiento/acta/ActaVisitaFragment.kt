@@ -258,6 +258,14 @@ class ActaVisitaFragment : Fragment() {
             val chip = Chip(requireContext()).apply {
                 text = correo
                 isCloseIconVisible = true
+                
+                // Aplicar estilos de borde y fondo
+                chipBackgroundColor = android.content.res.ColorStateList.valueOf(android.graphics.Color.WHITE)
+                chipStrokeColor = android.content.res.ColorStateList.valueOf(
+                    androidx.core.content.ContextCompat.getColor(requireContext(), R.color.login_button_color_init)
+                )
+                chipStrokeWidth = 2f * resources.displayMetrics.density
+
                 setOnCloseIconClickListener {
                     viewModel.removeCorreoContacto(correo)
                 }

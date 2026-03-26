@@ -52,13 +52,8 @@ class FirmaActaFragment : Fragment() {
         setupSignatureButtons()
         setupNavigationButtons()
         observeViewModel()
-    }
 
-    override fun onResume() {
-        super.onResume()
-
-        activity?.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED
-
+        // Configurar listener para evento de cámara
         parentFragmentManager.setFragmentResultListener("camera_action", viewLifecycleOwner) { _, _ ->
             navigateToGallery()
         }
@@ -75,11 +70,13 @@ class FirmaActaFragment : Fragment() {
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+        activity?.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED
+    }
+
     override fun onPause() {
         super.onPause()
-        parentFragmentManager.clearFragmentResultListener("camera_action")
-        // Remover el listener cuando el fragment no está visible
-        setFragmentResultListener("signature_request") { _, _ -> }
     }
 
     private fun setupTextWatchers() {
@@ -210,8 +207,6 @@ class FirmaActaFragment : Fragment() {
 
     private fun navigateToSignatureFragment(signatureType: SignatureType) {
         // Guardar el tipo de firma en el ViewModel compartido
-        activity?.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_LOCKED
-
         signatureViewModel.setSignatureType(signatureType.ordinal)
 
         val action = FirmaActaFragmentDirections.actionFirmaActaFragmentToSignatureFragment()

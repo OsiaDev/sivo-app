@@ -42,18 +42,14 @@ class SignatureFragment : Fragment() {
         loadExistingSignature()
     }
 
-    override fun onResume() {
-        super.onResume()
-        binding.root.post {
-            if (isAdded) {
-                activity?.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
-            }
-        }
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        activity?.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
     }
 
-    override fun onPause() {
+    override fun onDestroy() {
         activity?.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED
-        super.onPause()
+        super.onDestroy()
     }
 
     private fun setupBackPressHandler() {

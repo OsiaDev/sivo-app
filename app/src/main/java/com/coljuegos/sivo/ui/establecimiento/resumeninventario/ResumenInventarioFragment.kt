@@ -87,6 +87,9 @@ class ResumenInventarioFragment : Fragment() {
         binding.tvTotalInventariosEncontrados.text = state.totalInventariosEncontrados.toString()
         binding.tvCodigoApuestaDiferente.text = state.codigoApuestaDiferente.toString()
         binding.tvInventariosSinDescripcionJuego.text = state.inventariosSinDescripcionJuego.toString()
+        binding.tvInventariosSinSerial.text = state.inventariosSinSerial.toString()
+        binding.tvInventariosSinPlanPremios.text = state.inventariosSinPlanPremios.toString()
+        binding.tvInventariosSinValorPremios.text = state.inventariosSinValorPremios.toString()
 
         // Mostrar error si existe
         state.errorMessage?.let { errorMsg ->
@@ -104,6 +107,16 @@ class ResumenInventarioFragment : Fragment() {
     }
 
     private fun setupListeners() {
+        val scrollTouchListener = android.view.View.OnTouchListener { v, event ->
+            v.parent.requestDisallowInterceptTouchEvent(true)
+            if ((event.action and android.view.MotionEvent.ACTION_MASK) == android.view.MotionEvent.ACTION_UP) {
+                v.parent.requestDisallowInterceptTouchEvent(false)
+            }
+            false
+        }
+        binding.observacionesEditText.setOnTouchListener(scrollTouchListener)
+        binding.observacionesOperadorEditText.setOnTouchListener(scrollTouchListener)
+
         binding.observacionesEditText.doOnTextChanged { text, _, _, _ ->
             if (binding.observacionesEditText.hasFocus()) {
                 viewModel.guardarNotas(text?.toString() ?: "")
@@ -113,6 +126,27 @@ class ResumenInventarioFragment : Fragment() {
             if (binding.observacionesOperadorEditText.hasFocus()) {
                 viewModel.guardarObservacionesOperador(text?.toString() ?: "")
             }
+        }
+        binding.btnLimpiarObservacion.setOnClickListener {
+            com.google.android.material.dialog.MaterialAlertDialogBuilder(requireContext())
+                .setTitle("Confirmación")
+                .setMessage("¿Desea limpiar la observación de Coljuegos?")
+                .setPositiveButton("Sí") { _, _ ->
+                    binding.observacionesEditText.setText("")
+                    viewModel.guardarNotas("")
+                }
+                .setNegativeButton("No", null)
+                .show()
+        }
+        binding.btnSugeridaObservacion.setOnClickListener {
+            com.google.android.material.dialog.MaterialAlertDialogBuilder(requireContext())
+                .setTitle("Confirmación")
+                .setMessage("¿Desea generar la observación sugerida basada en los datos recolectados?")
+                .setPositiveButton("Sí") { _, _ ->
+                    viewModel.generarObservacionSugerida()
+                }
+                .setNegativeButton("No", null)
+                .show()
         }
         binding.btnAnterior.setOnClickListener {
             findNavController().navigateUp()
