@@ -730,7 +730,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:drawablePadding="12dp"
-                    android:inputType="text"
+                    android:inputType="number"
                     android:padding="15dp"
                     android:textColor="@color/input_text_color"
                     android:textSize="16sp" />
@@ -774,7 +774,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:drawablePadding="12dp"
-                    android:inputType="text"
+                    android:inputType="number"
                     android:padding="15dp"
                     android:textColor="@color/input_text_color"
                     android:textSize="16sp" />
@@ -818,7 +818,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:drawablePadding="12dp"
-                    android:inputType="text"
+                    android:inputType="number"
                     android:padding="15dp"
                     android:textColor="@color/input_text_color"
                     android:textSize="16sp" />
@@ -889,7 +889,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:drawablePadding="12dp"
-                    android:inputType="text"
+                    android:inputType="number"
                     android:padding="15dp"
                     android:textColor="@color/input_text_color"
                     android:textSize="16sp" />
@@ -933,7 +933,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:drawablePadding="12dp"
-                    android:inputType="text"
+                    android:inputType="number"
                     android:padding="15dp"
                     android:textColor="@color/input_text_color"
                     android:textSize="16sp" />
@@ -977,7 +977,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:drawablePadding="12dp"
-                    android:inputType="text"
+                    android:inputType="number"
                     android:padding="15dp"
                     android:textColor="@color/input_text_color"
                     android:textSize="16sp" />
