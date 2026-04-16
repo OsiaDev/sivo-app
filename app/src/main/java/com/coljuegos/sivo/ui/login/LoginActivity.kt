@@ -9,6 +9,7 @@ import androidx.activity.viewModels
 
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
+import com.coljuegos.sivo.BuildConfig
 import com.coljuegos.sivo.R
 import com.coljuegos.sivo.databinding.ActivityLoginBinding
 import com.coljuegos.sivo.ui.main.MainActivity
@@ -34,6 +35,8 @@ class LoginActivity : AppCompatActivity() {
 
         this.setupListeners()
         this.observeViewModel()
+
+        binding.tvVersion.text = "v${BuildConfig.VERSION_NAME}"
     }
 
     private fun checkExistingSession() {

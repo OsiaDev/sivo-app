@@ -9,6 +9,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.coljuegos.sivo.BuildConfig
 import com.coljuegos.sivo.databinding.FragmentHomeBinding
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.tabs.TabLayoutMediator
@@ -42,6 +43,8 @@ class HomeFragment : Fragment() {
         setupRecyclerView()
         observeViewModel()
         setupFragmentResultListener()
+
+        binding.tvVersion.text = "v${BuildConfig.VERSION_NAME}"
     }
 
     override fun onResume() {

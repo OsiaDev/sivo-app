@@ -115,6 +115,18 @@
 
     </ScrollView>
 
+    <!-- Versión de la app -->
+    <TextView
+        android:id="@+id/tvVersion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center_horizontal"
+        android:layout_marginBottom="100dp"
+        android:textSize="12sp"
+        android:textColor="@color/login_icon_color"
+        android:alpha="0.6"
+        tools:text="v1.3" />
+
     <!-- Bottom Navigation -->
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
