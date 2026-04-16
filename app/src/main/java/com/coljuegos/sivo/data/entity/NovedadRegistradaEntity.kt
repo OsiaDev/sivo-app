@@ -50,6 +50,8 @@ data class NovedadRegistradaEntity(
     val coinOutSclm: String? = null,
     val jackpotSclm: String? = null,
 
+    val contadoresVerificado: Boolean = false,
+
     // Observaciones
     val observaciones: String? = null
 )

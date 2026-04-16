@@ -91,13 +91,22 @@ class RegistrarNovedadFragment : Fragment() {
         // Mostrar/ocultar secciones de contadores según el estado
         binding.operandoSpinner.setOnItemClickListener { _, _, position, _ ->
             val selectedValue = adapterOperando.getItem(position) ?: ""
-
-            // Si está "Operando", mostrar los contadores
             val mostrarContadores = selectedValue == "Operando"
+
+            // Sección checkbox "Contadores verificado"
+            binding.layoutTextoLegalContadores.isVisible = mostrarContadores
+            binding.layoutCheckContadores.isVisible = mostrarContadores
+
+            // Secciones MET y SCLM
             binding.contadoresMetTitle.isVisible = mostrarContadores
             binding.layoutContadoresMet.isVisible = mostrarContadores
             binding.contadoresSclmTitle.isVisible = mostrarContadores
             binding.layoutContadoresSclm.isVisible = mostrarContadores
+
+            // Si se oculta, resetear el checkbox
+            if (!mostrarContadores) {
+                binding.contadoresVerificadoCheckbox.isChecked = false
+            }
         }
     }
 
@@ -135,12 +144,9 @@ class RegistrarNovedadFragment : Fragment() {
     }
 
     private fun updateUI(state: RegistrarNovedadUiState) {
-        // Mostrar/ocultar loading
         binding.progressIndicator.isVisible = state.isLoading
 
-        // Si es modo edición, cargar datos de la novedad existente
         state.novedadRegistrada?.let { novedad ->
-            // NUEVO: Configurar checkbox de tiene placa
             binding.valorTienePlacaCheckbox.isChecked = novedad.tienePlaca
             binding.descripcionJuegoCheckbox.isChecked = novedad.descripcionJuego
             binding.planPremiosCheckbox.isChecked = novedad.planPremios
@@ -149,9 +155,7 @@ class RegistrarNovedadFragment : Fragment() {
             binding.valorMarcaEditText.setText(novedad.marca)
             binding.valorCodigoApuestaEditText.setText(novedad.codigoApuesta)
             binding.operandoSpinner.setText(novedad.operando, false)
-            // Valor de crédito
             binding.valorCreditoEditText.setText(novedad.valorCredito ?: "")
-            // Numero interno MET
             binding.numeroInternoMetOperadorEditText.setText(novedad.numeroInternoMet ?: "")
 
             // Contadores MET
@@ -167,18 +171,19 @@ class RegistrarNovedadFragment : Fragment() {
             // Observaciones
             binding.observacionesEditText.setText(novedad.observaciones ?: "")
 
-            // Mostrar contadores si está operando
+            // Mostrar/ocultar secciones según si está operando
             val mostrarContadores = novedad.operando == "Operando"
+            binding.layoutTextoLegalContadores.isVisible = mostrarContadores
+            binding.layoutCheckContadores.isVisible = mostrarContadores
+            binding.contadoresVerificadoCheckbox.isChecked = novedad.contadoresVerificado
             binding.contadoresMetTitle.isVisible = mostrarContadores
             binding.layoutContadoresMet.isVisible = mostrarContadores
             binding.contadoresSclmTitle.isVisible = mostrarContadores
             binding.layoutContadoresSclm.isVisible = mostrarContadores
         }
 
-        // Si es creación, cargar datos del inventario de referencia
         if (!state.esEdicion) {
             state.novedadRegistrada?.let { novedad ->
-                // Prellenar con datos del inventario si existen
                 if (binding.valorSerialEditText.text.isNullOrBlank()) {
                     binding.valorSerialEditText.setText(novedad.serial)
                 }
@@ -191,33 +196,22 @@ class RegistrarNovedadFragment : Fragment() {
             }
         }
 
-        // Cambiar texto del botón según modo
         if (state.esEdicion) {
             binding.btnRegistrar.text = "Actualizar"
         } else {
             binding.btnRegistrar.text = getString(R.string.registrar_inventario_btn_registrar)
         }
 
-        // Mostrar errores
         state.errorMessage?.let { error ->
             Snackbar.make(binding.root, error, Snackbar.LENGTH_LONG).show()
             viewModel.clearError()
         }
 
-        // Navegar atrás si se guardó exitosamente
         if (state.guardadoExitoso) {
-            val mensaje = if (state.esEdicion) {
-                "Novedad actualizada exitosamente"
-            } else {
-                "Novedad registrada exitosamente"
-            }
-
+            val mensaje = if (state.esEdicion) "Novedad actualizada exitosamente"
+            else "Novedad registrada exitosamente"
             Snackbar.make(binding.root, mensaje, Snackbar.LENGTH_SHORT).show()
-
-            // Pequeño delay para que se vea el mensaje antes de navegar
-            view?.postDelayed({
-                findNavController().navigateUp()
-            }, 500)
+            view?.postDelayed({ findNavController().navigateUp() }, 500)
         }
     }
 
@@ -226,56 +220,42 @@ class RegistrarNovedadFragment : Fragment() {
         val descripcionJuego = binding.descripcionJuegoCheckbox.isChecked
         val planPremios = binding.planPremiosCheckbox.isChecked
         val valorPremios = binding.valorPremiosCheckbox.isChecked
+        val contadoresVerificado = binding.contadoresVerificadoCheckbox.isChecked
         val serial = binding.valorSerialEditText.text?.toString() ?: ""
         val marca = binding.valorMarcaEditText.text?.toString() ?: ""
         val codigoApuesta = binding.valorCodigoApuestaEditText.text?.toString() ?: ""
         val operando = binding.operandoSpinner.text?.toString() ?: ""
-
         val valorCredito = binding.valorCreditoEditText.text?.toString()
         val numeroInternoMet = binding.numeroInternoMetOperadorEditText.text?.toString()
-
-        // Contadores MET (solo si está operando)
         val coinInMet = binding.coinInMetEditText.text?.toString()
         val coinOutMet = binding.coinOutMetEditText.text?.toString()
         val jackpotMet = binding.jackpotMetEditText.text?.toString()
-
-        // Contadores SCLM (solo si está operando)
         val coinInSclm = binding.coinInSclmEditText.text?.toString()
         val coinOutSclm = binding.coinOutSclmEditText.text?.toString()
         val jackpotSclm = binding.jackpotSclmEditText.text?.toString()
-
-        // Observaciones
         val observaciones = binding.observacionesEditText.text?.toString()
 
-        // Validaciones básicas de UI
         var isValid = true
-
         if (tienePlaca && serial.isBlank()) {
             binding.valorSerialInputLayout.error = "Campo obligatorio"
             isValid = false
         } else {
             binding.valorSerialInputLayout.error = null
         }
-
         if (marca.isBlank()) {
             binding.valorMarcaInputLayout.error = "Campo obligatorio"
             isValid = false
         } else {
             binding.valorMarcaInputLayout.error = null
         }
-
         if (operando.isBlank()) {
             binding.operandoLayout.error = "Campo obligatorio"
             isValid = false
         } else {
             binding.operandoLayout.error = null
         }
+        if (!isValid) return
 
-        if (!isValid) {
-            return
-        }
-
-        // Guardar en el ViewModel (donde se hace la validación de serial duplicado)
         viewModel.guardarNovedad(
             serial = serial,
             marca = marca,
@@ -285,6 +265,7 @@ class RegistrarNovedadFragment : Fragment() {
             descripcionJuego = descripcionJuego,
             planPremios = planPremios,
             valorPremios = valorPremios,
+            contadoresVerificado = contadoresVerificado,
             valorCredito = valorCredito,
             numeroInternoMet = numeroInternoMet,
             coinInMet = coinInMet,

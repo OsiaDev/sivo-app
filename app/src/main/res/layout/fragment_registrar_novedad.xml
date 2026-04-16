@@ -514,6 +514,59 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/numeroInternoMetOperadorInputLayout" />
 
+        <!-- SECCIÓN CONTADORES VERIFICADO -->
+        <LinearLayout
+            android:id="@+id/layoutTextoLegalContadores"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btnCapturarMaquina">
+
+            <TextView
+                android:id="@+id/contadoresVerificadoTitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/registrar_inventario_codigo_pregunta_7"
+                android:textColor="@color/text_title_detail"
+                android:textSize="12sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layoutCheckContadores"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="0dp"
+            android:baselineAligned="false"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layoutTextoLegalContadores">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="start"
+                android:orientation="horizontal"
+                tools:ignore="UselessParent">
+
+                <com.google.android.material.checkbox.MaterialCheckBox
+                    android:id="@+id/contadoresVerificadoCheckbox"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/Widget.Coljuegos.CheckBox"
+                    android:layout_marginTop="0dp"
+                    android:checked="false"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
         <!-- SECCIÓN DE CONTADORES MET (OCULTA POR DEFECTO) -->
         <TextView
             android:id="@+id/contadoresMetTitle"
@@ -526,7 +579,7 @@
             android:textStyle="bold"
             android:visibility="gone"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/btnCapturarMaquina"
+            app:layout_constraintTop_toBottomOf="@id/layoutCheckContadores"
             tools:visibility="visible" />
 
         <LinearLayout
@@ -578,7 +631,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:drawablePadding="12dp"
-                    android:inputType="text"
+                    android:inputType="number"
                     android:padding="15dp"
                     android:textColor="@color/input_text_color"
                     android:textSize="16sp" />
@@ -622,7 +675,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:drawablePadding="12dp"
-                    android:inputType="text"
+                    android:inputType="number"
                     android:padding="15dp"
                     android:textColor="@color/input_text_color"
                     android:textSize="16sp" />
@@ -666,7 +719,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:drawablePadding="12dp"
-                    android:inputType="text"
+                    android:inputType="number"
                     android:padding="15dp"
                     android:textColor="@color/input_text_color"
                     android:textSize="16sp" />
@@ -739,7 +792,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:drawablePadding="12dp"
-                    android:inputType="text"
+                    android:inputType="number"
                     android:padding="15dp"
                     android:textColor="@color/input_text_color"
                     android:textSize="16sp" />
@@ -783,7 +836,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:drawablePadding="12dp"
-                    android:inputType="text"
+                    android:inputType="number"
                     android:padding="15dp"
                     android:textColor="@color/input_text_color"
                     android:textSize="16sp" />
@@ -827,7 +880,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:drawablePadding="12dp"
-                    android:inputType="text"
+                    android:inputType="number"
                     android:padding="15dp"
                     android:textColor="@color/input_text_color"
                     android:textSize="16sp" />

@@ -223,6 +223,9 @@ class ActaSincronizacionRepository @Inject constructor(
             marca = entity.marca,
             codigoApuesta = entity.codigoApuesta,
             tienePlaca = entity.tienePlaca,
+            descripcionJuego = entity.descripcionJuego,
+            planPremios = entity.planPremios,
+            valorPremios = entity.valorPremios,
             operando = entity.operando,
             valorCredito = entity.valorCredito,
             numeroInternoMet = entity.numeroInternoMet,
@@ -232,6 +235,7 @@ class ActaSincronizacionRepository @Inject constructor(
             coinInSclm = entity.coinInSclm,
             coinOutSclm = entity.coinOutSclm,
             jackpotSclm = entity.jackpotSclm,
+            contadoresVerificado = entity.contadoresVerificado,
             observaciones = entity.observaciones
         )
     }
