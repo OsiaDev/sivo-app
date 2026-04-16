@@ -144,7 +144,8 @@ class GaleriaFragment : BaseCameraFragment() {
     }
 
     private fun showImageFullScreen(imagen: ImagenEntity) {
-        Snackbar.make(binding.root, "Vista completa próximamente", Snackbar.LENGTH_SHORT).show()
+        ImagenFullscreenDialog.newInstance(imagen)
+            .show(parentFragmentManager, "fullscreen_imagen")
     }
 
     private fun showDeleteConfirmationDialog(imagen: ImagenEntity) {
