@@ -13,6 +13,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.coljuegos.sivo.R
 import com.coljuegos.sivo.databinding.FragmentInventarioActaBinding
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -79,6 +80,24 @@ class InventarioActaFragment : Fragment() {
     private fun setupButtons() {
         binding.btnCerrar.setOnClickListener {
             findNavController().navigateUp()
+        }
+
+        binding.btnNoEncontrados.setOnClickListener {
+            val cantidad = viewModel.uiState.value.inventariosNoRegistrados.size
+
+            if (cantidad == 0) {
+                Snackbar.make(binding.root, "No hay inventarios pendientes por registrar", Snackbar.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            MaterialAlertDialogBuilder(requireContext())
+                .setTitle("Registrar como no encontrados")
+                .setMessage("Se marcarán $cantidad inventario(s) como 'No encontrado'. Esta acción no se puede deshacer. ¿Deseas continuar?")
+                .setPositiveButton("Confirmar") { _, _ ->
+                    viewModel.registrarTodosComoNoEncontrados(args.actaUuid)
+                }
+                .setNegativeButton("Cancelar", null)
+                .show()
         }
     }
 
