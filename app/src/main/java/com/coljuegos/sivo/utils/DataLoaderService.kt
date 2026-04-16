@@ -1,6 +1,7 @@
 package com.coljuegos.sivo.utils
 
 import android.content.Context
+import android.content.SharedPreferences
 import com.coljuegos.sivo.data.dao.DepartamentoDao
 import com.coljuegos.sivo.data.dao.MunicipioDao
 import com.coljuegos.sivo.data.entity.DepartamentoEntity
@@ -17,64 +18,69 @@ class DataLoaderService @Inject constructor(
     @ApplicationContext private val context: Context
 ) {
 
+    companion object {
+        // ⬆️ Incrementar este número cada vez que se actualice lugares.json
+        private const val LUGARES_JSON_VERSION = 2
+        private const val PREFS_NAME = "sivo_data_prefs"
+        private const val KEY_LUGARES_VERSION = "lugares_json_version"
+    }
+
+    private val prefs: SharedPreferences
+        get() = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
+
     suspend fun loadLocationData() {
+        val savedVersion = prefs.getInt(KEY_LUGARES_VERSION, 0)
+
+        if (savedVersion >= LUGARES_JSON_VERSION) {
+            println("DEBUG: lugares.json v$LUGARES_JSON_VERSION ya cargado, omitiendo")
+            return
+        }
+
+        println("DEBUG: Cargando lugares.json v$LUGARES_JSON_VERSION (versión anterior: $savedVersion)")
+
         val json = readJsonFromAssets("lugares.json")
         val lugares = JSONArray(json)
 
-        // Obtener datos actuales
-        val existingDepartamentos = departamentoDao.getAllDepartamentos()
-        val existingDepartamentosMap = existingDepartamentos.associateBy { it.nombreDepartamento }
-
-        // Procesar datos del JSON
         val departamentosFromJson = mutableSetOf<String>()
         val municipiosFromJson = mutableSetOf<Pair<String, String>>()
 
         (0 until lugares.length()).forEach { i ->
             val item = lugares.getJSONObject(i)
-            val nombreDep = item.getString("departamento")
-            val nombreMun = item.getString("municipio")
-
-            departamentosFromJson.add(nombreDep)
-            municipiosFromJson.add(nombreMun to nombreDep)
+            departamentosFromJson.add(item.getString("departamento"))
+            municipiosFromJson.add(item.getString("municipio") to item.getString("departamento"))
         }
 
-        // 1. Insertar departamentos nuevos (OnConflictStrategy.IGNORE ya maneja duplicados)
-        val newDepartamentos = departamentosFromJson
-            .filter { !existingDepartamentosMap.containsKey(it) }
-            .map { DepartamentoEntity(nombreDepartamento = it) }
+        // 1. Upsert departamentos preservando UUID de existentes
+        val existingDepartamentos = departamentoDao.getAllDepartamentos()
+            .associateBy { it.nombreDepartamento }
 
-        if (newDepartamentos.isNotEmpty()) {
-            departamentoDao.insertAll(newDepartamentos)
-            println("DEBUG: Insertados ${newDepartamentos.size} departamentos nuevos")
+        val departamentosToUpsert = departamentosFromJson.map { nombre ->
+            existingDepartamentos[nombre] ?: DepartamentoEntity(nombreDepartamento = nombre)
         }
+        departamentoDao.upsertAll(departamentosToUpsert)
+        println("DEBUG: Upsert ${departamentosToUpsert.size} departamentos")
 
-        // 2. Obtener mapa actualizado de departamentos
-        val allDepartamentos = departamentoDao.getAllDepartamentos()
-        val departamentosMap = allDepartamentos.associateBy { it.nombreDepartamento }
+        // 2. Upsert municipios preservando UUID de existentes
+        val departamentosMap = departamentoDao.getAllDepartamentos()
+            .associateBy { it.nombreDepartamento }
 
-        // 3. Insertar municipios - la UNIQUE constraint evitará duplicados automáticamente
-        val municipiosToInsert = municipiosFromJson.mapNotNull { (municipio, departamento) ->
-            val depEntity = departamentosMap[departamento]
-            depEntity?.let {
-                MunicipioEntity(
-                    nombreMunicipio = municipio,
-                    uuidDepartamento = it.uuidDepartamento
-                )
-            }
+        val existingMunicipios = municipioDao.getAllMunicipios()
+            .associateBy { it.nombreMunicipio to it.uuidDepartamento }
+
+        val municipiosToUpsert = municipiosFromJson.mapNotNull { (municipio, departamento) ->
+            val depEntity = departamentosMap[departamento] ?: return@mapNotNull null
+            val key = municipio to depEntity.uuidDepartamento
+            existingMunicipios[key] ?: MunicipioEntity(
+                nombreMunicipio = municipio,
+                uuidDepartamento = depEntity.uuidDepartamento
+            )
         }
+        municipioDao.upsertAll(municipiosToUpsert)
+        println("DEBUG: Upsert ${municipiosToUpsert.size} municipios")
 
-        if (municipiosToInsert.isNotEmpty()) {
-            try {
-                // OnConflictStrategy.IGNORE en el DAO evitará errores por duplicados
-                municipioDao.insertAll(municipiosToInsert)
-                println("DEBUG: Procesados ${municipiosToInsert.size} municipios (duplicados ignorados automáticamente)")
-            } catch (e: Exception) {
-                println("DEBUG: Error insertando municipios: ${e.message}")
-            }
-        }
-
-        val finalCount = municipioDao.getAllMunicipios().size
-        println("DEBUG: Total municipios en base de datos: $finalCount")
+        // 3. Guardar versión procesada
+        prefs.edit().putInt(KEY_LUGARES_VERSION, LUGARES_JSON_VERSION).apply()
+        println("DEBUG: Versión $LUGARES_JSON_VERSION guardada correctamente")
     }
 
     fun readJsonFromAssets(filename: String): String {
