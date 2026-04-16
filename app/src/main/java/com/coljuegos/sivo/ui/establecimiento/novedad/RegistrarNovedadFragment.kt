@@ -48,6 +48,7 @@ class RegistrarNovedadFragment : Fragment() {
         setupSpinners()
         setupButtons()
         setupVisibilityListeners()
+        setupContadoresMirrorListeners()
         observeViewModel()
     }
 
@@ -91,21 +92,90 @@ class RegistrarNovedadFragment : Fragment() {
         // Mostrar/ocultar secciones de contadores según el estado
         binding.operandoSpinner.setOnItemClickListener { _, _, position, _ ->
             val selectedValue = adapterOperando.getItem(position) ?: ""
-            val mostrarContadores = selectedValue == "Operando"
-
-            // Sección checkbox "Contadores verificado"
-            binding.layoutTextoLegalContadores.isVisible = mostrarContadores
-            binding.layoutCheckContadores.isVisible = mostrarContadores
-
-            // Secciones MET y SCLM
-            binding.contadoresMetTitle.isVisible = mostrarContadores
-            binding.layoutContadoresMet.isVisible = mostrarContadores
-            binding.contadoresSclmTitle.isVisible = mostrarContadores
-            binding.layoutContadoresSclm.isVisible = mostrarContadores
-
-            // Si se oculta, resetear el checkbox
-            if (!mostrarContadores) {
+            val estaOperando = selectedValue == "Operando"
+            // SCLM siempre visible cuando está Operando
+            binding.contadoresSclmTitle.isVisible = estaOperando
+            binding.layoutContadoresSclm.isVisible = estaOperando
+            // Fila del checkbox visible cuando está Operando
+            binding.layoutTextoLegalContadores.isVisible = estaOperando
+            binding.layoutCheckContadores.isVisible = estaOperando
+            // MET solo si el checkbox está marcado
+            if (!estaOperando) {
                 binding.contadoresVerificadoCheckbox.isChecked = false
+                binding.contadoresMetTitle.isVisible = false
+                binding.layoutContadoresMet.isVisible = false
+            }
+        }
+
+        // Checkbox contadores — controla visibilidad de MET únicamente
+        binding.contadoresVerificadoCheckbox.setOnCheckedChangeListener { _, isChecked ->
+            binding.contadoresMetTitle.isVisible = isChecked
+            binding.layoutContadoresMet.isVisible = isChecked
+        }
+    }
+
+    private fun setupContadoresMirrorListeners() {
+        // Solo aplica cuando el checkbox de contadores está activo y el operando es "Operando"
+
+        fun contadoresActivos() = binding.contadoresVerificadoCheckbox.isChecked
+
+        // Coin In MET → Coin In SCLM
+        binding.coinInMetEditText.setOnFocusChangeListener { _, hasFocus ->
+            if (!hasFocus && contadoresActivos()) {
+                val valor = binding.coinInMetEditText.text?.toString()?.trim() ?: ""
+                if (valor.isNotEmpty() && binding.coinInSclmEditText.text.isNullOrBlank()) {
+                    binding.coinInSclmEditText.setText(valor)
+                }
+            }
+        }
+
+        // Coin Out MET → Coin Out SCLM
+        binding.coinOutMetEditText.setOnFocusChangeListener { _, hasFocus ->
+            if (!hasFocus && contadoresActivos()) {
+                val valor = binding.coinOutMetEditText.text?.toString()?.trim() ?: ""
+                if (valor.isNotEmpty() && binding.coinOutSclmEditText.text.isNullOrBlank()) {
+                    binding.coinOutSclmEditText.setText(valor)
+                }
+            }
+        }
+
+        // Jackpot MET → Jackpot SCLM
+        binding.jackpotMetEditText.setOnFocusChangeListener { _, hasFocus ->
+            if (!hasFocus && contadoresActivos()) {
+                val valor = binding.jackpotMetEditText.text?.toString()?.trim() ?: ""
+                if (valor.isNotEmpty() && binding.jackpotSclmEditText.text.isNullOrBlank()) {
+                    binding.jackpotSclmEditText.setText(valor)
+                }
+            }
+        }
+
+        // Coin In SCLM → Coin In MET (inverso)
+        binding.coinInSclmEditText.setOnFocusChangeListener { _, hasFocus ->
+            if (!hasFocus && contadoresActivos()) {
+                val valor = binding.coinInSclmEditText.text?.toString()?.trim() ?: ""
+                if (valor.isNotEmpty() && binding.coinInMetEditText.text.isNullOrBlank()) {
+                    binding.coinInMetEditText.setText(valor)
+                }
+            }
+        }
+
+        // Coin Out SCLM → Coin Out MET (inverso)
+        binding.coinOutSclmEditText.setOnFocusChangeListener { _, hasFocus ->
+            if (!hasFocus && contadoresActivos()) {
+                val valor = binding.coinOutSclmEditText.text?.toString()?.trim() ?: ""
+                if (valor.isNotEmpty() && binding.coinOutMetEditText.text.isNullOrBlank()) {
+                    binding.coinOutMetEditText.setText(valor)
+                }
+            }
+        }
+
+        // Jackpot SCLM → Jackpot MET (inverso)
+        binding.jackpotSclmEditText.setOnFocusChangeListener { _, hasFocus ->
+            if (!hasFocus && contadoresActivos()) {
+                val valor = binding.jackpotSclmEditText.text?.toString()?.trim() ?: ""
+                if (valor.isNotEmpty() && binding.jackpotMetEditText.text.isNullOrBlank()) {
+                    binding.jackpotMetEditText.setText(valor)
+                }
             }
         }
     }
@@ -172,14 +242,17 @@ class RegistrarNovedadFragment : Fragment() {
             binding.observacionesEditText.setText(novedad.observaciones ?: "")
 
             // Mostrar/ocultar secciones según si está operando
-            val mostrarContadores = novedad.operando == "Operando"
-            binding.layoutTextoLegalContadores.isVisible = mostrarContadores
-            binding.layoutCheckContadores.isVisible = mostrarContadores
+            val estaOperando = novedad.operando == "Operando"
+            // SCLM siempre visible si está Operando
+            binding.contadoresSclmTitle.isVisible = estaOperando
+            binding.layoutContadoresSclm.isVisible = estaOperando
+            // Fila checkbox visible si está Operando
+            binding.layoutTextoLegalContadores.isVisible = estaOperando
+            binding.layoutCheckContadores.isVisible = estaOperando
+            // MET visible solo si el checkbox está marcado
             binding.contadoresVerificadoCheckbox.isChecked = novedad.contadoresVerificado
-            binding.contadoresMetTitle.isVisible = mostrarContadores
-            binding.layoutContadoresMet.isVisible = mostrarContadores
-            binding.contadoresSclmTitle.isVisible = mostrarContadores
-            binding.layoutContadoresSclm.isVisible = mostrarContadores
+            binding.contadoresMetTitle.isVisible = estaOperando && novedad.contadoresVerificado
+            binding.layoutContadoresMet.isVisible = estaOperando && novedad.contadoresVerificado
         }
 
         if (!state.esEdicion) {
