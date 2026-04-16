@@ -59,6 +59,18 @@ class VerificacionJuegoResponsableFragment : Fragment() {
         binding.pregunta1Spinner.setAdapter(adapterSiNoNa)
         binding.pregunta2Spinner.setAdapter(adapterSiNoNa)
         binding.pregunta3Spinner.setAdapter(adapterSiNoNa)
+
+        // Restaurar valores después de reasignar adapters (setAdapter borra el texto)
+        val state = viewModel.uiState.value
+        updateSpinnerValue(binding.pregunta1Spinner, state.cuentaTestIdentificacionRiesgos)
+        updateSpinnerValue(binding.pregunta2Spinner, state.existenPiezasPublicitarias)
+        updateSpinnerValue(binding.pregunta3Spinner, state.cuentaProgramaJuegoResponsable)
+    }
+
+    private fun updateSpinnerValue(spinner: android.widget.AutoCompleteTextView, value: String) {
+        if (spinner.text.toString() != value && value.isNotEmpty()) {
+            spinner.setText(value, false)
+        }
     }
 
     private fun setupAdapters() {
