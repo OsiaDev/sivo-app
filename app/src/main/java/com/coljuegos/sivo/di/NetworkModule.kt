@@ -14,8 +14,8 @@ import javax.inject.Singleton
 object NetworkModule {
 
     //private const val BASE_URL = "http://10.117.107.56:8180/sivo/"
-    //private const val BASE_URL = "http://10.117.107.46:8180/sivo/"
-    private const val BASE_URL = "https://sivo.coljuegos.gov.co/sivo/"
+    private const val BASE_URL = "http://10.117.107.46:8180/sivo/"
+    //private const val BASE_URL = "https://sivo.coljuegos.gov.co/sivo/"
 
     @Provides
     @Singleton

@@ -92,6 +92,7 @@ class RegistrarNovedadViewModel @Inject constructor(
         descripcionJuego: Boolean,
         planPremios: Boolean,
         valorPremios: Boolean,
+        contadoresVerificado: Boolean,
         valorCredito: String?,
         numeroInternoMet: String?,
         coinInMet: String?,
@@ -106,41 +107,18 @@ class RegistrarNovedadViewModel @Inject constructor(
             try {
                 _uiState.update { it.copy(isLoading = true, errorMessage = null) }
 
-                // Validar campos obligatorios
                 if (tienePlaca && serial.isBlank()) {
-                    _uiState.update {
-                        it.copy(
-                            isLoading = false,
-                            guardadoExitoso = false,
-                            errorMessage = "El serial es obligatorio"
-                        )
-                    }
+                    _uiState.update { it.copy(isLoading = false, guardadoExitoso = false, errorMessage = "El serial es obligatorio") }
                     return@launch
                 }
-
                 if (marca.isBlank()) {
-                    _uiState.update {
-                        it.copy(
-                            isLoading = false,
-                            guardadoExitoso = false,
-                            errorMessage = "La marca es obligatoria"
-                        )
-                    }
+                    _uiState.update { it.copy(isLoading = false, guardadoExitoso = false, errorMessage = "La marca es obligatoria") }
                     return@launch
                 }
-
                 if (operando.isBlank()) {
-                    _uiState.update {
-                        it.copy(
-                            isLoading = false,
-                            guardadoExitoso = false,
-                            errorMessage = "Debe seleccionar el estado operativo"
-                        )
-                    }
+                    _uiState.update { it.copy(isLoading = false, guardadoExitoso = false, errorMessage = "Debe seleccionar el estado operativo") }
                     return@launch
                 }
-
-                // Validar serial duplicado (solo en modo creación)
                 if (tienePlaca && validarSerialDuplicado(serial)) {
                     _uiState.update {
                         it.copy(
@@ -152,7 +130,6 @@ class RegistrarNovedadViewModel @Inject constructor(
                     return@launch
                 }
 
-                // Crear o actualizar la novedad
                 val novedadRegistrada = NovedadRegistradaEntity(
                     uuidNovedadRegistrada = novedadRegistradaUuid ?: UUID.randomUUID(),
                     uuidActa = actaUuid,
@@ -172,27 +149,16 @@ class RegistrarNovedadViewModel @Inject constructor(
                     coinInSclm = coinInSclm?.trim()?.takeIf { it.isNotBlank() },
                     coinOutSclm = coinOutSclm?.trim()?.takeIf { it.isNotBlank() },
                     jackpotSclm = jackpotSclm?.trim()?.takeIf { it.isNotBlank() },
+                    contadoresVerificado = contadoresVerificado,
                     observaciones = observaciones?.trim()?.takeIf { it.isNotBlank() }
                 )
 
-                // Insertar o actualizar
                 novedadRegistradaDao.insert(novedadRegistrada)
 
-                _uiState.update {
-                    it.copy(
-                        isLoading = false,
-                        guardadoExitoso = true,
-                        errorMessage = null
-                    )
-                }
+                _uiState.update { it.copy(isLoading = false, guardadoExitoso = true, errorMessage = null) }
+
             } catch (e: Exception) {
-                _uiState.update {
-                    it.copy(
-                        isLoading = false,
-                        guardadoExitoso = false,
-                        errorMessage = "Error al guardar novedad: ${e.message}"
-                    )
-                }
+                _uiState.update { it.copy(isLoading = false, guardadoExitoso = false, errorMessage = "Error al guardar novedad: ${e.message}") }
             }
         }
     }

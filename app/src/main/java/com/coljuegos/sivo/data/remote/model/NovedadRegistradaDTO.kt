@@ -3,6 +3,7 @@ package com.coljuegos.sivo.data.remote.model
 import com.google.gson.annotations.SerializedName
 
 data class NovedadRegistradaDTO(
+
     @SerializedName("serial")
     val serial: String,
 
@@ -51,6 +52,10 @@ data class NovedadRegistradaDTO(
     @SerializedName("jackpotSclm")
     val jackpotSclm: String?,
 
+    @SerializedName("contadoresVerificado")
+    val contadoresVerificado: Boolean? = false,
+
     @SerializedName("observaciones")
     val observaciones: String?
+
 )
