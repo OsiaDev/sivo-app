@@ -60,6 +60,7 @@
     <string name="acta_visita_texto_legal_4">Quien una vez informado sobre los motivos de la diligencia autorizó el ingreso al lugar con la función de ejecutar el control al cumplimiento de las condiciones contractuales\n\nAntes de iniciar la diligencia de control se le comunicó personalemente el contenido del Auto Comisorio.</string>
     <string name="acta_visita_texto_legal_5">Mayor de edad, identificado(a) con la cédula de ciudadanía (*)</string>
     <string name="acta_visita_nombre">Nombre</string>
+    <string name="acta_visita_tipo_documento">Tipo de documento</string>
     <string name="acta_visita_cedula">Identificación</string>
     <string name="acta_visita_de">De</string>
     <string name="acta_visita_municipio_cedula">Municipio de expedición</string>
@@ -394,6 +395,15 @@
         <item>Operando</item>
         <item>Apagado</item>
         <item>No encontrado</item>
+    </string-array>
+
+    <string-array name="tipos_documento">
+        <item>CC - Cédula de Ciudadanía</item>
+        <item>CE - Cédula de Extranjería</item>
+        <item>NIT - NIT</item>
+        <item>PA - Pasaporte</item>
+        <item>TI - Tarjeta de Identidad</item>
+        <item>PEP - Permiso Especial de Permanencia</item>
     </string-array>
 
 </resources>

@@ -19,5 +19,9 @@ data class ActaVisitaDTO(
     val emailPresente: String?,
 
     @SerializedName("correosContacto")
-    val correosContacto: String?
+    val correosContacto: String?,
+
+    @SerializedName("tipoDocumentoPresente")
+    val tipoDocumentoPresente: String?
+
 )

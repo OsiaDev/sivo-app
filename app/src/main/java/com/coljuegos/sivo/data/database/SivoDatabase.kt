@@ -25,7 +25,7 @@ import com.coljuegos.sivo.utils.*
         NovedadRegistradaEntity::class,
         FirmaActaEntity::class,
         ResumenInventarioEntity::class
-    ], version = 12, exportSchema = false
+    ], version = 13, exportSchema = false
 )
 @TypeConverters(
     BigDecimalConverter::class,
