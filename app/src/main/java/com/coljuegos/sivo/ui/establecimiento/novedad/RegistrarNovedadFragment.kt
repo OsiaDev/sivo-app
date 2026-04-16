@@ -48,6 +48,7 @@ class RegistrarNovedadFragment : Fragment() {
         setupSpinners()
         setupButtons()
         setupVisibilityListeners()
+        setupContadoresMirrorListeners()
         observeViewModel()
     }
 
@@ -110,6 +111,72 @@ class RegistrarNovedadFragment : Fragment() {
         binding.contadoresVerificadoCheckbox.setOnCheckedChangeListener { _, isChecked ->
             binding.contadoresMetTitle.isVisible = isChecked
             binding.layoutContadoresMet.isVisible = isChecked
+        }
+    }
+
+    private fun setupContadoresMirrorListeners() {
+        // Solo aplica cuando el checkbox de contadores está activo y el operando es "Operando"
+
+        fun contadoresActivos() = binding.contadoresVerificadoCheckbox.isChecked
+
+        // Coin In MET → Coin In SCLM
+        binding.coinInMetEditText.setOnFocusChangeListener { _, hasFocus ->
+            if (!hasFocus && contadoresActivos()) {
+                val valor = binding.coinInMetEditText.text?.toString()?.trim() ?: ""
+                if (valor.isNotEmpty() && binding.coinInSclmEditText.text.isNullOrBlank()) {
+                    binding.coinInSclmEditText.setText(valor)
+                }
+            }
+        }
+
+        // Coin Out MET → Coin Out SCLM
+        binding.coinOutMetEditText.setOnFocusChangeListener { _, hasFocus ->
+            if (!hasFocus && contadoresActivos()) {
+                val valor = binding.coinOutMetEditText.text?.toString()?.trim() ?: ""
+                if (valor.isNotEmpty() && binding.coinOutSclmEditText.text.isNullOrBlank()) {
+                    binding.coinOutSclmEditText.setText(valor)
+                }
+            }
+        }
+
+        // Jackpot MET → Jackpot SCLM
+        binding.jackpotMetEditText.setOnFocusChangeListener { _, hasFocus ->
+            if (!hasFocus && contadoresActivos()) {
+                val valor = binding.jackpotMetEditText.text?.toString()?.trim() ?: ""
+                if (valor.isNotEmpty() && binding.jackpotSclmEditText.text.isNullOrBlank()) {
+                    binding.jackpotSclmEditText.setText(valor)
+                }
+            }
+        }
+
+        // Coin In SCLM → Coin In MET (inverso)
+        binding.coinInSclmEditText.setOnFocusChangeListener { _, hasFocus ->
+            if (!hasFocus && contadoresActivos()) {
+                val valor = binding.coinInSclmEditText.text?.toString()?.trim() ?: ""
+                if (valor.isNotEmpty() && binding.coinInMetEditText.text.isNullOrBlank()) {
+                    binding.coinInMetEditText.setText(valor)
+                }
+            }
+        }
+
+        // Coin Out SCLM → Coin Out MET (inverso)
+        binding.coinOutSclmEditText.setOnFocusChangeListener { _, hasFocus ->
+            if (!hasFocus && contadoresActivos()) {
+                val valor = binding.coinOutSclmEditText.text?.toString()?.trim() ?: ""
+                if (valor.isNotEmpty() && binding.coinOutMetEditText.text.isNullOrBlank()) {
+                    binding.coinOutMetEditText.setText(valor)
+                }
+            }
+        }
+
+        // Jackpot SCLM → Jackpot MET (inverso)
+        binding.jackpotSclmEditText.setOnFocusChangeListener { _, hasFocus ->
+            if (!hasFocus && contadoresActivos()) {
+                val valor = binding.jackpotSclmEditText.text?.toString()?.trim() ?: ""
+                if (valor.isNotEmpty() && binding.jackpotMetEditText.text.isNullOrBlank()) {
+                    binding.jackpotMetEditText.setText(valor)
+                }
+            }
         }
     }
 
