@@ -70,11 +70,11 @@
     "municipio": "Anori"
   },
   {
-    "region": "Region Eje Cafetero - Antioquia",
-    "c_digo_dane_del_departamento": "5",
-    "departamento": "Antioquia",
-    "c_digo_dane_del_municipio": "5042",
-    "municipio": "Santafe de Antioquia"
+    "region": "Region Centro Oriente",
+    "c_digo_dane_del_departamento": "68",
+    "departamento": "Santander",
+    "c_digo_dane_del_municipio": "68176",
+    "municipio": "Chima"
   },
   {
     "region": "Region Eje Cafetero - Antioquia",
@@ -117,13 +117,6 @@
     "departamento": "Antioquia",
     "c_digo_dane_del_municipio": "5079",
     "municipio": "Barbosa"
-  },
-  {
-    "region": "Region Eje Cafetero - Antioquia",
-    "c_digo_dane_del_departamento": "5",
-    "departamento": "Antioquia",
-    "c_digo_dane_del_municipio": "5086",
-    "municipio": "Belmira"
   },
   {
     "region": "Region Eje Cafetero - Antioquia",
@@ -224,11 +217,11 @@
     "municipio": "Carepa"
   },
   {
-    "region": "Region Eje Cafetero - Antioquia",
-    "c_digo_dane_del_departamento": "5",
-    "departamento": "Antioquia",
-    "c_digo_dane_del_municipio": "5148",
-    "municipio": "Carmen De Viboral"
+    "region": "Region Caribe",
+    "c_digo_dane_del_departamento": "70",
+    "departamento": "Sucre",
+    "c_digo_dane_del_municipio": "70670",
+    "municipio": "Sampues"
   },
   {
     "region": "Region Eje Cafetero - Antioquia",
@@ -339,13 +332,6 @@
     "region": "Region Eje Cafetero - Antioquia",
     "c_digo_dane_del_departamento": "5",
     "departamento": "Antioquia",
-    "c_digo_dane_del_municipio": "5284",
-    "municipio": "Frontino"
-  },
-  {
-    "region": "Region Eje Cafetero - Antioquia",
-    "c_digo_dane_del_departamento": "5",
-    "departamento": "Antioquia",
     "c_digo_dane_del_municipio": "5306",
     "municipio": "Giraldo"
   },
@@ -364,11 +350,11 @@
     "municipio": "Gomez Plata"
   },
   {
-    "region": "Region Eje Cafetero - Antioquia",
-    "c_digo_dane_del_departamento": "5",
-    "departamento": "Antioquia",
-    "c_digo_dane_del_municipio": "5313",
-    "municipio": "Granada"
+    "region": "Region Llano",
+    "c_digo_dane_del_departamento": "85",
+    "departamento": "Casanare",
+    "c_digo_dane_del_municipio": "85225",
+    "municipio": "Nunchia"
   },
   {
     "region": "Region Eje Cafetero - Antioquia",
@@ -420,11 +406,11 @@
     "municipio": "Ituango"
   },
   {
-    "region": "Region Eje Cafetero - Antioquia",
-    "c_digo_dane_del_departamento": "5",
-    "departamento": "Antioquia",
-    "c_digo_dane_del_municipio": "5364",
-    "municipio": "Jardin"
+    "region": "Region Centro Oriente",
+    "c_digo_dane_del_departamento": "54",
+    "departamento": "Norte de Santander",
+    "c_digo_dane_del_municipio": "54518",
+    "municipio": "Pamplona"
   },
   {
     "region": "Region Eje Cafetero - Antioquia",
@@ -616,18 +602,18 @@
     "municipio": "Salgar"
   },
   {
-    "region": "Region Eje Cafetero - Antioquia",
-    "c_digo_dane_del_departamento": "5",
-    "departamento": "Antioquia",
-    "c_digo_dane_del_municipio": "5647",
-    "municipio": "San Andres de Cuerquia"
+    "region": "Region Centro Oriente",
+    "c_digo_dane_del_departamento": "25",
+    "departamento": "Cundinamarca",
+    "c_digo_dane_del_municipio": "25019",
+    "municipio": "Alban"
   },
   {
-    "region": "Region Eje Cafetero - Antioquia",
-    "c_digo_dane_del_departamento": "5",
-    "departamento": "Antioquia",
-    "c_digo_dane_del_municipio": "5649",
-    "municipio": "San Carlos"
+    "region": "Region Llano",
+    "c_digo_dane_del_departamento": "97",
+    "departamento": "Vaupes",
+    "c_digo_dane_del_municipio": "97889",
+    "municipio": "Yavarate"
   },
   {
     "region": "Region Eje Cafetero - Antioquia",
@@ -644,18 +630,18 @@
     "municipio": "San Jeronimo"
   },
   {
-    "region": "Region Eje Cafetero - Antioquia",
-    "c_digo_dane_del_departamento": "5",
-    "departamento": "Antioquia",
-    "c_digo_dane_del_municipio": "5658",
-    "municipio": "San José De La Montaña"
+    "region": "Region Caribe",
+    "c_digo_dane_del_departamento": "23",
+    "departamento": "Cordoba",
+    "c_digo_dane_del_municipio": "23466",
+    "municipio": "Montelibano"
   },
   {
-    "region": "Region Eje Cafetero - Antioquia",
-    "c_digo_dane_del_departamento": "5",
-    "departamento": "Antioquia",
-    "c_digo_dane_del_municipio": "5659",
-    "municipio": "San Juan De Urabá"
+    "region": "Region Centro Sur",
+    "c_digo_dane_del_departamento": "86",
+    "departamento": "Putumayo",
+    "c_digo_dane_del_municipio": "86568",
+    "municipio": "Puerto Asis"
   },
   {
     "region": "Region Eje Cafetero - Antioquia",
@@ -672,11 +658,11 @@
     "municipio": "San Pedro"
   },
   {
-    "region": "Region Eje Cafetero - Antioquia",
-    "c_digo_dane_del_departamento": "5",
-    "departamento": "Antioquia",
-    "c_digo_dane_del_municipio": "5665",
-    "municipio": "San Pedro de Uraba"
+    "region": "Region Caribe",
+    "c_digo_dane_del_departamento": "70",
+    "departamento": "Sucre",
+    "c_digo_dane_del_municipio": "70215",
+    "municipio": "Corozal"
   },
   {
     "region": "Region Eje Cafetero - Antioquia",
@@ -707,11 +693,11 @@
     "municipio": "Santa Barbara"
   },
   {
-    "region": "Region Eje Cafetero - Antioquia",
-    "c_digo_dane_del_departamento": "5",
-    "departamento": "Antioquia",
-    "c_digo_dane_del_municipio": "5686",
-    "municipio": "Santa Rosa de Osos"
+    "region": "Region Pacifico",
+    "c_digo_dane_del_departamento": "52",
+    "departamento": "Narino",
+    "c_digo_dane_del_municipio": "52110",
+    "municipio": "Buesaco"
   },
   {
     "region": "Region Eje Cafetero - Antioquia",
@@ -733,13 +719,6 @@
     "departamento": "Antioquia",
     "c_digo_dane_del_municipio": "5736",
     "municipio": "Segovia"
-  },
-  {
-    "region": "Region Eje Cafetero - Antioquia",
-    "c_digo_dane_del_departamento": "5",
-    "departamento": "Antioquia",
-    "c_digo_dane_del_municipio": "5756",
-    "municipio": "Sonson"
   },
   {
     "region": "Region Eje Cafetero - Antioquia",
@@ -833,11 +812,11 @@
     "municipio": "Venecia"
   },
   {
-    "region": "Region Eje Cafetero - Antioquia",
-    "c_digo_dane_del_departamento": "5",
-    "departamento": "Antioquia",
-    "c_digo_dane_del_municipio": "5873",
-    "municipio": "Vigía Del Fuerte"
+    "region": "Region Llano",
+    "c_digo_dane_del_departamento": "85",
+    "departamento": "Casanare",
+    "c_digo_dane_del_municipio": "85139",
+    "municipio": "Mani"
   },
   {
     "region": "Region Eje Cafetero - Antioquia",
@@ -890,10 +869,10 @@
   },
   {
     "region": "Region Caribe",
-    "c_digo_dane_del_departamento": "8",
-    "departamento": "Atlantico",
-    "c_digo_dane_del_municipio": "8137",
-    "municipio": "Campo De La Cruz"
+    "c_digo_dane_del_departamento": "13",
+    "departamento": "Bolivar",
+    "c_digo_dane_del_municipio": "13268",
+    "municipio": "El Penon"
   },
   {
     "region": "Region Caribe",
@@ -910,11 +889,18 @@
     "municipio": "Galapa"
   },
   {
-    "region": "Region Caribe",
-    "c_digo_dane_del_departamento": "8",
-    "departamento": "Atlantico",
-    "c_digo_dane_del_municipio": "8372",
-    "municipio": "Juan de Acosta"
+    "region": "Region Pacifico",
+    "c_digo_dane_del_departamento": "76",
+    "departamento": "Valle del Cauca",
+    "c_digo_dane_del_municipio": "76834",
+    "municipio": "Tulua"
+  },
+  {
+    "region": "Region Centro Sur",
+    "c_digo_dane_del_departamento": "73",
+    "departamento": "Tolima",
+    "c_digo_dane_del_municipio": "73152",
+    "municipio": "Casabianca"
   },
   {
     "region": "Region Caribe",
@@ -938,11 +924,11 @@
     "municipio": "Manati"
   },
   {
-    "region": "Region Caribe",
-    "c_digo_dane_del_departamento": "8",
-    "departamento": "Atlantico",
-    "c_digo_dane_del_municipio": "8520",
-    "municipio": "Palmar de Varela"
+    "region": "Region Centro Oriente",
+    "c_digo_dane_del_departamento": "25",
+    "departamento": "Cundinamarca",
+    "c_digo_dane_del_municipio": "25040",
+    "municipio": "Anolaima"
   },
   {
     "region": "Region Caribe",
@@ -959,25 +945,18 @@
     "municipio": "Polonuevo"
   },
   {
-    "region": "Region Caribe",
-    "c_digo_dane_del_departamento": "8",
-    "departamento": "Atlantico",
-    "c_digo_dane_del_municipio": "8560",
-    "municipio": "Ponedera"
+    "region": "Region Centro Oriente",
+    "c_digo_dane_del_departamento": "25",
+    "departamento": "Cundinamarca",
+    "c_digo_dane_del_municipio": "25175",
+    "municipio": "Chia"
   },
   {
-    "region": "Region Caribe",
-    "c_digo_dane_del_departamento": "8",
-    "departamento": "Atlantico",
-    "c_digo_dane_del_municipio": "8573",
-    "municipio": "Puerto Colombia"
-  },
-  {
-    "region": "Region Caribe",
-    "c_digo_dane_del_departamento": "8",
-    "departamento": "Atlantico",
-    "c_digo_dane_del_municipio": "8606",
-    "municipio": "Repelon"
+    "region": "Region Pacifico",
+    "c_digo_dane_del_departamento": "52",
+    "departamento": "Narino",
+    "c_digo_dane_del_municipio": "52835",
+    "municipio": "San Andres de Tumaco"
   },
   {
     "region": "Region Caribe",
@@ -1036,18 +1015,18 @@
     "municipio": "Usiacuri"
   },
   {
-    "region": "Region Centro Oriente",
-    "c_digo_dane_del_departamento": "11",
-    "departamento": "Bogota",
-    "c_digo_dane_del_municipio": "11001",
-    "municipio": "Bogotá Distrito Capital"
+    "region": "Region Centro Sur",
+    "c_digo_dane_del_departamento": "18",
+    "departamento": "Caqueta",
+    "c_digo_dane_del_municipio": "18460",
+    "municipio": "Milan"
   },
   {
-    "region": "Region Caribe",
-    "c_digo_dane_del_departamento": "13",
-    "departamento": "Bolivar",
-    "c_digo_dane_del_municipio": "13001",
-    "municipio": "Cartagena"
+    "region": "Region Centro Oriente",
+    "c_digo_dane_del_departamento": "68",
+    "departamento": "Santander",
+    "c_digo_dane_del_municipio": "68147",
+    "municipio": "Capitanejo"
   },
   {
     "region": "Region Caribe",
@@ -1057,11 +1036,11 @@
     "municipio": "Achi"
   },
   {
-    "region": "Region Caribe",
-    "c_digo_dane_del_departamento": "13",
-    "departamento": "Bolivar",
-    "c_digo_dane_del_municipio": "13030",
-    "municipio": "Altos Del Rosario"
+    "region": "Region Centro Sur",
+    "c_digo_dane_del_departamento": "73",
+    "departamento": "Tolima",
+    "c_digo_dane_del_municipio": "73043",
+    "municipio": "Anzoategui"
   },
   {
     "region": "Region Caribe",
@@ -1085,11 +1064,11 @@
     "municipio": "Arroyohondo"
   },
   {
-    "region": "Region Caribe",
-    "c_digo_dane_del_departamento": "13",
-    "departamento": "Bolivar",
-    "c_digo_dane_del_municipio": "13074",
-    "municipio": "Barranco de Loba"
+    "region": "Region Pacifico",
+    "c_digo_dane_del_departamento": "76",
+    "departamento": "Valle del Cauca",
+    "c_digo_dane_del_municipio": "76275",
+    "municipio": "Florida"
   },
   {
     "region": "Region Caribe",
@@ -1128,10 +1107,10 @@
   },
   {
     "region": "Region Caribe",
-    "c_digo_dane_del_departamento": "13",
-    "departamento": "Bolivar",
-    "c_digo_dane_del_municipio": "13244",
-    "municipio": "El Carmen De Bolívar"
+    "c_digo_dane_del_departamento": "8",
+    "departamento": "Atlantico",
+    "c_digo_dane_del_municipio": "8606",
+    "municipio": "Repelon"
   },
   {
     "region": "Region Caribe",
@@ -1141,18 +1120,11 @@
     "municipio": "El Guamo"
   },
   {
-    "region": "Region Caribe",
-    "c_digo_dane_del_departamento": "13",
-    "departamento": "Bolivar",
-    "c_digo_dane_del_municipio": "13268",
-    "municipio": "El Penon"
-  },
-  {
-    "region": "Region Caribe",
-    "c_digo_dane_del_departamento": "13",
-    "departamento": "Bolivar",
-    "c_digo_dane_del_municipio": "13300",
-    "municipio": "Hatillo de Loba"
+    "region": "Region Eje Cafetero - Antioquia",
+    "c_digo_dane_del_departamento": "5",
+    "departamento": "Antioquia",
+    "c_digo_dane_del_municipio": "5284",
+    "municipio": "Frontino"
   },
   {
     "region": "Region Caribe",
@@ -1174,13 +1146,6 @@
     "departamento": "Bolivar",
     "c_digo_dane_del_municipio": "13440",
     "municipio": "Margarita"
-  },
-  {
-    "region": "Region Caribe",
-    "c_digo_dane_del_departamento": "13",
-    "departamento": "Bolivar",
-    "c_digo_dane_del_municipio": "13442",
-    "municipio": "Maria la Baja"
   },
   {
     "region": "Region Caribe",
@@ -1235,13 +1200,6 @@
     "region": "Region Caribe",
     "c_digo_dane_del_departamento": "13",
     "departamento": "Bolivar",
-    "c_digo_dane_del_municipio": "13620",
-    "municipio": "San Cristobal"
-  },
-  {
-    "region": "Region Caribe",
-    "c_digo_dane_del_departamento": "13",
-    "departamento": "Bolivar",
     "c_digo_dane_del_municipio": "13647",
     "municipio": "San Estanislao"
   },
@@ -1253,18 +1211,18 @@
     "municipio": "San Fernando"
   },
   {
-    "region": "Region Caribe",
-    "c_digo_dane_del_departamento": "13",
-    "departamento": "Bolivar",
-    "c_digo_dane_del_municipio": "13654",
-    "municipio": "San Jacinto"
+    "region": "Region Centro Oriente",
+    "c_digo_dane_del_departamento": "25",
+    "departamento": "Cundinamarca",
+    "c_digo_dane_del_municipio": "25258",
+    "municipio": "El Penon"
   },
   {
-    "region": "Region Caribe",
-    "c_digo_dane_del_departamento": "13",
-    "departamento": "Bolivar",
-    "c_digo_dane_del_municipio": "13655",
-    "municipio": "San Jacinto Del Cauca"
+    "region": "Region Centro Oriente",
+    "c_digo_dane_del_departamento": "54",
+    "departamento": "Norte de Santander",
+    "c_digo_dane_del_municipio": "54520",
+    "municipio": "Pamplonita"
   },
   {
     "region": "Region Caribe",
@@ -1274,18 +1232,18 @@
     "municipio": "San Juan Nepomuceno"
   },
   {
-    "region": "Region Caribe",
-    "c_digo_dane_del_departamento": "13",
-    "departamento": "Bolivar",
-    "c_digo_dane_del_municipio": "13667",
-    "municipio": "San Martín De Loba"
+    "region": "Region Centro Sur",
+    "c_digo_dane_del_departamento": "91",
+    "departamento": "Amazonas",
+    "c_digo_dane_del_municipio": "91460",
+    "municipio": "Miriti Parana"
   },
   {
-    "region": "Region Caribe",
-    "c_digo_dane_del_departamento": "13",
-    "departamento": "Bolivar",
-    "c_digo_dane_del_municipio": "13670",
-    "municipio": "San Pablo"
+    "region": "Region Llano",
+    "c_digo_dane_del_departamento": "85",
+    "departamento": "Casanare",
+    "c_digo_dane_del_municipio": "85400",
+    "municipio": "Tamara"
   },
   {
     "region": "Region Caribe",
@@ -1302,11 +1260,11 @@
     "municipio": "Santa Rosa"
   },
   {
-    "region": "Region Caribe",
-    "c_digo_dane_del_departamento": "13",
-    "departamento": "Bolivar",
-    "c_digo_dane_del_municipio": "13688",
-    "municipio": "Santa Rosa del Sur"
+    "region": "Region Centro Oriente",
+    "c_digo_dane_del_departamento": "15",
+    "departamento": "Boyaca",
+    "c_digo_dane_del_municipio": "15806",
+    "municipio": "Tibasosa"
   },
   {
     "region": "Region Caribe",
@@ -1358,11 +1316,11 @@
     "municipio": "Villanueva"
   },
   {
-    "region": "Region Caribe",
-    "c_digo_dane_del_departamento": "13",
-    "departamento": "Bolivar",
-    "c_digo_dane_del_municipio": "13894",
-    "municipio": "Zambrano"
+    "region": "Region Pacifico",
+    "c_digo_dane_del_departamento": "19",
+    "departamento": "Cauca",
+    "c_digo_dane_del_municipio": "19517",
+    "municipio": "Paez"
   },
   {
     "region": "Region Centro Oriente",
@@ -1393,11 +1351,11 @@
     "municipio": "Arcabuco"
   },
   {
-    "region": "Region Centro Oriente",
-    "c_digo_dane_del_departamento": "15",
-    "departamento": "Boyaca",
-    "c_digo_dane_del_municipio": "15087",
-    "municipio": "Belen"
+    "region": "Region Centro Sur",
+    "c_digo_dane_del_departamento": "73",
+    "departamento": "Tolima",
+    "c_digo_dane_del_municipio": "73001",
+    "municipio": "Ibague"
   },
   {
     "region": "Region Centro Oriente",
@@ -1510,13 +1468,6 @@
     "departamento": "Boyaca",
     "c_digo_dane_del_municipio": "15187",
     "municipio": "Chivata"
-  },
-  {
-    "region": "Region Centro Oriente",
-    "c_digo_dane_del_departamento": "15",
-    "departamento": "Boyaca",
-    "c_digo_dane_del_municipio": "15189",
-    "municipio": "Cienega"
   },
   {
     "region": "Region Centro Oriente",
@@ -1663,7 +1614,7 @@
     "c_digo_dane_del_departamento": "15",
     "departamento": "Boyaca",
     "c_digo_dane_del_municipio": "15332",
-    "municipio": "Güican"
+    "municipio": "G�ican"
   },
   {
     "region": "Region Centro Oriente",
@@ -1708,18 +1659,18 @@
     "municipio": "La Victoria"
   },
   {
-    "region": "Region Centro Oriente",
-    "c_digo_dane_del_departamento": "15",
-    "departamento": "Boyaca",
-    "c_digo_dane_del_municipio": "15403",
-    "municipio": "La Uvita"
+    "region": "Region Caribe",
+    "c_digo_dane_del_departamento": "8",
+    "departamento": "Atlantico",
+    "c_digo_dane_del_municipio": "8573",
+    "municipio": "Puerto Colombia"
   },
   {
-    "region": "Region Centro Oriente",
-    "c_digo_dane_del_departamento": "15",
-    "departamento": "Boyaca",
-    "c_digo_dane_del_municipio": "15407",
-    "municipio": "Villa de Leyva"
+    "region": "Region Pacifico",
+    "c_digo_dane_del_departamento": "52",
+    "departamento": "Narino",
+    "c_digo_dane_del_municipio": "52083",
+    "municipio": "Belen"
   },
   {
     "region": "Region Centro Oriente",
@@ -1762,13 +1713,6 @@
     "departamento": "Boyaca",
     "c_digo_dane_del_municipio": "15469",
     "municipio": "Moniquira"
-  },
-  {
-    "region": "Region Centro Oriente",
-    "c_digo_dane_del_departamento": "15",
-    "departamento": "Boyaca",
-    "c_digo_dane_del_municipio": "15476",
-    "municipio": "Motavita"
   },
   {
     "region": "Region Centro Oriente",
@@ -1856,10 +1800,10 @@
   },
   {
     "region": "Region Centro Oriente",
-    "c_digo_dane_del_departamento": "15",
-    "departamento": "Boyaca",
-    "c_digo_dane_del_municipio": "15537",
-    "municipio": "Paz de Rio"
+    "c_digo_dane_del_departamento": "25",
+    "departamento": "Cundinamarca",
+    "c_digo_dane_del_municipio": "25758",
+    "municipio": "Sopo"
   },
   {
     "region": "Region Centro Oriente",
@@ -1939,18 +1883,25 @@
     "municipio": "San Eduardo"
   },
   {
-    "region": "Region Centro Oriente",
-    "c_digo_dane_del_departamento": "15",
-    "departamento": "Boyaca",
-    "c_digo_dane_del_municipio": "15664",
-    "municipio": "San José De Pare"
+    "region": "Region Pacifico",
+    "c_digo_dane_del_departamento": "27",
+    "departamento": "Choco",
+    "c_digo_dane_del_municipio": "27150",
+    "municipio": "Carmen del Darien"
   },
   {
     "region": "Region Centro Oriente",
-    "c_digo_dane_del_departamento": "15",
-    "departamento": "Boyaca",
-    "c_digo_dane_del_municipio": "15667",
-    "municipio": "San Luis de Gaceno"
+    "c_digo_dane_del_departamento": "25",
+    "departamento": "Cundinamarca",
+    "c_digo_dane_del_municipio": "25299",
+    "municipio": "Gama"
+  },
+  {
+    "region": "Region Centro Oriente",
+    "c_digo_dane_del_departamento": "25",
+    "departamento": "Bogota D.C",
+    "c_digo_dane_del_municipio": "25299",
+    "municipio": "Bogota D.C"
   },
   {
     "region": "Region Centro Oriente",
@@ -1961,17 +1912,17 @@
   },
   {
     "region": "Region Centro Oriente",
-    "c_digo_dane_del_departamento": "15",
-    "departamento": "Boyaca",
-    "c_digo_dane_del_municipio": "15676",
-    "municipio": "San Miguel De Sema"
+    "c_digo_dane_del_departamento": "25",
+    "departamento": "Cundinamarca",
+    "c_digo_dane_del_municipio": "25718",
+    "municipio": "Sasaima"
   },
   {
-    "region": "Region Centro Oriente",
-    "c_digo_dane_del_departamento": "15",
-    "departamento": "Boyaca",
-    "c_digo_dane_del_municipio": "15681",
-    "municipio": "San Pablo de Borbur"
+    "region": "Region Pacifico",
+    "c_digo_dane_del_departamento": "52",
+    "departamento": "Narino",
+    "c_digo_dane_del_municipio": "52240",
+    "municipio": "Chachag�i"
   },
   {
     "region": "Region Centro Oriente",
@@ -1989,10 +1940,10 @@
   },
   {
     "region": "Region Centro Oriente",
-    "c_digo_dane_del_departamento": "15",
-    "departamento": "Boyaca",
-    "c_digo_dane_del_municipio": "15693",
-    "municipio": "Santa Rosa de Viterbo"
+    "c_digo_dane_del_departamento": "54",
+    "departamento": "Norte de Santander",
+    "c_digo_dane_del_municipio": "54001",
+    "municipio": "Cucuta"
   },
   {
     "region": "Region Centro Oriente",
@@ -2124,13 +2075,6 @@
     "region": "Region Centro Oriente",
     "c_digo_dane_del_departamento": "15",
     "departamento": "Boyaca",
-    "c_digo_dane_del_municipio": "15806",
-    "municipio": "Tibasosa"
-  },
-  {
-    "region": "Region Centro Oriente",
-    "c_digo_dane_del_departamento": "15",
-    "departamento": "Boyaca",
     "c_digo_dane_del_municipio": "15808",
     "municipio": "Tinjaca"
   },
@@ -2149,11 +2093,11 @@
     "municipio": "Toca"
   },
   {
-    "region": "Region Centro Oriente",
-    "c_digo_dane_del_departamento": "15",
-    "departamento": "Boyaca",
-    "c_digo_dane_del_municipio": "15816",
-    "municipio": "Togüi"
+    "region": "Region Caribe",
+    "c_digo_dane_del_departamento": "13",
+    "departamento": "Bolivar",
+    "c_digo_dane_del_municipio": "13001",
+    "municipio": "Cartagena"
   },
   {
     "region": "Region Centro Oriente",
@@ -2173,22 +2117,15 @@
     "region": "Region Centro Oriente",
     "c_digo_dane_del_departamento": "15",
     "departamento": "Boyaca",
-    "c_digo_dane_del_municipio": "15832",
-    "municipio": "Tunungua"
-  },
-  {
-    "region": "Region Centro Oriente",
-    "c_digo_dane_del_departamento": "15",
-    "departamento": "Boyaca",
     "c_digo_dane_del_municipio": "15835",
     "municipio": "Turmeque"
   },
   {
-    "region": "Region Centro Oriente",
-    "c_digo_dane_del_departamento": "15",
-    "departamento": "Boyaca",
-    "c_digo_dane_del_municipio": "15837",
-    "municipio": "Tuta"
+    "region": "Region Eje Cafetero - Antioquia",
+    "c_digo_dane_del_departamento": "5",
+    "departamento": "Antioquia",
+    "c_digo_dane_del_municipio": "5313",
+    "municipio": "Granada"
   },
   {
     "region": "Region Centro Oriente",
@@ -2301,13 +2238,6 @@
     "departamento": "Caldas",
     "c_digo_dane_del_municipio": "17442",
     "municipio": "Marmato"
-  },
-  {
-    "region": "Region Eje Cafetero - Antioquia",
-    "c_digo_dane_del_departamento": "17",
-    "departamento": "Caldas",
-    "c_digo_dane_del_municipio": "17444",
-    "municipio": "Marquetalia"
   },
   {
     "region": "Region Eje Cafetero - Antioquia",
@@ -2429,18 +2359,18 @@
     "municipio": "Albania"
   },
   {
-    "region": "Region Centro Sur",
-    "c_digo_dane_del_departamento": "18",
-    "departamento": "Caqueta",
-    "c_digo_dane_del_municipio": "18094",
-    "municipio": "Belen de Los Andaquies"
+    "region": "Region Caribe",
+    "c_digo_dane_del_departamento": "47",
+    "departamento": "Magdalena",
+    "c_digo_dane_del_municipio": "47720",
+    "municipio": "Santa Barbara de Pinto"
   },
   {
-    "region": "Region Centro Sur",
-    "c_digo_dane_del_departamento": "18",
-    "departamento": "Caqueta",
-    "c_digo_dane_del_municipio": "18150",
-    "municipio": "Cartagena Del Chairá"
+    "region": "Region Caribe",
+    "c_digo_dane_del_departamento": "13",
+    "departamento": "Bolivar",
+    "c_digo_dane_del_municipio": "13442",
+    "municipio": "Maria la Baja"
   },
   {
     "region": "Region Centro Sur",
@@ -2467,20 +2397,6 @@
     "region": "Region Centro Sur",
     "c_digo_dane_del_departamento": "18",
     "departamento": "Caqueta",
-    "c_digo_dane_del_municipio": "18410",
-    "municipio": "La Montanita"
-  },
-  {
-    "region": "Region Centro Sur",
-    "c_digo_dane_del_departamento": "18",
-    "departamento": "Caqueta",
-    "c_digo_dane_del_municipio": "18460",
-    "municipio": "Milan"
-  },
-  {
-    "region": "Region Centro Sur",
-    "c_digo_dane_del_departamento": "18",
-    "departamento": "Caqueta",
     "c_digo_dane_del_municipio": "18479",
     "municipio": "Morelia"
   },
@@ -2495,8 +2411,8 @@
     "region": "Region Centro Sur",
     "c_digo_dane_del_departamento": "18",
     "departamento": "Caqueta",
-    "c_digo_dane_del_municipio": "18610",
-    "municipio": "San Jose del Fragua"
+    "c_digo_dane_del_municipio": "18410",
+    "municipio": "La Montanita"
   },
   {
     "region": "Region Centro Sur",
@@ -2691,13 +2607,6 @@
     "region": "Region Pacifico",
     "c_digo_dane_del_departamento": "19",
     "departamento": "Cauca",
-    "c_digo_dane_del_municipio": "19517",
-    "municipio": "Paez"
-  },
-  {
-    "region": "Region Pacifico",
-    "c_digo_dane_del_departamento": "19",
-    "departamento": "Cauca",
     "c_digo_dane_del_municipio": "19532",
     "municipio": "Patia"
   },
@@ -2737,18 +2646,18 @@
     "municipio": "Rosas"
   },
   {
-    "region": "Region Pacifico",
-    "c_digo_dane_del_departamento": "19",
-    "departamento": "Cauca",
-    "c_digo_dane_del_municipio": "19693",
-    "municipio": "San Sebastián"
+    "region": "Region Centro Oriente",
+    "c_digo_dane_del_departamento": "68",
+    "departamento": "Santander",
+    "c_digo_dane_del_municipio": "68250",
+    "municipio": "El Penon"
   },
   {
-    "region": "Region Pacifico",
-    "c_digo_dane_del_departamento": "19",
-    "departamento": "Cauca",
-    "c_digo_dane_del_municipio": "19698",
-    "municipio": "Santander de Quilichao"
+    "region": "Region Eje Cafetero - Antioquia",
+    "c_digo_dane_del_departamento": "5",
+    "departamento": "Antioquia",
+    "c_digo_dane_del_municipio": "5364",
+    "municipio": "Jardin"
   },
   {
     "region": "Region Pacifico",
@@ -2919,11 +2828,11 @@
     "municipio": "La Gloria"
   },
   {
-    "region": "Region Caribe",
-    "c_digo_dane_del_departamento": "20",
-    "departamento": "Cesar",
-    "c_digo_dane_del_municipio": "20400",
-    "municipio": "La Jagua de Ibirico"
+    "region": "Region Pacifico",
+    "c_digo_dane_del_departamento": "76",
+    "departamento": "Valle del Cauca",
+    "c_digo_dane_del_municipio": "76364",
+    "municipio": "Jamundi"
   },
   {
     "region": "Region Caribe",
@@ -2954,11 +2863,11 @@
     "municipio": "Pueblo Bello"
   },
   {
-    "region": "Region Caribe",
-    "c_digo_dane_del_departamento": "20",
-    "departamento": "Cesar",
-    "c_digo_dane_del_municipio": "20614",
-    "municipio": "Rio de Oro"
+    "region": "Region Pacifico",
+    "c_digo_dane_del_departamento": "27",
+    "departamento": "Choco",
+    "c_digo_dane_del_municipio": "27787",
+    "municipio": "Tado"
   },
   {
     "region": "Region Caribe",
@@ -3045,11 +2954,11 @@
     "municipio": "Chinu"
   },
   {
-    "region": "Region Caribe",
-    "c_digo_dane_del_departamento": "23",
-    "departamento": "Cordoba",
-    "c_digo_dane_del_municipio": "23189",
-    "municipio": "Ciénaga De Oro"
+    "region": "Region Llano",
+    "c_digo_dane_del_departamento": "85",
+    "departamento": "Casanare",
+    "c_digo_dane_del_municipio": "85230",
+    "municipio": "Orocue"
   },
   {
     "region": "Region Caribe",
@@ -3059,11 +2968,11 @@
     "municipio": "Cotorra"
   },
   {
-    "region": "Region Caribe",
-    "c_digo_dane_del_departamento": "23",
-    "departamento": "Cordoba",
-    "c_digo_dane_del_municipio": "23350",
-    "municipio": "La Apartada"
+    "region": "Region Centro Sur",
+    "c_digo_dane_del_departamento": "73",
+    "departamento": "Tolima",
+    "c_digo_dane_del_municipio": "73411",
+    "municipio": "Libano"
   },
   {
     "region": "Region Caribe",
@@ -3085,13 +2994,6 @@
     "departamento": "Cordoba",
     "c_digo_dane_del_municipio": "23464",
     "municipio": "Momil"
-  },
-  {
-    "region": "Region Caribe",
-    "c_digo_dane_del_departamento": "23",
-    "departamento": "Cordoba",
-    "c_digo_dane_del_municipio": "23466",
-    "municipio": "Montelibano"
   },
   {
     "region": "Region Caribe",
@@ -3122,11 +3024,11 @@
     "municipio": "Puerto Escondido"
   },
   {
-    "region": "Region Caribe",
-    "c_digo_dane_del_departamento": "23",
-    "departamento": "Cordoba",
-    "c_digo_dane_del_municipio": "23580",
-    "municipio": "Puerto Libertador"
+    "region": "Region Centro Oriente",
+    "c_digo_dane_del_departamento": "25",
+    "departamento": "Cundinamarca",
+    "c_digo_dane_del_municipio": "25885",
+    "municipio": "Yacopi"
   },
   {
     "region": "Region Caribe",
@@ -3157,25 +3059,25 @@
     "municipio": "San Antero"
   },
   {
-    "region": "Region Caribe",
-    "c_digo_dane_del_departamento": "23",
-    "departamento": "Cordoba",
-    "c_digo_dane_del_municipio": "23675",
-    "municipio": "San Bernardo del Viento"
+    "region": "Region Eje Cafetero - Antioquia",
+    "c_digo_dane_del_departamento": "63",
+    "departamento": "Quindio",
+    "c_digo_dane_del_municipio": "63130",
+    "municipio": "Calarca"
   },
   {
-    "region": "Region Caribe",
-    "c_digo_dane_del_departamento": "23",
-    "departamento": "Cordoba",
-    "c_digo_dane_del_municipio": "23678",
-    "municipio": "San Carlos"
+    "region": "Region Eje Cafetero - Antioquia",
+    "c_digo_dane_del_departamento": "5",
+    "departamento": "Antioquia",
+    "c_digo_dane_del_municipio": "5756",
+    "municipio": "Sonson"
   },
   {
-    "region": "Region Caribe",
-    "c_digo_dane_del_departamento": "23",
-    "departamento": "Cordoba",
-    "c_digo_dane_del_municipio": "23682",
-    "municipio": "San José De Uré"
+    "region": "Region Centro Oriente",
+    "c_digo_dane_del_departamento": "54",
+    "departamento": "Norte de Santander",
+    "c_digo_dane_del_municipio": "54245",
+    "municipio": "El Carmen"
   },
   {
     "region": "Region Caribe",
@@ -3206,18 +3108,11 @@
     "municipio": "Valencia"
   },
   {
-    "region": "Region Centro Oriente",
-    "c_digo_dane_del_departamento": "25",
-    "departamento": "Cundinamarca",
-    "c_digo_dane_del_municipio": "25001",
-    "municipio": "Agua De Dios"
-  },
-  {
-    "region": "Region Centro Oriente",
-    "c_digo_dane_del_departamento": "25",
-    "departamento": "Cundinamarca",
-    "c_digo_dane_del_municipio": "25019",
-    "municipio": "Alban"
+    "region": "Region Centro Sur",
+    "c_digo_dane_del_departamento": "73",
+    "departamento": "Tolima",
+    "c_digo_dane_del_municipio": "73408",
+    "municipio": "Lerida"
   },
   {
     "region": "Region Centro Oriente",
@@ -3225,13 +3120,6 @@
     "departamento": "Cundinamarca",
     "c_digo_dane_del_municipio": "25035",
     "municipio": "Anapoima"
-  },
-  {
-    "region": "Region Centro Oriente",
-    "c_digo_dane_del_departamento": "25",
-    "departamento": "Cundinamarca",
-    "c_digo_dane_del_municipio": "25040",
-    "municipio": "Anolaima"
   },
   {
     "region": "Region Centro Oriente",
@@ -3297,11 +3185,11 @@
     "municipio": "Caqueza"
   },
   {
-    "region": "Region Centro Oriente",
-    "c_digo_dane_del_departamento": "25",
-    "departamento": "Cundinamarca",
-    "c_digo_dane_del_municipio": "25154",
-    "municipio": "Carmen De Carupa"
+    "region": "Region Caribe",
+    "c_digo_dane_del_departamento": "23",
+    "departamento": "Cordoba",
+    "c_digo_dane_del_municipio": "23350",
+    "municipio": "La Apartada"
   },
   {
     "region": "Region Centro Oriente",
@@ -3309,13 +3197,6 @@
     "departamento": "Cundinamarca",
     "c_digo_dane_del_municipio": "25168",
     "municipio": "Chaguani"
-  },
-  {
-    "region": "Region Centro Oriente",
-    "c_digo_dane_del_departamento": "25",
-    "departamento": "Cundinamarca",
-    "c_digo_dane_del_municipio": "25175",
-    "municipio": "Chia"
   },
   {
     "region": "Region Centro Oriente",
@@ -3370,22 +3251,8 @@
     "region": "Region Centro Oriente",
     "c_digo_dane_del_departamento": "25",
     "departamento": "Cundinamarca",
-    "c_digo_dane_del_municipio": "25258",
-    "municipio": "El Penon"
-  },
-  {
-    "region": "Region Centro Oriente",
-    "c_digo_dane_del_departamento": "25",
-    "departamento": "Cundinamarca",
     "c_digo_dane_del_municipio": "25260",
     "municipio": "El Rosal"
-  },
-  {
-    "region": "Region Centro Oriente",
-    "c_digo_dane_del_departamento": "25",
-    "departamento": "Cundinamarca",
-    "c_digo_dane_del_municipio": "25269",
-    "municipio": "Facatativa"
   },
   {
     "region": "Region Centro Oriente",
@@ -3419,13 +3286,6 @@
     "region": "Region Centro Oriente",
     "c_digo_dane_del_departamento": "25",
     "departamento": "Cundinamarca",
-    "c_digo_dane_del_municipio": "25290",
-    "municipio": "Fusagasuga"
-  },
-  {
-    "region": "Region Centro Oriente",
-    "c_digo_dane_del_departamento": "25",
-    "departamento": "Cundinamarca",
     "c_digo_dane_del_municipio": "25293",
     "municipio": "Gachala"
   },
@@ -3444,18 +3304,11 @@
     "municipio": "Gacheta"
   },
   {
-    "region": "Region Centro Oriente",
-    "c_digo_dane_del_departamento": "25",
-    "departamento": "Cundinamarca",
-    "c_digo_dane_del_municipio": "25299",
-    "municipio": "Gama"
-  },
-  {
-    "region": "Region Centro Oriente",
-    "c_digo_dane_del_departamento": "25",
-    "departamento": "Bogota D.C",
-    "c_digo_dane_del_municipio": "25299",
-    "municipio": "Bogota D.C"
+    "region": "Region Caribe",
+    "c_digo_dane_del_departamento": "13",
+    "departamento": "Bolivar",
+    "c_digo_dane_del_municipio": "13620",
+    "municipio": "San Cristobal"
   },
   {
     "region": "Region Centro Oriente",
@@ -3510,8 +3363,8 @@
     "region": "Region Centro Oriente",
     "c_digo_dane_del_departamento": "25",
     "departamento": "Cundinamarca",
-    "c_digo_dane_del_municipio": "25328",
-    "municipio": "Guayabal de Siquima"
+    "c_digo_dane_del_municipio": "25290",
+    "municipio": "Fusagasuga"
   },
   {
     "region": "Region Centro Oriente",
@@ -3745,11 +3598,11 @@
     "municipio": "Ricaurte"
   },
   {
-    "region": "Region Centro Oriente",
-    "c_digo_dane_del_departamento": "25",
-    "departamento": "Cundinamarca",
-    "c_digo_dane_del_municipio": "25645",
-    "municipio": "San Antonio Del Tequendama"
+    "region": "Region Caribe",
+    "c_digo_dane_del_departamento": "13",
+    "departamento": "Bolivar",
+    "c_digo_dane_del_municipio": "13894",
+    "municipio": "Zambrano"
   },
   {
     "region": "Region Centro Oriente",
@@ -3774,17 +3627,17 @@
   },
   {
     "region": "Region Centro Oriente",
-    "c_digo_dane_del_departamento": "25",
-    "departamento": "Cundinamarca",
-    "c_digo_dane_del_municipio": "25662",
-    "municipio": "San Juan de Rio Seco"
+    "c_digo_dane_del_departamento": "15",
+    "departamento": "Boyaca",
+    "c_digo_dane_del_municipio": "15403",
+    "municipio": "La Uvita"
   },
   {
     "region": "Region Centro Oriente",
     "c_digo_dane_del_departamento": "25",
     "departamento": "Cundinamarca",
-    "c_digo_dane_del_municipio": "25718",
-    "municipio": "Sasaima"
+    "c_digo_dane_del_municipio": "25899",
+    "municipio": "Zipaquira"
   },
   {
     "region": "Region Centro Oriente",
@@ -3820,13 +3673,6 @@
     "departamento": "Cundinamarca",
     "c_digo_dane_del_municipio": "25754",
     "municipio": "Soacha"
-  },
-  {
-    "region": "Region Centro Oriente",
-    "c_digo_dane_del_departamento": "25",
-    "departamento": "Cundinamarca",
-    "c_digo_dane_del_municipio": "25758",
-    "municipio": "Sopo"
   },
   {
     "region": "Region Centro Oriente",
@@ -3869,6 +3715,13 @@
     "departamento": "Cundinamarca",
     "c_digo_dane_del_municipio": "25785",
     "municipio": "Tabio"
+  },
+  {
+    "region": "Region Eje Cafetero - Antioquia",
+    "c_digo_dane_del_departamento": "63",
+    "departamento": "Quindio",
+    "c_digo_dane_del_municipio": "63302",
+    "municipio": "Genova"
   },
   {
     "region": "Region Centro Oriente",
@@ -3941,11 +3794,11 @@
     "municipio": "Ubaque"
   },
   {
-    "region": "Region Centro Oriente",
-    "c_digo_dane_del_departamento": "25",
-    "departamento": "Cundinamarca",
-    "c_digo_dane_del_municipio": "25843",
-    "municipio": "Villa de San Diego de Ubate"
+    "region": "Region Centro Sur",
+    "c_digo_dane_del_departamento": "73",
+    "departamento": "Tolima",
+    "c_digo_dane_del_municipio": "73770",
+    "municipio": "Suarez"
   },
   {
     "region": "Region Centro Oriente",
@@ -3962,11 +3815,11 @@
     "municipio": "utica"
   },
   {
-    "region": "Region Centro Oriente",
-    "c_digo_dane_del_departamento": "25",
-    "departamento": "Cundinamarca",
-    "c_digo_dane_del_municipio": "25862",
-    "municipio": "Vergara"
+    "region": "Region Llano",
+    "c_digo_dane_del_departamento": "50",
+    "departamento": "Meta",
+    "c_digo_dane_del_municipio": "50150",
+    "municipio": "Castilla la Nueva"
   },
   {
     "region": "Region Centro Oriente",
@@ -4007,22 +3860,8 @@
     "region": "Region Centro Oriente",
     "c_digo_dane_del_departamento": "25",
     "departamento": "Cundinamarca",
-    "c_digo_dane_del_municipio": "25885",
-    "municipio": "Yacopi"
-  },
-  {
-    "region": "Region Centro Oriente",
-    "c_digo_dane_del_departamento": "25",
-    "departamento": "Cundinamarca",
     "c_digo_dane_del_municipio": "25898",
     "municipio": "Zipacon"
-  },
-  {
-    "region": "Region Centro Oriente",
-    "c_digo_dane_del_departamento": "25",
-    "departamento": "Cundinamarca",
-    "c_digo_dane_del_municipio": "25899",
-    "municipio": "Zipaquira"
   },
   {
     "region": "Region Pacifico",
@@ -4074,11 +3913,11 @@
     "municipio": "Bajo Baudo"
   },
   {
-    "region": "Region Pacifico",
-    "c_digo_dane_del_departamento": "27",
-    "departamento": "Choco",
-    "c_digo_dane_del_municipio": "27086",
-    "municipio": "Belén De Bajirá"
+    "region": "Region Centro Oriente",
+    "c_digo_dane_del_departamento": "15",
+    "departamento": "Boyaca",
+    "c_digo_dane_del_municipio": "15087",
+    "municipio": "Belen"
   },
   {
     "region": "Region Pacifico",
@@ -4091,15 +3930,15 @@
     "region": "Region Pacifico",
     "c_digo_dane_del_departamento": "27",
     "departamento": "Choco",
-    "c_digo_dane_del_municipio": "27135",
-    "municipio": "El Canton del San Pablo"
+    "c_digo_dane_del_municipio": "27810",
+    "municipio": "Union Panamericana"
   },
   {
-    "region": "Region Pacifico",
-    "c_digo_dane_del_departamento": "27",
-    "departamento": "Choco",
-    "c_digo_dane_del_municipio": "27150",
-    "municipio": "Carmen del Darien"
+    "region": "Region Caribe",
+    "c_digo_dane_del_departamento": "47",
+    "departamento": "Magdalena",
+    "c_digo_dane_del_municipio": "47570",
+    "municipio": "Pueblo Viejo"
   },
   {
     "region": "Region Pacifico",
@@ -4116,25 +3955,18 @@
     "municipio": "Condoto"
   },
   {
-    "region": "Region Pacifico",
-    "c_digo_dane_del_departamento": "27",
-    "departamento": "Choco",
-    "c_digo_dane_del_municipio": "27245",
-    "municipio": "El Carmen"
+    "region": "Region Centro Sur",
+    "c_digo_dane_del_departamento": "86",
+    "departamento": "Putumayo",
+    "c_digo_dane_del_municipio": "86885",
+    "municipio": "Villagarzon"
   },
   {
-    "region": "Region Pacifico",
-    "c_digo_dane_del_departamento": "27",
-    "departamento": "Choco",
-    "c_digo_dane_del_municipio": "27250",
-    "municipio": "El Litoral del San Juan"
-  },
-  {
-    "region": "Region Pacifico",
-    "c_digo_dane_del_departamento": "27",
-    "departamento": "Choco",
-    "c_digo_dane_del_municipio": "27361",
-    "municipio": "Istmina"
+    "region": "Region Centro Oriente",
+    "c_digo_dane_del_departamento": "25",
+    "departamento": "Cundinamarca",
+    "c_digo_dane_del_municipio": "25269",
+    "municipio": "Facatativa"
   },
   {
     "region": "Region Pacifico",
@@ -4182,13 +4014,6 @@
     "region": "Region Pacifico",
     "c_digo_dane_del_departamento": "27",
     "departamento": "Choco",
-    "c_digo_dane_del_municipio": "27493",
-    "municipio": "Nuevo Belén De Bajirá"
-  },
-  {
-    "region": "Region Pacifico",
-    "c_digo_dane_del_departamento": "27",
-    "departamento": "Choco",
     "c_digo_dane_del_municipio": "27495",
     "municipio": "Nuqui"
   },
@@ -4214,11 +4039,11 @@
     "municipio": "Riosucio"
   },
   {
-    "region": "Region Pacifico",
-    "c_digo_dane_del_departamento": "27",
-    "departamento": "Choco",
-    "c_digo_dane_del_municipio": "27660",
-    "municipio": "San José Del Palmar"
+    "region": "Region Caribe",
+    "c_digo_dane_del_departamento": "23",
+    "departamento": "Cordoba",
+    "c_digo_dane_del_municipio": "23580",
+    "municipio": "Puerto Libertador"
   },
   {
     "region": "Region Pacifico",
@@ -4231,22 +4056,8 @@
     "region": "Region Pacifico",
     "c_digo_dane_del_departamento": "27",
     "departamento": "Choco",
-    "c_digo_dane_del_municipio": "27787",
-    "municipio": "Tado"
-  },
-  {
-    "region": "Region Pacifico",
-    "c_digo_dane_del_departamento": "27",
-    "departamento": "Choco",
     "c_digo_dane_del_municipio": "27800",
     "municipio": "Unguia"
-  },
-  {
-    "region": "Region Pacifico",
-    "c_digo_dane_del_departamento": "27",
-    "departamento": "Choco",
-    "c_digo_dane_del_municipio": "27810",
-    "municipio": "Union Panamericana"
   },
   {
     "region": "Region Centro Sur",
@@ -4375,6 +4186,13 @@
     "municipio": "La Plata"
   },
   {
+    "region": "Region Eje Cafetero - Antioquia",
+    "c_digo_dane_del_departamento": "17",
+    "departamento": "Caldas",
+    "c_digo_dane_del_municipio": "17444",
+    "municipio": "Marquetalia"
+  },
+  {
     "region": "Region Centro Sur",
     "c_digo_dane_del_departamento": "41",
     "departamento": "Huila",
@@ -4438,11 +4256,11 @@
     "municipio": "Saladoblanco"
   },
   {
-    "region": "Region Centro Sur",
-    "c_digo_dane_del_departamento": "41",
-    "departamento": "Huila",
-    "c_digo_dane_del_municipio": "41668",
-    "municipio": "San Agustín"
+    "region": "Region Pacifico",
+    "c_digo_dane_del_departamento": "52",
+    "departamento": "Narino",
+    "c_digo_dane_del_municipio": "52051",
+    "municipio": "Arboleda"
   },
   {
     "region": "Region Centro Sur",
@@ -4567,13 +4385,6 @@
     "region": "Region Caribe",
     "c_digo_dane_del_departamento": "44",
     "departamento": "La Guajira",
-    "c_digo_dane_del_municipio": "44420",
-    "municipio": "La Jagua del Pilar"
-  },
-  {
-    "region": "Region Caribe",
-    "c_digo_dane_del_departamento": "44",
-    "departamento": "La Guajira",
     "c_digo_dane_del_municipio": "44430",
     "municipio": "Maicao"
   },
@@ -4583,13 +4394,6 @@
     "departamento": "La Guajira",
     "c_digo_dane_del_municipio": "44560",
     "municipio": "Manaure"
-  },
-  {
-    "region": "Region Caribe",
-    "c_digo_dane_del_departamento": "44",
-    "departamento": "La Guajira",
-    "c_digo_dane_del_municipio": "44650",
-    "municipio": "San Juan Del Cesar"
   },
   {
     "region": "Region Caribe",
@@ -4658,13 +4462,6 @@
     "region": "Region Caribe",
     "c_digo_dane_del_departamento": "47",
     "departamento": "Magdalena",
-    "c_digo_dane_del_municipio": "47189",
-    "municipio": "Cienaga"
-  },
-  {
-    "region": "Region Caribe",
-    "c_digo_dane_del_departamento": "47",
-    "departamento": "Magdalena",
     "c_digo_dane_del_municipio": "47205",
     "municipio": "Concordia"
   },
@@ -4721,13 +4518,6 @@
     "region": "Region Caribe",
     "c_digo_dane_del_departamento": "47",
     "departamento": "Magdalena",
-    "c_digo_dane_del_municipio": "47545",
-    "municipio": "Pijiño Del Carmen"
-  },
-  {
-    "region": "Region Caribe",
-    "c_digo_dane_del_departamento": "47",
-    "departamento": "Magdalena",
     "c_digo_dane_del_municipio": "47551",
     "municipio": "Pivijay"
   },
@@ -4742,13 +4532,6 @@
     "region": "Region Caribe",
     "c_digo_dane_del_departamento": "47",
     "departamento": "Magdalena",
-    "c_digo_dane_del_municipio": "47570",
-    "municipio": "Pueblo Viejo"
-  },
-  {
-    "region": "Region Caribe",
-    "c_digo_dane_del_departamento": "47",
-    "departamento": "Magdalena",
     "c_digo_dane_del_municipio": "47605",
     "municipio": "Remolino"
   },
@@ -4756,22 +4539,8 @@
     "region": "Region Caribe",
     "c_digo_dane_del_departamento": "47",
     "departamento": "Magdalena",
-    "c_digo_dane_del_municipio": "47660",
-    "municipio": "Sabanas de San Angel"
-  },
-  {
-    "region": "Region Caribe",
-    "c_digo_dane_del_departamento": "47",
-    "departamento": "Magdalena",
     "c_digo_dane_del_municipio": "47675",
     "municipio": "Salamina"
-  },
-  {
-    "region": "Region Caribe",
-    "c_digo_dane_del_departamento": "47",
-    "departamento": "Magdalena",
-    "c_digo_dane_del_municipio": "47692",
-    "municipio": "San Sebastian de Buenavista"
   },
   {
     "region": "Region Caribe",
@@ -4786,13 +4555,6 @@
     "departamento": "Magdalena",
     "c_digo_dane_del_municipio": "47707",
     "municipio": "Santa Ana"
-  },
-  {
-    "region": "Region Caribe",
-    "c_digo_dane_del_departamento": "47",
-    "departamento": "Magdalena",
-    "c_digo_dane_del_municipio": "47720",
-    "municipio": "Santa Barbara de Pinto"
   },
   {
     "region": "Region Caribe",
@@ -4840,22 +4602,8 @@
     "region": "Region Llano",
     "c_digo_dane_del_departamento": "50",
     "departamento": "Meta",
-    "c_digo_dane_del_municipio": "50110",
-    "municipio": "Barranca de Upia"
-  },
-  {
-    "region": "Region Llano",
-    "c_digo_dane_del_departamento": "50",
-    "departamento": "Meta",
     "c_digo_dane_del_municipio": "50124",
     "municipio": "Cabuyaro"
-  },
-  {
-    "region": "Region Llano",
-    "c_digo_dane_del_departamento": "50",
-    "departamento": "Meta",
-    "c_digo_dane_del_municipio": "50150",
-    "municipio": "Castilla la Nueva"
   },
   {
     "region": "Region Llano",
@@ -4893,11 +4641,11 @@
     "municipio": "El Dorado"
   },
   {
-    "region": "Region Llano",
-    "c_digo_dane_del_departamento": "50",
-    "departamento": "Meta",
-    "c_digo_dane_del_municipio": "50287",
-    "municipio": "Fuente de Oro"
+    "region": "Region Pacifico",
+    "c_digo_dane_del_departamento": "76",
+    "departamento": "Valle del Cauca",
+    "c_digo_dane_del_municipio": "76109",
+    "municipio": "Buenaventura"
   },
   {
     "region": "Region Llano",
@@ -4991,18 +4739,18 @@
     "municipio": "Restrepo"
   },
   {
-    "region": "Region Llano",
-    "c_digo_dane_del_departamento": "50",
-    "departamento": "Meta",
-    "c_digo_dane_del_municipio": "50680",
-    "municipio": "San Carlos de Guaroa"
+    "region": "Region Caribe",
+    "c_digo_dane_del_departamento": "47",
+    "departamento": "Magdalena",
+    "c_digo_dane_del_municipio": "47189",
+    "municipio": "Cienaga"
   },
   {
-    "region": "Region Llano",
-    "c_digo_dane_del_departamento": "50",
-    "departamento": "Meta",
-    "c_digo_dane_del_municipio": "50683",
-    "municipio": "San Juan De Arama"
+    "region": "Region Caribe",
+    "c_digo_dane_del_departamento": "8",
+    "departamento": "Atlantico",
+    "c_digo_dane_del_municipio": "8560",
+    "municipio": "Ponedera"
   },
   {
     "region": "Region Llano",
@@ -5054,11 +4802,11 @@
     "municipio": "Ancuya"
   },
   {
-    "region": "Region Pacifico",
-    "c_digo_dane_del_departamento": "52",
-    "departamento": "Narino",
-    "c_digo_dane_del_municipio": "52051",
-    "municipio": "Arboleda"
+    "region": "Region Centro Oriente",
+    "c_digo_dane_del_departamento": "15",
+    "departamento": "Boyaca",
+    "c_digo_dane_del_municipio": "15832",
+    "municipio": "Tunungua"
   },
   {
     "region": "Region Pacifico",
@@ -5068,18 +4816,18 @@
     "municipio": "Barbacoas"
   },
   {
-    "region": "Region Pacifico",
-    "c_digo_dane_del_departamento": "52",
-    "departamento": "Narino",
-    "c_digo_dane_del_municipio": "52083",
-    "municipio": "Belen"
+    "region": "Region Centro Oriente",
+    "c_digo_dane_del_departamento": "15",
+    "departamento": "Boyaca",
+    "c_digo_dane_del_municipio": "15476",
+    "municipio": "Motavita"
   },
   {
-    "region": "Region Pacifico",
-    "c_digo_dane_del_departamento": "52",
-    "departamento": "Narino",
-    "c_digo_dane_del_municipio": "52110",
-    "municipio": "Buesaco"
+    "region": "Region Caribe",
+    "c_digo_dane_del_departamento": "23",
+    "departamento": "Cordoba",
+    "c_digo_dane_del_municipio": "23675",
+    "municipio": "San Bernardo del Viento"
   },
   {
     "region": "Region Pacifico",
@@ -5134,13 +4882,6 @@
     "region": "Region Pacifico",
     "c_digo_dane_del_departamento": "52",
     "departamento": "Narino",
-    "c_digo_dane_del_municipio": "52240",
-    "municipio": "Chachagüi"
-  },
-  {
-    "region": "Region Pacifico",
-    "c_digo_dane_del_departamento": "52",
-    "departamento": "Narino",
     "c_digo_dane_del_municipio": "52250",
     "municipio": "El Charco"
   },
@@ -5160,10 +4901,10 @@
   },
   {
     "region": "Region Pacifico",
-    "c_digo_dane_del_departamento": "52",
-    "departamento": "Narino",
-    "c_digo_dane_del_municipio": "52258",
-    "municipio": "El Tablón"
+    "c_digo_dane_del_departamento": "27",
+    "departamento": "Choco",
+    "c_digo_dane_del_municipio": "27361",
+    "municipio": "Istmina"
   },
   {
     "region": "Region Pacifico",
@@ -5282,7 +5023,7 @@
     "c_digo_dane_del_departamento": "52",
     "departamento": "Narino",
     "c_digo_dane_del_municipio": "52427",
-    "municipio": "Magüi"
+    "municipio": "Mag�i"
   },
   {
     "region": "Region Pacifico",
@@ -5411,11 +5152,18 @@
     "municipio": "San Pablo"
   },
   {
-    "region": "Region Pacifico",
-    "c_digo_dane_del_departamento": "52",
-    "departamento": "Narino",
-    "c_digo_dane_del_municipio": "52694",
-    "municipio": "San Pedro De Cartago"
+    "region": "Region Eje Cafetero - Antioquia",
+    "c_digo_dane_del_departamento": "5",
+    "departamento": "Antioquia",
+    "c_digo_dane_del_municipio": "5086",
+    "municipio": "Belmira"
+  },
+  {
+    "region": "Region Centro Oriente",
+    "c_digo_dane_del_departamento": "15",
+    "departamento": "Boyaca",
+    "c_digo_dane_del_municipio": "15189",
+    "municipio": "Cienega"
   },
   {
     "region": "Region Pacifico",
@@ -5423,13 +5171,6 @@
     "departamento": "Narino",
     "c_digo_dane_del_municipio": "52696",
     "municipio": "Santa Barbara"
-  },
-  {
-    "region": "Region Pacifico",
-    "c_digo_dane_del_departamento": "52",
-    "departamento": "Narino",
-    "c_digo_dane_del_municipio": "52699",
-    "municipio": "Santacruz"
   },
   {
     "region": "Region Pacifico",
@@ -5456,8 +5197,8 @@
     "region": "Region Pacifico",
     "c_digo_dane_del_departamento": "52",
     "departamento": "Narino",
-    "c_digo_dane_del_municipio": "52835",
-    "municipio": "San Andres de Tumaco"
+    "c_digo_dane_del_municipio": "52699",
+    "municipio": "Santacruz"
   },
   {
     "region": "Region Pacifico",
@@ -5475,283 +5216,17 @@
   },
   {
     "region": "Region Centro Oriente",
-    "c_digo_dane_del_departamento": "54",
-    "departamento": "Norte de Santander",
-    "c_digo_dane_del_municipio": "54001",
-    "municipio": "Cucuta"
+    "c_digo_dane_del_departamento": "68",
+    "departamento": "Santander",
+    "c_digo_dane_del_municipio": "68575",
+    "municipio": "Puerto Wilches"
   },
   {
     "region": "Region Centro Oriente",
-    "c_digo_dane_del_departamento": "54",
-    "departamento": "Norte de Santander",
-    "c_digo_dane_del_municipio": "54003",
-    "municipio": "Ábrego"
-  },
-  {
-    "region": "Region Centro Oriente",
-    "c_digo_dane_del_departamento": "54",
-    "departamento": "Norte de Santander",
-    "c_digo_dane_del_municipio": "54051",
-    "municipio": "Arboledas"
-  },
-  {
-    "region": "Region Centro Oriente",
-    "c_digo_dane_del_departamento": "54",
-    "departamento": "Norte de Santander",
-    "c_digo_dane_del_municipio": "54099",
-    "municipio": "Bochalema"
-  },
-  {
-    "region": "Region Centro Oriente",
-    "c_digo_dane_del_departamento": "54",
-    "departamento": "Norte de Santander",
-    "c_digo_dane_del_municipio": "54109",
-    "municipio": "Bucarasica"
-  },
-  {
-    "region": "Region Centro Oriente",
-    "c_digo_dane_del_departamento": "54",
-    "departamento": "Norte de Santander",
-    "c_digo_dane_del_municipio": "54125",
-    "municipio": "Cácota"
-  },
-  {
-    "region": "Region Centro Oriente",
-    "c_digo_dane_del_departamento": "54",
-    "departamento": "Norte de Santander",
-    "c_digo_dane_del_municipio": "54128",
-    "municipio": "Cáchira"
-  },
-  {
-    "region": "Region Centro Oriente",
-    "c_digo_dane_del_departamento": "54",
-    "departamento": "Norte de Santander",
-    "c_digo_dane_del_municipio": "54172",
-    "municipio": "Chinácota"
-  },
-  {
-    "region": "Region Centro Oriente",
-    "c_digo_dane_del_departamento": "54",
-    "departamento": "Norte de Santander",
-    "c_digo_dane_del_municipio": "54174",
-    "municipio": "Chitagá"
-  },
-  {
-    "region": "Region Centro Oriente",
-    "c_digo_dane_del_departamento": "54",
-    "departamento": "Norte de Santander",
-    "c_digo_dane_del_municipio": "54206",
-    "municipio": "Convención"
-  },
-  {
-    "region": "Region Centro Oriente",
-    "c_digo_dane_del_departamento": "54",
-    "departamento": "Norte de Santander",
-    "c_digo_dane_del_municipio": "54223",
-    "municipio": "Cucutilla"
-  },
-  {
-    "region": "Region Centro Oriente",
-    "c_digo_dane_del_departamento": "54",
-    "departamento": "Norte de Santander",
-    "c_digo_dane_del_municipio": "54239",
-    "municipio": "Durania"
-  },
-  {
-    "region": "Region Centro Oriente",
-    "c_digo_dane_del_departamento": "54",
-    "departamento": "Norte de Santander",
-    "c_digo_dane_del_municipio": "54245",
-    "municipio": "El Carmen"
-  },
-  {
-    "region": "Region Centro Oriente",
-    "c_digo_dane_del_departamento": "54",
-    "departamento": "Norte de Santander",
-    "c_digo_dane_del_municipio": "54250",
-    "municipio": "El Tarra"
-  },
-  {
-    "region": "Region Centro Oriente",
-    "c_digo_dane_del_departamento": "54",
-    "departamento": "Norte de Santander",
-    "c_digo_dane_del_municipio": "54261",
-    "municipio": "El Zulia"
-  },
-  {
-    "region": "Region Centro Oriente",
-    "c_digo_dane_del_departamento": "54",
-    "departamento": "Norte de Santander",
-    "c_digo_dane_del_municipio": "54313",
-    "municipio": "Gramalote"
-  },
-  {
-    "region": "Region Centro Oriente",
-    "c_digo_dane_del_departamento": "54",
-    "departamento": "Norte de Santander",
-    "c_digo_dane_del_municipio": "54344",
-    "municipio": "Hacarí"
-  },
-  {
-    "region": "Region Centro Oriente",
-    "c_digo_dane_del_departamento": "54",
-    "departamento": "Norte de Santander",
-    "c_digo_dane_del_municipio": "54347",
-    "municipio": "Herrán"
-  },
-  {
-    "region": "Region Centro Oriente",
-    "c_digo_dane_del_departamento": "54",
-    "departamento": "Norte de Santander",
-    "c_digo_dane_del_municipio": "54377",
-    "municipio": "Labateca"
-  },
-  {
-    "region": "Region Centro Oriente",
-    "c_digo_dane_del_departamento": "54",
-    "departamento": "Norte de Santander",
-    "c_digo_dane_del_municipio": "54385",
-    "municipio": "La Esperanza"
-  },
-  {
-    "region": "Region Centro Oriente",
-    "c_digo_dane_del_departamento": "54",
-    "departamento": "Norte de Santander",
-    "c_digo_dane_del_municipio": "54398",
-    "municipio": "La Playa"
-  },
-  {
-    "region": "Region Centro Oriente",
-    "c_digo_dane_del_departamento": "54",
-    "departamento": "Norte de Santander",
-    "c_digo_dane_del_municipio": "54405",
-    "municipio": "Los Patios"
-  },
-  {
-    "region": "Region Centro Oriente",
-    "c_digo_dane_del_departamento": "54",
-    "departamento": "Norte de Santander",
-    "c_digo_dane_del_municipio": "54418",
-    "municipio": "Lourdes"
-  },
-  {
-    "region": "Region Centro Oriente",
-    "c_digo_dane_del_departamento": "54",
-    "departamento": "Norte de Santander",
-    "c_digo_dane_del_municipio": "54480",
-    "municipio": "Mutiscua"
-  },
-  {
-    "region": "Region Centro Oriente",
-    "c_digo_dane_del_departamento": "54",
-    "departamento": "Norte de Santander",
-    "c_digo_dane_del_municipio": "54498",
-    "municipio": "Ocaña"
-  },
-  {
-    "region": "Region Centro Oriente",
-    "c_digo_dane_del_departamento": "54",
-    "departamento": "Norte de Santander",
-    "c_digo_dane_del_municipio": "54518",
-    "municipio": "Pamplona"
-  },
-  {
-    "region": "Region Centro Oriente",
-    "c_digo_dane_del_departamento": "54",
-    "departamento": "Norte de Santander",
-    "c_digo_dane_del_municipio": "54520",
-    "municipio": "Pamplonita"
-  },
-  {
-    "region": "Region Centro Oriente",
-    "c_digo_dane_del_departamento": "54",
-    "departamento": "Norte de Santander",
-    "c_digo_dane_del_municipio": "54553",
-    "municipio": "Puerto Santander"
-  },
-  {
-    "region": "Region Centro Oriente",
-    "c_digo_dane_del_departamento": "54",
-    "departamento": "Norte de Santander",
-    "c_digo_dane_del_municipio": "54599",
-    "municipio": "Ragonvalia"
-  },
-  {
-    "region": "Region Centro Oriente",
-    "c_digo_dane_del_departamento": "54",
-    "departamento": "Norte de Santander",
-    "c_digo_dane_del_municipio": "54660",
-    "municipio": "Salazar"
-  },
-  {
-    "region": "Region Centro Oriente",
-    "c_digo_dane_del_departamento": "54",
-    "departamento": "Norte de Santander",
-    "c_digo_dane_del_municipio": "54670",
-    "municipio": "San Calixto"
-  },
-  {
-    "region": "Region Centro Oriente",
-    "c_digo_dane_del_departamento": "54",
-    "departamento": "Norte de Santander",
-    "c_digo_dane_del_municipio": "54673",
-    "municipio": "San Cayetano"
-  },
-  {
-    "region": "Region Centro Oriente",
-    "c_digo_dane_del_departamento": "54",
-    "departamento": "Norte de Santander",
-    "c_digo_dane_del_municipio": "54680",
-    "municipio": "Santiago"
-  },
-  {
-    "region": "Region Centro Oriente",
-    "c_digo_dane_del_departamento": "54",
-    "departamento": "Norte de Santander",
-    "c_digo_dane_del_municipio": "54720",
-    "municipio": "Sardinata"
-  },
-  {
-    "region": "Region Centro Oriente",
-    "c_digo_dane_del_departamento": "54",
-    "departamento": "Norte de Santander",
-    "c_digo_dane_del_municipio": "54743",
-    "municipio": "Silos"
-  },
-  {
-    "region": "Region Centro Oriente",
-    "c_digo_dane_del_departamento": "54",
-    "departamento": "Norte de Santander",
-    "c_digo_dane_del_municipio": "54800",
-    "municipio": "Teorama"
-  },
-  {
-    "region": "Region Centro Oriente",
-    "c_digo_dane_del_departamento": "54",
-    "departamento": "Norte de Santander",
-    "c_digo_dane_del_municipio": "54810",
-    "municipio": "Tibú"
-  },
-  {
-    "region": "Region Centro Oriente",
-    "c_digo_dane_del_departamento": "54",
-    "departamento": "Norte de Santander",
-    "c_digo_dane_del_municipio": "54820",
-    "municipio": "Toledo"
-  },
-  {
-    "region": "Region Centro Oriente",
-    "c_digo_dane_del_departamento": "54",
-    "departamento": "Norte de Santander",
-    "c_digo_dane_del_municipio": "54871",
-    "municipio": "Villa Caro"
-  },
-  {
-    "region": "Region Centro Oriente",
-    "c_digo_dane_del_departamento": "54",
-    "departamento": "Norte de Santander",
-    "c_digo_dane_del_municipio": "54874",
-    "municipio": "Villa Del Rosario"
+    "c_digo_dane_del_departamento": "68",
+    "departamento": "Santander",
+    "c_digo_dane_del_municipio": "68573",
+    "municipio": "Puerto Parra"
   },
   {
     "region": "Region Eje Cafetero - Antioquia",
@@ -5766,13 +5241,6 @@
     "departamento": "Quindio",
     "c_digo_dane_del_municipio": "63111",
     "municipio": "Buenavista"
-  },
-  {
-    "region": "Region Eje Cafetero - Antioquia",
-    "c_digo_dane_del_departamento": "63",
-    "departamento": "Quindio",
-    "c_digo_dane_del_municipio": "63130",
-    "municipio": "Calarca"
   },
   {
     "region": "Region Eje Cafetero - Antioquia",
@@ -5794,13 +5262,6 @@
     "departamento": "Quindio",
     "c_digo_dane_del_municipio": "63272",
     "municipio": "Filandia"
-  },
-  {
-    "region": "Region Eje Cafetero - Antioquia",
-    "c_digo_dane_del_departamento": "63",
-    "departamento": "Quindio",
-    "c_digo_dane_del_municipio": "63302",
-    "municipio": "Genova"
   },
   {
     "region": "Region Eje Cafetero - Antioquia",
@@ -5862,13 +5323,6 @@
     "region": "Region Eje Cafetero - Antioquia",
     "c_digo_dane_del_departamento": "66",
     "departamento": "Risaralda",
-    "c_digo_dane_del_municipio": "66088",
-    "municipio": "Belén De Umbría"
-  },
-  {
-    "region": "Region Eje Cafetero - Antioquia",
-    "c_digo_dane_del_departamento": "66",
-    "departamento": "Risaralda",
     "c_digo_dane_del_municipio": "66170",
     "municipio": "Dosquebradas"
   },
@@ -5920,13 +5374,6 @@
     "departamento": "Risaralda",
     "c_digo_dane_del_municipio": "66594",
     "municipio": "Quinchia"
-  },
-  {
-    "region": "Region Eje Cafetero - Antioquia",
-    "c_digo_dane_del_departamento": "66",
-    "departamento": "Risaralda",
-    "c_digo_dane_del_municipio": "66682",
-    "municipio": "Santa Rosa de Cabal"
   },
   {
     "region": "Region Eje Cafetero - Antioquia",
@@ -6016,13 +5463,6 @@
     "region": "Region Centro Oriente",
     "c_digo_dane_del_departamento": "68",
     "departamento": "Santander",
-    "c_digo_dane_del_municipio": "68147",
-    "municipio": "Capitanejo"
-  },
-  {
-    "region": "Region Centro Oriente",
-    "c_digo_dane_del_departamento": "68",
-    "departamento": "Santander",
     "c_digo_dane_del_municipio": "68152",
     "municipio": "Carcasi"
   },
@@ -6053,13 +5493,6 @@
     "departamento": "Santander",
     "c_digo_dane_del_municipio": "68169",
     "municipio": "Charta"
-  },
-  {
-    "region": "Region Centro Oriente",
-    "c_digo_dane_del_departamento": "68",
-    "departamento": "Santander",
-    "c_digo_dane_del_municipio": "68176",
-    "municipio": "Chima"
   },
   {
     "region": "Region Centro Oriente",
@@ -6114,22 +5547,8 @@
     "region": "Region Centro Oriente",
     "c_digo_dane_del_departamento": "68",
     "departamento": "Santander",
-    "c_digo_dane_del_municipio": "68235",
-    "municipio": "El Carmen"
-  },
-  {
-    "region": "Region Centro Oriente",
-    "c_digo_dane_del_departamento": "68",
-    "departamento": "Santander",
     "c_digo_dane_del_municipio": "68245",
     "municipio": "El Guacamayo"
-  },
-  {
-    "region": "Region Centro Oriente",
-    "c_digo_dane_del_departamento": "68",
-    "departamento": "Santander",
-    "c_digo_dane_del_municipio": "68250",
-    "municipio": "El Penon"
   },
   {
     "region": "Region Centro Oriente",
@@ -6220,14 +5639,7 @@
     "c_digo_dane_del_departamento": "68",
     "departamento": "Santander",
     "c_digo_dane_del_municipio": "68327",
-    "municipio": "Güepsa"
-  },
-  {
-    "region": "Region Centro Oriente",
-    "c_digo_dane_del_departamento": "68",
-    "departamento": "Santander",
-    "c_digo_dane_del_municipio": "68344",
-    "municipio": "Hato"
+    "municipio": "G�epsa"
   },
   {
     "region": "Region Centro Oriente",
@@ -6345,13 +5757,6 @@
     "region": "Region Centro Oriente",
     "c_digo_dane_del_departamento": "68",
     "departamento": "Santander",
-    "c_digo_dane_del_municipio": "68524",
-    "municipio": "Palmas del Socorro"
-  },
-  {
-    "region": "Region Centro Oriente",
-    "c_digo_dane_del_departamento": "68",
-    "departamento": "Santander",
     "c_digo_dane_del_municipio": "68533",
     "municipio": "Paramo"
   },
@@ -6380,20 +5785,6 @@
     "region": "Region Centro Oriente",
     "c_digo_dane_del_departamento": "68",
     "departamento": "Santander",
-    "c_digo_dane_del_municipio": "68573",
-    "municipio": "Puerto Parra"
-  },
-  {
-    "region": "Region Centro Oriente",
-    "c_digo_dane_del_departamento": "68",
-    "departamento": "Santander",
-    "c_digo_dane_del_municipio": "68575",
-    "municipio": "Puerto Wilches"
-  },
-  {
-    "region": "Region Centro Oriente",
-    "c_digo_dane_del_departamento": "68",
-    "departamento": "Santander",
     "c_digo_dane_del_municipio": "68615",
     "municipio": "Rionegro"
   },
@@ -6401,22 +5792,8 @@
     "region": "Region Centro Oriente",
     "c_digo_dane_del_departamento": "68",
     "departamento": "Santander",
-    "c_digo_dane_del_municipio": "68655",
-    "municipio": "Sabana De Torres"
-  },
-  {
-    "region": "Region Centro Oriente",
-    "c_digo_dane_del_departamento": "68",
-    "departamento": "Santander",
     "c_digo_dane_del_municipio": "68669",
     "municipio": "San Andres"
-  },
-  {
-    "region": "Region Centro Oriente",
-    "c_digo_dane_del_departamento": "68",
-    "departamento": "Santander",
-    "c_digo_dane_del_municipio": "68673",
-    "municipio": "San Benito"
   },
   {
     "region": "Region Centro Oriente",
@@ -6436,13 +5813,6 @@
     "region": "Region Centro Oriente",
     "c_digo_dane_del_departamento": "68",
     "departamento": "Santander",
-    "c_digo_dane_del_municipio": "68684",
-    "municipio": "San Jose de Miranda"
-  },
-  {
-    "region": "Region Centro Oriente",
-    "c_digo_dane_del_departamento": "68",
-    "departamento": "Santander",
     "c_digo_dane_del_municipio": "68686",
     "municipio": "San Miguel"
   },
@@ -6450,22 +5820,8 @@
     "region": "Region Centro Oriente",
     "c_digo_dane_del_departamento": "68",
     "departamento": "Santander",
-    "c_digo_dane_del_municipio": "68689",
-    "municipio": "San Vicente de Chucuri"
-  },
-  {
-    "region": "Region Centro Oriente",
-    "c_digo_dane_del_departamento": "68",
-    "departamento": "Santander",
     "c_digo_dane_del_municipio": "68705",
     "municipio": "Santa Barbara"
-  },
-  {
-    "region": "Region Centro Oriente",
-    "c_digo_dane_del_departamento": "68",
-    "departamento": "Santander",
-    "c_digo_dane_del_municipio": "68720",
-    "municipio": "Santa Helena del Opon"
   },
   {
     "region": "Region Centro Oriente",
@@ -6508,13 +5864,6 @@
     "departamento": "Santander",
     "c_digo_dane_del_municipio": "68820",
     "municipio": "Tona"
-  },
-  {
-    "region": "Region Centro Oriente",
-    "c_digo_dane_del_departamento": "68",
-    "departamento": "Santander",
-    "c_digo_dane_del_municipio": "68855",
-    "municipio": "Valle De San José"
   },
   {
     "region": "Region Centro Oriente",
@@ -6571,13 +5920,6 @@
     "departamento": "Sucre",
     "c_digo_dane_del_municipio": "70204",
     "municipio": "Coloso"
-  },
-  {
-    "region": "Region Caribe",
-    "c_digo_dane_del_departamento": "70",
-    "departamento": "Sucre",
-    "c_digo_dane_del_municipio": "70215",
-    "municipio": "Corozal"
   },
   {
     "region": "Region Caribe",
@@ -6660,22 +6002,8 @@
     "region": "Region Caribe",
     "c_digo_dane_del_departamento": "70",
     "departamento": "Sucre",
-    "c_digo_dane_del_municipio": "70670",
-    "municipio": "Sampues"
-  },
-  {
-    "region": "Region Caribe",
-    "c_digo_dane_del_departamento": "70",
-    "departamento": "Sucre",
     "c_digo_dane_del_municipio": "70678",
     "municipio": "San Benito Abad"
-  },
-  {
-    "region": "Region Caribe",
-    "c_digo_dane_del_departamento": "70",
-    "departamento": "Sucre",
-    "c_digo_dane_del_municipio": "70702",
-    "municipio": "San Juan De Betulia"
   },
   {
     "region": "Region Caribe",
@@ -6702,13 +6030,6 @@
     "region": "Region Caribe",
     "c_digo_dane_del_departamento": "70",
     "departamento": "Sucre",
-    "c_digo_dane_del_municipio": "70742",
-    "municipio": "San Luis de Since"
-  },
-  {
-    "region": "Region Caribe",
-    "c_digo_dane_del_departamento": "70",
-    "departamento": "Sucre",
     "c_digo_dane_del_municipio": "70771",
     "municipio": "Sucre"
   },
@@ -6716,22 +6037,8 @@
     "region": "Region Caribe",
     "c_digo_dane_del_departamento": "70",
     "departamento": "Sucre",
-    "c_digo_dane_del_municipio": "70820",
-    "municipio": "Tolú"
-  },
-  {
-    "region": "Region Caribe",
-    "c_digo_dane_del_departamento": "70",
-    "departamento": "Sucre",
     "c_digo_dane_del_municipio": "70823",
     "municipio": "Tolu Viejo"
-  },
-  {
-    "region": "Region Centro Sur",
-    "c_digo_dane_del_departamento": "73",
-    "departamento": "Tolima",
-    "c_digo_dane_del_municipio": "73001",
-    "municipio": "Ibague"
   },
   {
     "region": "Region Centro Sur",
@@ -6758,13 +6065,6 @@
     "region": "Region Centro Sur",
     "c_digo_dane_del_departamento": "73",
     "departamento": "Tolima",
-    "c_digo_dane_del_municipio": "73043",
-    "municipio": "Anzoategui"
-  },
-  {
-    "region": "Region Centro Sur",
-    "c_digo_dane_del_departamento": "73",
-    "departamento": "Tolima",
     "c_digo_dane_del_municipio": "73055",
     "municipio": "Armero"
   },
@@ -6781,20 +6081,6 @@
     "departamento": "Tolima",
     "c_digo_dane_del_municipio": "73124",
     "municipio": "Cajamarca"
-  },
-  {
-    "region": "Region Centro Sur",
-    "c_digo_dane_del_departamento": "73",
-    "departamento": "Tolima",
-    "c_digo_dane_del_municipio": "73148",
-    "municipio": "Carmen De Apicalá"
-  },
-  {
-    "region": "Region Centro Sur",
-    "c_digo_dane_del_departamento": "73",
-    "departamento": "Tolima",
-    "c_digo_dane_del_municipio": "73152",
-    "municipio": "Casabianca"
   },
   {
     "region": "Region Centro Sur",
@@ -6886,20 +6172,6 @@
     "departamento": "Tolima",
     "c_digo_dane_del_municipio": "73352",
     "municipio": "Icononzo"
-  },
-  {
-    "region": "Region Centro Sur",
-    "c_digo_dane_del_departamento": "73",
-    "departamento": "Tolima",
-    "c_digo_dane_del_municipio": "73408",
-    "municipio": "Lerida"
-  },
-  {
-    "region": "Region Centro Sur",
-    "c_digo_dane_del_departamento": "73",
-    "departamento": "Tolima",
-    "c_digo_dane_del_municipio": "73411",
-    "municipio": "Libano"
   },
   {
     "region": "Region Centro Sur",
@@ -7003,36 +6275,8 @@
     "region": "Region Centro Sur",
     "c_digo_dane_del_departamento": "73",
     "departamento": "Tolima",
-    "c_digo_dane_del_municipio": "73675",
-    "municipio": "San Antonio"
-  },
-  {
-    "region": "Region Centro Sur",
-    "c_digo_dane_del_departamento": "73",
-    "departamento": "Tolima",
-    "c_digo_dane_del_municipio": "73678",
-    "municipio": "San Luis"
-  },
-  {
-    "region": "Region Centro Sur",
-    "c_digo_dane_del_departamento": "73",
-    "departamento": "Tolima",
     "c_digo_dane_del_municipio": "73686",
     "municipio": "Santa Isabel"
-  },
-  {
-    "region": "Region Centro Sur",
-    "c_digo_dane_del_departamento": "73",
-    "departamento": "Tolima",
-    "c_digo_dane_del_municipio": "73770",
-    "municipio": "Suarez"
-  },
-  {
-    "region": "Region Centro Sur",
-    "c_digo_dane_del_departamento": "73",
-    "departamento": "Tolima",
-    "c_digo_dane_del_municipio": "73854",
-    "municipio": "Valle de San Juan"
   },
   {
     "region": "Region Centro Sur",
@@ -7054,307 +6298,6 @@
     "departamento": "Tolima",
     "c_digo_dane_del_municipio": "73873",
     "municipio": "Villarrica"
-  },
-  {
-    "region": "Region Pacifico",
-    "c_digo_dane_del_departamento": "76",
-    "departamento": "Valle del Cauca",
-    "c_digo_dane_del_municipio": "76001",
-    "municipio": "Cali"
-  },
-  {
-    "region": "Region Pacifico",
-    "c_digo_dane_del_departamento": "76",
-    "departamento": "Valle del Cauca",
-    "c_digo_dane_del_municipio": "76020",
-    "municipio": "Alcalá"
-  },
-  {
-    "region": "Region Pacifico",
-    "c_digo_dane_del_departamento": "76",
-    "departamento": "Valle del Cauca",
-    "c_digo_dane_del_municipio": "76036",
-    "municipio": "Andalucía"
-  },
-  {
-    "region": "Region Pacifico",
-    "c_digo_dane_del_departamento": "76",
-    "departamento": "Valle del Cauca",
-    "c_digo_dane_del_municipio": "76041",
-    "municipio": "Ansermanuevo"
-  },
-  {
-    "region": "Region Pacifico",
-    "c_digo_dane_del_departamento": "76",
-    "departamento": "Valle del Cauca",
-    "c_digo_dane_del_municipio": "76054",
-    "municipio": "Argelia"
-  },
-  {
-    "region": "Region Pacifico",
-    "c_digo_dane_del_departamento": "76",
-    "departamento": "Valle del Cauca",
-    "c_digo_dane_del_municipio": "76100",
-    "municipio": "Bolívar"
-  },
-  {
-    "region": "Region Pacifico",
-    "c_digo_dane_del_departamento": "76",
-    "departamento": "Valle del Cauca",
-    "c_digo_dane_del_municipio": "76109",
-    "municipio": "Buenaventura"
-  },
-  {
-    "region": "Region Pacifico",
-    "c_digo_dane_del_departamento": "76",
-    "departamento": "Valle del Cauca",
-    "c_digo_dane_del_municipio": "76111",
-    "municipio": "Buga"
-  },
-  {
-    "region": "Region Pacifico",
-    "c_digo_dane_del_departamento": "76",
-    "departamento": "Valle del Cauca",
-    "c_digo_dane_del_municipio": "76113",
-    "municipio": "Bugalagrande"
-  },
-  {
-    "region": "Region Pacifico",
-    "c_digo_dane_del_departamento": "76",
-    "departamento": "Valle del Cauca",
-    "c_digo_dane_del_municipio": "76122",
-    "municipio": "Caicedonia"
-  },
-  {
-    "region": "Region Pacifico",
-    "c_digo_dane_del_departamento": "76",
-    "departamento": "Valle del Cauca",
-    "c_digo_dane_del_municipio": "76126",
-    "municipio": "Calima"
-  },
-  {
-    "region": "Region Pacifico",
-    "c_digo_dane_del_departamento": "76",
-    "departamento": "Valle del Cauca",
-    "c_digo_dane_del_municipio": "76130",
-    "municipio": "Candelaria"
-  },
-  {
-    "region": "Region Pacifico",
-    "c_digo_dane_del_departamento": "76",
-    "departamento": "Valle del Cauca",
-    "c_digo_dane_del_municipio": "76147",
-    "municipio": "Cartago"
-  },
-  {
-    "region": "Region Pacifico",
-    "c_digo_dane_del_departamento": "76",
-    "departamento": "Valle del Cauca",
-    "c_digo_dane_del_municipio": "76233",
-    "municipio": "Dagua"
-  },
-  {
-    "region": "Region Pacifico",
-    "c_digo_dane_del_departamento": "76",
-    "departamento": "Valle del Cauca",
-    "c_digo_dane_del_municipio": "76243",
-    "municipio": "El Aguila"
-  },
-  {
-    "region": "Region Pacifico",
-    "c_digo_dane_del_departamento": "76",
-    "departamento": "Valle del Cauca",
-    "c_digo_dane_del_municipio": "76246",
-    "municipio": "El Cairo"
-  },
-  {
-    "region": "Region Pacifico",
-    "c_digo_dane_del_departamento": "76",
-    "departamento": "Valle del Cauca",
-    "c_digo_dane_del_municipio": "76248",
-    "municipio": "El Cerrito"
-  },
-  {
-    "region": "Region Pacifico",
-    "c_digo_dane_del_departamento": "76",
-    "departamento": "Valle del Cauca",
-    "c_digo_dane_del_municipio": "76250",
-    "municipio": "El Dovio"
-  },
-  {
-    "region": "Region Pacifico",
-    "c_digo_dane_del_departamento": "76",
-    "departamento": "Valle del Cauca",
-    "c_digo_dane_del_municipio": "76275",
-    "municipio": "Florida"
-  },
-  {
-    "region": "Region Pacifico",
-    "c_digo_dane_del_departamento": "76",
-    "departamento": "Valle del Cauca",
-    "c_digo_dane_del_municipio": "76306",
-    "municipio": "Ginebra"
-  },
-  {
-    "region": "Region Pacifico",
-    "c_digo_dane_del_departamento": "76",
-    "departamento": "Valle del Cauca",
-    "c_digo_dane_del_municipio": "76318",
-    "municipio": "Guacarí"
-  },
-  {
-    "region": "Region Pacifico",
-    "c_digo_dane_del_departamento": "76",
-    "departamento": "Valle del Cauca",
-    "c_digo_dane_del_municipio": "76364",
-    "municipio": "Jamundi"
-  },
-  {
-    "region": "Region Pacifico",
-    "c_digo_dane_del_departamento": "76",
-    "departamento": "Valle del Cauca",
-    "c_digo_dane_del_municipio": "76377",
-    "municipio": "La Cumbre"
-  },
-  {
-    "region": "Region Pacifico",
-    "c_digo_dane_del_departamento": "76",
-    "departamento": "Valle del Cauca",
-    "c_digo_dane_del_municipio": "76400",
-    "municipio": "La Unión"
-  },
-  {
-    "region": "Region Pacifico",
-    "c_digo_dane_del_departamento": "76",
-    "departamento": "Valle del Cauca",
-    "c_digo_dane_del_municipio": "76403",
-    "municipio": "La Victoria"
-  },
-  {
-    "region": "Region Pacifico",
-    "c_digo_dane_del_departamento": "76",
-    "departamento": "Valle del Cauca",
-    "c_digo_dane_del_municipio": "76497",
-    "municipio": "Obando"
-  },
-  {
-    "region": "Region Pacifico",
-    "c_digo_dane_del_departamento": "76",
-    "departamento": "Valle del Cauca",
-    "c_digo_dane_del_municipio": "76520",
-    "municipio": "Palmira"
-  },
-  {
-    "region": "Region Pacifico",
-    "c_digo_dane_del_departamento": "76",
-    "departamento": "Valle del Cauca",
-    "c_digo_dane_del_municipio": "76563",
-    "municipio": "Pradera"
-  },
-  {
-    "region": "Region Pacifico",
-    "c_digo_dane_del_departamento": "76",
-    "departamento": "Valle del Cauca",
-    "c_digo_dane_del_municipio": "76606",
-    "municipio": "Restrepo"
-  },
-  {
-    "region": "Region Pacifico",
-    "c_digo_dane_del_departamento": "76",
-    "departamento": "Valle del Cauca",
-    "c_digo_dane_del_municipio": "76616",
-    "municipio": "Riofrío"
-  },
-  {
-    "region": "Region Pacifico",
-    "c_digo_dane_del_departamento": "76",
-    "departamento": "Valle del Cauca",
-    "c_digo_dane_del_municipio": "76622",
-    "municipio": "Roldanillo"
-  },
-  {
-    "region": "Region Pacifico",
-    "c_digo_dane_del_departamento": "76",
-    "departamento": "Valle del Cauca",
-    "c_digo_dane_del_municipio": "76670",
-    "municipio": "San Pedro"
-  },
-  {
-    "region": "Region Pacifico",
-    "c_digo_dane_del_departamento": "76",
-    "departamento": "Valle del Cauca",
-    "c_digo_dane_del_municipio": "76736",
-    "municipio": "Sevilla"
-  },
-  {
-    "region": "Region Pacifico",
-    "c_digo_dane_del_departamento": "76",
-    "departamento": "Valle del Cauca",
-    "c_digo_dane_del_municipio": "76823",
-    "municipio": "Toro"
-  },
-  {
-    "region": "Region Pacifico",
-    "c_digo_dane_del_departamento": "76",
-    "departamento": "Valle del Cauca",
-    "c_digo_dane_del_municipio": "76828",
-    "municipio": "Trujillo"
-  },
-  {
-    "region": "Region Pacifico",
-    "c_digo_dane_del_departamento": "76",
-    "departamento": "Valle del Cauca",
-    "c_digo_dane_del_municipio": "76834",
-    "municipio": "Tulua"
-  },
-  {
-    "region": "Region Pacifico",
-    "c_digo_dane_del_departamento": "76",
-    "departamento": "Valle del Cauca",
-    "c_digo_dane_del_municipio": "76845",
-    "municipio": "Ulloa"
-  },
-  {
-    "region": "Region Pacifico",
-    "c_digo_dane_del_departamento": "76",
-    "departamento": "Valle del Cauca",
-    "c_digo_dane_del_municipio": "76863",
-    "municipio": "Versalles"
-  },
-  {
-    "region": "Region Pacifico",
-    "c_digo_dane_del_departamento": "76",
-    "departamento": "Valle del Cauca",
-    "c_digo_dane_del_municipio": "76869",
-    "municipio": "Vijes"
-  },
-  {
-    "region": "Region Pacifico",
-    "c_digo_dane_del_departamento": "76",
-    "departamento": "Valle del Cauca",
-    "c_digo_dane_del_municipio": "76890",
-    "municipio": "Yotoco"
-  },
-  {
-    "region": "Region Pacifico",
-    "c_digo_dane_del_departamento": "76",
-    "departamento": "Valle del Cauca",
-    "c_digo_dane_del_municipio": "76892",
-    "municipio": "Yumbo"
-  },
-  {
-    "region": "Region Pacifico",
-    "c_digo_dane_del_departamento": "76",
-    "departamento": "Valle del Cauca",
-    "c_digo_dane_del_municipio": "76895",
-    "municipio": "Zarzal"
-  },
-  {
-    "region": "Region Llano",
-    "c_digo_dane_del_departamento": "81",
-    "departamento": "Arauca",
-    "c_digo_dane_del_municipio": "81001",
-    "municipio": "Arauca"
   },
   {
     "region": "Region Llano",
@@ -7400,6 +6343,13 @@
   },
   {
     "region": "Region Llano",
+    "c_digo_dane_del_departamento": "81",
+    "departamento": "Arauca",
+    "c_digo_dane_del_municipio": "81001",
+    "municipio": "Arauca"
+  },
+  {
+    "region": "Region Llano",
     "c_digo_dane_del_departamento": "85",
     "departamento": "Casanare",
     "c_digo_dane_del_municipio": "85001",
@@ -7437,36 +6387,8 @@
     "region": "Region Llano",
     "c_digo_dane_del_departamento": "85",
     "departamento": "Casanare",
-    "c_digo_dane_del_municipio": "85139",
-    "municipio": "Mani"
-  },
-  {
-    "region": "Region Llano",
-    "c_digo_dane_del_departamento": "85",
-    "departamento": "Casanare",
     "c_digo_dane_del_municipio": "85162",
     "municipio": "Monterrey"
-  },
-  {
-    "region": "Region Llano",
-    "c_digo_dane_del_departamento": "85",
-    "departamento": "Casanare",
-    "c_digo_dane_del_municipio": "85225",
-    "municipio": "Nunchia"
-  },
-  {
-    "region": "Region Llano",
-    "c_digo_dane_del_departamento": "85",
-    "departamento": "Casanare",
-    "c_digo_dane_del_municipio": "85230",
-    "municipio": "Orocue"
-  },
-  {
-    "region": "Region Llano",
-    "c_digo_dane_del_departamento": "85",
-    "departamento": "Casanare",
-    "c_digo_dane_del_municipio": "85250",
-    "municipio": "Paz de Ariporo"
   },
   {
     "region": "Region Llano",
@@ -7495,20 +6417,6 @@
     "departamento": "Casanare",
     "c_digo_dane_del_municipio": "85315",
     "municipio": "Sacama"
-  },
-  {
-    "region": "Region Llano",
-    "c_digo_dane_del_departamento": "85",
-    "departamento": "Casanare",
-    "c_digo_dane_del_municipio": "85325",
-    "municipio": "San Luis de Gaceno"
-  },
-  {
-    "region": "Region Llano",
-    "c_digo_dane_del_departamento": "85",
-    "departamento": "Casanare",
-    "c_digo_dane_del_municipio": "85400",
-    "municipio": "Tamara"
   },
   {
     "region": "Region Llano",
@@ -7551,13 +6459,6 @@
     "departamento": "Putumayo",
     "c_digo_dane_del_municipio": "86320",
     "municipio": "Orito"
-  },
-  {
-    "region": "Region Centro Sur",
-    "c_digo_dane_del_departamento": "86",
-    "departamento": "Putumayo",
-    "c_digo_dane_del_municipio": "86568",
-    "municipio": "Puerto Asis"
   },
   {
     "region": "Region Centro Sur",
@@ -7610,34 +6511,6 @@
   },
   {
     "region": "Region Centro Sur",
-    "c_digo_dane_del_departamento": "86",
-    "departamento": "Putumayo",
-    "c_digo_dane_del_municipio": "86865",
-    "municipio": "Valle Del Guamuez"
-  },
-  {
-    "region": "Region Centro Sur",
-    "c_digo_dane_del_departamento": "86",
-    "departamento": "Putumayo",
-    "c_digo_dane_del_municipio": "86885",
-    "municipio": "Villagarzon"
-  },
-  {
-    "region": "Region Caribe",
-    "c_digo_dane_del_departamento": "88",
-    "departamento": "Archipielago de San Andres, Providencia y Santa Catalina",
-    "c_digo_dane_del_municipio": "88001",
-    "municipio": "San Andrés"
-  },
-  {
-    "region": "Region Caribe",
-    "c_digo_dane_del_departamento": "88",
-    "departamento": "Archipielago de San Andres, Providencia y Santa Catalina",
-    "c_digo_dane_del_municipio": "88564",
-    "municipio": "Providencia"
-  },
-  {
-    "region": "Region Centro Sur",
     "c_digo_dane_del_departamento": "91",
     "departamento": "Amazonas",
     "c_digo_dane_del_municipio": "91001",
@@ -7675,20 +6548,6 @@
     "region": "Region Centro Sur",
     "c_digo_dane_del_departamento": "91",
     "departamento": "Amazonas",
-    "c_digo_dane_del_municipio": "91460",
-    "municipio": "Miriti Parana"
-  },
-  {
-    "region": "Region Centro Sur",
-    "c_digo_dane_del_departamento": "91",
-    "departamento": "Amazonas",
-    "c_digo_dane_del_municipio": "91530",
-    "municipio": "Puerto Alegría*"
-  },
-  {
-    "region": "Region Centro Sur",
-    "c_digo_dane_del_departamento": "91",
-    "departamento": "Amazonas",
     "c_digo_dane_del_municipio": "91536",
     "municipio": "Puerto Arica"
   },
@@ -7719,13 +6578,6 @@
     "departamento": "Guainia",
     "c_digo_dane_del_municipio": "94001",
     "municipio": "Inirida"
-  },
-  {
-    "region": "Region Llano",
-    "c_digo_dane_del_departamento": "94",
-    "departamento": "Guainia",
-    "c_digo_dane_del_municipio": "94109",
-    "municipio": "Morichal Nuevo"
   },
   {
     "region": "Region Llano",
@@ -7785,34 +6637,6 @@
   },
   {
     "region": "Region Llano",
-    "c_digo_dane_del_departamento": "95",
-    "departamento": "Guaviare",
-    "c_digo_dane_del_municipio": "95001",
-    "municipio": "San Jose del Guaviare"
-  },
-  {
-    "region": "Region Llano",
-    "c_digo_dane_del_departamento": "95",
-    "departamento": "Guaviare",
-    "c_digo_dane_del_municipio": "95015",
-    "municipio": "Calamar"
-  },
-  {
-    "region": "Region Llano",
-    "c_digo_dane_del_departamento": "95",
-    "departamento": "Guaviare",
-    "c_digo_dane_del_municipio": "95025",
-    "municipio": "El Retorno"
-  },
-  {
-    "region": "Region Llano",
-    "c_digo_dane_del_departamento": "95",
-    "departamento": "Guaviare",
-    "c_digo_dane_del_municipio": "95200",
-    "municipio": "Miraflores"
-  },
-  {
-    "region": "Region Llano",
     "c_digo_dane_del_departamento": "97",
     "departamento": "Vaupes",
     "c_digo_dane_del_municipio": "97001",
@@ -7848,13 +6672,6 @@
   },
   {
     "region": "Region Llano",
-    "c_digo_dane_del_departamento": "97",
-    "departamento": "Vaupes",
-    "c_digo_dane_del_municipio": "97889",
-    "municipio": "Yavarate"
-  },
-  {
-    "region": "Region Llano",
     "c_digo_dane_del_departamento": "99",
     "departamento": "Vichada",
     "c_digo_dane_del_municipio": "99001",
@@ -7880,5 +6697,313 @@
     "departamento": "Vichada",
     "c_digo_dane_del_municipio": "99773",
     "municipio": "Cumaribo"
+  },
+  {
+    "region": "Region Centro Sur",
+    "c_digo_dane_del_departamento": "18",
+    "departamento": "Caqueta",
+    "c_digo_dane_del_municipio": "18610",
+    "municipio": "San Jose del Fragua"
+  },
+  {
+    "region": "Region Llano",
+    "c_digo_dane_del_departamento": "50",
+    "departamento": "Meta",
+    "c_digo_dane_del_municipio": "50110",
+    "municipio": "Barranca de Upia"
+  },
+  {
+    "region": "Region Centro Oriente",
+    "c_digo_dane_del_departamento": "68",
+    "departamento": "Santander",
+    "c_digo_dane_del_municipio": "68524",
+    "municipio": "Palmas del Socorro"
+  },
+  {
+    "region": "Region Centro Oriente",
+    "c_digo_dane_del_departamento": "25",
+    "departamento": "Cundinamarca",
+    "c_digo_dane_del_municipio": "25662",
+    "municipio": "San Juan de Rio Seco"
+  },
+  {
+    "region": "Region Caribe",
+    "c_digo_dane_del_departamento": "8",
+    "departamento": "Atlantico",
+    "c_digo_dane_del_municipio": "8372",
+    "municipio": "Juan de Acosta"
+  },
+  {
+    "region": "Region Llano",
+    "c_digo_dane_del_departamento": "50",
+    "departamento": "Meta",
+    "c_digo_dane_del_municipio": "50287",
+    "municipio": "Fuente de Oro"
+  },
+  {
+    "region": "Region Llano",
+    "c_digo_dane_del_departamento": "85",
+    "departamento": "Casanare",
+    "c_digo_dane_del_municipio": "85325",
+    "municipio": "San Luis de Gaceno"
+  },
+  {
+    "region": "Region Pacifico",
+    "c_digo_dane_del_departamento": "27",
+    "departamento": "Choco",
+    "c_digo_dane_del_municipio": "27250",
+    "municipio": "El Litoral del San Juan"
+  },
+  {
+    "region": "Region Centro Oriente",
+    "c_digo_dane_del_departamento": "25",
+    "departamento": "Cundinamarca",
+    "c_digo_dane_del_municipio": "25843",
+    "municipio": "Villa de San Diego de Ubate"
+  },
+  {
+    "region": "Region Caribe",
+    "c_digo_dane_del_departamento": "13",
+    "departamento": "Bolivar",
+    "c_digo_dane_del_municipio": "13074",
+    "municipio": "Barranco de Loba"
+  },
+  {
+    "region": "Region Centro Oriente",
+    "c_digo_dane_del_departamento": "15",
+    "departamento": "Boyaca",
+    "c_digo_dane_del_municipio": "15816",
+    "municipio": "Tog�i"
+  },
+  {
+    "region": "Region Caribe",
+    "c_digo_dane_del_departamento": "13",
+    "departamento": "Bolivar",
+    "c_digo_dane_del_municipio": "13688",
+    "municipio": "Santa Rosa del Sur"
+  },
+  {
+    "region": "Region Pacifico",
+    "c_digo_dane_del_departamento": "27",
+    "departamento": "Choco",
+    "c_digo_dane_del_municipio": "27135",
+    "municipio": "El Canton del San Pablo"
+  },
+  {
+    "region": "Region Centro Oriente",
+    "c_digo_dane_del_departamento": "15",
+    "departamento": "Boyaca",
+    "c_digo_dane_del_municipio": "15407",
+    "municipio": "Villa de Leyva"
+  },
+  {
+    "region": "Region Caribe",
+    "c_digo_dane_del_departamento": "47",
+    "departamento": "Magdalena",
+    "c_digo_dane_del_municipio": "47692",
+    "municipio": "San Sebastian de Buenavista"
+  },
+  {
+    "region": "Region Centro Oriente",
+    "c_digo_dane_del_departamento": "15",
+    "departamento": "Boyaca",
+    "c_digo_dane_del_municipio": "15537",
+    "municipio": "Paz de Rio"
+  },
+  {
+    "region": "Region Caribe",
+    "c_digo_dane_del_departamento": "13",
+    "departamento": "Bolivar",
+    "c_digo_dane_del_municipio": "13300",
+    "municipio": "Hatillo de Loba"
+  },
+  {
+    "region": "Region Caribe",
+    "c_digo_dane_del_departamento": "47",
+    "departamento": "Magdalena",
+    "c_digo_dane_del_municipio": "47660",
+    "municipio": "Sabanas de San Angel"
+  },
+  {
+    "region": "Region Llano",
+    "c_digo_dane_del_departamento": "95",
+    "departamento": "Guaviare",
+    "c_digo_dane_del_municipio": "95015",
+    "municipio": "Calamar"
+  },
+  {
+    "region": "Region Caribe",
+    "c_digo_dane_del_departamento": "20",
+    "departamento": "Cesar",
+    "c_digo_dane_del_municipio": "20614",
+    "municipio": "Rio de Oro"
+  },
+  {
+    "region": "Region Eje Cafetero - Antioquia",
+    "c_digo_dane_del_departamento": "5",
+    "departamento": "Antioquia",
+    "c_digo_dane_del_municipio": "5665",
+    "municipio": "San Pedro de Uraba"
+  },
+  {
+    "region": "Region Llano",
+    "c_digo_dane_del_departamento": "95",
+    "departamento": "Guaviare",
+    "c_digo_dane_del_municipio": "95001",
+    "municipio": "San Jose del Guaviare"
+  },
+  {
+    "region": "Region Centro Oriente",
+    "c_digo_dane_del_departamento": "15",
+    "departamento": "Boyaca",
+    "c_digo_dane_del_municipio": "15693",
+    "municipio": "Santa Rosa de Viterbo"
+  },
+  {
+    "region": "Region Pacifico",
+    "c_digo_dane_del_departamento": "19",
+    "departamento": "Cauca",
+    "c_digo_dane_del_municipio": "19698",
+    "municipio": "Santander de Quilichao"
+  },
+  {
+    "region": "Region Llano",
+    "c_digo_dane_del_departamento": "95",
+    "departamento": "Guaviare",
+    "c_digo_dane_del_municipio": "95200",
+    "municipio": "Miraflores"
+  },
+  {
+    "region": "Region Eje Cafetero - Antioquia",
+    "c_digo_dane_del_departamento": "5",
+    "departamento": "Antioquia",
+    "c_digo_dane_del_municipio": "5042",
+    "municipio": "Santafe de Antioquia"
+  },
+  {
+    "region": "Region Llano",
+    "c_digo_dane_del_departamento": "50",
+    "departamento": "Meta",
+    "c_digo_dane_del_municipio": "50680",
+    "municipio": "San Carlos de Guaroa"
+  },
+  {
+    "region": "Region Caribe",
+    "c_digo_dane_del_departamento": "8",
+    "departamento": "Atlantico",
+    "c_digo_dane_del_municipio": "8520",
+    "municipio": "Palmar de Varela"
+  },
+  {
+    "region": "Region Eje Cafetero - Antioquia",
+    "c_digo_dane_del_departamento": "5",
+    "departamento": "Antioquia",
+    "c_digo_dane_del_municipio": "5686",
+    "municipio": "Santa Rosa de Osos"
+  },
+  {
+    "region": "Region Eje Cafetero - Antioquia",
+    "c_digo_dane_del_departamento": "5",
+    "departamento": "Antioquia",
+    "c_digo_dane_del_municipio": "5647",
+    "municipio": "San Andres de Cuerquia"
+  },
+  {
+    "region": "Region Centro Sur",
+    "c_digo_dane_del_departamento": "73",
+    "departamento": "Tolima",
+    "c_digo_dane_del_municipio": "73854",
+    "municipio": "Valle de San Juan"
+  },
+  {
+    "region": "Region Centro Oriente",
+    "c_digo_dane_del_departamento": "68",
+    "departamento": "Santander",
+    "c_digo_dane_del_municipio": "68689",
+    "municipio": "San Vicente de Chucuri"
+  },
+  {
+    "region": "Region Centro Oriente",
+    "c_digo_dane_del_departamento": "68",
+    "departamento": "Santander",
+    "c_digo_dane_del_municipio": "68684",
+    "municipio": "San Jose de Miranda"
+  },
+  {
+    "region": "Region Caribe",
+    "c_digo_dane_del_departamento": "88",
+    "departamento": "Archipielago de San Andres, Providencia y Santa Catalina",
+    "c_digo_dane_del_municipio": "88564",
+    "municipio": "Providencia"
+  },
+  {
+    "region": "Region Eje Cafetero - Antioquia",
+    "c_digo_dane_del_departamento": "66",
+    "departamento": "Risaralda",
+    "c_digo_dane_del_municipio": "66682",
+    "municipio": "Santa Rosa de Cabal"
+  },
+  {
+    "region": "Region Centro Oriente",
+    "c_digo_dane_del_departamento": "25",
+    "departamento": "Cundinamarca",
+    "c_digo_dane_del_municipio": "25328",
+    "municipio": "Guayabal de Siquima"
+  },
+  {
+    "region": "Region Centro Sur",
+    "c_digo_dane_del_departamento": "18",
+    "departamento": "Caqueta",
+    "c_digo_dane_del_municipio": "18094",
+    "municipio": "Belen de Los Andaquies"
+  },
+  {
+    "region": "Region Llano",
+    "c_digo_dane_del_departamento": "85",
+    "departamento": "Casanare",
+    "c_digo_dane_del_municipio": "85250",
+    "municipio": "Paz de Ariporo"
+  },
+  {
+    "region": "Region Centro Oriente",
+    "c_digo_dane_del_departamento": "68",
+    "departamento": "Santander",
+    "c_digo_dane_del_municipio": "68720",
+    "municipio": "Santa Helena del Opon"
+  },
+  {
+    "region": "Region Centro Oriente",
+    "c_digo_dane_del_departamento": "15",
+    "departamento": "Boyaca",
+    "c_digo_dane_del_municipio": "15681",
+    "municipio": "San Pablo de Borbur"
+  },
+  {
+    "region": "Region Caribe",
+    "c_digo_dane_del_departamento": "44",
+    "departamento": "La Guajira",
+    "c_digo_dane_del_municipio": "44420",
+    "municipio": "La Jagua del Pilar"
+  },
+  {
+    "region": "Region Caribe",
+    "c_digo_dane_del_departamento": "20",
+    "departamento": "Cesar",
+    "c_digo_dane_del_municipio": "20400",
+    "municipio": "La Jagua de Ibirico"
+  },
+  {
+    "region": "Region Caribe",
+    "c_digo_dane_del_departamento": "70",
+    "departamento": "Sucre",
+    "c_digo_dane_del_municipio": "70742",
+    "municipio": "San Luis de Since"
+  },
+  {
+    "region": "Region Centro Oriente",
+    "c_digo_dane_del_departamento": "15",
+    "departamento": "Boyaca",
+    "c_digo_dane_del_municipio": "15667",
+    "municipio": "San Luis de Gaceno"
   }
 ]

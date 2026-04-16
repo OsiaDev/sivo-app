@@ -75,4 +75,16 @@ interface ImagenDao {
     @Query("UPDATE imagenes SET ultimoError = :error WHERE uuidImagen = :uuidImagen")
     suspend fun setError(uuidImagen: UUID, error: String?)
 
+    /** Trae imágenes pendientes que aún no acumularon las 2 verificaciones del backend */
+    @Query("SELECT * FROM imagenes WHERE isSincronizada = 0 AND verificacionesConfirmadas < 2 ORDER BY fechaCaptura ASC")
+    suspend fun getImagenesPendientesDeVerificacion(): List<ImagenEntity>
+
+    /** Suma una confirmación exitosa del backend */
+    @Query("UPDATE imagenes SET verificacionesConfirmadas = verificacionesConfirmadas + 1 WHERE uuidImagen = :uuidImagen")
+    suspend fun incrementarVerificaciones(uuidImagen: UUID)
+
+    /** Marca como sincronizada definitivamente (solo al llegar a 2 verificaciones) */
+    @Query("UPDATE imagenes SET isSincronizada = 1, ultimoError = NULL WHERE uuidImagen = :uuidImagen")
+    suspend fun marcarSincronizadaDefinitivamente(uuidImagen: UUID)
+
 }

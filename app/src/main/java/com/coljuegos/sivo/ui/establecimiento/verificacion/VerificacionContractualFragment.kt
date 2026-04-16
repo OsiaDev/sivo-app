@@ -59,23 +59,28 @@ class VerificacionContractualFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        // Registrar listener cuando el fragment es visible
         parentFragmentManager.setFragmentResultListener("camera_action", viewLifecycleOwner) { _, _ ->
             Log.d("ActaVisitaFragment", "Recibido evento de cámara")
             navigateToGallery()
         }
         val opcionesSiNoNa = resources.getStringArray(R.array.si_no_na_options)
-        adapterSiNoNa = ArrayAdapter(
-            requireContext(),
-            R.layout.item_dropdown,
-            opcionesSiNoNa
-        )
+        adapterSiNoNa = ArrayAdapter(requireContext(), R.layout.item_dropdown, opcionesSiNoNa)
+
         binding.pregunta1Spinner.setAdapter(adapterSiNoNa)
         binding.pregunta2Spinner.setAdapter(adapterSiNoNa)
         binding.pregunta3Spinner.setAdapter(adapterSiNoNa)
         binding.pregunta4Spinner.setAdapter(adapterSiNoNa)
         binding.pregunta5Spinner.setAdapter(adapterSiNoNa)
         binding.tipoActividadSpinner.setAdapter(adapterTipoActividad)
+
+        // Restaurar valores después de reasignar adapters (setAdapter borra el texto)
+        val state = viewModel.uiState.value
+        updateSpinnerValue(binding.pregunta1Spinner, state.avisoAutorizacion)
+        updateSpinnerValue(binding.pregunta2Spinner, state.direccionCorresponde)
+        updateSpinnerValue(binding.pregunta3Spinner, state.nombreEstablecimientoCorresponde)
+        updateSpinnerValue(binding.pregunta4Spinner, state.desarrollaActividadesDiferentes)
+        updateSpinnerValue(binding.pregunta5Spinner, state.cuentaRegistrosMantenimiento)
+        updateSpinnerValue(binding.tipoActividadSpinner, state.tipoActividad)
     }
 
     override fun onPause() {

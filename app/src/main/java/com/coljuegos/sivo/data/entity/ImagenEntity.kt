@@ -32,5 +32,6 @@ data class ImagenEntity(
     val tamanoBytesImagen: Long = 0L,
     val fragmentOrigen: String? = null,
     val isSincronizada: Boolean = false,
+    val verificacionesConfirmadas: Int = 0,
     val ultimoError: String? = null
 )

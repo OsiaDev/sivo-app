@@ -1,9 +1,9 @@
 <resources>
-    <string name="app_name">Coljuegos SIVO</string>
+    <string name="app_name">APP Visitas SGCT</string>
 
     <!-- LOGIN -->
-    <string name="login_title">Coljuegos</string>
-    <string name="login_subtitle">Tu app para consultar, reportar y estar informado</string>
+    <string name="login_title">APP Visitas SGCT</string>
+    <string name="login_subtitle">Sistema de Gestión y Control de Territorios</string>
     <string name="login_username">Nombre de usuario</string>
     <string name="login_password">Contraseña</string>
     <string name="login_show_password">Mostrar contraseña</string>

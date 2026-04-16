@@ -81,7 +81,6 @@ class VerificacionSiplaftFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        // Registrar listener cuando el fragment es visible
         parentFragmentManager.setFragmentResultListener("camera_action", viewLifecycleOwner) { _, _ ->
             Log.d("VerificacionSiplaftFragment", "Recibido evento de cámara")
             navigateToGallery()
@@ -89,6 +88,18 @@ class VerificacionSiplaftFragment : Fragment() {
         binding.pregunta1Spinner.setAdapter(getAdapterSiNoNa())
         binding.pregunta2Spinner.setAdapter(getAdapterSiNoNa())
         binding.pregunta3Spinner.setAdapter(getAdapterSiNoNa())
+
+        // Restaurar valores después de reasignar adapters (setAdapter borra el texto)
+        val state = viewModel.uiState.value
+        updateSpinnerValue(binding.pregunta1Spinner, state.cuentaFormatoIdentificacion)
+        updateSpinnerValue(binding.pregunta2Spinner, state.cuentaFormatoReporteInterno)
+        updateSpinnerValue(binding.pregunta3Spinner, state.conoceCodigoConducta)
+    }
+
+    private fun updateSpinnerValue(spinner: android.widget.AutoCompleteTextView, value: String) {
+        if (spinner.text.toString() != value && value.isNotEmpty()) {
+            spinner.setText(value, false)
+        }
     }
 
     private fun setupAdapters() {

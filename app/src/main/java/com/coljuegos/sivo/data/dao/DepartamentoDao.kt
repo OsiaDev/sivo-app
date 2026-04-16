@@ -15,6 +15,9 @@ interface DepartamentoDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insertAll(departamentos: Collection<DepartamentoEntity>)
 
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun upsertAll(departamentos: Collection<DepartamentoEntity>)
+
     @Query("SELECT * FROM departamentos ORDER BY nombreDepartamento ASC")
     suspend fun getAllDepartamentos(): List<DepartamentoEntity>
 

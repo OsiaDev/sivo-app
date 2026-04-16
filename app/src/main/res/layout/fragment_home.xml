@@ -73,4 +73,16 @@
 
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
+    <!-- Versión de la app -->
+    <TextView
+        android:id="@+id/tvVersion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center_horizontal"
+        android:layout_marginBottom="12dp"
+        android:textSize="12sp"
+        android:textColor="#80000000"
+        android:alpha="0.6"
+        tools:text="v1.3" />
+
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

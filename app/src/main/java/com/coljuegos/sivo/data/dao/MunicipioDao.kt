@@ -18,6 +18,9 @@ interface MunicipioDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insertAll(municipios: Collection<MunicipioEntity>)
 
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun upsertAll(municipios: Collection<MunicipioEntity>)
+
     @Query("""
             SELECT
                 m.uuidMunicipio as municipioId,
