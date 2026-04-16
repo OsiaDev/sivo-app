@@ -97,11 +97,13 @@ class ResumenInventarioFragment : Fragment() {
             viewModel.clearError()
         }
 
-        if (binding.observacionesEditText.text.toString() != state.notas) {
+        if (!binding.observacionesEditText.hasFocus() &&
+            binding.observacionesEditText.text.toString() != state.notas) {
             binding.observacionesEditText.setText(state.notas)
         }
 
-        if (binding.observacionesOperadorEditText.text.toString() != state.observacionesOperador) {
+        if (!binding.observacionesOperadorEditText.hasFocus() &&
+            binding.observacionesOperadorEditText.text.toString() != state.observacionesOperador) {
             binding.observacionesOperadorEditText.setText(state.observacionesOperador)
         }
     }
