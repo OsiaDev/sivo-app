@@ -754,6 +754,30 @@
         </LinearLayout>
 
         <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/layoutTipoDocumento"
+            style="@style/Widget.Coljuegos.TextInputLayout.Outlined"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/acta_visita_tipo_documento"
+            app:endIconMode="dropdown_menu"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layoutTextoLegal3Title">
+
+            <com.google.android.material.textfield.MaterialAutoCompleteTextView
+                android:id="@+id/tipoDocumento"
+                style="@style/Widget.Coljuegos.MaterialAutoCompleteTextView"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:inputType="none"
+                android:focusable="false"
+                android:padding="15dp"
+                android:textColor="@color/input_text_color"
+                android:textSize="16sp" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/layoutCedulaPresente"
             style="@style/Form.InputLayout"
             android:layout_width="match_parent"
@@ -761,7 +785,7 @@
             android:hint="@string/acta_visita_cedula"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/layoutTextoLegal3Title">
+            app:layout_constraintTop_toBottomOf="@id/layoutTipoDocumento">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/cedulaPresente"

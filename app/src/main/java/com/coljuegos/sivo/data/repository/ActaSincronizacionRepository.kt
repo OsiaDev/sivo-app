@@ -152,7 +152,8 @@ class ActaSincronizacionRepository @Inject constructor(
             municipio = municipioNombre,
             cargoPresente = entity.cargoPresente,
             emailPresente = entity.emailPresente,
-            correosContacto = entity.correosContacto
+            correosContacto = entity.correosContacto,
+            tipoDocumentoPresente = entity.tipoDocumentoPresente
         )
     }
 

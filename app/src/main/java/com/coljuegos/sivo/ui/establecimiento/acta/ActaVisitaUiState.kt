@@ -12,6 +12,7 @@ data class ActaVisitaUiState(
     val inventarios: List<InventarioEntity> = emptyList(),
     val nombrePresente: String = "",
     val cedulaPresente: String = "",
+    val tipoDocumentoPresente: String = "CC",
     val cargoPresente: String = "",
     val emailPresente: String = "",
     val correosContacto: List<String> = emptyList(),  // NUEVO CAMPO - Lista en memoria

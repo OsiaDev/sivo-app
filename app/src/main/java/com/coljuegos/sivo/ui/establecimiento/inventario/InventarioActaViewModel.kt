@@ -4,7 +4,9 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.coljuegos.sivo.data.dao.InventarioDao
 import com.coljuegos.sivo.data.dao.InventarioRegistradoDao
+import com.coljuegos.sivo.data.entity.EstadoInventarioEnum
 import com.coljuegos.sivo.data.entity.InventarioEntity
+import com.coljuegos.sivo.data.entity.InventarioRegistradoEntity
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -88,6 +90,57 @@ class InventarioActaViewModel @Inject constructor(
 
     fun clearError() {
         _uiState.update { it.copy(errorMessage = null) }
+    }
+
+    fun registrarTodosComoNoEncontrados(actaUuid: UUID) {
+        viewModelScope.launch {
+            try {
+                _uiState.update { it.copy(isLoading = true, errorMessage = null) }
+
+                val inventariosNoRegistrados = _uiState.value.inventariosNoRegistrados
+                if (inventariosNoRegistrados.isEmpty()) {
+                    _uiState.update { it.copy(isLoading = false) }
+                    return@launch
+                }
+
+                inventariosNoRegistrados.forEach { inventario ->
+                    val registro = InventarioRegistradoEntity(
+                        uuidInventarioRegistrado = UUID.randomUUID(),
+                        uuidActa = actaUuid,
+                        uuidInventario = inventario.uuidInventario,
+                        codigoApuestaDiferente = false,
+                        codigoApuestaDiferenteValor = null,
+                        serialVerificado = false,
+                        serialDiferente = null,
+                        descripcionJuego = false,
+                        planPremios = false,
+                        valorPremios = false,
+                        valorCredito = null,
+                        contadoresVerificado = false,
+                        coinInMet = null,
+                        coinOutMet = null,
+                        jackpotMet = null,
+                        coinInSclm = null,
+                        coinOutSclm = null,
+                        jackpotSclm = null,
+                        observaciones = "No encontrado",
+                        numeroInternoMetOperador = null,
+                        estado = EstadoInventarioEnum.NO_ENCONTRADO
+                    )
+                    inventarioRegistradoDao.insert(registro)
+                }
+
+                _uiState.update { it.copy(isLoading = false, registroMasivoExitoso = true) }
+
+            } catch (e: Exception) {
+                _uiState.update {
+                    it.copy(
+                        isLoading = false,
+                        errorMessage = "Error al registrar inventarios: ${e.message}"
+                    )
+                }
+            }
+        }
     }
 
 }

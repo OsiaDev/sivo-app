@@ -35,5 +35,6 @@ data class ActaVisitaEntity(
     val uuidMunicipio: UUID? = null,
     val cargoPresente: String? = null,
     val emailPresente: String? = null,
-    val correosContacto: String? = null  // NUEVO CAMPO - String con delimitador ";"
+    val correosContacto: String? = null,
+    val tipoDocumentoPresente: String? = "CC"
 )

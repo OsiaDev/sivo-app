@@ -33,9 +33,54 @@ class NovedadRegistradaAdapter(
             with(binding) {
                 val novedad = item.novedad
 
-                // Mostrar marca y serial
+                // Mostrar marca, serial y contadores
                 marcaValue.text = "Marca: ${novedad?.marca}"
                 serialValue.text = "Serial: ${novedad?.serial}"
+
+                val estaOperando = novedad?.operando == "Operando"
+                val tieneContadores = novedad?.contadoresVerificado == true && estaOperando
+
+                contadoresValue.text = when {
+                    !estaOperando -> "Contadores: N/A"
+                    tieneContadores -> "Contadores: Si"
+                    else -> "Contadores: No"
+                }
+
+                // Aplicar color de fondo y borde según estado de contadores
+                val rootCard = binding.root as com.google.android.material.card.MaterialCardView
+                if (tieneContadores) {
+                    val coinIn  = novedad?.coinInMet
+                    val coinOut = novedad?.coinOutMet
+                    val jackpot = novedad?.jackpotMet
+
+                    val coinInSclm  = novedad?.coinInSclm
+                    val coinOutSclm = novedad?.coinOutSclm
+                    val jackpotSclm = novedad?.jackpotSclm
+
+                    val metIncompleto  = coinIn.isNullOrEmpty()  || coinOut.isNullOrEmpty()  || jackpot.isNullOrEmpty()
+                    val sclmIncompleto = coinInSclm.isNullOrEmpty() || coinOutSclm.isNullOrEmpty() || jackpotSclm.isNullOrEmpty()
+
+                    if (metIncompleto || sclmIncompleto) {
+                        val colorIncompleto = android.graphics.Color.parseColor("#FDECEA")
+                        rootCard.setCardBackgroundColor(colorIncompleto)
+                        rootCard.strokeColor = colorIncompleto
+                    } else {
+                        val colorCompleto = android.graphics.Color.parseColor("#E6F4EA")
+                        rootCard.setCardBackgroundColor(colorCompleto)
+                        rootCard.strokeColor = colorCompleto
+                    }
+                } else {
+                    rootCard.setCardBackgroundColor(
+                        androidx.core.content.ContextCompat.getColor(
+                            binding.root.context,
+                            com.coljuegos.sivo.R.color.acta_background
+                        )
+                    )
+                    rootCard.strokeColor = androidx.core.content.ContextCompat.getColor(
+                        binding.root.context,
+                        com.coljuegos.sivo.R.color.white
+                    )
+                }
 
                 // Configurar botón editar
                 btnEditar.setOnClickListener {
@@ -48,6 +93,7 @@ class NovedadRegistradaAdapter(
                 }
             }
         }
+
     }
 
     class NovedadDiffCallback : DiffUtil.ItemCallback<NovedadConRegistro>() {

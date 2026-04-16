@@ -101,6 +101,7 @@ class ActaVisitaViewModel @Inject constructor(
                     _uiState.value = _uiState.value.copy(
                         nombrePresente = existingActaVisita.nombrePresente ?: "",
                         cedulaPresente = existingActaVisita.identificacionPresente ?: "",
+                        tipoDocumentoPresente = existingActaVisita.tipoDocumentoPresente ?: "CC",
                         cargoPresente = existingActaVisita.cargoPresente ?: "",
                         emailPresente = existingActaVisita.emailPresente ?: "",
                         correosContacto = correosList,  // NUEVO
@@ -143,6 +144,7 @@ class ActaVisitaViewModel @Inject constructor(
                 copy(
                     nombrePresente = currentState.nombrePresente.takeIf { it.isNotBlank() },
                     identificacionPresente = currentState.cedulaPresente.takeIf { it.isNotBlank() },
+                    tipoDocumentoPresente = currentState.tipoDocumentoPresente.takeIf { it.isNotBlank() },
                     uuidMunicipio = currentState.selectedMunicipio?.let { UUID.fromString(it.municipioId) },
                     cargoPresente = currentState.cargoPresente.takeIf { it.isNotBlank() },
                     emailPresente = currentState.emailPresente.takeIf { it.isNotBlank() },
@@ -153,6 +155,7 @@ class ActaVisitaViewModel @Inject constructor(
                         uuidActa = actaUuid,
                         nombrePresente = currentState.nombrePresente.takeIf { it.isNotBlank() },
                         identificacionPresente = currentState.cedulaPresente.takeIf { it.isNotBlank() },
+                        tipoDocumentoPresente = currentState.tipoDocumentoPresente.takeIf { it.isNotBlank() },
                         uuidMunicipio = currentState.selectedMunicipio?.let { UUID.fromString(it.municipioId) },
                         cargoPresente = currentState.cargoPresente.takeIf { it.isNotBlank() },
                         emailPresente = currentState.emailPresente.takeIf { it.isNotBlank() },
@@ -178,6 +181,11 @@ class ActaVisitaViewModel @Inject constructor(
 
     fun updateCedulaPresente(cedula: String) {
         _uiState.value = _uiState.value.copy(cedulaPresente = cedula)
+        saveActaVisita()
+    }
+
+    fun updateTipoDocumentoPresente(tipo: String) {
+        _uiState.value = _uiState.value.copy(tipoDocumentoPresente = tipo)
         saveActaVisita()
     }
 

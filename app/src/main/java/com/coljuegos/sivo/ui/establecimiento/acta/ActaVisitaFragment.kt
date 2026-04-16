@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
 import android.widget.ScrollView
 import androidx.core.widget.doOnTextChanged
 import androidx.lifecycle.lifecycleScope
@@ -70,6 +71,9 @@ class ActaVisitaFragment : Fragment() {
         if (::municipioAdapter.isInitialized) {
             binding.municipioExpedicion.setAdapter(municipioAdapter)
         }
+        val tiposDocumento = resources.getStringArray(R.array.tipos_documento)
+        val tipoDocAdapter = ArrayAdapter(requireContext(), android.R.layout.simple_dropdown_item_1line, tiposDocumento)
+        binding.tipoDocumento.setAdapter(tipoDocAdapter)
     }
 
     override fun onPause() {
@@ -190,6 +194,19 @@ class ActaVisitaFragment : Fragment() {
     }
 
     private fun setupInputBindings() {
+        val tiposDocumento = resources.getStringArray(R.array.tipos_documento)
+        val tipoDocAdapter = ArrayAdapter(
+            requireContext(),
+            android.R.layout.simple_dropdown_item_1line,
+            tiposDocumento
+        )
+        binding.tipoDocumento.setAdapter(tipoDocAdapter)
+        binding.tipoDocumento.setOnItemClickListener { _, _, position, _ ->
+            // Guardar solo el código (parte antes del " - ")
+            val codigoTipo = tiposDocumento[position].substringBefore(" - ")
+            viewModel.updateTipoDocumentoPresente(codigoTipo)
+        }
+
         binding.nombrePresente.doOnTextChanged { text, _, _, _ ->
             viewModel.updateNombrePresente(text?.toString() ?: "")
         }
@@ -369,6 +386,12 @@ class ActaVisitaFragment : Fragment() {
         }
         if (binding.cedulaPresente.text.toString() != uiState.cedulaPresente) {
             binding.cedulaPresente.setText(uiState.cedulaPresente)
+        }
+        val tiposDocumento = resources.getStringArray(R.array.tipos_documento)
+        val itemTipo = tiposDocumento.firstOrNull { it.startsWith(uiState.tipoDocumentoPresente) }
+            ?: tiposDocumento.firstOrNull { it.startsWith("CC") } ?: ""
+        if (binding.tipoDocumento.text.toString() != itemTipo) {
+            binding.tipoDocumento.setText(itemTipo, false)
         }
         if (binding.calidad.text.toString() != uiState.cargoPresente) {
             binding.calidad.setText(uiState.cargoPresente)

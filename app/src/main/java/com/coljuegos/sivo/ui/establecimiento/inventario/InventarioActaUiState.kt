@@ -8,5 +8,6 @@ data class InventarioActaUiState(
     val totalInventariosNoRegistrados: Int = 0,
     val isLoading: Boolean = false,
     val errorMessage: String? = null,
-    val searchQuery: String = ""
+    val searchQuery: String = "",
+    val registroMasivoExitoso: Boolean = false
 )
