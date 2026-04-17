@@ -95,8 +95,8 @@ class CameraHelper(
     private fun createImageFileLegacy(): File {
         val timeStamp = SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(Date())
         val picturesDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES)
-        val sivoDir = File(picturesDir, "SIVO").apply { if (!exists()) mkdirs() }
-        return File(sivoDir, "SIVO_${timeStamp}.jpg")
+        val sivoDir = File(picturesDir, "SGCT").apply { if (!exists()) mkdirs() }
+        return File(sivoDir, "SGCT_${timeStamp}.jpg")
     }
 
     private fun showError(message: String) {
