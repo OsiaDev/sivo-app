@@ -10,6 +10,7 @@ material = "1.13.0"
 ksp = "2.3.4"
 hilt = "2.57.2"
 hiltWork = "1.3.0"
+photoview = "2.3.0"
 workRuntime = "2.11.0"
 retrofit = "3.0.0"
 navigationFragmentKtx = "2.9.6"
@@ -36,6 +37,7 @@ hilt-android = { group = "com.google.dagger", name = "hilt-android", version.ref
 hilt-compiler = { group = "com.google.dagger", name = "hilt-compiler", version.ref = "hilt" }
 hilt-work = { group = "androidx.hilt", name = "hilt-work", version.ref = "hiltWork" }
 hilt-ext-compiler = { group = "androidx.hilt", name = "hilt-compiler", version.ref = "hiltWork" }
+photoview = { module = "com.github.chrisbanes:PhotoView", version.ref = "photoview" }
 work-runtime-ktx = { group = "androidx.work", name = "work-runtime-ktx", version.ref = "workRuntime" }
 retrofit = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit" }
 androidx-navigation-fragment-ktx = { group = "androidx.navigation", name = "navigation-fragment-ktx", version.ref = "navigationFragmentKtx" }

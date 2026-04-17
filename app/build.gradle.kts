@@ -69,6 +69,7 @@ dependencies {
     implementation(libs.androidx.lifecycle.viewmodel.ktx)
     implementation(libs.androidx.fragment.ktx)
     implementation(libs.androidx.legacy.support.v4)
+    implementation(libs.photoview)
     ksp(libs.hilt.compiler)
     ksp(libs.hilt.ext.compiler)
     ksp(libs.androidx.room.compiler)
