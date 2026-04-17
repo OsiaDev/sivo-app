@@ -1,8 +1,12 @@
 package com.coljuegos.sivo.utils
 
 import android.Manifest
+import android.content.ContentValues
 import android.content.pm.PackageManager
 import android.net.Uri
+import android.os.Build
+import android.os.Environment
+import android.provider.MediaStore
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
@@ -53,19 +57,46 @@ class CameraHelper(
     }
 
     private fun openCamera() {
-        val photoFile = createImageFile()
-        imageUri = FileProvider.getUriForFile(
-            fragment.requireContext(),
-            "${fragment.requireContext().packageName}.fileprovider",
-            photoFile
-        )
+        imageUri = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            createImageUriMediaStore()
+        } else {
+            val photoFile = createImageFileLegacy()
+            FileProvider.getUriForFile(
+                fragment.requireContext(),
+                "${fragment.requireContext().packageName}.fileprovider",
+                photoFile
+            )
+        }
         cameraLauncher.launch(imageUri)
     }
 
-    private fun createImageFile(): File {
+    /**
+     * API 29+ (Android 10+): Inserta la imagen directamente en MediaStore.
+     * Esto hace que la foto quede visible en la galería del sistema de forma inmediata,
+     * dentro del álbum "SIVO" en la carpeta Pictures.
+     */
+    private fun createImageUriMediaStore(): Uri? {
         val timeStamp = SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(Date())
-        val storageDir = fragment.requireContext().getExternalFilesDir("Pictures")
-        return File.createTempFile("JPEG_${timeStamp}_", ".jpg", storageDir)
+        val contentValues = ContentValues().apply {
+            put(MediaStore.Images.Media.DISPLAY_NAME, "SIVO_${timeStamp}.jpg")
+            put(MediaStore.Images.Media.MIME_TYPE, "image/jpeg")
+            put(MediaStore.Images.Media.RELATIVE_PATH, "${Environment.DIRECTORY_PICTURES}/SIVO")
+        }
+        return fragment.requireContext().contentResolver.insert(
+            MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
+            contentValues
+        )
+    }
+
+    /**
+     * API < 29 (Android 9 o menor): Guarda en directorio público Pictures/SIVO.
+     * El sistema de medios lo escaneará y aparecerá en la galería.
+     */
+    private fun createImageFileLegacy(): File {
+        val timeStamp = SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault()).format(Date())
+        val picturesDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES)
+        val sivoDir = File(picturesDir, "SIVO").apply { if (!exists()) mkdirs() }
+        return File(sivoDir, "SIVO_${timeStamp}.jpg")
     }
 
     private fun showError(message: String) {
