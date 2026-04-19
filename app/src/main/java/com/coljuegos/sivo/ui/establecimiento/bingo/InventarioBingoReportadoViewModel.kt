@@ -4,7 +4,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.coljuegos.sivo.data.dao.InventarioBingoRegistradoDao
 import com.coljuegos.sivo.data.dao.InventarioDao
-import com.coljuegos.sivo.data.entity.esBingo
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -23,30 +22,23 @@ class InventarioBingoReportadoViewModel @Inject constructor(
     private val _uiState = MutableStateFlow(InventarioBingoReportadoUiState())
     val uiState: StateFlow<InventarioBingoReportadoUiState> = _uiState.asStateFlow()
 
-    fun loadInventarios(actaUuid: UUID) {
+    fun loadRegistrados(actaUuid: UUID) {
         viewModelScope.launch {
             _uiState.update { it.copy(isLoading = true) }
             try {
-                val inventariosBingo = inventarioDao.getInventariosByActa(actaUuid)
-                    .filter { it.esBingo() }
-                val registros = inventarioBingoRegistradoDao.getByActaList(actaUuid)
-
-                val combinados = inventariosBingo.map { inv ->
-                    InventarioBingoConRegistro(
-                        inventario = inv,
-                        registro = registros.firstOrNull { it.uuidInventario == inv.uuidInventario }
-                    )
-                }
-
-                val registrados = combinados.count { it.registro != null }
-
-                _uiState.update {
-                    it.copy(
-                        isLoading = false,
-                        inventarios = combinados,
-                        filteredInventarios = combinados.applyFilter(it.searchQuery),
-                        totalRegistrados = registrados
-                    )
+                inventarioBingoRegistradoDao.getByActa(actaUuid).collect { registros ->
+                    val combinados = registros.mapNotNull { reg ->
+                        val inv = inventarioDao.getInventarioByUuid(reg.uuidInventario)
+                            ?: return@mapNotNull null
+                        InventarioBingoConRegistro(inventario = inv, registro = reg)
+                    }
+                    _uiState.update {
+                        it.copy(
+                            isLoading = false,
+                            registrados = combinados,
+                            filteredRegistrados = combinados.applyFilter(it.searchQuery)
+                        )
+                    }
                 }
             } catch (e: Exception) {
                 _uiState.update { it.copy(isLoading = false, errorMessage = e.message) }
@@ -59,15 +51,14 @@ class InventarioBingoReportadoViewModel @Inject constructor(
         _uiState.update {
             it.copy(
                 searchQuery = q,
-                filteredInventarios = it.inventarios.applyFilter(q)
+                filteredRegistrados = it.registrados.applyFilter(q)
             )
         }
     }
 
-    fun deleteRegistro(uuid: UUID, actaUuid: UUID) {
+    fun deleteRegistro(uuid: UUID) {
         viewModelScope.launch {
             inventarioBingoRegistradoDao.deleteById(uuid)
-            loadInventarios(actaUuid)
         }
     }
 

@@ -118,7 +118,7 @@ class RegistrarBingoFragment : Fragment() {
         binding.sillasValorInputLayout.error = null
 
         val estadoStr = binding.estadoSpinner.text.toString()
-        val estado = EstadoInventarioEnum.fromDisplayName(estadoStr)
+        val estado = EstadoInventarioEnum.fromString(estadoStr)
         val observaciones = binding.observacionesEditText.text?.toString()?.trim()
 
         viewModel.guardar(
