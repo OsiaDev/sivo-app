@@ -25,7 +25,7 @@ import com.coljuegos.sivo.utils.*
         NovedadRegistradaEntity::class,
         FirmaActaEntity::class,
         ResumenInventarioEntity::class
-    ], version = 14, exportSchema = false
+    ], version = 15, exportSchema = false
 )
 @TypeConverters(
     BigDecimalConverter::class,
@@ -68,5 +68,9 @@ abstract class SivoDatabase : RoomDatabase() {
     abstract fun firmaActaDao(): FirmaActaDao
 
     abstract fun resumenInventarioDao(): ResumenInventarioDao
+
+    abstract fun verificacionBingoDao(): VerificacionBingoDao
+
+    abstract fun inventarioBingoRegistradoDao(): InventarioBingoRegistradoDao
 
 }

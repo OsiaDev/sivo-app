@@ -224,7 +224,7 @@
             app:popExitAnim="@anim/slide_out_right" />
 
         <action
-            android:id="@+id/action_inventarioFragment_to_novedadFragment"
+            android:id="@+id/action_inventarioFragment_to_verificacionBingoFragment"
             app:destination="@id/novedadFragment"
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left"
@@ -281,6 +281,73 @@
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right" />
 
+    </fragment>
+
+    <fragment
+        android:id="@+id/verificacionBingoFragment"
+        android:name="com.coljuegos.sivo.ui.establecimiento.bingo.VerificacionBingoFragment"
+        android:label="@string/verificacion_bingo_title"
+        tools:layout="@layout/fragment_verificacion_bingo">
+
+        <argument
+            android:name="actaUuid"
+            app:argType="java.util.UUID" />
+
+        <action
+            android:id="@+id/action_verificacionBingoFragmentToInventarioBingoReportadoFragment"
+            app:destination="@id/inventarioBingoReportadoFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/inventarioBingoReportadoFragment"
+        android:name="com.coljuegos.sivo.ui.establecimiento.bingo.InventarioBingoReportadoFragment"
+        android:label="@string/inventario_bingo_reportado_title"
+        tools:layout="@layout/fragment_inventario_bingo_reportado">
+
+        <argument
+            android:name="actaUuid"
+            app:argType="java.util.UUID" />
+
+        <action
+            android:id="@+id/action_inventarioBingoReportadoFragmentToRegistrarBingoFragment"
+            app:destination="@id/registrarBingoFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+
+        <action
+            android:id="@+id/action_inventarioBingoReportadoFragmentToNovedadFragment"
+            app:destination="@id/novedadFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/registrarBingoFragment"
+        android:name="com.coljuegos.sivo.ui.establecimiento.bingo.RegistrarBingoFragment"
+        android:label="@string/registrar_bingo_title"
+        tools:layout="@layout/fragment_registrar_bingo">
+
+        <argument
+            android:name="actaUuid"
+            app:argType="java.util.UUID" />
+
+        <argument
+            android:name="inventarioUuid"
+            app:argType="java.util.UUID" />
+
+        <argument
+            android:name="inventarioBingoRegistradoUuid"
+            app:argType="java.util.UUID"
+            app:nullable="true"
+            android:defaultValue="@null" />
     </fragment>
 
     <fragment

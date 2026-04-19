@@ -31,3 +31,10 @@ data class InventarioEntity(
     val aucNumeroInventario: Int,
     val estCodigoInventario: Int
 )
+
+fun InventarioEntity.tipoApuesta(): ApuestaCodigoEnum =
+    ApuestaCodigoEnum.fromCodigo(this.codigoTipoApuestaInventario)
+
+fun InventarioEntity.esBingo(): Boolean = tipoApuesta() == ApuestaCodigoEnum.BINGO
+
+fun InventarioEntity.esMet(): Boolean = tipoApuesta() == ApuestaCodigoEnum.MET

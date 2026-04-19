@@ -116,13 +116,70 @@ object DatabaseModule {
         }
     }
 
+    private val MIGRATION_14_15 = object : Migration(14, 15) {
+        override fun migrate(db: SupportSQLiteDatabase) {
+
+            // Tabla verificacion_bingo (1 por acta)
+            db.execSQL("""
+            CREATE TABLE IF NOT EXISTS `verificacion_bingo` (
+                `uuidVerificacionBingo` TEXT NOT NULL,
+                `uuidActa` TEXT NOT NULL,
+                `cartonesModulos` TEXT,
+                `sistemaTecnologico` TEXT,
+                `sistemaInterconectado` TEXT,
+                `realizaEventosEspeciales` TEXT,
+                `tipoBalotera` TEXT,
+                `valorCartonExpuesto` TEXT,
+                PRIMARY KEY(`uuidVerificacionBingo`),
+                FOREIGN KEY(`uuidActa`) REFERENCES `actas`(`uuidActa`) ON DELETE CASCADE
+            )
+        """.trimIndent())
+
+            db.execSQL(
+                "CREATE INDEX IF NOT EXISTS `index_verificacion_bingo_uuidVerificacionBingo` ON `verificacion_bingo` (`uuidVerificacionBingo`)"
+            )
+            db.execSQL(
+                "CREATE UNIQUE INDEX IF NOT EXISTS `index_verificacion_bingo_uuidActa` ON `verificacion_bingo` (`uuidActa`)"
+            )
+
+            // Tabla inventarios_bingo_registrados (N por acta)
+            db.execSQL("""
+            CREATE TABLE IF NOT EXISTS `inventarios_bingo_registrados` (
+                `uuidInventarioBingoRegistrado` TEXT NOT NULL,
+                `uuidActa` TEXT NOT NULL,
+                `uuidInventario` TEXT NOT NULL,
+                `codigoApuestaDiferente` INTEGER NOT NULL,
+                `codigoApuestaDiferenteValor` TEXT,
+                `sillasDiferente` INTEGER NOT NULL,
+                `sillasValor` INTEGER,
+                `estado` TEXT NOT NULL,
+                `observaciones` TEXT,
+                PRIMARY KEY(`uuidInventarioBingoRegistrado`),
+                FOREIGN KEY(`uuidActa`) REFERENCES `actas`(`uuidActa`) ON DELETE CASCADE,
+                FOREIGN KEY(`uuidInventario`) REFERENCES `inventarios`(`uuidInventario`) ON DELETE CASCADE
+            )
+        """.trimIndent())
+
+            db.execSQL(
+                "CREATE INDEX IF NOT EXISTS `index_inventarios_bingo_registrados_uuidInventarioBingoRegistrado` ON `inventarios_bingo_registrados` (`uuidInventarioBingoRegistrado`)"
+            )
+            db.execSQL(
+                "CREATE INDEX IF NOT EXISTS `index_inventarios_bingo_registrados_uuidActa` ON `inventarios_bingo_registrados` (`uuidActa`)"
+            )
+            db.execSQL(
+                "CREATE UNIQUE INDEX IF NOT EXISTS `index_inventarios_bingo_registrados_uuidInventario` ON `inventarios_bingo_registrados` (`uuidInventario`)"
+            )
+        }
+    }
+
     @Provides
     @Singleton
     fun provideAppDatabase(@ApplicationContext context: Context): SivoDatabase {
         return Room.databaseBuilder(
             context, SivoDatabase::class.java, "sivo_database"
         ).addMigrations(MIGRATION_4_5, MIGRATION_5_6, MIGRATION_6_7, MIGRATION_7_8, MIGRATION_8_9,
-            MIGRATION_9_10, MIGRATION_10_11, MIGRATION_11_12, MIGRATION_12_13, MIGRATION_13_14)
+            MIGRATION_9_10, MIGRATION_10_11, MIGRATION_11_12, MIGRATION_12_13, MIGRATION_13_14,
+            MIGRATION_14_15)
          .fallbackToDestructiveMigration(false)
             .build()
     }
