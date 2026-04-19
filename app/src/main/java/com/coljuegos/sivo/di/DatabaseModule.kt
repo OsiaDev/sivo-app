@@ -28,6 +28,8 @@ import javax.inject.Singleton
 
 import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase
+import com.coljuegos.sivo.data.dao.InventarioBingoRegistradoDao
+import com.coljuegos.sivo.data.dao.VerificacionBingoDao
 
 @Module
 @InstallIn(SingletonComponent::class)
@@ -231,5 +233,11 @@ object DatabaseModule {
 
     @Provides
     fun provideResumenInventarioDao(database: SivoDatabase): ResumenInventarioDao = database.resumenInventarioDao()
+
+    @Provides
+    fun provideVerificacionBingoDao(database: SivoDatabase): VerificacionBingoDao = database.verificacionBingoDao()
+
+    @Provides
+    fun provideInventarioBingoRegistradoDao(database: SivoDatabase): InventarioBingoRegistradoDao = database.inventarioBingoRegistradoDao()
 
 }
