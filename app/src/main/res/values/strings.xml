@@ -237,6 +237,32 @@
     <string name="registrar_inventario_btn_cancelar">Cancelar</string>
     <string name="registrar_inventario_btn_registrar">Registrar</string>
 
+    <!-- VERIFICACION BINGO -->
+    <string name="verificacion_bingo_title">Verificación Bingo</string>
+    <string name="verificacion_bingo_subtitle">Verificación Bingo</string>
+    <string name="bingo_pregunta1">¿Cuenta con cartones por módulos de? (Cantidades)</string>
+    <string name="bingo_cartones_hint">Ingrese cantidad</string>
+    <string name="bingo_pregunta2">¿Cuenta con sistema tecnológico (SOFTWARE) para el juego?</string>
+    <string name="bingo_pregunta3">¿El sistema de juego es interconectado?</string>
+    <string name="bingo_pregunta4">¿Realiza juego para eventos especiales?</string>
+    <string name="bingo_pregunta5">¿Cuenta con balotera de tipo?</string>
+    <string name="bingo_pregunta6">¿Tiene expuesto el valor del cartón al público?</string>
+
+    <!-- INVENTARIO BINGO REPORTADO -->
+    <string name="inventario_bingo_reportado_title">Inventario Bingo</string>
+    <string name="inventario_bingo_busqueda">Buscar tipo de apuesta o código</string>
+    <string name="inventario_bingo_total">Registrados: %1$d de %2$d</string>
+    <string name="inventario_bingo_vacio">No hay inventario bingo para este acta</string>
+    <string name="sin_registrar">Sin registrar</string>
+
+    <!-- REGISTRAR BINGO -->
+    <string name="registrar_bingo_title">Registrar Bingo</string>
+    <string name="registrar_bingo_estado_label">Estado</string>
+    <string name="registrar_bingo_sillas_diferente">La cantidad de sillas es diferente</string>
+    <string name="registrar_bingo_sillas_valor_hint">Cantidad de sillas real</string>
+    <string name="registrar_bingo_sillas_valor_requerido">Ingrese la cantidad de sillas</string>
+    <string name="registrar_bingo_sillas_reportadas">Sillas reportadas: %1$d</string>
+
     <string name="zero">$0</string>
     <string name="zero_int">0</string>
 
