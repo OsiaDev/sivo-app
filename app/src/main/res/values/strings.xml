@@ -258,6 +258,9 @@
     <string name="inventario_bingo_vacio">No hay inventario bingo para este acta</string>
     <string name="sin_registrar">Sin registrar</string>
 
+    <string name="inventario_bingo_acta_total">Total registros: %1$d</string>
+    <string name="inventario_bingo_acta_busqueda">Buscar código</string>
+
     <!-- REGISTRAR BINGO -->
     <string name="registrar_bingo_title">Registrar Bingo</string>
     <string name="registrar_bingo_estado_label">Estado</string>
