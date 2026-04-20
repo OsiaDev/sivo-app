@@ -322,7 +322,7 @@
 
         <action
             android:id="@+id/action_inventarioBingoReportadoFragment_to_inventarioBingoActaFragment"
-            app:destination="@id/inventarioActaFragment"
+            app:destination="@id/inventarioBingoActaFragment"
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
@@ -343,6 +343,26 @@
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/inventarioBingoActaFragment"
+        android:name="com.coljuegos.sivo.ui.establecimiento.bingo.InventarioBingoActaFragment"
+        android:label="@string/inventario_bingo_acta_busqueda"
+        tools:layout="@layout/fragment_inventario_bingo_acta">
+
+        <argument
+            android:name="actaUuid"
+            app:argType="java.util.UUID" />
+
+        <action
+            android:id="@+id/actionInventarioBingoActaFragmentToRegistrarBingoFragment"
+            app:destination="@id/registrarBingoFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+
     </fragment>
 
     <fragment
