@@ -37,7 +37,7 @@ class RegistrarBingoViewModel @Inject constructor(
                 val inventario = inventarioDao.getInventarioByUuid(inventarioUuid)
                 val registro = registroUuid?.let {
                     inventarioBingoRegistradoDao.getById(it)
-                } ?: inventarioBingoRegistradoDao.getByInventarioId(inventarioUuid)
+                }
 
                 _uiState.update {
                     it.copy(
