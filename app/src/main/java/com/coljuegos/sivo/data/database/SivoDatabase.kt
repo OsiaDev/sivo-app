@@ -24,7 +24,9 @@ import com.coljuegos.sivo.utils.*
         TipoApuestaEntity::class,
         NovedadRegistradaEntity::class,
         FirmaActaEntity::class,
-        ResumenInventarioEntity::class
+        ResumenInventarioEntity::class,
+        VerificacionBingoEntity::class,
+        InventarioBingoRegistradoEntity::class
     ], version = 15, exportSchema = false
 )
 @TypeConverters(

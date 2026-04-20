@@ -13,17 +13,22 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.coljuegos.sivo.R
 import com.coljuegos.sivo.databinding.FragmentInventarioBingoReportadoBinding
+import com.coljuegos.sivo.ui.establecimiento.inventario.InventarioReportadoUiState
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
+import java.util.UUID
 
 @AndroidEntryPoint
 class InventarioBingoReportadoFragment : Fragment() {
 
     private var _binding: FragmentInventarioBingoReportadoBinding? = null
+
     private val binding get() = _binding!!
 
     private val args: InventarioBingoReportadoFragmentArgs by navArgs()
+
     private val viewModel: InventarioBingoReportadoViewModel by viewModels()
 
     private lateinit var adapter: InventarioBingoRegistradoAdapter
@@ -60,18 +65,12 @@ class InventarioBingoReportadoFragment : Fragment() {
                     )
                 findNavController().navigate(action)
             },
-            onDeleteClick = { item ->
-                MaterialAlertDialogBuilder(requireContext())
-                    .setTitle(R.string.confirmar_eliminar_title)
-                    .setMessage(R.string.confirmar_eliminar_message)
-                    .setPositiveButton(R.string.eliminar) { _, _ ->
-                        viewModel.deleteRegistro(item.registro.uuidInventarioBingoRegistrado)
-                    }
-                    .setNegativeButton(R.string.cancelar, null)
-                    .show()
+            onDeleteClick = { inventarioConRegistro ->
+                // Mostrar diálogo de confirmación
+                showDeleteConfirmationDialog(inventarioConRegistro.registro.uuidInventarioBingoRegistrado)
             }
         )
-        binding.recyclerBingos.adapter = adapter
+        binding.recyclerInventariosRegistrados.adapter = adapter
     }
 
     private fun setupSearch() {
@@ -98,13 +97,29 @@ class InventarioBingoReportadoFragment : Fragment() {
 
     private fun observeViewModel() {
         viewLifecycleOwner.lifecycleScope.launch {
-            viewModel.uiState.collect { state ->
-                binding.progressIndicator.isVisible = state.isLoading
-                binding.emptyText.isVisible = !state.isLoading && state.filteredRegistrados.isEmpty()
-                binding.recyclerBingos.isVisible = state.filteredRegistrados.isNotEmpty()
-                adapter.submitList(state.filteredRegistrados)
+            viewModel.uiState.collect { uiState ->
+                updateUI(uiState)
             }
         }
+    }
+
+    private fun updateUI(uiState: InventarioBingoReportadoUiState) {
+
+    }
+
+    private fun showDeleteConfirmationDialog(inventarioRegistradoUuid: UUID) {
+        MaterialAlertDialogBuilder(requireContext())
+            .setTitle("Retirar revisión")
+            .setMessage("¿Está seguro que desea retirar la revisión de este inventario?")
+            .setPositiveButton("Retirar") { _, _ ->
+                viewModel.deleteRegistro(inventarioRegistradoUuid)
+            }
+            .setNegativeButton("Cancelar", null)
+            .show()
+    }
+
+    private fun showError(message: String) {
+        Snackbar.make(binding.root, message, Snackbar.LENGTH_LONG).show()
     }
 
     override fun onDestroyView() {

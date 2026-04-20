@@ -11,7 +11,10 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.coljuegos.sivo.R
 import com.coljuegos.sivo.databinding.FragmentInventarioBingoActaBinding
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -37,6 +40,7 @@ class InventarioBingoActaFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setupRecyclerView()
         setupSearch()
+        setupButtons()
         observeViewModel()
         viewModel.loadNoRegistrados(args.actaUuid)
     }
@@ -58,7 +62,7 @@ class InventarioBingoActaFragment : Fragment() {
                 findNavController().navigate(action)
             }
         )
-        binding.recyclerBingosActa.adapter = adapter
+        binding.inventarioRecyclerView.adapter = adapter
     }
 
     private fun setupSearch() {
@@ -67,13 +71,59 @@ class InventarioBingoActaFragment : Fragment() {
         }
     }
 
+    private fun setupButtons() {
+        binding.btnCerrar.setOnClickListener {
+            findNavController().navigateUp()
+        }
+
+        binding.btnNoEncontrados.setOnClickListener {
+            val cantidad = viewModel.uiState.value.totalInventariosNoRegistrados
+            if (cantidad == 0) {
+                Snackbar.make(binding.root, "No hay inventarios pendientes por registrar", Snackbar.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+            MaterialAlertDialogBuilder(requireContext())
+                .setTitle("Registrar como no encontrados")
+                .setMessage("Se marcarán $cantidad inventario(s) de bingo como 'No encontrado'. ¿Deseas continuar?")
+                .setPositiveButton("Confirmar") { _, _ ->
+                    viewModel.registrarTodosComoNoEncontrados(args.actaUuid)
+                }
+                .setNegativeButton("Cancelar", null)
+                .show()
+        }
+    }
+
     private fun observeViewModel() {
         viewLifecycleOwner.lifecycleScope.launch {
-            viewModel.uiState.collect { state ->
-                binding.progressIndicator.isVisible = state.isLoading
-                binding.emptyText.isVisible = !state.isLoading && state.filteredInventarios.isEmpty()
-                binding.recyclerBingosActa.isVisible = state.filteredInventarios.isNotEmpty()
-                adapter.submitList(state.filteredInventarios)
+            viewModel.uiState.collect { uiState ->
+                binding.progressBar.isVisible = uiState.isLoading
+
+                binding.countValue.text = getString(
+                    R.string.inventario_bingo_acta_total,
+                    uiState.totalInventariosNoRegistrados
+                )
+
+                val inventariosAMostrar = if (uiState.searchQuery.isNotEmpty()) {
+                    uiState.filteredInventarios
+                } else {
+                    uiState.inventariosNoRegistrados
+                }
+
+                adapter.submitList(inventariosAMostrar)
+                binding.inventarioRecyclerView.isVisible =
+                    inventariosAMostrar.isNotEmpty() && !uiState.isLoading
+                binding.textViewNoInventario.isVisible =
+                    inventariosAMostrar.isEmpty() && !uiState.isLoading
+
+                if (uiState.registroMasivoExitoso) {
+                    Snackbar.make(binding.root, "Inventarios registrados como no encontrados", Snackbar.LENGTH_SHORT).show()
+                    findNavController().navigateUp()
+                }
+
+                uiState.errorMessage?.let {
+                    Snackbar.make(binding.root, it, Snackbar.LENGTH_LONG).show()
+                    viewModel.clearError()
+                }
             }
         }
     }

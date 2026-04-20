@@ -268,7 +268,7 @@
             android:weightSum="2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/valorCartonExpuestoLayout">
+            app:layout_constraintTop_toBottomOf="@id/layoutPregunta5">
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnAnterior"
@@ -278,7 +278,7 @@
                 android:layout_marginEnd="8dp"
                 android:layout_weight="1"
                 android:paddingVertical="16dp"
-                android:text="@string/verificacion_bingo_anterior"
+                android:text="@string/verificacion_contractual_anterior"
                 android:textSize="16sp"
                 app:cornerRadius="8dp"
                 app:strokeColor="@color/login_button_color_init"
@@ -291,7 +291,7 @@
                 android:layout_marginStart="8dp"
                 android:layout_weight="1"
                 android:paddingVertical="16dp"
-                android:text="@string/verificacion_bingo_siguiente"
+                android:text="@string/verificacion_contractual_siguiente"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 app:backgroundTint="@color/login_button_color_init"

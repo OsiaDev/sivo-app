@@ -321,6 +321,14 @@
             app:argType="java.util.UUID" />
 
         <action
+            android:id="@+id/action_inventarioBingoReportadoFragment_to_inventarioBingoActaFragment"
+            app:destination="@id/inventarioActaFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+
+        <action
             android:id="@+id/action_inventarioBingoReportadoFragmentToRegistrarBingoFragment"
             app:destination="@id/registrarBingoFragment"
             app:enterAnim="@anim/slide_in_right"
