@@ -4,9 +4,11 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.coljuegos.sivo.data.dao.InventarioDao
 import com.coljuegos.sivo.data.dao.InventarioRegistradoDao
+import com.coljuegos.sivo.data.entity.ApuestaCodigoEnum
 import com.coljuegos.sivo.data.entity.EstadoInventarioEnum
 import com.coljuegos.sivo.data.entity.InventarioEntity
 import com.coljuegos.sivo.data.entity.InventarioRegistradoEntity
+import com.coljuegos.sivo.data.entity.tipoApuesta
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -37,8 +39,11 @@ class InventarioActaViewModel @Inject constructor(
 
                     // Filtrar solo los que NO están registrados
                     val uuidsRegistrados = registrados.map { it.uuidInventario }.toSet()
+
+                    val tiposVisibles = setOf(ApuestaCodigoEnum.MET, ApuestaCodigoEnum.BINGO)
                     val inventariosNoRegistrados = todosInventarios.filter { inventario ->
-                        !uuidsRegistrados.contains(inventario.uuidInventario)
+                        !uuidsRegistrados.contains(inventario.uuidInventario) &&
+                                tiposVisibles.contains(inventario.tipoApuesta())
                     }
 
                     _uiState.update {

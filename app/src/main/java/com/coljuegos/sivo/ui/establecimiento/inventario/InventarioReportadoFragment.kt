@@ -110,7 +110,6 @@ class InventarioReportadoFragment : Fragment() {
     }
 
     private fun setupButtons() {
-        // Botón Agregar - navega a InventarioActaFragment
         binding.btnAgregar.setOnClickListener {
             val action = InventarioReportadoFragmentDirections
                 .actionInventarioFragmentToInventarioActaFragment(args.actaUuid)
@@ -122,12 +121,19 @@ class InventarioReportadoFragment : Fragment() {
         }
 
         binding.btnSiguiente.setOnClickListener {
-            // Navegar al siguiente fragment (Galería)
-            val action = InventarioReportadoFragmentDirections
-                .actionInventarioFragmentToNovedadFragment(
-                    actaUuid = args.actaUuid
-                )
-            findNavController().navigate(action)
+            if (viewModel.uiState.value.tieneBingos) {
+                val action = InventarioReportadoFragmentDirections
+                    .actionInventarioFragmentToVerificacionBingoFragment(
+                        actaUuid = args.actaUuid
+                    )
+                findNavController().navigate(action)
+            } else {
+                val action = InventarioReportadoFragmentDirections
+                    .actionInventarioFragmentToNovedadFragment(
+                        actaUuid = args.actaUuid
+                    )
+                findNavController().navigate(action)
+            }
         }
     }
 

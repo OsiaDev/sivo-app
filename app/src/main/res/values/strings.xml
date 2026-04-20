@@ -251,7 +251,8 @@
     <string name="bingo_pregunta6">¿Tiene expuesto el valor del cartón al público?</string>
 
     <!-- INVENTARIO BINGO REPORTADO -->
-    <string name="inventario_bingo_reportado_title">4. Inventario reportado ante coljuegos</string>
+    <string name="inventario_bingo_reportado_title">Inventario Reportado</string>
+    <string name="inventario_bingo_subtitle">4. Inventario reportado ante coljuegos</string>
     <string name="inventario_bingo_reportado_categoria_title">Bingo</string>
     <string name="inventario_bingo_busqueda">Buscar tipo de apuesta o código</string>
     <string name="inventario_bingo_registrado_titulo">Inventarios registrados</string>
