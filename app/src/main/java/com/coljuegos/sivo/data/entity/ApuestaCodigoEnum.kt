@@ -8,8 +8,9 @@ enum class ApuestaCodigoEnum(val codigos: Array<String>, val nombre: String) {
 
     companion object {
         fun fromCodigo(codigo: String): ApuestaCodigoEnum {
-            return entries.firstOrNull { it.codigos.contains(codigo) } ?: OTROS
+            return entries.firstOrNull { it.codigos.contains(codigo) } ?: MET
         }
+
     }
 
 }

@@ -268,7 +268,7 @@
             android:weightSum="2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/layoutPregunta5">
+            app:layout_constraintTop_toBottomOf="@id/valorCartonExpuestoLayout">
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnAnterior"

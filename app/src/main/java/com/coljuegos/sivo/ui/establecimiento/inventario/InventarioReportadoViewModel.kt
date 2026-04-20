@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.coljuegos.sivo.data.dao.InventarioDao
 import com.coljuegos.sivo.data.dao.InventarioRegistradoDao
+import com.coljuegos.sivo.data.entity.esBingo
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -27,12 +28,9 @@ class InventarioReportadoViewModel @Inject constructor(
             try {
                 _uiState.update { it.copy(isLoading = true, errorMessage = null) }
 
-                // Obtener inventarios registrados con Flow
                 inventarioRegistradoDao.getInventariosRegistradosByActa(actaUuid).collect { registrados ->
-                    // Obtener todos los inventarios del acta
                     val todosInventarios = inventarioDao.getInventariosByActa(actaUuid)
 
-                    // Crear lista de InventarioConRegistro
                     val inventariosConRegistro = todosInventarios.map { inventario ->
                         val registro = registrados.find { it.uuidInventario == inventario.uuidInventario }
                         InventarioConRegistro(
@@ -41,10 +39,11 @@ class InventarioReportadoViewModel @Inject constructor(
                         )
                     }
 
-                    // Filtrar solo los que están registrados y organizarlos: contadores true primero
                     val soloRegistrados = inventariosConRegistro
                         .filter { it.registro != null }
                         .sortedByDescending { it.registro?.contadoresVerificado == true }
+
+                    val tieneBingos = todosInventarios.any { it.esBingo() }
 
                     _uiState.update {
                         it.copy(
@@ -52,6 +51,7 @@ class InventarioReportadoViewModel @Inject constructor(
                             inventariosRegistrados = soloRegistrados,
                             filteredInventarios = soloRegistrados,
                             totalInventariosRegistrados = soloRegistrados.size,
+                            tieneBingos = tieneBingos,
                             errorMessage = null
                         )
                     }

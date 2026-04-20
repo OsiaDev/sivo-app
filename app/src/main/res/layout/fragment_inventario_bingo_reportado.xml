@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/constraintLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/app_background"
+    android:padding="16dp"
     tools:context=".ui.establecimiento.bingo.InventarioBingoReportadoFragment">
 
     <TextView
@@ -13,8 +14,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
-        android:padding="16dp"
-        android:text="@string/inventario_bingo_reportado_title"
+        android:paddingTop="2dp"
+        android:text="@string/inventario_bingo_subtitle"
         android:textColor="@color/fragment_subtitle_color"
         android:textSize="24sp"
         android:textStyle="bold"
@@ -45,9 +46,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="@string/inventario_reportado_agregar"
-        app:icon="@android:drawable/ic_input_add"
         app:backgroundTint="@color/login_button_color_init"
         app:cornerRadius="8dp"
+        app:icon="@android:drawable/ic_input_add"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/categoriaTitle" />
 
@@ -61,10 +62,10 @@
         android:hint="@string/inventario_acta_busqueda"
         android:visibility="gone"
         app:endIconMode="clear_text"
-        app:startIconDrawable="@android:drawable/ic_menu_search"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btnAgregar">
+        app:layout_constraintTop_toBottomOf="@id/btnAgregar"
+        app:startIconDrawable="@android:drawable/ic_menu_search">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/searchEditText"
