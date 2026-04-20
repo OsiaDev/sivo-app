@@ -209,6 +209,7 @@
     <string name="registrar_inventario_title">Registrar</string>
     <string name="registrar_inventario_subtitle">Registrar Inventario</string>
     <string name="registrar_inventario_inventario">Inventario</string>
+    <string name="registrar_inventario_estado">Estado</string>
     <string name="registrar_inventario_marca">Marca</string>
     <string name="registrar_inventario_serial">Serial</string>
     <string name="registrar_inventario_placa">Placa</string>
@@ -262,8 +263,19 @@
     <string name="inventario_bingo_acta_busqueda">Buscar código</string>
 
     <!-- REGISTRAR BINGO -->
-    <string name="registrar_bingo_title">Registrar Bingo</string>
+    <string name="registrar_bingo_title">Registrar</string>
+    <string name="registrar_bingo_subtitle">Registrar Inventario</string>
+    <string name="registrar_bingo_bingo">Bingo</string>
     <string name="registrar_bingo_estado_label">Estado</string>
+    <string name="registrar_bingo_codigo_apuesta">Código de apuesta</string>
+    <string name="registrar_bingo_cantidad_sillas">Cantidad de sillas</string>
+    <string name="registrar_bingo_codigo_pregunta_1">Código de apuesta diferente</string>
+    <string name="registrar_bingo_codigo_apuesta_diferente_valor">Ingrese el código de apuesta diferente</string>
+    <string name="registrar_bingo_codigo_pregunta_2">Cantidad de sillas diferente</string>
+    <string name="registrar_bingo_cantidad_sillas_diferente_valor">Ingrese la cantidad de sillas diferente</string>
+    <string name="registrar_bingo_capturar_maquina">Capturar fotos de maquina</string>
+    <string name="registrar_bingo_btn_cancelar">Cancelar</string>
+    <string name="registrar_bingo_btn_registrar">Registrar</string>
     <string name="registrar_bingo_sillas_diferente">La cantidad de sillas es diferente</string>
     <string name="registrar_bingo_sillas_valor_hint">Cantidad de sillas real</string>
     <string name="registrar_bingo_sillas_valor_requerido">Ingrese la cantidad de sillas</string>

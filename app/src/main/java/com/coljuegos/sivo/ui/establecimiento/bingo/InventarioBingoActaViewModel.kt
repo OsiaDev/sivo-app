@@ -4,6 +4,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.coljuegos.sivo.data.dao.InventarioBingoRegistradoDao
 import com.coljuegos.sivo.data.dao.InventarioDao
+import com.coljuegos.sivo.data.entity.EstadoInventarioEnum
+import com.coljuegos.sivo.data.entity.InventarioBingoRegistradoEntity
 import com.coljuegos.sivo.data.entity.InventarioEntity
 import com.coljuegos.sivo.data.entity.esBingo
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -38,8 +40,9 @@ class InventarioBingoActaViewModel @Inject constructor(
                     _uiState.update {
                         it.copy(
                             isLoading = false,
-                            inventarios = sinRegistrar,
-                            filteredInventarios = sinRegistrar.applyFilter(it.searchQuery)
+                            inventariosNoRegistrados = sinRegistrar,
+                            filteredInventarios = sinRegistrar.applyFilter(it.searchQuery),
+                            totalInventariosNoRegistrados = sinRegistrar.size
                         )
                     }
                 }
@@ -54,9 +57,45 @@ class InventarioBingoActaViewModel @Inject constructor(
         _uiState.update {
             it.copy(
                 searchQuery = q,
-                filteredInventarios = it.inventarios.applyFilter(q)
+                filteredInventarios = it.inventariosNoRegistrados.applyFilter(q)
             )
         }
+    }
+
+    fun registrarTodosComoNoEncontrados(actaUuid: UUID) {
+        viewModelScope.launch {
+            try {
+                _uiState.update { it.copy(isLoading = true, errorMessage = null) }
+                val pendientes = _uiState.value.inventariosNoRegistrados
+                if (pendientes.isEmpty()) {
+                    _uiState.update { it.copy(isLoading = false) }
+                    return@launch
+                }
+                pendientes.forEach { inventario ->
+                    val entity = InventarioBingoRegistradoEntity(
+                        uuidInventarioBingoRegistrado = UUID.randomUUID(),
+                        uuidActa = actaUuid,
+                        uuidInventario = inventario.uuidInventario,
+                        codigoApuestaDiferente = false,
+                        codigoApuestaDiferenteValor = null,
+                        sillasDiferente = false,
+                        sillasValor = null,
+                        estado = EstadoInventarioEnum.NO_ENCONTRADO,
+                        observaciones = "No encontrado"
+                    )
+                    inventarioBingoRegistradoDao.insert(entity)
+                }
+                _uiState.update { it.copy(isLoading = false, registroMasivoExitoso = true) }
+            } catch (e: Exception) {
+                _uiState.update {
+                    it.copy(isLoading = false, errorMessage = "Error al registrar: ${e.message}")
+                }
+            }
+        }
+    }
+
+    fun clearError() {
+        _uiState.update { it.copy(errorMessage = null) }
     }
 
     private fun List<InventarioEntity>.applyFilter(query: String) =
