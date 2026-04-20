@@ -56,7 +56,9 @@ class MainActivity : AppCompatActivity() {
             R.id.registrarInventarioFragment, R.id.inventarioActaFragment,
             R.id.inventarioFragment, R.id.resumenSincronizacionFragment,
             R.id.registrarNovedadFragment, R.id.novedadFragment,
-            R.id.signatureFragment, R.id.firmaActaFragment -> false
+            R.id.signatureFragment, R.id.firmaActaFragment,
+            R.id.registrarBingoFragment, R.id.inventarioBingoActaFragment,
+            R.id.inventarioBingoReportadoFragment -> false
 
             else -> true
         }

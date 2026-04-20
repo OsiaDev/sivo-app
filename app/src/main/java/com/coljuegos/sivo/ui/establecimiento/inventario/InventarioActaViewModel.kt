@@ -40,7 +40,7 @@ class InventarioActaViewModel @Inject constructor(
                     // Filtrar solo los que NO están registrados
                     val uuidsRegistrados = registrados.map { it.uuidInventario }.toSet()
 
-                    val tiposVisibles = setOf(ApuestaCodigoEnum.MET, ApuestaCodigoEnum.BINGO)
+                    val tiposVisibles = setOf(ApuestaCodigoEnum.MET)
                     val inventariosNoRegistrados = todosInventarios.filter { inventario ->
                         !uuidsRegistrados.contains(inventario.uuidInventario) &&
                                 tiposVisibles.contains(inventario.tipoApuesta())

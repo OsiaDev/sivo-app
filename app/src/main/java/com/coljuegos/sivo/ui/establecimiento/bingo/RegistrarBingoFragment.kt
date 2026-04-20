@@ -14,6 +14,7 @@ import androidx.navigation.fragment.navArgs
 import com.coljuegos.sivo.R
 import com.coljuegos.sivo.data.entity.EstadoInventarioEnum
 import com.coljuegos.sivo.databinding.FragmentRegistrarBingoBinding
+import com.coljuegos.sivo.ui.establecimiento.inventario.RegistrarInventarioFragmentDirections
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -51,8 +52,7 @@ class RegistrarBingoFragment : Fragment() {
         binding.estadoSpinner.setAdapter(adapterEstado)
         val s = viewModel.uiState.value
         s.registro?.let { reg ->
-            val estadoStr = resources.getStringArray(R.array.estado_options)
-                .firstOrNull { it == EstadoInventarioEnum.toString(reg.estado) } ?: ""
+            val estadoStr = EstadoInventarioEnum.toString(reg.estado)
             if (binding.estadoSpinner.text.toString() != estadoStr && estadoStr.isNotBlank()) {
                 binding.estadoSpinner.setText(estadoStr, false)
             }
@@ -88,6 +88,17 @@ class RegistrarBingoFragment : Fragment() {
     private fun setupButtons() {
         binding.btnCancelar.setOnClickListener { findNavController().navigateUp() }
         binding.btnRegistrar.setOnClickListener { guardar() }
+        binding.btnCapturarMaquina.setOnClickListener {
+            val serial = viewModel.uiState.value.inventario?.insCodigoInventario
+                ?.replace(" ", "_")
+                ?: args.inventarioUuid.toString()
+            val action = RegistrarBingoFragmentDirections
+                .actionRegistrarBingoFragmentToGalleryFragment(
+                    actaUuid = args.actaUuid,
+                    fragmentOrigen = "bingo_$serial"
+                )
+            findNavController().navigate(action)
+        }
     }
 
     private fun guardar() {
@@ -145,6 +156,12 @@ class RegistrarBingoFragment : Fragment() {
                 }
 
                 state.registro?.let { reg ->
+                    // ← LÍNEA AÑADIDA: restaurar spinner de estado
+                    val estadoStr = EstadoInventarioEnum.toString(reg.estado)
+                    if (binding.estadoSpinner.text.toString() != estadoStr && estadoStr.isNotBlank()) {
+                        binding.estadoSpinner.setText(estadoStr, false)
+                    }
+
                     binding.codigoApuestaDiferenteCheckbox.isChecked = reg.codigoApuestaDiferente
                     binding.codigoApuestaDiferenteInputLayout.isVisible = reg.codigoApuestaDiferente
                     binding.codigoApuestaDiferenteEditText.setText(reg.codigoApuestaDiferenteValor ?: "")

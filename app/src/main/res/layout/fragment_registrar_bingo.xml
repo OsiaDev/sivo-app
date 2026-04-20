@@ -229,7 +229,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/registrar_bingo_codigo_apuesta_diferente_valor"
-                android:inputType="text"
+                android:inputType="number"
                 android:padding="15dp"
                 android:textColor="@color/input_text_color"
                 android:textSize="16sp"/>
@@ -304,7 +304,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/registrar_bingo_cantidad_sillas_diferente_valor"
-                android:inputType="text"
+                android:inputType="number"
                 android:padding="15dp"
                 android:textColor="@color/input_text_color"
                 android:textSize="16sp"/>

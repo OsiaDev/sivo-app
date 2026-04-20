@@ -1,6 +1,7 @@
 package com.coljuegos.sivo.ui.establecimiento.bingo
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,6 +14,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.coljuegos.sivo.R
 import com.coljuegos.sivo.databinding.FragmentVerificacionBingoBinding
+import com.coljuegos.sivo.ui.establecimiento.verificacion.VerificacionContractualFragmentDirections
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -21,9 +23,11 @@ import kotlinx.coroutines.launch
 class VerificacionBingoFragment : Fragment() {
 
     private var _binding: FragmentVerificacionBingoBinding? = null
+
     private val binding get() = _binding!!
 
     private val args: VerificacionBingoFragmentArgs by navArgs()
+
     private val viewModel: VerificacionBingoViewModel by viewModels()
 
     private fun makeAdapterSiNoNa(): ArrayAdapter<String> {
@@ -67,6 +71,10 @@ class VerificacionBingoFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
+        parentFragmentManager.setFragmentResultListener("camera_action", viewLifecycleOwner) { _, _ ->
+            Log.d("ActaVisitaFragment", "Recibido evento de cámara")
+            navigateToGallery()
+        }
         val adSiNoNa = makeAdapterSiNoNa()
         val adBalotera = makeAdapterBalotera()
 
@@ -83,6 +91,20 @@ class VerificacionBingoFragment : Fragment() {
         restoreSpinner(binding.eventosEspecialesSpinner, s.realizaEventosEspeciales)
         restoreSpinner(binding.valorCartonExpuestoSpinner, s.valorCartonExpuesto)
         restoreSpinner(binding.tipoBaloterSpinner, s.tipoBalotera)
+    }
+
+    override fun onPause() {
+        super.onPause()
+        // Limpiar listener cuando el fragment no es visible
+        parentFragmentManager.clearFragmentResultListener("camera_action")
+    }
+
+    private fun navigateToGallery() {
+        val currentState = viewModel.uiState.value
+        currentState.actaUuid?.let { acta ->
+            val action = VerificacionBingoFragmentDirections.actionVerificacionBingoFragmentToGalleryFragment(acta, "verificacion_bingo")
+            findNavController().navigate(action)
+        }
     }
 
     private fun restoreSpinner(spinner: android.widget.AutoCompleteTextView, value: String) {
@@ -180,6 +202,14 @@ class VerificacionBingoFragment : Fragment() {
     private fun observeViewModel() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.uiState.collect { state ->
+
+                // Restaurar spinners al recibir estado (cubre primer render y rotación)
+                restoreSpinner(binding.sistemaTecnologicoSpinner, state.sistemaTecnologico)
+                restoreSpinner(binding.sistemaInterconectadoSpinner, state.sistemaInterconectado)
+                restoreSpinner(binding.eventosEspecialesSpinner, state.realizaEventosEspeciales)
+                restoreSpinner(binding.valorCartonExpuestoSpinner, state.valorCartonExpuesto)
+                restoreSpinner(binding.tipoBaloterSpinner, state.tipoBalotera)
+
                 state.errorMessage?.let {
                     Snackbar.make(binding.root, it, Snackbar.LENGTH_LONG).show()
                     viewModel.clearError()
