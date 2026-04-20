@@ -450,4 +450,9 @@
         <item>PEP - Permiso Especial de Permanencia</item>
     </string-array>
 
+    <string-array name="balotera_options">
+        <item>Manual</item>
+        <item>Electroneumática</item>
+    </string-array>
+
 </resources>

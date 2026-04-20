@@ -128,7 +128,7 @@ class VerificacionBingoFragment : Fragment() {
     }
 
     private fun validateRequiredFields(): Boolean {
-        var isValid = true
+        val s = viewModel.uiState.value
         var firstError: View? = null
 
         binding.sistemaTecnologicoLayout.error = null
@@ -137,34 +137,44 @@ class VerificacionBingoFragment : Fragment() {
         binding.tipoBaloterLayout.error = null
         binding.valorCartonExpuestoLayout.error = null
 
-        val s = viewModel.uiState.value
-
         if (s.sistemaTecnologico.isBlank()) {
-            binding.sistemaTecnologicoLayout.error = getString(R.string.campo_requerido)
-            isValid = false; if (firstError == null) firstError = binding.sistemaTecnologicoLayout
+            binding.sistemaTecnologicoLayout.error = " "
+            if (firstError == null) firstError = binding.sistemaTecnologicoLayout
         }
         if (s.sistemaInterconectado.isBlank()) {
-            binding.sistemaInterconectadoLayout.error = getString(R.string.campo_requerido)
-            isValid = false; if (firstError == null) firstError = binding.sistemaInterconectadoLayout
+            binding.sistemaInterconectadoLayout.error = " "
+            if (firstError == null) firstError = binding.sistemaInterconectadoLayout
         }
         if (s.realizaEventosEspeciales.isBlank()) {
-            binding.eventosEspecialesLayout.error = getString(R.string.campo_requerido)
-            isValid = false; if (firstError == null) firstError = binding.eventosEspecialesLayout
+            binding.eventosEspecialesLayout.error = " "
+            if (firstError == null) firstError = binding.eventosEspecialesLayout
         }
         if (s.tipoBalotera.isBlank()) {
-            binding.tipoBaloterLayout.error = getString(R.string.campo_requerido)
-            isValid = false; if (firstError == null) firstError = binding.tipoBaloterLayout
+            binding.tipoBaloterLayout.error = " "
+            if (firstError == null) firstError = binding.tipoBaloterLayout
         }
         if (s.valorCartonExpuesto.isBlank()) {
-            binding.valorCartonExpuestoLayout.error = getString(R.string.campo_requerido)
-            isValid = false; if (firstError == null) firstError = binding.valorCartonExpuestoLayout
+            binding.valorCartonExpuestoLayout.error = " "
+            if (firstError == null) firstError = binding.valorCartonExpuestoLayout
         }
 
-        if (!isValid) {
-            Snackbar.make(binding.root, getString(R.string.validacion_campos_incompletos), Snackbar.LENGTH_LONG).show()
-            firstError?.let { binding.root.post { (binding.root.parent as? android.widget.ScrollView)?.smoothScrollTo(0, it.top) } }
+        if (firstError != null) {
+            Snackbar.make(
+                binding.root,
+                "Por favor complete todos los campos antes de continuar",
+                Snackbar.LENGTH_LONG
+            ).show()
+            firstError?.let { field ->
+                binding.root.post {
+                    val scrollView = binding.root.parent as? android.widget.ScrollView
+                    scrollView?.smoothScrollTo(0, field.top)
+                    field.requestFocus()
+                }
+            }
+            return false
         }
-        return isValid
+
+        return true
     }
 
     private fun observeViewModel() {

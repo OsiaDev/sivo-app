@@ -52,7 +52,7 @@ class RegistrarBingoFragment : Fragment() {
         val s = viewModel.uiState.value
         s.registro?.let { reg ->
             val estadoStr = resources.getStringArray(R.array.estado_options)
-                .firstOrNull { it == reg.estado.displayName() } ?: ""
+                .firstOrNull { it == EstadoInventarioEnum.toString(reg.estado) } ?: ""
             if (binding.estadoSpinner.text.toString() != estadoStr && estadoStr.isNotBlank()) {
                 binding.estadoSpinner.setText(estadoStr, false)
             }
@@ -79,9 +79,9 @@ class RegistrarBingoFragment : Fragment() {
             binding.codigoApuestaDiferenteInputLayout.isVisible = isChecked
             if (!isChecked) binding.codigoApuestaDiferenteEditText.text?.clear()
         }
-        binding.sillasDiferenteCheckbox.setOnCheckedChangeListener { _, isChecked ->
-            binding.sillasValorInputLayout.isVisible = isChecked
-            if (!isChecked) binding.sillasValorEditText.text?.clear()
+        binding.cantidadSillasDiferenteCheckbox.setOnCheckedChangeListener { _, isChecked ->
+            binding.cantidadSillasDiferenteInputLayout.isVisible = isChecked
+            if (!isChecked) binding.cantidadSillasDiferenteEditText.text?.clear()
         }
     }
 
@@ -93,7 +93,7 @@ class RegistrarBingoFragment : Fragment() {
     private fun guardar() {
         // Validar estado
         if (binding.estadoSpinner.text.isNullOrBlank()) {
-            binding.estadoLayout.error = getString(R.string.campo_requerido)
+            Snackbar.make(binding.root, "Debe seleccionar un estado", Snackbar.LENGTH_LONG).show()
             return
         }
         binding.estadoLayout.error = null
@@ -102,20 +102,20 @@ class RegistrarBingoFragment : Fragment() {
         val codigoDiferenteValor = binding.codigoApuestaDiferenteEditText.text?.toString()?.trim()
 
         if (codigoDiferente && codigoDiferenteValor.isNullOrBlank()) {
-            binding.codigoApuestaDiferenteInputLayout.error = getString(R.string.campo_requerido)
+            Snackbar.make(binding.root, "Debe ingresar un código de apuesta diferente", Snackbar.LENGTH_LONG).show()
             return
         }
         binding.codigoApuestaDiferenteInputLayout.error = null
 
-        val sillasDiferente = binding.sillasDiferenteCheckbox.isChecked
-        val sillasValorStr = binding.sillasValorEditText.text?.toString()?.trim()
+        val sillasDiferente = binding.cantidadSillasDiferenteCheckbox.isChecked
+        val sillasValorStr = binding.cantidadSillasDiferenteEditText.text?.toString()?.trim()
         val sillasValor = sillasValorStr?.toIntOrNull()
 
         if (sillasDiferente && sillasValor == null) {
-            binding.sillasValorInputLayout.error = getString(R.string.registrar_bingo_sillas_valor_requerido)
+            binding.cantidadSillasDiferenteInputLayout.error = getString(R.string.registrar_bingo_sillas_valor_requerido)
             return
         }
-        binding.sillasValorInputLayout.error = null
+        binding.cantidadSillasDiferenteInputLayout.error = null
 
         val estadoStr = binding.estadoSpinner.text.toString()
         val estado = EstadoInventarioEnum.fromString(estadoStr)
@@ -140,11 +140,8 @@ class RegistrarBingoFragment : Fragment() {
                 }
 
                 state.inventario?.let { inv ->
-                    binding.tipoApuestaText.text = inv.tipoApuestaNombreInventario
-                    binding.codigoApuestaText.text =
-                        getString(R.string.inventario_acta_codigo_apuesta, inv.codigoTipoApuestaInventario)
-                    binding.sillasReportadasText.text =
-                        getString(R.string.registrar_bingo_sillas_reportadas, inv.invSillasInventario)
+                    binding.codigoApuestaValue.text = inv.codigoTipoApuestaInventario
+                    binding.cantidadSillasValue.text = inv.invSillasInventario.toString()
                 }
 
                 state.registro?.let { reg ->
@@ -152,9 +149,9 @@ class RegistrarBingoFragment : Fragment() {
                     binding.codigoApuestaDiferenteInputLayout.isVisible = reg.codigoApuestaDiferente
                     binding.codigoApuestaDiferenteEditText.setText(reg.codigoApuestaDiferenteValor ?: "")
 
-                    binding.sillasDiferenteCheckbox.isChecked = reg.sillasDiferente
-                    binding.sillasValorInputLayout.isVisible = reg.sillasDiferente
-                    binding.sillasValorEditText.setText(reg.sillasValor?.toString() ?: "")
+                    binding.cantidadSillasDiferenteCheckbox.isChecked = reg.sillasDiferente
+                    binding.cantidadSillasDiferenteInputLayout.isVisible = reg.sillasDiferente
+                    binding.cantidadSillasDiferenteEditText.setText(reg.sillasValor?.toString() ?: "")
 
                     binding.observacionesEditText.setText(reg.observaciones ?: "")
                 }

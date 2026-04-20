@@ -11,9 +11,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import com.coljuegos.sivo.R
 import com.coljuegos.sivo.databinding.FragmentInventarioBingoReportadoBinding
-import com.coljuegos.sivo.ui.establecimiento.inventario.InventarioReportadoUiState
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
@@ -104,7 +102,17 @@ class InventarioBingoReportadoFragment : Fragment() {
     }
 
     private fun updateUI(uiState: InventarioBingoReportadoUiState) {
+        val hayRegistros = uiState.filteredRegistrados.isNotEmpty()
 
+        binding.searchInputLayout.isVisible = hayRegistros
+        binding.tvInventariosRegistrados.isVisible = hayRegistros
+        binding.recyclerInventariosRegistrados.isVisible = hayRegistros && !uiState.isLoading
+
+        adapter.submitList(uiState.filteredRegistrados)
+
+        uiState.errorMessage?.let {
+            Snackbar.make(binding.root, it, Snackbar.LENGTH_LONG).show()
+        }
     }
 
     private fun showDeleteConfirmationDialog(inventarioRegistradoUuid: UUID) {
