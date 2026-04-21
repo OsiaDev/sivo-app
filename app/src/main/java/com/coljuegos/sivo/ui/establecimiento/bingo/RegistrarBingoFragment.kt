@@ -72,6 +72,9 @@ class RegistrarBingoFragment : Fragment() {
         binding.estadoSpinner.setOnItemClickListener { _, _, _, _ ->
             // No hay lógica adicional por ahora
         }
+        if (binding.estadoSpinner.text.toString().isBlank()) {
+            binding.estadoSpinner.setText(EstadoInventarioEnum.toString(EstadoInventarioEnum.OPERANDO), false)
+        }
     }
 
     private fun setupCheckboxListeners() {

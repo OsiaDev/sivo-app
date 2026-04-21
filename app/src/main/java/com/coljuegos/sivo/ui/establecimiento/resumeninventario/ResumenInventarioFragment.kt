@@ -82,6 +82,8 @@ class ResumenInventarioFragment : Fragment() {
         binding.tvInventariosOperando.text = state.inventariosOperando.toString()
         binding.tvInventariosApagados.text = state.inventariosApagados.toString()
         binding.tvInventariosNoEncontrados.text = state.inventariosNoEncontrados.toString()
+        binding.tvBingosRegistrados.text = state.bingosRegistrados.toString()
+        binding.tvBingosNoEncontrados.text = state.bingosNoEncontrados.toString()
         binding.tvNovedadesSinPlaca.text = state.novedadesSinPlaca.toString()
         binding.tvNovedadesConPlaca.text = state.novedadesConPlaca.toString()
         binding.tvTotalInventariosEncontrados.text = state.totalInventariosEncontrados.toString()

@@ -34,6 +34,10 @@ class InventarioRegistradoAdapter(
                 val inventario = item.inventario
 
                 // Mostrar marca, serial y contadores
+                val pos = bindingAdapterPosition
+                if (pos != RecyclerView.NO_POSITION) {
+                    numeroRegistro.text = "# ${pos + 1}"
+                }
                 marcaValue.text = "Marca: ${inventario.nombreMarcaInventario}"
                 serialValue.text = "Serial: ${inventario.metSerialInventario}"
                 

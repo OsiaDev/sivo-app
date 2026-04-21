@@ -10,6 +10,8 @@ import com.coljuegos.sivo.data.dao.ResumenInventarioDao
 import com.coljuegos.sivo.data.dao.VerificacionContractualDao
 import com.coljuegos.sivo.data.dao.VerificacionJuegoResponsableDao
 import com.coljuegos.sivo.data.dao.VerificacionSiplaftDao
+import com.coljuegos.sivo.data.dao.VerificacionBingoDao
+import com.coljuegos.sivo.data.dao.InventarioBingoRegistradoDao
 import com.coljuegos.sivo.data.entity.EstadoInventarioEnum
 import com.coljuegos.sivo.data.entity.ResumenInventarioEntity
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -30,6 +32,8 @@ class ResumenInventarioViewModel @Inject constructor(
     private val verificacionContractualDao: VerificacionContractualDao,
     private val verificacionJuegoResponsableDao: VerificacionJuegoResponsableDao,
     private val verificacionSiplaftDao: VerificacionSiplaftDao,
+    private val verificacionBingoDao: VerificacionBingoDao,
+    private val inventarioBingoRegistradoDao: InventarioBingoRegistradoDao,
     savedStateHandle: SavedStateHandle
 ) : ViewModel() {
 
@@ -76,10 +80,22 @@ class ResumenInventarioViewModel @Inject constructor(
                     // 4. Novedades con placa (total novedades - sin placa)
                     val novedadesConPlaca = novedadesRegistradas.size - novedadesSinPlaca
 
-                    // 5. Total inventarios encontrados: (1 + 1.1 + 3 + 4)
+                    // Bingos registrados y no encontrados
+                    val bingosRegistradosEntityList = inventarioBingoRegistradoDao.getByActaList(actaUuid)
+                    
+                    val bingosRegistrados = bingosRegistradosEntityList.count {
+                        it.estado == EstadoInventarioEnum.OPERANDO || it.estado == EstadoInventarioEnum.APAGADO
+                    }
+
+                    val bingosNoEncontrados = bingosRegistradosEntityList.count {
+                        it.estado == EstadoInventarioEnum.NO_ENCONTRADO
+                    }
+
+                    // 5. Total inventarios encontrados: (1 + 1.1 + 3 + 4 + bingos)
                     val totalInventariosEncontrados = inventariosOperando + inventariosApagados +
                             novedadesSinPlaca +
-                            novedadesConPlaca
+                            novedadesConPlaca +
+                            bingosRegistrados
 
                     // 6. Inventarios con código de apuesta diferente
                     val codigoApuestaDiferente = inventariosRegistrados.count {
@@ -106,12 +122,15 @@ class ResumenInventarioViewModel @Inject constructor(
                         (it.estado == EstadoInventarioEnum.OPERANDO || it.estado == EstadoInventarioEnum.APAGADO) && !it.valorPremios
                     }
 
+
                     _uiState.update {
                         it.copy(
                             isLoading = false,
                             inventariosOperando = inventariosOperando,
                             inventariosApagados = inventariosApagados,
                             inventariosNoEncontrados = inventariosNoEncontrados,
+                            bingosRegistrados = bingosRegistrados,
+                            bingosNoEncontrados = bingosNoEncontrados,
                             novedadesSinPlaca = novedadesSinPlaca,
                             novedadesConPlaca = novedadesConPlaca,
                             totalInventariosEncontrados = totalInventariosEncontrados,
@@ -193,26 +212,78 @@ class ResumenInventarioViewModel @Inject constructor(
                 _uiState.update { it.copy(isLoading = true) }
                 
                 val sugerencias = mutableListOf<String>()
+                
+                // 0. Bingo Verification
+                val bingo = verificacionBingoDao.getVerificacionBingoByActaId(actaUuid)
+                var hasBingoInfo = false
+                if (bingo != null) {
+                    bingo.cartonesModulos?.takeIf { it.isNotBlank() }?.let {
+                        val prefix = if (it.contains("módul", true) || it.contains("modul", true)) "" else "módulo de "
+                        val suffix = if (it.contains("carton", true) || it.contains("cartón", true)) "" else " cartones"
+                        sugerencias.add("$prefix$it$suffix".trim())
+                        hasBingoInfo = true
+                    }
+                    bingo.sistemaTecnologico?.takeIf { it.isNotBlank() }?.let {
+                        val prefix = if (it.contains("sistema", true)) "" else "sistema "
+                        sugerencias.add("$prefix$it".trim())
+                        hasBingoInfo = true
+                    }
+                    bingo.sistemaInterconectado?.takeIf { it.isNotBlank() }?.let {
+                        if(it.equals("NA", true)) {
+                            // Omit if NA or handle differently
+                        } else {
+                            sugerencias.add("sistema de juego ${it.uppercase()} interconectado")
+                            hasBingoInfo = true
+                        }
+                    }
+                    bingo.realizaEventosEspeciales?.takeIf { it.isNotBlank() }?.let {
+                        if (it.equals("Si", ignoreCase = true) || it.equals("Sí", ignoreCase = true)) {
+                            sugerencias.add("si realiza eventos especiales")
+                        } else if (it.equals("No", ignoreCase = true)) {
+                            sugerencias.add("NO realiza eventos especiales")
+                        } else if (!it.equals("NA", true)) {
+                            sugerencias.add("Eventos especiales: $it")
+                        }
+                        hasBingoInfo = true
+                    }
+                    bingo.tipoBalotera?.takeIf { it.isNotBlank() }?.let {
+                        val prefix = if (it.contains("balotera", ignoreCase = true)) "" else "balotera "
+                        sugerencias.add("$prefix$it".trim())
+                        hasBingoInfo = true
+                    }
+                    bingo.valorCartonExpuesto?.takeIf { it.isNotBlank() }?.let {
+                        if (it.equals("Si", ignoreCase = true) || it.equals("Sí", ignoreCase = true)) {
+                            sugerencias.add("Si tiene expuesto el valor del cartón")
+                        } else if (it.equals("No", ignoreCase = true)) {
+                            sugerencias.add("NO tiene expuesto el valor del cartón")
+                        } else if (!it.equals("NA", true)) {
+                            sugerencias.add("Valor del cartón expuesto: $it")
+                        }
+                        hasBingoInfo = true
+                    }
+                }
+
+                val hallazgos = mutableListOf<String>()
                 var numSugerencia = 1
 
                 // 1. Contractual
                 val contractual = verificacionContractualDao.getVerificacionContractualByActaId(actaUuid)
                 if (contractual?.avisoAutorizacion == "No") {
-                    sugerencias.add("$numSugerencia. El contrato del aviso de autorización no corresponde al autorizado, se debe instalar en lugar visible el aviso con el # del contrato correcto el cual debe cumplir con las especificaciones definidas en la resolución 20250007074 de 2025. Remitir foto como evidencia.")
+                    hallazgos.add("$numSugerencia. El contrato del aviso de autorización no corresponde al autorizado, se debe instalar en lugar visible el aviso con el # del contrato correcto el cual debe cumplir con las especificaciones definidas en la resolución 20250007074 de 2025. Remitir foto como evidencia.")
                     numSugerencia++
                 }
 
                 // 2. Juego Responsable
                 val juegoResponsable = verificacionJuegoResponsableDao.getVerificacionByActaId(actaUuid)
                 if (juegoResponsable?.existenPiezasPublicitarias == "No" || juegoResponsable?.cuentaProgramaJuegoResponsable == "No") {
-                    sugerencias.add("$numSugerencia. En cuanto a juego responsable no se tiene dispuestas piezas publicitarias, no se cuenta con el programa de juego. Se debe disponer en el casino de publicidad y el programa, enviando soportes a Coljuegos.")
+                    hallazgos.add("$numSugerencia. En cuanto a juego responsable no se tiene dispuestas piezas publicitarias, no se cuenta con el programa de juego. Se debe disponer en el casino de publicidad y el programa, enviando soportes a Coljuegos.")
                     numSugerencia++
                 }
 
                 // 3. SIPLAFT
                 val siplaft = verificacionSiplaftDao.getVerificacionSiplaftByActaId(actaUuid)
                 if (siplaft?.cuentaFormatoIdentificacion == "No" || siplaft?.cuentaFormatoReporteInterno == "No") {
-                    sugerencias.add("$numSugerencia. No se cuenta con los formatos de SIPLAFT, se debe disponer la información en el casino y enviar evidencia a Coljuegos.")
+                    hallazgos.add("$numSugerencia. No se cuenta con los formatos de SIPLAFT, se debe disponer la información en el casino y enviar evidencia a Coljuegos.")
                     numSugerencia++
                 }
 
@@ -220,7 +291,7 @@ class ResumenInventarioViewModel @Inject constructor(
                 val currentState = _uiState.value
                 val totalNovedades = currentState.novedadesConPlaca + currentState.novedadesSinPlaca
                 if (totalNovedades > 0) {
-                    sugerencias.add("$numSugerencia. Se encontraron $totalNovedades mets no registradas no autorizadas para operar, se requiere actualizar el inventario.")
+                    hallazgos.add("$numSugerencia. Se encontraron $totalNovedades mets no registradas no autorizadas para operar, se requiere actualizar el inventario.")
                     numSugerencia++
                 }
 
@@ -247,7 +318,7 @@ class ResumenInventarioViewModel @Inject constructor(
                         indexFab++
                     }
                     
-                    sugerencias.add(builder.toString().trimEnd())
+                    hallazgos.add(builder.toString().trimEnd())
                     numSugerencia++
                 }
 
@@ -277,12 +348,18 @@ class ResumenInventarioViewModel @Inject constructor(
                     }
                 }
 
+                if (hallazgos.isNotEmpty()) {
+                    if (sugerencias.isNotEmpty()) sugerencias.add("") // Separador
+                    sugerencias.add("Hallazgos")
+                    sugerencias.addAll(hallazgos)
+                }
+
                 val hasResumen = maquinasSerialDiferente.isNotEmpty() || maquinasSinDescripcion.isNotEmpty() || 
                                  maquinasSinPlanPremios.isNotEmpty() || maquinasSinValorPremios.isNotEmpty() ||
                                  maquinasApagadas.isNotEmpty() || maquinasNoEncontradas.isNotEmpty()
                 
                 if (hasResumen) {
-                    sugerencias.add("") // Linea en blanco para separar
+                    if (sugerencias.isNotEmpty()) sugerencias.add("") // Linea en blanco para separar
                     if (maquinasSerialDiferente.isNotEmpty()) {
                         sugerencias.add("Máquinas con serial diferente o no verificado: ${maquinasSerialDiferente.joinToString(", ")}")
                     }

@@ -34,6 +34,12 @@ data class ActaCompleteDTO(
     val firmaActa: FirmaActaDTO?,
 
     @SerializedName("resumenInventario")
-    val resumenInventario: ResumenInventarioDTO?
+    val resumenInventario: ResumenInventarioDTO?,
+
+    @SerializedName("verificacionBingo")
+    val verificacionBingo: VerificacionBingoDTO?,
+
+    @SerializedName("inventariosBingoRegistrados")
+    val inventariosBingoRegistrados: List<InventarioBingoRegistradoDTO>?
 
 )

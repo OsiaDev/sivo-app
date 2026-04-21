@@ -34,6 +34,10 @@ class NovedadRegistradaAdapter(
                 val novedad = item.novedad
 
                 // Mostrar marca, serial y contadores
+                val pos = bindingAdapterPosition
+                if (pos != RecyclerView.NO_POSITION) {
+                    numeroRegistro.text = "# ${pos + 1}"
+                }
                 marcaValue.text = "Marca: ${novedad?.marca}"
                 serialValue.text = "Serial: ${novedad?.serial}"
 

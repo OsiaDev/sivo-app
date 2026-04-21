@@ -306,19 +306,87 @@ class ActasRepository @Inject constructor(
 
                         actaDao.update(actaActualizada)
 
-                        funcionarioDao.deleteFuncionariosByActa(existingActa.uuidActa)
-                        inventarioDao.deleteInventariosByActa(existingActa.uuidActa)
+                        val currentFuncionarios = funcionarioDao.getFuncionariosByActa(existingActa.uuidActa)
+                        val currentInventarios = inventarioDao.getInventariosByActa(existingActa.uuidActa)
+
+                        val newFuncionarioIds = mutableSetOf<String>()
+                        val newInventarioSerials = mutableSetOf<String>()
 
                         actaDTO.funcionarios?.forEach { funcionarioDTO ->
-                            funcionariosToInsert.add(
-                                mapFuncionarioToEntity(funcionarioDTO, existingActa.uuidActa)
-                            )
+                            val idParaBuscar = funcionarioDTO.identificacion?.takeIf { it.isNotBlank() } 
+                                ?: funcionarioDTO.idUsuario?.takeIf { it.isNotBlank() } 
+                                ?: ""
+                            
+                            if (idParaBuscar.isNotBlank()) {
+                                newFuncionarioIds.add(idParaBuscar)
+                            }
+
+                            val existingFunc = currentFuncionarios.find {
+                                (it.identificacionFuncionario.isNotBlank() && it.identificacionFuncionario == funcionarioDTO.identificacion) ||
+                                (it.idUsuarioFuncionario.isNotBlank() && it.idUsuarioFuncionario == funcionarioDTO.idUsuario)
+                            }
+
+                            if (existingFunc != null) {
+                                funcionarioDao.update(
+                                    mapFuncionarioToEntity(funcionarioDTO, existingActa.uuidActa).copy(
+                                        uuidFuncionario = existingFunc.uuidFuncionario
+                                    )
+                                )
+                            } else {
+                                funcionariosToInsert.add(
+                                    mapFuncionarioToEntity(funcionarioDTO, existingActa.uuidActa)
+                                )
+                            }
                         }
 
                         actaDTO.inventarios?.forEach { inventarioDTO ->
-                            inventariosToInsert.add(
-                                mapInventarioToEntity(inventarioDTO, existingActa.uuidActa)
-                            )
+                            val idInventario = inventarioDTO.insCodigo?.takeIf { it.isNotBlank() }
+                                ?: inventarioDTO.metSerial?.takeIf { it.isNotBlank() }
+                                ?: inventarioDTO.nuc?.takeIf { it.isNotBlank() }
+
+                            if (idInventario != null) {
+                                newInventarioSerials.add(idInventario)
+                            }
+
+                            val existingInv = currentInventarios.find {
+                                (it.insCodigoInventario.isNotBlank() && it.insCodigoInventario == inventarioDTO.insCodigo) ||
+                                (it.metSerialInventario.isNotBlank() && it.metSerialInventario == inventarioDTO.metSerial) ||
+                                (it.nucInventario.isNotBlank() && it.nucInventario == inventarioDTO.nuc)
+                            }
+
+                            if (existingInv != null) {
+                                inventarioDao.update(
+                                    mapInventarioToEntity(inventarioDTO, existingActa.uuidActa).copy(
+                                        uuidInventario = existingInv.uuidInventario
+                                    )
+                                )
+                            } else {
+                                inventariosToInsert.add(
+                                    mapInventarioToEntity(inventarioDTO, existingActa.uuidActa)
+                                )
+                            }
+                        }
+
+                        // Eliminar huérfanos que ya no vinieron en el acta
+                        val funcionariosHuerfanos = currentFuncionarios.filter {
+                            val id = it.identificacionFuncionario.takeIf { i -> i.isNotBlank() } 
+                                ?: it.idUsuarioFuncionario.takeIf { i -> i.isNotBlank() }
+                            id != null && id !in newFuncionarioIds
+                        }.map { it.uuidFuncionario }
+
+                        if (funcionariosHuerfanos.isNotEmpty()) {
+                            funcionarioDao.deleteFuncionariosByUuids(funcionariosHuerfanos)
+                        }
+
+                        val inventariosHuerfanos = currentInventarios.filter {
+                            val id = it.insCodigoInventario.takeIf { i -> i.isNotBlank() }
+                                ?: it.metSerialInventario.takeIf { s -> s.isNotBlank() }
+                                ?: it.nucInventario.takeIf { n -> n.isNotBlank() }
+                            id != null && id !in newInventarioSerials
+                        }.map { it.uuidInventario }
+
+                        if (inventariosHuerfanos.isNotEmpty()) {
+                            inventarioDao.deleteInventariosByUuids(inventariosHuerfanos)
                         }
                     } else {
                         println("DEBUG: Acta #$numActa está en estado ${existingActa.stateActa}, NO se actualiza desde el backend")

@@ -150,6 +150,56 @@
                         tools:text="2" />
                 </LinearLayout>
 
+                <!-- 2.1 Bingos registrados -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingVertical="8dp">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/resumen_inventario_bingos_registrados"
+                        android:textColor="@color/text_detail"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/tvBingosRegistrados"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/fragment_subtitle_color"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        tools:text="1" />
+                </LinearLayout>
+
+                <!-- 2.2 Bingos no encontrados -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingVertical="8dp">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/resumen_inventario_bingos_no_encontrados"
+                        android:textColor="@color/text_detail"
+                        android:textSize="16sp" />
+
+                    <TextView
+                        android:id="@+id/tvBingosNoEncontrados"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@android:color/holo_red_dark"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        tools:text="0" />
+                </LinearLayout>
+
                 <!-- 3. Novedades sin placa -->
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -407,8 +457,8 @@
                 android:layout_height="wrap_content"
                 android:drawablePadding="12dp"
                 android:inputType="textMultiLine"
-                android:minLines="5"
-                android:maxLines="8"
+                android:minLines="10"
+                android:maxLines="25"
                 android:scrollbars="vertical"
                 android:padding="15dp"
                 android:textColor="@color/input_text_color"
@@ -454,8 +504,8 @@
                 android:layout_height="wrap_content"
                 android:drawablePadding="12dp"
                 android:inputType="textMultiLine"
-                android:minLines="5"
-                android:maxLines="8"
+                android:minLines="10"
+                android:maxLines="25"
                 android:scrollbars="vertical"
                 android:padding="15dp"
                 android:textColor="@color/input_text_color"

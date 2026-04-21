@@ -22,4 +22,13 @@ interface FuncionarioDao {
     @Query("DELETE FROM funcionarios WHERE uuidActa = :actaId")
     suspend fun deleteFuncionariosByActa(actaId: UUID)
 
+    @androidx.room.Update
+    suspend fun update(funcionario: FuncionarioEntity)
+
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    suspend fun insert(funcionario: FuncionarioEntity)
+
+    @Query("DELETE FROM funcionarios WHERE uuidFuncionario IN (:uuids)")
+    suspend fun deleteFuncionariosByUuids(uuids: List<UUID>)
+
 }

@@ -34,6 +34,10 @@ class InventarioBingoRegistradoAdapter(
             val reg = item.registro
             val context = binding.root.context
 
+            val pos = bindingAdapterPosition
+            if (pos != RecyclerView.NO_POSITION) {
+                binding.numeroRegistro.text = "# ${pos + 1}"
+            }
             binding.tipoApuestaNombreText.text = inv.tipoApuestaNombreInventario
             binding.codigoText.text = context.getString(
                 R.string.inventario_acta_codigo_apuesta, inv.codigoTipoApuestaInventario

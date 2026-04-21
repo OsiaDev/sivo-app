@@ -8,6 +8,8 @@ data class ResumenInventarioUiState(
     val inventariosOperando: Int = 0,         // (1) Registrados operando
     val inventariosApagados: Int = 0,         // (1.1) Registrados apagado
     val inventariosNoEncontrados: Int = 0,    // (2) No encontrados
+    val bingosRegistrados: Int = 0,           // (2.1) Bingos registrados
+    val bingosNoEncontrados: Int = 0,         // (2.2) Bingos no encontrados
     val novedadesSinPlaca: Int = 0,           // (3) Novedades sin placa
     val novedadesConPlaca: Int = 0,           // (4) Novedades con placa (total - sin placa)
     val totalInventariosEncontrados: Int = 0, // (5) Fórmula: 1 + 3 + 4

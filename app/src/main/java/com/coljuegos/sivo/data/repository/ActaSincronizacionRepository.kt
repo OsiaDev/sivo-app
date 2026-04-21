@@ -13,6 +13,8 @@ import com.coljuegos.sivo.data.entity.NovedadRegistradaEntity
 import com.coljuegos.sivo.data.entity.VerificacionContractualEntity
 import com.coljuegos.sivo.data.entity.VerificacionSiplaftEntity
 import com.coljuegos.sivo.data.entity.VerificacionJuegoResponsableEntity
+import com.coljuegos.sivo.data.entity.VerificacionBingoEntity
+import com.coljuegos.sivo.data.entity.InventarioBingoRegistradoEntity
 import com.coljuegos.sivo.data.remote.api.ApiService
 import com.coljuegos.sivo.data.remote.model.*
 import com.coljuegos.sivo.utils.ImageCompressionUtils
@@ -40,6 +42,8 @@ class ActaSincronizacionRepository @Inject constructor(
     private val imagenDao: ImagenDao,
     private val municipioDao: MunicipioDao,
     private val resumenInventarioDao: ResumenInventarioDao,
+    private val verificacionBingoDao: VerificacionBingoDao,
+    private val inventarioBingoRegistradoDao: InventarioBingoRegistradoDao,
     private val actaApiService: ApiService,
     private val sessionManager: SessionManager,
     private val imagenSincronizacionWorkManager: ImagenSincronizacionWorkManager
@@ -119,6 +123,14 @@ class ActaSincronizacionRepository @Inject constructor(
         val novedadesRegistradas = novedadRegistradaDao.getNovedadesRegistradasByActaList(acta.uuidActa)
         val firmaActa = firmaActaDao.getFirmaActaByActaUuidSuspend(acta.uuidActa)
         val resumenInventario = resumenInventarioDao.getResumenByActaId(acta.uuidActa)
+        val verificacionBingo = verificacionBingoDao.getVerificacionBingoByActaId(acta.uuidActa)
+        val inventariosBingoRegistrados = inventarioBingoRegistradoDao.getByActaList(acta.uuidActa)
+        
+        val inventariosBingoDTOs = mutableListOf<InventarioBingoRegistradoDTO>()
+        for (item in inventariosBingoRegistrados) {
+            val dto = mapInventarioBingoRegistradoToDTO(item)
+            if (dto != null) inventariosBingoDTOs.add(dto)
+        }
 
         return ActaCompleteDTO(
             numActa = acta.numActa,
@@ -136,7 +148,9 @@ class ActaSincronizacionRepository @Inject constructor(
                     notasResumen = it.notasResumen,
                     observacionesOperador = it.observacionesOperador
                 ) 
-            }
+            },
+            verificacionBingo = verificacionBingo?.let { mapVerificacionBingoToDTO(it) },
+            inventariosBingoRegistrados = inventariosBingoDTOs
         )
     }
 
@@ -279,6 +293,33 @@ class ActaSincronizacionRepository @Inject constructor(
             // Si hay error, devolver el Base64 original
             base64Simple
         }
+    }
+
+    private fun mapVerificacionBingoToDTO(entity: VerificacionBingoEntity): VerificacionBingoDTO {
+        return VerificacionBingoDTO(
+            cartonesModulos = entity.cartonesModulos,
+            sistemaTecnologico = entity.sistemaTecnologico,
+            sistemaInterconectado = entity.sistemaInterconectado,
+            realizaEventosEspeciales = entity.realizaEventosEspeciales,
+            tipoBalotera = entity.tipoBalotera,
+            valorCartonExpuesto = entity.valorCartonExpuesto
+        )
+    }
+
+    private suspend fun mapInventarioBingoRegistradoToDTO(entity: InventarioBingoRegistradoEntity): InventarioBingoRegistradoDTO? {
+        val inventario = inventarioDao.getInventarioByUuid(entity.uuidInventario) ?: return null
+        return InventarioBingoRegistradoDTO(
+            serial = inventario.metSerialInventario,
+            marca = inventario.nombreMarcaInventario,
+            codigoApuesta = inventario.codigoTipoApuestaInventario,
+            estado = entity.estado.name,
+            codigoApuestaDiferente = entity.codigoApuestaDiferente,
+            codigoApuestaDiferenteValor = entity.codigoApuestaDiferenteValor,
+            sillasDiferente = entity.sillasDiferente,
+            sillasValor = entity.sillasValor,
+            sillasOriginal = inventario.invSillasInventario,
+            observaciones = entity.observaciones
+        )
     }
 
     suspend fun getActaByUuid(actaUuid: UUID): ActaEntity? {

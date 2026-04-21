@@ -340,6 +340,8 @@
     <string name="resumen_inventario_operando">Inventarios operando:</string>
     <string name="resumen_inventario_apagados">Inventarios apagados:</string>
     <string name="resumen_inventario_no_encontrados">Inventarios no encontrados:</string>
+    <string name="resumen_inventario_bingos_registrados">Bingos registrados:</string>
+    <string name="resumen_inventario_bingos_no_encontrados">Bingos no encontrados:</string>
     <string name="resumen_inventario_novedades_sin_placa">Novedades sin placa:</string>
     <string name="resumen_inventario_novedades_con_placa">Novedades con placa:</string>
     <string name="resumen_inventario_total_encontrados">Total inventarios encontrados:</string>

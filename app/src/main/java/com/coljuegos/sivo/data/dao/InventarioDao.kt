@@ -25,4 +25,13 @@ interface InventarioDao {
     @Query("SELECT * FROM inventarios WHERE uuidInventario = :uuidInventario LIMIT 1")
     suspend fun getInventarioByUuid(uuidInventario: UUID): InventarioEntity?
 
+    @androidx.room.Update
+    suspend fun update(inventario: InventarioEntity)
+
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    suspend fun insert(inventario: InventarioEntity)
+
+    @Query("DELETE FROM inventarios WHERE uuidInventario IN (:uuids)")
+    suspend fun deleteInventariosByUuids(uuids: List<UUID>)
+
 }

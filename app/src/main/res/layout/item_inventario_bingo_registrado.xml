@@ -28,6 +28,15 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <TextView
+                android:id="@+id/numeroRegistro"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/acta_text_title"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                tools:text="# 1" />
+
+            <TextView
                 android:id="@+id/tipoApuestaNombreText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
